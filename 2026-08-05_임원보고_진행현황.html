@@ -1,0 +1,1279 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>LMS 역량증명서 프로젝트 — 임원 보고</title>
+
+<style>
+  :root {
+    color-scheme: light;
+    --paper:      #f2f5f4;
+    --surface:    #ffffff;
+    --surface-2:  #e9efed;
+    --line:       #d2dcda;
+    --line-soft:  #e2eae8;
+    --ink:        #0d1a19;
+    --ink-2:      #3d4c4a;
+    --ink-3:      #6b7a78;
+    --brand:      #1a8c85;
+    --brand-ink:  #0f5f5a;
+    --brand-wash: #e4f0ee;
+    --good:       #0ca30c;
+    --warn:       #b8791f;
+    --crit:       #c23434;
+    --good-wash:  #e6f4e6;
+    --warn-wash:  #f8efdc;
+    --crit-wash:  #f7e6e6;
+
+    --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 68ch;
+    --rail: 5.5rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme='light'])) {
+      color-scheme: dark;
+      --paper:      #0e1413;
+      --surface:    #161d1c;
+      --surface-2:  #1e2726;
+      --line:       #2d3937;
+      --line-soft:  #232d2c;
+      --ink:        #e3ebe9;
+      --ink-2:      #b3c1bf;
+      --ink-3:      #849290;
+      --brand:      #35b8af;
+      --brand-ink:  #57cdc4;
+      --brand-wash: #17302e;
+      --good:       #4cc44c;
+      --warn:       #e0a63c;
+      --crit:       #e06a6a;
+      --good-wash:  #16281a;
+      --warn-wash:  #2b2313;
+      --crit-wash:  #2c1a1a;
+    }
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --paper:      #0e1413;
+    --surface:    #161d1c;
+    --surface-2:  #1e2726;
+    --line:       #2d3937;
+    --line-soft:  #232d2c;
+    --ink:        #e3ebe9;
+    --ink-2:      #b3c1bf;
+    --ink-3:      #849290;
+    --brand:      #35b8af;
+    --brand-ink:  #57cdc4;
+    --brand-wash: #17302e;
+    --good:       #4cc44c;
+    --warn:       #e0a63c;
+    --crit:       #e06a6a;
+    --good-wash:  #16281a;
+    --warn-wash:  #2b2313;
+    --crit-wash:  #2c1a1a;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --paper:      #f2f5f4;
+    --surface:    #ffffff;
+    --surface-2:  #e9efed;
+    --line:       #d2dcda;
+    --line-soft:  #e2eae8;
+    --ink:        #0d1a19;
+    --ink-2:      #3d4c4a;
+    --ink-3:      #6b7a78;
+    --brand:      #1a8c85;
+    --brand-ink:  #0f5f5a;
+    --brand-wash: #e4f0ee;
+    --good:       #0ca30c;
+    --warn:       #b8791f;
+    --crit:       #c23434;
+    --good-wash:  #e6f4e6;
+    --warn-wash:  #f8efdc;
+    --crit-wash:  #f7e6e6;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+
+  .doc {
+    max-width: 78rem;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 4vw, 3rem) 6rem;
+  }
+
+  /* ── masthead ─────────────────────────────────── */
+  .masthead {
+    display: grid;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .masthead__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: var(--brand-ink);
+    margin: 0;
+  }
+  .masthead h1 {
+    font-size: clamp(1.9rem, 5vw, 3.1rem);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .masthead__sub {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 1.05rem;
+  }
+  .masthead__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .masthead__meta b { color: var(--ink-2); font-weight: 600; }
+
+  /* ── provenance chip ──────────────────────────── */
+  .prov {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    line-height: 1.6;
+    padding: 0.1em 0.5em;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--ink-3);
+    background: var(--surface);
+    white-space: nowrap;
+    vertical-align: 0.15em;
+  }
+  .prov--live { color: var(--brand-ink); border-color: var(--brand); background: var(--brand-wash); }
+
+  .prov-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 1.5rem 0 0;
+    padding: 0.85rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    font-size: 0.82rem;
+    color: var(--ink-2);
+  }
+  .prov-key > span { display: flex; align-items: baseline; gap: 0.5rem; }
+
+  /* ── sections ─────────────────────────────────── */
+  section {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 0 2rem;
+    padding-top: 4rem;
+  }
+  section > * { grid-column: 2; }
+
+  .sec-num {
+    grid-column: 1;
+    grid-row: 1 / span 99;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--brand);
+    letter-spacing: 0.06em;
+    padding-top: 0.55rem;
+    border-top: 2px solid var(--brand);
+    align-self: start;
+    position: sticky;
+    top: 1.5rem;
+  }
+
+  h2 {
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    font-weight: 750;
+    margin: 0 0 0.5rem;
+    padding-top: 0.35rem;
+    border-top: 2px solid var(--ink);
+    text-wrap: balance;
+  }
+  h3 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 2.25rem 0 0.75rem;
+    color: var(--ink);
+  }
+  h3:first-of-type { margin-top: 1.75rem; }
+
+  p { max-width: var(--measure); margin: 0 0 1rem; color: var(--ink-2); }
+  p.lede { font-size: 1.06rem; color: var(--ink); }
+  section > p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--ink); font-weight: 650; }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--surface-2);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
+    color: var(--ink);
+  }
+
+  ul { max-width: var(--measure); margin: 0 0 1rem; padding-left: 1.1rem; color: var(--ink-2); }
+  li { margin-bottom: 0.4rem; }
+  li::marker { color: var(--brand); }
+
+  /* ── KPI row ──────────────────────────────────── */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1px;
+    background: var(--line-soft);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    margin: 1.75rem 0;
+    overflow: hidden;
+  }
+  .kpi { background: var(--surface); padding: 1.1rem 1.1rem 1rem; }
+  .kpi__label {
+    font-size: 0.74rem;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+    margin: 0 0 0.3rem;
+  }
+  .kpi__val {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.85rem;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .kpi__val small { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); margin-left: 0.15em; }
+  .kpi__delta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--brand-ink);
+    margin: 0.3rem 0 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi__delta.flat { color: var(--ink-3); }
+
+  /* ── status pill ──────────────────────────────── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-size: 0.74rem;
+    font-weight: 600;
+    line-height: 1.5;
+    padding: 0.12em 0.55em;
+    border-radius: 2px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .pill::before { content: ''; width: 0.45em; height: 0.45em; border-radius: 50%; background: currentColor; flex: none; }
+  .pill--done { color: var(--good); background: var(--good-wash); border-color: color-mix(in srgb, var(--good) 30%, transparent); }
+  .pill--wip  { color: var(--brand-ink); background: var(--brand-wash); border-color: color-mix(in srgb, var(--brand) 35%, transparent); }
+  .pill--hold { color: var(--warn); background: var(--warn-wash); border-color: color-mix(in srgb, var(--warn) 32%, transparent); }
+  .pill--none { color: var(--crit); background: var(--crit-wash); border-color: color-mix(in srgb, var(--crit) 30%, transparent); }
+
+  /* ── tables ───────────────────────────────────── */
+  .tw { overflow-x: auto; margin: 1.25rem 0 1.5rem; border: 1px solid var(--line-soft); border-radius: 3px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: 0.88rem; }
+  thead th {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.05em;
+    color: var(--ink-3);
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--ink-2);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody td:first-child { color: var(--ink); font-weight: 600; }
+  td .num, th .num { font-variant-numeric: tabular-nums; }
+  .t-num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .t-tight { white-space: nowrap; }
+
+  /* ── progress bars ────────────────────────────── */
+  .bars { display: grid; gap: 0.7rem; margin: 1.5rem 0; max-width: 44rem; }
+  .bar { display: grid; grid-template-columns: 6.5rem 1fr 6.5rem; align-items: center; gap: 0.85rem; }
+  .bar__label { font-size: 0.85rem; color: var(--ink); font-weight: 600; }
+  .bar__track { height: 0.6rem; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .bar__fill { height: 100%; background: var(--brand); border-radius: 4px; }
+  .bar__fill--part { background: repeating-linear-gradient(135deg, var(--brand) 0 5px, color-mix(in srgb, var(--brand) 42%, var(--surface)) 5px 10px); }
+  .bar__val { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-3); font-variant-numeric: tabular-nums; text-align: right; }
+
+  /* ── architecture diagram ─────────────────────── */
+  .arch { display: grid; gap: 0.75rem; margin: 1.5rem 0 0.5rem; }
+  .tier {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: 0.85rem 1rem 1rem;
+  }
+  .tier__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--brand-ink);
+    margin-bottom: 0.7rem;
+  }
+  .tier__head span:last-child { color: var(--ink-3); letter-spacing: 0; font-size: 0.72rem; }
+  .nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.6rem; }
+  .node {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brand);
+    border-radius: 2px;
+    padding: 0.55rem 0.7rem;
+    background: var(--surface);
+  }
+  .node--ghost { border-left-color: var(--ink-3); border-style: dashed; opacity: 0.72; }
+  .node--pending { border-left-color: var(--warn); }
+  .node__name { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--ink); display: block; }
+  .node__note { font-size: 0.74rem; color: var(--ink-3); line-height: 1.5; display: block; margin-top: 0.15rem; }
+  .flow { text-align: center; font-family: var(--font-mono); font-size: 0.9rem; color: var(--line); line-height: 1; }
+
+  /* ── schedule ─────────────────────────────────── */
+  .sched { margin: 1.5rem 0; overflow-x: auto; }
+  .sched__inner { min-width: 40rem; }
+  .sched__head, .sched__row {
+    display: grid;
+    grid-template-columns: 12rem repeat(5, 1fr);
+    gap: 0.35rem;
+    align-items: center;
+  }
+  .sched__head {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ink-3);
+    letter-spacing: 0.03em;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 0.5rem;
+  }
+  .sched__head div + div { text-align: center; }
+  .sched__row { padding: 0.28rem 0; }
+  .sched__task { font-size: 0.83rem; font-weight: 600; color: var(--ink); padding-right: 0.5rem; line-height: 1.4; }
+  .sched__cell { height: 1.55rem; background: var(--surface-2); border-radius: 2px; }
+  .sched__cell.on {
+    background: var(--brand);
+    color: var(--surface);
+    font-size: 0.7rem;
+    font-weight: 650;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.01em;
+  }
+  .sched__cell.on.qa { background: color-mix(in srgb, var(--brand) 55%, var(--surface-2)); color: var(--ink); }
+  .sched__cell.on.freeze { background: var(--warn); color: #1a1305; }
+  .sched__cell.on.ship { background: var(--ink); color: var(--paper); }
+
+  /* ── callouts ─────────────────────────────────── */
+  .call {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brand);
+    border-radius: 3px;
+    background: var(--surface);
+    padding: 1rem 1.15rem;
+    margin: 1.5rem 0;
+    max-width: var(--measure);
+  }
+  .call--warn { border-left-color: var(--warn); }
+  .call--crit { border-left-color: var(--crit); }
+  .call__title { font-size: 0.82rem; font-weight: 700; color: var(--ink); margin: 0 0 0.4rem; }
+  .call p { margin: 0; font-size: 0.9rem; }
+  .call p + p { margin-top: 0.6rem; }
+
+  /* ── decision cards ───────────────────────────── */
+  .decisions { display: grid; gap: 0.75rem; margin: 1.5rem 0; }
+  .dec {
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: 0 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: 1rem 1.15rem;
+  }
+  .dec__n { font-family: var(--font-mono); font-size: 0.8rem; color: var(--brand); font-weight: 600; padding-top: 0.15rem; }
+  .dec__q { font-size: 0.97rem; font-weight: 700; color: var(--ink); margin: 0 0 0.35rem; }
+  .dec__b { font-size: 0.88rem; color: var(--ink-2); margin: 0; max-width: none; }
+  .dec__rec { font-size: 0.85rem; color: var(--brand-ink); margin: 0.5rem 0 0; font-weight: 600; }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--ink-3);
+  }
+  footer p { color: var(--ink-3); font-size: 0.8rem; max-width: none; }
+
+  a { color: var(--brand-ink); }
+  a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+  @media (max-width: 44rem) {
+    :root { --rail: 0rem; }
+    section { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    section > * { grid-column: 1; }
+    .sec-num { grid-row: auto; position: static; border-top: 0; padding-top: 0; margin-bottom: 0.4rem; }
+    .bar { grid-template-columns: 5.5rem 1fr 4.5rem; gap: 0.5rem; }
+  }
+</style>
+
+<div class="doc">
+
+  <header class="masthead">
+    <p class="masthead__eyebrow">임원 보고 · 종료 D-26</p>
+    <h1>LMS 역량증명서 프로젝트<br>진행 현황 및 8월 마감 계획</h1>
+    <p class="masthead__sub">
+      학습관리(LMS)와 <strong>역량 증명서 발급·외부 검증</strong>을 하나로 묶은 플랫폼입니다.
+      기능의 대부분은 이미 실제 서버에 연결되어 배포 환경에서 동작합니다.
+      남은 핵심은 <strong>증명서 발급 폐쇄 루프</strong> 하나이며, 이 보고서는 그것을 8월 31일 안에
+      끝내기 위한 현황·구조·일정·결정 사항을 담습니다.
+    </p>
+    <div class="masthead__meta">
+      <span>기준일 <b>2026-08-05</b></span>
+      <span>작성 <b>황설현</b></span>
+      <span>종료 목표 <b>2026-08-31</b></span>
+      <span>잔여 영업일 <b>18일</b></span>
+      <span>개발 인력 <b>3명</b></span>
+    </div>
+  </header>
+
+  <div class="prov-key">
+    <span><span class="prov prov--live">실측</span> 오늘 저장소·배포 환경에서 직접 측정</span>
+    <span><span class="prov">문서</span> 설계·회고 문서 기재값</span>
+    <span><span class="prov">결정</span> 기록된 합의 사항</span>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <section>
+    <div class="sec-num">01</div>
+    <h2>요약</h2>
+
+    <p class="lede">
+      제품은 <strong>거의 완성됐고, 한 축이 비어 있습니다.</strong>
+      전체 화면 <span class="num">150</span>개 중 <span class="num">130</span>개가 실제 백엔드에 연결되어
+      배포 환경에서 동작합니다. 비어 있는 <span class="num">20</span>개는 대부분 한 곳,
+      <strong>증명서 발급·검토·승인 흐름</strong>에 몰려 있습니다.
+    </p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <p class="kpi__label">실연동 화면</p>
+        <p class="kpi__val">130<small>/150</small></p>
+        <p class="kpi__delta">7월 6일 78/141</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">백엔드 API</p>
+        <p class="kpi__val">438<small>개</small></p>
+        <p class="kpi__delta">7월 6일 216개 · +103%</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">자동 테스트</p>
+        <p class="kpi__val">817<small>개</small></p>
+        <p class="kpi__delta">전량 통과 (오늘 실행)</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">배포 환경</p>
+        <p class="kpi__val">정상</p>
+        <p class="kpi__delta">웹·API 응답 확인</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">잔여 영업일</p>
+        <p class="kpi__val">18<small>일</small></p>
+        <p class="kpi__delta flat">08-06 ~ 08-31</p>
+      </div>
+    </div>
+
+    <h3>한 달간 달라진 것 <span class="prov prov--live">실측</span></h3>
+    <p>
+      직전 공식 보고(7월 6일) 이후 한 달 동안, 당시 병목으로 지목됐던
+      <strong>5개 백엔드 공백 중 4개가 해소</strong>됐습니다.
+    </p>
+    <ul>
+      <li><strong>멘토 도메인</strong> — 당시 “프론트·백엔드 모두 미착수, 최대 공백”. 현재 <span class="num">15</span>개 화면과 API가 모두 동작하며, 팀 허브 구조로 재설계까지 끝났습니다.</li>
+      <li><strong>강사 도메인</strong> — 당시 37%(10/27). 현재 전 화면 실연동.</li>
+      <li><strong>운영(매니저) 도메인</strong> — 당시 67%(28/42). 현재 데이터·연동 3화면을 뺀 전부 실연동.</li>
+      <li><strong>수강생 도메인</strong> — 당시 75%(39/52). 현재 증명서·PLAY를 뺀 전부 실연동.</li>
+      <li><strong>증명서 도메인</strong> — <span class="pill pill--none">미해소</span> 유일하게 그대로 남았습니다.</li>
+    </ul>
+
+    <div class="call call--warn">
+      <p class="call__title">임원 판단이 필요한 지점</p>
+      <p>
+        원래 계획은 <strong>7월 31일 기능 완성 → 8월은 QA만</strong>이었습니다.
+        실제로는 8월 5일 오늘도 프론트에서 <span class="num">30</span>건 이상이 신규 병합됐습니다.
+        기능 개발과 QA가 겹쳐 돌아가는 상태이며, 이대로면 증명서 축을 넣을 시간이 부족합니다.
+        <strong>기능 동결일 확정</strong>과 <strong>범위 이월 승인</strong>이 필요합니다(§6·§7).
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ 2 ══ -->
+  <section>
+    <div class="sec-num">02</div>
+    <h2>현재 진행 상황</h2>
+
+    <h3>역할별 완성도 <span class="prov prov--live">실측</span></h3>
+    <p>
+      라우트(화면 주소) 단위로 실제 API 연결 여부를 확인한 결과입니다.
+      빗금은 화면은 완성됐으나 데이터가 아직 임시(mock)이거나 메뉴에서 차단된 상태입니다.
+    </p>
+
+    <div class="bars">
+      <div class="bar">
+        <span class="bar__label">강사</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">32 / 32</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">멘토</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">8 / 8</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">외부 검증</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">2 / 2</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">운영(매니저)</span>
+        <span class="bar__track"><span class="bar__fill" style="width:83%"></span></span>
+        <span class="bar__val">44 / 53</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">수강생</span>
+        <span class="bar__track"><span class="bar__fill" style="width:80%"></span></span>
+        <span class="bar__val">43 / 54</span>
+      </div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">영역</th>
+            <th scope="col">상태</th>
+            <th scope="col">근거 (오늘 확인)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>로그인 · 권한</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>배포 API 로그인 <span class="num">200</span> 응답, 5개 역할 계정 검증</td>
+          </tr>
+          <tr>
+            <td>수강생 학습 여정</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>과정·출결·퀴즈·과제·기록실·프로젝트·트러블슈팅·마일리지·QnA</td>
+          </tr>
+          <tr>
+            <td>강사 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>퀴즈·과제·검토·추천서·템플릿·자료실 전 화면</td>
+          </tr>
+          <tr>
+            <td>멘토 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td><code>/mentor/v1/*</code> 5개 엔드포인트 라이브 <span class="num">200</span></td>
+          </tr>
+          <tr>
+            <td>운영 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>대시보드·교육과정·마일리지·평판·멘토링·설정·PLAY 관리</td>
+          </tr>
+          <tr>
+            <td>외부 검증 URL</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td><code>GET /verify/{token}</code> 라이브 <span class="num">200</span></td>
+          </tr>
+          <tr>
+            <td>증명서 조회·발급</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td><code>GET /student/certificate</code> <span class="num">404</span> — 화면은 임시 데이터로 렌더</td>
+          </tr>
+          <tr>
+            <td>증명서 인증 검토</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td><code>/admin/certificates/reviews</code> <span class="num">404</span> — 메뉴 차단 중</td>
+          </tr>
+          <tr>
+            <td>데이터·연동 3화면</td>
+            <td><span class="pill pill--hold">보류</span></td>
+            <td>API는 응답하나 고정 빈 값 반환 — 메뉴 차단 중</td>
+          </tr>
+          <tr>
+            <td>PLAY 미니게임</td>
+            <td><span class="pill pill--hold">2차 이월</span></td>
+            <td>7월 6일 결정 — 화면 완성, 백엔드 미착수</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>산출물 규모 <span class="prov prov--live">실측</span></h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">저장소</th>
+            <th scope="col">역할</th>
+            <th scope="col" class="t-num">커밋</th>
+            <th scope="col" class="t-num">최신 PR</th>
+            <th scope="col">품질 확인</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LMS-FE</td>
+            <td>웹 화면 전체 (React)</td>
+            <td class="t-num">3,343</td>
+            <td class="t-num">#777</td>
+            <td class="t-tight">타입검사 통과 · 테스트 817개 통과</td>
+          </tr>
+          <tr>
+            <td>LMS-BE</td>
+            <td>API 서버 4종 (Spring Boot)</td>
+            <td class="t-num">1,455</td>
+            <td class="t-num">#546</td>
+            <td class="t-tight">전 서비스 컴파일 통과 · 개발↔운영 브랜치 동기</td>
+          </tr>
+          <tr>
+            <td>LMS-AI</td>
+            <td>증명서 점수·분석 엔진 (Python)</td>
+            <td class="t-num">96</td>
+            <td class="t-num">#47</td>
+            <td class="t-tight">테스트 파일 16개</td>
+          </tr>
+          <tr>
+            <td>LMS-TERRAFORM</td>
+            <td>AWS 인프라 코드</td>
+            <td class="t-num">17</td>
+            <td class="t-num">#3</td>
+            <td class="t-tight">모듈 9종</td>
+          </tr>
+          <tr>
+            <td>LMS-DOCS</td>
+            <td>설계·결정 문서</td>
+            <td class="t-num">650</td>
+            <td class="t-num">#207</td>
+            <td class="t-tight">보고서 100여 건 누적</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      백엔드 내역: 인증·사용자 <span class="num">99</span>개, 학습 <span class="num">333</span>개,
+      운영 <span class="num">6</span>개 = <strong class="num">438</strong>개 엔드포인트.
+      데이터 테이블 <span class="num">100</span>종, 스키마 변경 이력 <span class="num">161</span>건.
+    </p>
+  </section>
+
+  <!-- ══ 3 ══ -->
+  <section>
+    <div class="sec-num">03</div>
+    <h2>아키텍처</h2>
+
+    <p>
+      역할별 웹 화면 하나가 <strong>4개의 백엔드 서비스</strong>와 <strong>1개의 분석 엔진</strong>을 사용합니다.
+      데이터베이스는 비용·운영 부담을 고려해 인스턴스를 나누지 않고
+      <strong>하나의 PostgreSQL 안에서 서비스별 스키마로 경계</strong>를 나눴습니다.
+    </p>
+
+    <div class="arch">
+      <div class="tier">
+        <div class="tier__head"><span>사용자</span><span>브라우저</span></div>
+        <div class="nodes">
+          <div class="node"><span class="node__name">수강생</span><span class="node__note">학습 · 증명서</span></div>
+          <div class="node"><span class="node__name">강사</span><span class="node__note">출제 · 인증 심사</span></div>
+          <div class="node"><span class="node__name">멘토</span><span class="node__note">일지 · 평가 · 추천</span></div>
+          <div class="node"><span class="node__name">매니저</span><span class="node__note">운영 전반</span></div>
+          <div class="node"><span class="node__name">외부 검증자</span><span class="node__note">로그인 없이 조회</span></div>
+        </div>
+      </div>
+
+      <div class="flow" aria-hidden="true">↓</div>
+
+      <div class="tier">
+        <div class="tier__head"><span>전달</span><span>AWS CloudFront + S3 · Application Load Balancer</span></div>
+        <div class="nodes">
+          <div class="node"><span class="node__name">웹 (React 19)</span><span class="node__note">S3 정적 배포 → CDN</span></div>
+          <div class="node"><span class="node__name">API 진입점</span><span class="node__note">경로 기반 라우팅 · JWT 검증</span></div>
+        </div>
+      </div>
+
+      <div class="flow" aria-hidden="true">↓</div>
+
+      <div class="tier">
+        <div class="tier__head"><span>서비스</span><span>Spring Boot · AWS ECS Fargate</span></div>
+        <div class="nodes">
+          <div class="node">
+            <span class="node__name">auth-user-service</span>
+            <span class="node__note">계정 · 역할 · 멘토링 · 평판 — API 99개</span>
+          </div>
+          <div class="node">
+            <span class="node__name">learning-service</span>
+            <span class="node__note">과정 · 출결 · 퀴즈 · 과제 · 기록 · 프로젝트 · 검증 — API 333개</span>
+          </div>
+          <div class="node node--pending">
+            <span class="node__name">operations-service</span>
+            <span class="node__note">CSV 인입 · 운영 대시보드 — API 6개, 확장 예정</span>
+          </div>
+          <div class="node node--ghost">
+            <span class="node__name">integration-service</span>
+            <span class="node__note">외부 연동 — 자리만 확보, 미구현</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow" aria-hidden="true">↓</div>
+
+      <div class="tier">
+        <div class="tier__head"><span>저장</span><span>Private Subnet</span></div>
+        <div class="nodes">
+          <div class="node">
+            <span class="node__name">PostgreSQL (RDS)</span>
+            <span class="node__note">단일 인스턴스 · 서비스별 스키마 분리 · 테이블 100종</span>
+          </div>
+          <div class="node">
+            <span class="node__name">Redis</span>
+            <span class="node__note">세션 토큰 · 캐시</span>
+          </div>
+          <div class="node">
+            <span class="node__name">S3</span>
+            <span class="node__note">과제·산출물·첨부 파일</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow" aria-hidden="true">↓</div>
+
+      <div class="tier">
+        <div class="tier__head"><span>분석</span><span>LMS-AI · Python FastAPI</span></div>
+        <div class="nodes">
+          <div class="node node--pending">
+            <span class="node__name">역량 점수 엔진</span>
+            <span class="node__note">6축 점수 · 상대 위치 — 계산식은 확정 함수(LLM 아님)</span>
+          </div>
+          <div class="node node--pending">
+            <span class="node__name">AI 분석 생성</span>
+            <span class="node__note">직무 적합도 · 페르소나 · 강점 서술 (OpenAI)</span>
+          </div>
+          <div class="node node--ghost">
+            <span class="node__name">서버 배포</span>
+            <span class="node__note">ECS 미배포 — 로컬 실행만</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>증명서 발급 흐름 <span class="prov">결정</span></h3>
+    <p>
+      제품의 핵심 가치이자 <strong>현재 유일하게 끊긴 구간</strong>입니다.
+      수강생이 요청하면 시스템이 학습·프로젝트·평가 데이터를 모아 점수를 내고,
+      운영자가 검토·승인하면 <strong>그 시점의 내용을 그대로 동결</strong>합니다.
+      이후 원본 데이터가 바뀌어도 발급된 증명서는 변하지 않으며, 외부인은 공개 링크로 진위를 확인합니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">단계</th>
+            <th scope="col">담당</th>
+            <th scope="col">현재 상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1. 미리보기</td><td>수강생</td><td><span class="pill pill--wip">화면 완성 · 임시 데이터</span></td></tr>
+          <tr><td>2. 정식 인증 요청</td><td>수강생</td><td><span class="pill pill--none">백엔드 미구현</span></td></tr>
+          <tr><td>3. 검토 큐 · 보완 요청</td><td>운영자</td><td><span class="pill pill--none">백엔드 미구현</span> 화면은 완성, 메뉴 차단</td></tr>
+          <tr><td>4. 승인 → 내용 동결</td><td>운영자</td><td><span class="pill pill--none">백엔드 미구현</span></td></tr>
+          <tr><td>5. 공개 설정</td><td>수강생</td><td><span class="pill pill--done">동작</span></td></tr>
+          <tr><td>6. 외부 검증 링크</td><td>외부</td><td><span class="pill pill--done">동작</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>설계 대비 실제 구성 <span class="prov">결정</span></h3>
+    <p>
+      초기 설계에 있었으나 <strong>도입하지 않기로 결정</strong>한 항목입니다. 누락이 아니라
+      MVP 범위 축소 결정이며, 6월 24일 아키텍처 문서 개정에 반영돼 있습니다.
+      임원 보고 시 “설계서에 있는데 왜 없냐”는 질문이 나올 수 있어 명시합니다.
+    </p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">항목</th>
+            <th scope="col">원래 계획</th>
+            <th scope="col">현재</th>
+            <th scope="col">사유</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kafka · Debezium</td><td>서비스 간 비동기 이벤트</td>
+            <td><span class="pill pill--hold">미도입</span></td>
+            <td>운영 복잡도 대비 이익 부족 — 서비스 간 직접 호출로 대체</td>
+          </tr>
+          <tr>
+            <td>조회 전용 DB</td><td>대시보드·목록 성능 최적화</td>
+            <td><span class="pill pill--hold">미도입</span></td>
+            <td>현 트래픽에서 원천 조회로 충분</td>
+          </tr>
+          <tr>
+            <td>Airflow · 마트 DB</td><td>야간 집계 배치</td>
+            <td><span class="pill pill--hold">범위 제외</span></td>
+            <td>06-24 확정 — 집계 요구가 실측될 때 재검토</td>
+          </tr>
+          <tr>
+            <td>API Gateway 서버</td><td>공통 인증 전처리</td>
+            <td><span class="pill pill--hold">미도입</span></td>
+            <td>로드밸런서 경로 라우팅으로 대체</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══ 4 ══ -->
+  <section>
+    <div class="sec-num">04</div>
+    <h2>남은 구현</h2>
+
+    <p>
+      우선순위 순입니다. <strong>P0는 8월 종료 판정 기준에 직접 걸린 항목</strong>이고,
+      P2는 이월을 권고하는 항목입니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">우선</th>
+            <th scope="col">항목</th>
+            <th scope="col">담당</th>
+            <th scope="col" class="t-tight">규모</th>
+            <th scope="col">내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>P0</td>
+            <td>증명서 발급 백엔드</td>
+            <td>이정훈</td>
+            <td class="t-tight">6~8일</td>
+            <td>증명서 조회 API, 인증 요청·검토·승인 상태 전이, 승인 시 내용 동결(스냅샷) 저장</td>
+          </tr>
+          <tr>
+            <td>P0</td>
+            <td>증명서 화면 실연동</td>
+            <td>황설현 · 박준석</td>
+            <td class="t-tight">3~4일</td>
+            <td>수강생 4화면 + 운영 인증 검토 4화면 임시 데이터 제거, 상태 전이를 실제 API로 교체</td>
+          </tr>
+          <tr>
+            <td>P0</td>
+            <td>분석 엔진 서버 배포</td>
+            <td>이정훈 · 박준석</td>
+            <td class="t-tight">1~2일</td>
+            <td>LMS-AI를 AWS에 올리고, 백엔드가 내부 호출해 결과를 저장하도록 연결 (현재 미착수)</td>
+          </tr>
+          <tr>
+            <td>P0</td>
+            <td>증명서 실데이터 전환</td>
+            <td>박준석</td>
+            <td class="t-tight">2~3일</td>
+            <td>현재 합성 데이터 300명분으로 계산 중 — 실제 학습 데이터로 원천 교체 후 결과 재검증</td>
+          </tr>
+          <tr>
+            <td>P1</td>
+            <td>공통 화면 15장</td>
+            <td>황설현</td>
+            <td class="t-tight">2일</td>
+            <td>권한 오류·세션 만료 안내·비밀번호 재설정 안내 등. 현재는 조용히 홈으로 이동시켜 사용자가 이유를 모름</td>
+          </tr>
+          <tr>
+            <td>P1</td>
+            <td>임시 비밀번호 변경 경로</td>
+            <td>황설현</td>
+            <td class="t-tight">1일</td>
+            <td>매니저가 발급한 임시 비밀번호를 본인이 바꿀 경로가 없음 (이슈 #374·#375)</td>
+          </tr>
+          <tr>
+            <td>P1</td>
+            <td>세션 유지 결함</td>
+            <td>이정훈</td>
+            <td class="t-tight">1일</td>
+            <td>웹과 API가 서로 다른 도메인이라 브라우저가 세션 쿠키를 차단 → 간헐적 강제 로그아웃</td>
+          </tr>
+          <tr>
+            <td>P2</td>
+            <td>데이터·연동 3화면</td>
+            <td>이정훈</td>
+            <td class="t-tight">3일</td>
+            <td>CSV 매핑 · 인입 격리 큐 · 외부 연동. 화면 완성, 백엔드가 빈 값만 반환</td>
+          </tr>
+          <tr>
+            <td>P2</td>
+            <td>PLAY 미니게임 9화면</td>
+            <td>—</td>
+            <td class="t-tight">5일+</td>
+            <td>7월 6일 2차 이월 결정 완료 — 재확인만 필요</td>
+          </tr>
+          <tr>
+            <td>P2</td>
+            <td>역할 간 UI 통일 잔여</td>
+            <td>황설현</td>
+            <td class="t-tight">4주</td>
+            <td>1단계·중복 화면 통합은 완료(사본 약 2,200줄 제거). 명칭 치환·구조 수렴이 남음</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call">
+      <p class="call__title">읽는 법</p>
+      <p>
+        P0 4건의 합계가 <strong>12~17 영업일</strong>입니다. 잔여 영업일이 18일이므로
+        <strong>P0만 하면 들어가고, P2까지 하면 넘칩니다.</strong> 이것이 §7 결정 안건의 근거입니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ 5 ══ -->
+  <section>
+    <div class="sec-num">05</div>
+    <h2>8월 31일까지 일정</h2>
+
+    <p>
+      원래 계획(7월 31일 기능 완성 → 8월 전체 QA)은 이미 어긋났습니다.
+      아래는 <strong>현 시점에서 다시 짠 실행 계획</strong>이며,
+      증명서 축을 완성한 뒤 QA로 넘어가는 구조입니다.
+    </p>
+
+    <div class="sched">
+      <div class="sched__inner">
+        <div class="sched__head">
+          <div>작업</div>
+          <div>08-06~07<br>목·금</div>
+          <div>08-10~14<br>2주차</div>
+          <div>08-17~21<br>3주차</div>
+          <div>08-24~28<br>4주차</div>
+          <div>08-31<br>월</div>
+        </div>
+
+        <div class="sched__row">
+          <div class="sched__task">기능 동결 선언</div>
+          <div class="sched__cell on freeze">동결</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">증명서 백엔드 구현</div>
+          <div class="sched__cell on">착수</div>
+          <div class="sched__cell on">완성</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">분석 엔진 배포·연결</div>
+          <div class="sched__cell on">배포</div>
+          <div class="sched__cell on">연결</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">증명서 화면 실연동</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on">연동</div>
+          <div class="sched__cell on">실데이터</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">P1 잔여 (공통 화면·세션)</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on">처리</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">사용자 검수 (UAT)</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on qa">1차</div>
+          <div class="sched__cell on qa">2차</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">권한·보안·회귀 점검</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on qa">점검</div>
+          <div class="sched__cell on qa">회귀</div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">버그 수정만 (코드 동결)</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on qa">수정</div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">운영 매뉴얼 · 교육</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on qa">작성</div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">최종 배포 · 종료 보고</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on ship">완료</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>주차별 관문</h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">시점</th>
+            <th scope="col">통과 조건</th>
+            <th scope="col">미통과 시</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">08-07 금</td>
+            <td>신규 기능 개발 중단 선언, 증명서 백엔드 설계 확정, 분석 엔진 AWS 기동</td>
+            <td>P2 전체를 9월로 이월</td>
+          </tr>
+          <tr>
+            <td class="t-tight">08-14 금</td>
+            <td>증명서 요청→검토→승인→동결이 배포 환경에서 한 번 완주</td>
+            <td><strong>8월 종료 판정 불가</strong> — 범위 재협의</td>
+          </tr>
+          <tr>
+            <td class="t-tight">08-21 금</td>
+            <td>2차 검수 완료, 심각 결함 0건, 권한·보안 점검 통과</td>
+            <td>P1 잔여를 이월하고 회귀에 집중</td>
+          </tr>
+          <tr>
+            <td class="t-tight">08-28 금</td>
+            <td>코드 동결, 릴리즈 후보 배포, 운영 매뉴얼 인계</td>
+            <td>08-31 배포를 9월 초로 순연</td>
+          </tr>
+          <tr>
+            <td class="t-tight">08-31 월</td>
+            <td>운영 배포 · 종료 보고 · 잔여 이슈 인계 목록</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>8월 종료 판정 체크리스트 <span class="prov">문서</span></h3>
+    <p>
+      계획 문서에 정의된 종료 조건 <span class="num">15</span>개 중,
+      현재 <strong class="num">9</strong>개는 충족됐고 <strong class="num">6</strong>개가 미충족입니다.
+      미충족 6개는 <strong>전부 증명서 발급 루프 하나에 걸려 있습니다.</strong>
+    </p>
+    <ul>
+      <li><span class="pill pill--done">충족</span> 프로젝트·트러블슈팅 강사 인증 / 인증 후 수정 잠금 / 공개 설정 / 외부 검증 URL / ECS·S3·Redis 동작 / 운영 DB 스키마 분리 등 9건</li>
+      <li><span class="pill pill--none">미충족</span> 증명서 미리보기(실데이터) · 정식 인증 요청 · 보완 요청 · 보완 후 재요청 · 승인 시 동결 · 검수 통과 — 6건</li>
+    </ul>
+  </section>
+
+  <!-- ══ 6 ══ -->
+  <section>
+    <div class="sec-num">06</div>
+    <h2>리스크</h2>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">리스크</th>
+            <th scope="col" class="t-tight">영향</th>
+            <th scope="col">대응</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>증명서 백엔드가 단독 임계 경로</td>
+            <td class="t-tight"><span class="pill pill--none">높음</span></td>
+            <td>백엔드 담당이 1명이고 증명서 외 전 도메인도 같은 사람이 맡음. <strong>다른 백엔드 신규 요청을 08-07부로 전면 중단</strong>해야 8월 안에 들어감</td>
+          </tr>
+          <tr>
+            <td>기능 개발이 아직 안 멈춤</td>
+            <td class="t-tight"><span class="pill pill--none">높음</span></td>
+            <td>8월 5일 하루에만 프론트 30건 이상 병합. <strong>동결일을 문서로 확정</strong>하고 이후 요청은 9월 백로그로 자동 이관</td>
+          </tr>
+          <tr>
+            <td>증명서가 합성 데이터로 시연 중</td>
+            <td class="t-tight"><span class="pill pill--hold">중간</span></td>
+            <td>실데이터 전환 시 점수·등급·상대 위치가 바뀜 → 전환 후 재검증 시간을 3주차에 반드시 확보</td>
+          </tr>
+          <tr>
+            <td>배포가 성공 표시인데 반영 안 됨</td>
+            <td class="t-tight"><span class="pill pill--hold">중간</span></td>
+            <td>7월 30일·8월 4일 2회 실제 발생(스키마 번호 충돌로 새 서버가 기동 실패, 구 서버 유지). 배포 후 <strong>엔드포인트 응답으로 반영 확인</strong>하는 절차를 상시화</td>
+          </tr>
+          <tr>
+            <td>자동 회귀 시험(E2E) 부재</td>
+            <td class="t-tight"><span class="pill pill--hold">중간</span></td>
+            <td>QA 계획의 E2E 자동화가 미구축. 현재 방어선은 단위 테스트 817개 + 수동 실측. 남은 기간을 감안하면 <strong>핵심 5개 시나리오만 자동화하거나 수동 체크리스트로 대체</strong> 결정 필요</td>
+          </tr>
+          <tr>
+            <td>세션 간헐 끊김</td>
+            <td class="t-tight"><span class="pill pill--hold">중간</span></td>
+            <td>웹·API 도메인 분리로 브라우저가 갱신 쿠키를 차단. 검수 중 신뢰도를 떨어뜨리므로 3주차 내 도메인 정리</td>
+          </tr>
+          <tr>
+            <td>인력 3명 · 대체 불가</td>
+            <td class="t-tight"><span class="pill pill--hold">중간</span></td>
+            <td>백엔드 1 · 프론트 2 구조로 어느 한 명의 이탈이 곧 일정 이탈. 8월 중 휴가·이탈 리스크를 사전 확인 필요</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══ 7 ══ -->
+  <section>
+    <div class="sec-num">07</div>
+    <h2>결정 요청 사항</h2>
+
+    <p>아래 네 가지는 실무에서 결정할 수 없고, 결정이 늦어질수록 8월 종료 가능성이 낮아집니다.</p>
+
+    <div class="decisions">
+      <div class="dec">
+        <div class="dec__n">01</div>
+        <div>
+          <p class="dec__q">8월 종료 범위를 “증명서 축 완성”으로 확정할 것인가</p>
+          <p class="dec__b">
+            P0만 수행하면 18영업일 안에 들어갑니다. PLAY·데이터연동·UI 통일까지 넣으면 넘칩니다.
+            증명서는 이 제품의 존재 이유이므로 다른 것을 미루는 편이 합리적입니다.
+          </p>
+          <p class="dec__rec">권고 — P0 4건만 8월 범위로 확정, P2 3건은 9월 이월</p>
+        </div>
+      </div>
+
+      <div class="dec">
+        <div class="dec__n">02</div>
+        <div>
+          <p class="dec__q">신규 기능 동결일을 언제로 할 것인가</p>
+          <p class="dec__b">
+            현재 신규 요청이 계속 유입되어 QA 기간을 잠식하고 있습니다.
+            동결일 이후 요청은 릴리즈 차단 결함이 아닌 한 자동으로 9월 백로그로 넘깁니다.
+          </p>
+          <p class="dec__rec">권고 — 2026-08-07(금) 동결, 이후 결함 수정만</p>
+        </div>
+      </div>
+
+      <div class="dec">
+        <div class="dec__n">03</div>
+        <div>
+          <p class="dec__q">증명서를 실데이터로 종료할 것인가, 합성 데이터 시연으로 종료할 것인가</p>
+          <p class="dec__b">
+            현재 분석 엔진은 합성 수강생 300명 데이터로 계산합니다.
+            실데이터 전환은 2~3일이 들고, 전환 후 점수·등급이 달라져 재검증이 필요합니다.
+            합성 데이터로 종료하면 일정은 안전하지만 “실제로 쓸 수 있는가”에 답하지 못합니다.
+          </p>
+          <p class="dec__rec">권고 — 실데이터 전환. 단 3주차에 재검증 시간을 명시적으로 확보</p>
+        </div>
+      </div>
+
+      <div class="dec">
+        <div class="dec__n">04</div>
+        <div>
+          <p class="dec__q">자동 회귀 시험을 8월 안에 구축할 것인가</p>
+          <p class="dec__b">
+            원 QA 계획에는 있으나 미착수입니다. 지금 전면 구축하면 증명서 구현 시간을 잠식합니다.
+            구축하지 않으면 릴리즈 직전 회귀를 사람이 손으로 확인해야 합니다.
+          </p>
+          <p class="dec__rec">권고 — 핵심 5개 시나리오만 자동화, 나머지는 수동 체크리스트로 대체</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="call call--crit">
+      <p class="call__title">한 줄 요약</p>
+      <p>
+        <strong>제품의 87%는 이미 실제로 동작합니다.</strong> 남은 13%가 하필 제품의 이름값인
+        ‘증명서’에 몰려 있습니다. 8월 종료 가능 여부는 기술 난도가 아니라
+        <strong>“지금부터 증명서만 할 것인가”라는 범위 결정</strong>에 달려 있습니다.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      본 보고서의 <span class="prov prov--live">실측</span> 표시 수치는 2026-08-05에
+      저장소 코드와 배포 환경(웹·API)에서 직접 측정했습니다.
+      화면 수는 라우트(주소) 단위 기준이며, 설계 문서의 Figma 프레임 단위 집계(활성 255장)와는 세는 방식이 다릅니다.
+      일정의 소요일 추정은 지난 4주 실적 속도를 근거로 한 추정치이며 확정값이 아닙니다.
+    </p>
+  </footer>
+
+</div>
