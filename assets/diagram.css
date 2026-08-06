@@ -2,6 +2,90 @@
    카드에는 이름·상태만 두고, 상세는 아래 패널이 맡는다.
    면 색은 tokens.css 의 --iso-* 토큰을 그대로 쓴다. */
 
+/* ── 아키텍처 절의 정보 계층 ───────────────────── */
+.arch-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 1.5rem 0 2.25rem;
+  overflow: hidden;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 3px;
+}
+.arch-summary__item {
+  min-width: 0;
+  padding: 1rem 1.05rem 1.1rem;
+  background: var(--surface);
+}
+.arch-summary__item--gap { box-shadow: inset 0 3px 0 var(--warn); }
+.arch-summary__item p { max-width: none; }
+.arch-summary__label {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+.arch-summary__value {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.arch-summary__body {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.arch-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+.arch-principles article {
+  padding: 1rem 1.05rem;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 3px;
+}
+.arch-principles p { max-width: none; }
+.arch-principles__label {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--brand-ink);
+}
+.arch-principles__title {
+  margin: 0 0 0.4rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.arch-principles article > p:last-child {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+.arch-assumption {
+  max-width: none;
+  margin: 1.25rem 0 0.25rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--line);
+  font-size: 0.86rem;
+}
+.arch-tradeoffs__intro { margin-top: 1.75rem; }
+.arch-tradeoffs[open] > summary {
+  color: var(--ink);
+  font-weight: 650;
+}
+.arch-tradeoffs table { min-width: 48rem; }
+
 .isowrap {
   position: relative;            /* 확대 컨트롤의 기준 */
   margin: 2rem 0 0;
@@ -222,11 +306,15 @@
 .iso-legend .sw-mut { background: var(--iso-mut-t); border-style: dashed; }
 
 @media (max-width: 44rem) {
+  .arch-summary { grid-template-columns: minmax(0, 1fr); }
+  .arch-principles { grid-template-columns: minmax(0, 1fr); }
   .iso-panel dl { grid-template-columns: minmax(0, 1fr); gap: 0 0; }
   .iso-panel dd { margin-bottom: 0.5rem; }
 }
 
 @media print {
+  .arch-summary,
+  .arch-principles article { break-inside: avoid; }
   .iso-controls { display: none; }
   .iso-toolbar { display: none; }
   .iso-panel { display: none; }
