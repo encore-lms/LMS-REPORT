@@ -7,11 +7,36 @@ LMS 역량증명서 프로젝트의 **보고서 산출물** 저장소. 발행용
 
 ## 발행
 
-GitHub Pages가 정본 발행처다. `main`에 push하면 저장소 루트가 그대로 서빙된다.
+GitHub Pages가 정본 발행처다. `main`에 push하면 `.github/workflows/pages.yml`이
+저장소 루트를 아티팩트로 올려 배포한다.
 
 - 사이트: <https://encore-lms.github.io/LMS-REPORT/>
-- 소스: `main` 브랜치 `/ (root)` — 빌드 단계가 없어 커밋한 HTML이 그대로 나간다.
-- `.nojekyll`이 있으므로 Jekyll 변환을 타지 않는다. 파일명·경로가 URL이 된다.
+- 배포 방식: **Settings → Pages → Source = `GitHub Actions`** (`build_type: workflow`)
+- 빌드 단계가 없어 커밋한 HTML이 그대로 나간다. 파일명·경로가 URL이 된다.
+
+### ⚠️ Pages 설정을 `Deploy from a branch`로 되돌리지 말 것
+
+워크플로 파일과 Pages 설정이 어긋나면 배포가 통째로 막힌다. 2026-08-06에 실제로 겪었다.
+
+- 설정이 `legacy`인데 워크플로가 있으면 → 내장 빌더와 워크플로가 같은 배포 슬롯을 두고 경합해
+  `Multiple artifacts named "github-pages"` · `deployment_queued` 타임아웃으로 **양쪽 다 실패**한다.
+- 설정이 `workflow`인데 워크플로가 없으면 → 배포 주체가 없어 **아무것도 올라가지 않는다.**
+- 워크플로 안의 `actions/configure-pages`가 실행될 때마다 설정을 `workflow`로 되돌리므로,
+  `legacy`로 고정하려면 워크플로 파일을 지워야 한다. 둘 중 하나만 남긴다.
+
+막혔을 때 복구 순서 — **한 사람이, 다른 사람이 push하지 않는 동안** 실행한다.
+
+```bash
+gh run list --limit 10 --json databaseId,status \
+  --jq '.[] | select(.status=="in_progress" or .status=="queued") | .databaseId' \
+  | xargs -I{} gh run cancel {}
+gh api -X POST repos/encore-lms/LMS-REPORT/pages/deployments/<막힌_sha>/cancel
+gh api -X PUT repos/encore-lms/LMS-REPORT/pages -f build_type=workflow
+gh workflow run pages.yml --ref main
+```
+
+배포 ID가 커밋 sha라, 같은 sha로 실패가 쌓이면 재시도가 계속 취소된다.
+그때는 새 커밋을 만들어 sha를 바꾼 뒤 배포한다.
 
 **저장소가 public이라 사이트도 공개다.** 링크를 아는 사람은 로그인 없이 열람할 수 있다.
 검색엔진 색인만 `robots.txt`와 각 문서의 `<meta name="robots" content="noindex, nofollow">`로
