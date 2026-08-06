@@ -228,20 +228,23 @@ td .num, th .num { font-variant-numeric: tabular-nums; }
 
 /* ── progress bars ────────────────────────────── */
 .bars { display: grid; gap: 0.7rem; margin: 1.5rem 0; max-width: 44rem; }
-.bar { display: grid; grid-template-columns: 6.5rem 1fr 8.5rem; align-items: center; gap: 0.85rem; }
+.bar { display: grid; grid-template-columns: 6.5rem 1fr 7rem; align-items: center; gap: 0.85rem; }
 .bar__label { font-size: 0.85rem; color: var(--ink); font-weight: 600; }
 .bar__track { height: 0.6rem; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
 /* track 이 flex/grid 컨테이너가 아니라 fill 이 인라인으로 남으면 width·height 가 먹지 않는다.
    block 으로 못박아 둔다. */
 .bar__fill { display: block; height: 100%; background: var(--brand); border-radius: 4px; }
+/* 표기는 `32/32(100%)` — 개수가 본값이고 비율은 부연이라 괄호에 흐리게 둔다. */
 .bar__val {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  color: var(--ink-3);
+  color: var(--ink);
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
   text-align: right;
+  white-space: nowrap;
 }
-.bar__pct { color: var(--ink); font-weight: 600; margin-right: 0.4em; }
+.bar__pct { color: var(--ink-3); font-weight: 400; margin-left: 0.25em; }
 
 
 /* ── schedule ─────────────────────────────────── */
