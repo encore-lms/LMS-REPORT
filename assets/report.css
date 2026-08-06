@@ -230,38 +230,6 @@ td .num, th .num { font-variant-numeric: tabular-nums; }
 .bar__fill--part { background: repeating-linear-gradient(135deg, var(--brand) 0 5px, color-mix(in srgb, var(--brand) 42%, var(--surface)) 5px 10px); }
 .bar__val { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-3); font-variant-numeric: tabular-nums; text-align: right; }
 
-/* ── architecture diagram ─────────────────────── */
-.arch { display: grid; gap: 0.75rem; margin: 1.5rem 0 0.5rem; }
-.tier {
-  background: var(--surface);
-  border: 1px solid var(--line-soft);
-  border-radius: 3px;
-  padding: 0.85rem 1rem 1rem;
-}
-.tier__head {
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  color: var(--brand-ink);
-  margin-bottom: 0.7rem;
-}
-.tier__head span:last-child { color: var(--ink-3); letter-spacing: 0; font-size: 0.72rem; }
-.nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.6rem; }
-.node {
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--brand);
-  border-radius: 2px;
-  padding: 0.55rem 0.7rem;
-  background: var(--surface);
-}
-.node--ghost { border-left-color: var(--ink-3); border-style: dashed; opacity: 0.72; }
-.node--pending { border-left-color: var(--warn); }
-.node__name { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--ink); display: block; }
-.node__note { font-size: 0.74rem; color: var(--ink-3); line-height: 1.5; display: block; margin-top: 0.15rem; }
-.flow { text-align: center; font-family: var(--font-mono); font-size: 0.9rem; color: var(--line); line-height: 1; }
 
 /* ── schedule ─────────────────────────────────── */
 .sched { margin: 1.5rem 0; overflow-x: auto; }
