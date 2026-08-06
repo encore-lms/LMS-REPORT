@@ -1,0 +1,137 @@
+/* 아이소메트릭 배포 구성도. 면 색은 tokens.css의 --iso-* 를 쓴다. */
+
+.isowrap {
+  position: relative;            /* 확대 컨트롤의 기준 */
+  margin: 2rem 0 0;
+  padding: 1rem 0;
+  overflow-x: auto;              /* 좁은 화면에서 본문(body)이 아니라 이 안이 스크롤되게 */
+  background: var(--surface);
+  border-radius: 3px;
+}
+.iso {
+  display: block;
+  width: 100%;
+  /* 하한 아래로 줄지 않게 막는다. 58rem이면 이름 라벨이 9px대를 유지하고,
+     좁은 화면은 가로 스크롤이나 확대로 본다. */
+  min-width: 58rem;
+  height: auto;
+}
+.iso.is-zoomed { cursor: grab; }
+.iso.is-zoomed:active { cursor: grabbing; }
+.iso polygon { stroke: var(--iso-edge); stroke-width: 1; stroke-linejoin: round; }
+.acc-t { fill: var(--iso-acc-t); }
+.acc-l { fill: var(--iso-acc-l); }
+.acc-r { fill: var(--iso-acc-r); }
+.dat-t { fill: var(--iso-dat-t); }
+.dat-l { fill: var(--iso-dat-l); }
+.dat-r { fill: var(--iso-dat-r); }
+.mut-t { fill: var(--iso-mut-t); }
+.mut-l { fill: var(--iso-mut-l); }
+.mut-r { fill: var(--iso-mut-r); }
+.slb-t { fill: var(--iso-slb-t); }
+.slb-l { fill: var(--iso-slb-l); }
+.slb-r { fill: var(--iso-slb-r); }
+.iso .lb { font-family: var(--font-mono); }
+.iso .n  { font-size: 13px; font-weight: 700; fill: var(--ink); }
+.iso .n2 { font-size: 16px; font-weight: 700; fill: var(--ink); }
+.iso .s  { font-size: 10.5px; fill: var(--ink-3); }
+.iso .z  { font-size: 11.5px; font-weight: 700; fill: var(--brand-ink); letter-spacing: 0.1em; }
+.iso .z2 { font-size: 16px; font-weight: 800; fill: var(--ink); letter-spacing: 0.02em; }
+.iso .zs { font-size: 11px; fill: var(--ink-3); }
+.iso .ln, .iso .lnv { stroke: var(--brand); stroke-width: 1.6; fill: none; }
+.iso .lnsc { stroke: var(--brand-ink); stroke-width: 1.5; fill: none; }
+.iso .ahp { fill: var(--brand); }
+
+/* 요청 경로를 따라 점선이 흐르는 방향 표시. 과하지 않게 이 선들만 움직인다. */
+.iso .ln, .iso .lnv {
+  stroke-dasharray: 7 5;
+  animation: iso-flow 1.4s linear infinite;
+}
+@keyframes iso-flow { to { stroke-dashoffset: -12; } }
+@media (prefers-reduced-motion: reduce) {
+  .iso .ln, .iso .lnv { animation: none; stroke-dasharray: none; }
+}
+
+/* 흐름 단계 배지 ①~④ */
+.iso .stb circle { fill: var(--brand); stroke: var(--surface); stroke-width: 1.5; }
+.iso .stb text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--surface);
+}
+
+/* 확대 컨트롤 */
+.iso-controls {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.3rem;
+}
+.iso-controls button {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.iso-controls button:hover { color: var(--ink); border-color: var(--brand); }
+
+/* 흐름 단계 설명 */
+.iso-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-2);
+}
+.iso-steps li { display: inline-flex; align-items: center; gap: 0.5em; }
+.iso-steps b {
+  display: inline-grid;
+  place-items: center;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--surface);
+  font-size: 0.9em;
+}
+
+.iso-cap {
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  max-width: none;
+}
+.iso-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  margin: 1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+.iso-legend > span { display: inline-flex; align-items: center; gap: 0.45em; }
+.iso-legend i {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid var(--iso-edge);
+  border-radius: 2px;
+}
+.iso-legend .sw-acc { background: var(--iso-acc-t); }
+.iso-legend .sw-dat { background: var(--iso-dat-t); }
+.iso-legend .sw-mut { background: var(--iso-mut-t); border-style: dashed; }
