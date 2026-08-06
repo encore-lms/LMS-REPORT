@@ -1,0 +1,159 @@
+/* 색·서체 토큰. 모든 페이지가 가장 먼저 읽는다.
+   라이트/다크 값을 :root · prefers-color-scheme · [data-theme] 세 곳에 각각 선언한다.
+   [data-theme]는 뷰어의 테마 토글이 루트에 찍는 값이라 미디어쿼리를 양방향으로 이겨야 한다. */
+
+:root {
+  color-scheme: light;
+  --paper:      #f2f5f4;
+  --surface:    #ffffff;
+  --surface-2:  #e9efed;
+  --line:       #d2dcda;
+  --line-soft:  #e2eae8;
+  --ink:        #0d1a19;
+  --ink-2:      #3d4c4a;
+  --ink-3:      #6b7a78;
+  --brand:      #1a8c85;
+  --brand-ink:  #0f5f5a;
+  --brand-wash: #e4f0ee;
+  --good:       #0ca30c;
+  --warn:       #b8791f;
+  --crit:       #c23434;
+  --good-wash:  #e6f4e6;
+  --warn-wash:  #f8efdc;
+  --crit-wash:  #f7e6e6;
+
+  /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+  --iso-acc-t:  #cfe8e4;
+  --iso-acc-l:  #a3d0ca;
+  --iso-acc-r:  #8ac0b9;
+  --iso-dat-t:  #dfe7e6;
+  --iso-dat-l:  #c3d1cf;
+  --iso-dat-r:  #aec0bd;
+  --iso-mut-t:  #edf1f0;
+  --iso-mut-l:  #dbe3e2;
+  --iso-mut-r:  #cbd6d4;
+  --iso-slb-t:  #e9efed;
+  --iso-slb-l:  #d7e0de;
+  --iso-slb-r:  #c9d4d2;
+  --iso-edge:   rgba(13, 26, 25, 0.16);
+
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+               'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+  --measure: 68ch;
+  --rail: 5.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme='light'])) {
+    color-scheme: dark;
+    --paper:      #0e1413;
+    --surface:    #161d1c;
+    --surface-2:  #1e2726;
+    --line:       #2d3937;
+    --line-soft:  #232d2c;
+    --ink:        #e3ebe9;
+    --ink-2:      #b3c1bf;
+    --ink-3:      #849290;
+    --brand:      #35b8af;
+    --brand-ink:  #57cdc4;
+    --brand-wash: #17302e;
+    --good:       #4cc44c;
+    --warn:       #e0a63c;
+    --crit:       #e06a6a;
+    --good-wash:  #16281a;
+    --warn-wash:  #2b2313;
+    --crit-wash:  #2c1a1a;
+
+    /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+    --iso-acc-t:  #1f524d;
+    --iso-acc-l:  #173d39;
+    --iso-acc-r:  #123029;
+    --iso-dat-t:  #243634;
+    --iso-dat-l:  #1b2827;
+    --iso-dat-r:  #15201f;
+    --iso-mut-t:  #1d2625;
+    --iso-mut-l:  #161e1d;
+    --iso-mut-r:  #111817;
+    --iso-slb-t:  #19211f;
+    --iso-slb-l:  #141b1a;
+    --iso-slb-r:  #0f1615;
+    --iso-edge:   rgba(227, 235, 233, 0.18);
+
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper:      #0e1413;
+  --surface:    #161d1c;
+  --surface-2:  #1e2726;
+  --line:       #2d3937;
+  --line-soft:  #232d2c;
+  --ink:        #e3ebe9;
+  --ink-2:      #b3c1bf;
+  --ink-3:      #849290;
+  --brand:      #35b8af;
+  --brand-ink:  #57cdc4;
+  --brand-wash: #17302e;
+  --good:       #4cc44c;
+  --warn:       #e0a63c;
+  --crit:       #e06a6a;
+  --good-wash:  #16281a;
+  --warn-wash:  #2b2313;
+  --crit-wash:  #2c1a1a;
+
+  /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+  --iso-acc-t:  #1f524d;
+  --iso-acc-l:  #173d39;
+  --iso-acc-r:  #123029;
+  --iso-dat-t:  #243634;
+  --iso-dat-l:  #1b2827;
+  --iso-dat-r:  #15201f;
+  --iso-mut-t:  #1d2625;
+  --iso-mut-l:  #161e1d;
+  --iso-mut-r:  #111817;
+  --iso-slb-t:  #19211f;
+  --iso-slb-l:  #141b1a;
+  --iso-slb-r:  #0f1615;
+  --iso-edge:   rgba(227, 235, 233, 0.18);
+
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --paper:      #f2f5f4;
+  --surface:    #ffffff;
+  --surface-2:  #e9efed;
+  --line:       #d2dcda;
+  --line-soft:  #e2eae8;
+  --ink:        #0d1a19;
+  --ink-2:      #3d4c4a;
+  --ink-3:      #6b7a78;
+  --brand:      #1a8c85;
+  --brand-ink:  #0f5f5a;
+  --brand-wash: #e4f0ee;
+  --good:       #0ca30c;
+  --warn:       #b8791f;
+  --crit:       #c23434;
+  --good-wash:  #e6f4e6;
+  --warn-wash:  #f8efdc;
+  --crit-wash:  #f7e6e6;
+
+  /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+  --iso-acc-t:  #cfe8e4;
+  --iso-acc-l:  #a3d0ca;
+  --iso-acc-r:  #8ac0b9;
+  --iso-dat-t:  #dfe7e6;
+  --iso-dat-l:  #c3d1cf;
+  --iso-dat-r:  #aec0bd;
+  --iso-mut-t:  #edf1f0;
+  --iso-mut-l:  #dbe3e2;
+  --iso-mut-r:  #cbd6d4;
+  --iso-slb-t:  #e9efed;
+  --iso-slb-l:  #d7e0de;
+  --iso-slb-r:  #c9d4d2;
+  --iso-edge:   rgba(13, 26, 25, 0.16);
+
+}
