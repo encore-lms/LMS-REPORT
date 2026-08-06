@@ -1,0 +1,17 @@
+/* 모든 페이지에 공통인 최소 기반. 레이아웃·컴포넌트는 각 페이지 CSS가 맡는다. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+a { color: var(--brand-ink); }
+a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
