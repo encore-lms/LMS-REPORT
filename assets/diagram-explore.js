@@ -68,8 +68,11 @@
   }
 
   /* ── 이벤트 ───────────────────────────────── */
+  /* 블록뿐 아니라 라벨·배경판도 같은 data-id 를 가진다. 어느 조각을 짚어도 노드로 취급. */
   function nodeOf(target) {
-    return target.closest ? target.closest('.nd') : null;
+    if (!target.closest) return null;
+    var el = target.closest('[data-id]');
+    return el && DATA[el.getAttribute('data-id')] ? el : null;
   }
 
   svg.addEventListener('pointerover', function (e) {
