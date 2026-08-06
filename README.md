@@ -33,7 +33,17 @@ HTML은 내용만 담고, 스타일과 동작은 `assets/`에서 역할별로 �
 
 ```
 index.html                          목차
-2026-08-05_임원보고_진행현황.html    보고서 본문
+2026-08-05_임원보고_진행현황.html    보고서 발행본 (build.py 생성물 — 직접 수정 금지)
+build.py                            보고서 조립기
+sections/
+  _shell.html       머리(head·masthead)·꼬리(footer·스크립트) 틀
+  01-요약.html       섹션 조각 — 번호 순으로 조립된다
+  02-현재-진행-상황.html
+  03-아키텍처.html   (구성도 SVG·패널 데이터 포함)
+  04-남은-구현.html
+  05-8월-일정.html
+  06-리스크.html
+  07-결정-요청.html
 assets/
   tokens.css        색·서체 토큰            (공용, 가장 먼저 로드)
   base.css          리셋·body·링크          (공용)
@@ -80,6 +90,25 @@ Pages는 파일을 가공 없이 서빙하므로 **각 HTML이 완전한 문서�
 `<script src>`는 `<body>` 끝에 둔다. 토글은 루트 요소에 `data-theme="dark|light"`를 찍고
 `localStorage`에 남기므로, 해당 셀렉터가 `prefers-color-scheme` 미디어쿼리를
 양방향으로 이겨야 한다.
+
+### 섹션 추가·수정 (sections/ + build.py)
+
+보고서 본문의 원본은 `sections/` 조각이다. 발행 HTML 은 조립 결과물이므로
+직접 고치지 않는다 — 고쳐도 다음 조립 때 사라진다.
+
+```bash
+# 섹션 추가: 다음 번호로 조각을 만들고 조립
+$EDITOR sections/08-새-섹션.html      # <section>…</section> 전체, 번호 자리는 {{NUM}}
+python3 build.py
+
+# 중간 삽입·순서 변경: 파일명 번호만 바꾸면 된다
+# ({{NUM}} 토큰이 조립 순서대로 채워지므로 본문 수정 불필요)
+```
+
+조각 형식은 기존 파일을 따른다: `<section>` 바로 안에
+`<div class="sec-num">{{NUM}}</div>` 과 `<h2>제목</h2>`.
+구성도(SVG·패널 JSON)를 재생성할 때는 `sections/03-아키텍처.html` 을
+대상으로 치환한 뒤 조립한다.
 
 ## 로컬 확인
 
