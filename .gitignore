@@ -6,3 +6,6 @@
 _site/
 
 .DS_Store
+
+# Firebase 배포 캐시 (로컬 산출물)
+.firebase/
