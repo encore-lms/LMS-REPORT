@@ -1,0 +1,31 @@
+# Firebase Hosting 배포.
+# GitHub Pages 는 배포 큐가 막히면 재시도로 풀리지 않아(2026-08-06) Firebase 로 옮겼다.
+name: firebase
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# 배포는 하나씩. 최신 것만 의미가 있으므로 진행 중인 것은 취소한다.
+concurrency:
+  group: firebase-hosting
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 발행 HTML 은 sections/ 조각의 조립 결과다. 커밋된 것을 믿지 않고 여기서 다시 만든다.
+      - name: 보고서 조립
+        run: python3 build.py
+
+      - name: Firebase Hosting 배포
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: play-report-5c8d1
