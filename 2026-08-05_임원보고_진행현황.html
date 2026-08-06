@@ -37,6 +37,21 @@
     --warn-wash:  #f8efdc;
     --crit-wash:  #f7e6e6;
 
+    /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+    --iso-acc-t:  #cfe8e4;
+    --iso-acc-l:  #a3d0ca;
+    --iso-acc-r:  #8ac0b9;
+    --iso-dat-t:  #dfe7e6;
+    --iso-dat-l:  #c3d1cf;
+    --iso-dat-r:  #aec0bd;
+    --iso-mut-t:  #edf1f0;
+    --iso-mut-l:  #dbe3e2;
+    --iso-mut-r:  #cbd6d4;
+    --iso-slb-t:  #e9efed;
+    --iso-slb-l:  #d7e0de;
+    --iso-slb-r:  #c9d4d2;
+    --iso-edge:   rgba(13, 26, 25, 0.16);
+
     --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
                  'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
     --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
@@ -65,6 +80,22 @@
       --good-wash:  #16281a;
       --warn-wash:  #2b2313;
       --crit-wash:  #2c1a1a;
+
+      /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+      --iso-acc-t:  #1f524d;
+      --iso-acc-l:  #173d39;
+      --iso-acc-r:  #123029;
+      --iso-dat-t:  #243634;
+      --iso-dat-l:  #1b2827;
+      --iso-dat-r:  #15201f;
+      --iso-mut-t:  #1d2625;
+      --iso-mut-l:  #161e1d;
+      --iso-mut-r:  #111817;
+      --iso-slb-t:  #19211f;
+      --iso-slb-l:  #141b1a;
+      --iso-slb-r:  #0f1615;
+      --iso-edge:   rgba(227, 235, 233, 0.18);
+
     }
   }
 
@@ -87,6 +118,22 @@
     --good-wash:  #16281a;
     --warn-wash:  #2b2313;
     --crit-wash:  #2c1a1a;
+
+    /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+    --iso-acc-t:  #1f524d;
+    --iso-acc-l:  #173d39;
+    --iso-acc-r:  #123029;
+    --iso-dat-t:  #243634;
+    --iso-dat-l:  #1b2827;
+    --iso-dat-r:  #15201f;
+    --iso-mut-t:  #1d2625;
+    --iso-mut-l:  #161e1d;
+    --iso-mut-r:  #111817;
+    --iso-slb-t:  #19211f;
+    --iso-slb-l:  #141b1a;
+    --iso-slb-r:  #0f1615;
+    --iso-edge:   rgba(227, 235, 233, 0.18);
+
   }
 
   :root[data-theme='light'] {
@@ -108,6 +155,22 @@
     --good-wash:  #e6f4e6;
     --warn-wash:  #f8efdc;
     --crit-wash:  #f7e6e6;
+
+    /* 아이소메트릭 구성도 면 색 (top/left/right = 윗면/앞왼쪽/앞오른쪽 음영) */
+    --iso-acc-t:  #cfe8e4;
+    --iso-acc-l:  #a3d0ca;
+    --iso-acc-r:  #8ac0b9;
+    --iso-dat-t:  #dfe7e6;
+    --iso-dat-l:  #c3d1cf;
+    --iso-dat-r:  #aec0bd;
+    --iso-mut-t:  #edf1f0;
+    --iso-mut-l:  #dbe3e2;
+    --iso-mut-r:  #cbd6d4;
+    --iso-slb-t:  #e9efed;
+    --iso-slb-l:  #d7e0de;
+    --iso-slb-r:  #c9d4d2;
+    --iso-edge:   rgba(13, 26, 25, 0.16);
+
   }
 
   * { box-sizing: border-box; }
@@ -474,6 +537,70 @@
     .bar { grid-template-columns: 5.5rem 1fr 4.5rem; gap: 0.5rem; }
   }
 
+  /* ── 아이소메트릭 구성도 ──────────────────────── */
+  .isowrap {
+    margin: 2rem 0 0;
+    padding: 1rem 0;
+    overflow-x: auto;              /* 좁은 화면에서 본문(body)이 아니라 이 안이 스크롤되게 */
+    background: var(--surface);
+    border-radius: 3px;
+  }
+  .iso {
+    display: block;
+    width: 100%;
+    min-width: 42rem;              /* 이보다 좁아지면 라벨이 뭉개져 읽을 수 없다 */
+    height: auto;
+  }
+  .iso polygon { stroke: var(--iso-edge); stroke-width: 1; stroke-linejoin: round; }
+  .acc-t { fill: var(--iso-acc-t); }
+  .acc-l { fill: var(--iso-acc-l); }
+  .acc-r { fill: var(--iso-acc-r); }
+  .dat-t { fill: var(--iso-dat-t); }
+  .dat-l { fill: var(--iso-dat-l); }
+  .dat-r { fill: var(--iso-dat-r); }
+  .mut-t { fill: var(--iso-mut-t); }
+  .mut-l { fill: var(--iso-mut-l); }
+  .mut-r { fill: var(--iso-mut-r); }
+  .slb-t { fill: var(--iso-slb-t); }
+  .slb-l { fill: var(--iso-slb-l); }
+  .slb-r { fill: var(--iso-slb-r); }
+  .iso .lb { font-family: var(--font-mono); }
+  .iso .n  { font-size: 10.5px; font-weight: 700; fill: var(--ink); }
+  .iso .n2 { font-size: 13.5px; font-weight: 700; fill: var(--ink); }
+  .iso .s  { font-size: 9px; fill: var(--ink-3); }
+  .iso .z  { font-size: 10px; font-weight: 700; fill: var(--brand-ink); letter-spacing: 0.1em; }
+  .iso .z2 { font-size: 14px; font-weight: 800; fill: var(--ink); letter-spacing: 0.02em; }
+  .iso .zs { font-size: 9.5px; fill: var(--ink-3); }
+  .iso .ln, .iso .lnv { stroke: var(--brand); stroke-width: 1.5; fill: none; }
+  .iso .lnsc { stroke: var(--brand-ink); stroke-width: 1.5; fill: none; }
+  .iso .ahp { fill: var(--brand); }
+
+  .iso-cap {
+    margin: 0.75rem 0 0;
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    max-width: none;
+  }
+  .iso-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    margin: 1rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-3);
+  }
+  .iso-legend > span { display: inline-flex; align-items: center; gap: 0.45em; }
+  .iso-legend i {
+    width: 0.85rem;
+    height: 0.85rem;
+    border: 1px solid var(--iso-edge);
+    border-radius: 2px;
+  }
+  .iso-legend .sw-acc { background: var(--iso-acc-t); }
+  .iso-legend .sw-dat { background: var(--iso-dat-t); }
+  .iso-legend .sw-mut { background: var(--iso-mut-t); border-style: dashed; }
+
   /* ── 테마 토글 ────────────────────────────────── */
   .theme-toggle {
     position: fixed;
@@ -536,7 +663,7 @@
     </p>
     <div class="masthead__meta">
       <span>기준일 <b>2026-08-05</b></span>
-      <span>작성 <b>황설현</b></span>
+      <span>작성 <b>황설현 · 이정훈</b></span>
       <span>종료 목표 <b>2026-08-31</b></span>
       <span>잔여 영업일 <b>18일</b></span>
       <span>개발 인력 <b>3명</b></span>
@@ -782,8 +909,133 @@
 
     <p>
       역할별 웹 화면 하나가 <strong>4개의 백엔드 서비스</strong>와 <strong>1개의 분석 엔진</strong>을 사용합니다.
-      데이터베이스는 비용·운영 부담을 고려해 인스턴스를 나누지 않고
-      <strong>하나의 PostgreSQL 안에서 서비스별 스키마로 경계</strong>를 나눴습니다.
+      데이터베이스는 <strong>서비스마다 RDS 인스턴스를 따로 두고</strong>, 각 인스턴스 안에서 다시
+      스키마로 경계를 나눴습니다.
+    </p>
+
+    <h3>배포 구성 <span class="prov prov--live">실측</span></h3>
+    <p>
+      아래는 Terraform 코드와 실제 AWS 리소스를 대조해 그린 <strong>현재 개발 환경(dev)의 배포 구성</strong>입니다.
+      서울 리전 단일 VPC 안에서 퍼블릭 서브넷이 요청을 받고, 데이터는 인터넷에서 직접 닿지 않는
+      프라이빗 서브넷에만 둡니다.
+    </p>
+
+    <div class="isowrap">
+      <svg class="iso" viewBox="-386 -666 1293 1025" role="img"
+           aria-label="AWS 인프라 아이소메트릭 구성도. CloudFront 아래 VPC 10.40.0.0/16 안에 퍼블릭 서브넷의 ALB와 ECS Fargate 서비스 4개, 프라이빗 서브넷의 서비스별 RDS PostgreSQL 4대와 Redis가 있고, VPC 밖에 S3·Secrets Manager·ECR·CloudWatch가 있다.">
+        <defs>
+          <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 1 L7 4 L0 7 z" class="ahp"/>
+          </marker>
+        </defs>
+        <line class="lnv" x1="161.1" y1="-243.0" x2="161.1" y2="111.0" marker-end="url(#ah)"/>
+        <line class="lnv" x1="103.9" y1="-210.0" x2="103.9" y2="144.0" marker-end="url(#ah)"/>
+        <line class="lnv" x1="46.8" y1="-177.0" x2="46.8" y2="177.0" marker-end="url(#ah)"/>
+        <line class="lnv" x1="-10.4" y1="-144.0" x2="-10.4" y2="210.0" marker-end="url(#ah)"/>
+        <line class="lnv" x1="-0.9" y1="-314.5" x2="-0.9" y2="39.5" marker-end="url(#ah)"/>
+        <line class="lnv" x1="-0.9" y1="-489.5" x2="-0.9" y2="-340.5" marker-end="url(#ah)"/>
+        <line class="lnv" x1="-0.9" y1="-588.5" x2="-0.9" y2="-515.5" marker-end="url(#ah)"/>
+        <polygon class="slb-r" points="290.1,157.5 290.1,166.5 37.2,312.5 37.2,303.5"/>
+        <polygon class="slb-l" points="-257.2,133.5 -257.2,142.5 37.2,312.5 37.2,303.5"/>
+        <polygon class="slb-t" points="-4.3,-12.5 290.1,157.5 37.2,303.5 -257.2,133.5"/>
+        <polygon class="dat-r" points="248.5,161.5 248.5,135.5 203.5,161.5 203.5,187.5"/>
+        <polygon class="dat-l" points="73.6,112.5 73.6,86.5 203.5,161.5 203.5,187.5"/>
+        <polygon class="dat-t" points="118.6,60.5 248.5,135.5 203.5,161.5 73.6,86.5"/>
+        <polygon class="dat-r" points="191.4,194.5 191.4,168.5 146.4,194.5 146.4,220.5"/>
+        <polygon class="dat-l" points="16.5,145.5 16.5,119.5 146.4,194.5 146.4,220.5"/>
+        <polygon class="dat-t" points="61.5,93.5 191.4,168.5 146.4,194.5 16.5,119.5"/>
+        <polygon class="dat-r" points="134.2,227.5 134.2,201.5 89.2,227.5 89.2,253.5"/>
+        <polygon class="dat-l" points="-40.7,178.5 -40.7,152.5 89.2,227.5 89.2,253.5"/>
+        <polygon class="dat-t" points="4.3,126.5 134.2,201.5 89.2,227.5 -40.7,152.5"/>
+        <polygon class="mut-r" stroke-dasharray="4 3" points="77.1,260.5 77.1,234.5 32.0,260.5 32.0,286.5"/>
+        <polygon class="mut-l" stroke-dasharray="4 3" points="-97.9,211.5 -97.9,185.5 32.0,260.5 32.0,286.5"/>
+        <polygon class="mut-t" stroke-dasharray="4 3" points="-52.8,159.5 77.1,234.5 32.0,260.5 -97.9,185.5"/>
+        <polygon class="dat-r" points="92.7,71.5 92.7,45.5 13.0,91.5 13.0,117.5"/>
+        <polygon class="dat-l" points="-90.9,57.5 -90.9,31.5 13.0,91.5 13.0,117.5"/>
+        <polygon class="dat-t" points="-11.3,-14.5 92.7,45.5 13.0,91.5 -90.9,31.5"/>
+        <polygon class="slb-r" points="290.1,-222.5 290.1,-213.5 37.2,-67.5 37.2,-76.5"/>
+        <polygon class="slb-l" points="-257.2,-246.5 -257.2,-237.5 37.2,-67.5 37.2,-76.5"/>
+        <polygon class="slb-t" points="-4.3,-392.5 290.1,-222.5 37.2,-76.5 -257.2,-246.5"/>
+        <polygon class="acc-r" points="92.7,-308.5 92.7,-334.5 13.0,-288.5 13.0,-262.5"/>
+        <polygon class="acc-l" points="-90.9,-322.5 -90.9,-348.5 13.0,-288.5 13.0,-262.5"/>
+        <polygon class="acc-t" points="-11.3,-394.5 92.7,-334.5 13.0,-288.5 -90.9,-348.5"/>
+        <polygon class="mut-r" points="-32.0,-236.5 -32.0,-262.5 -77.1,-236.5 -77.1,-210.5"/>
+        <polygon class="mut-l" points="-181.0,-270.5 -181.0,-296.5 -77.1,-236.5 -77.1,-210.5"/>
+        <polygon class="mut-t" points="-136.0,-322.5 -32.0,-262.5 -77.1,-236.5 -181.0,-296.5"/>
+        <polygon class="acc-r" points="248.5,-218.5 248.5,-244.5 203.5,-218.5 203.5,-192.5"/>
+        <polygon class="acc-l" points="73.6,-267.5 73.6,-293.5 203.5,-218.5 203.5,-192.5"/>
+        <polygon class="acc-t" points="118.6,-319.5 248.5,-244.5 203.5,-218.5 73.6,-293.5"/>
+        <polygon class="acc-r" points="191.4,-185.5 191.4,-211.5 146.4,-185.5 146.4,-159.5"/>
+        <polygon class="acc-l" points="16.5,-234.5 16.5,-260.5 146.4,-185.5 146.4,-159.5"/>
+        <polygon class="acc-t" points="61.5,-286.5 191.4,-211.5 146.4,-185.5 16.5,-260.5"/>
+        <polygon class="acc-r" points="134.2,-152.5 134.2,-178.5 89.2,-152.5 89.2,-126.5"/>
+        <polygon class="acc-l" points="-40.7,-201.5 -40.7,-227.5 89.2,-152.5 89.2,-126.5"/>
+        <polygon class="acc-t" points="4.3,-253.5 134.2,-178.5 89.2,-152.5 -40.7,-227.5"/>
+        <polygon class="mut-r" stroke-dasharray="4 3" points="77.1,-119.5 77.1,-145.5 32.0,-119.5 32.0,-93.5"/>
+        <polygon class="mut-l" stroke-dasharray="4 3" points="-97.9,-168.5 -97.9,-194.5 32.0,-119.5 32.0,-93.5"/>
+        <polygon class="mut-t" stroke-dasharray="4 3" points="-52.8,-220.5 77.1,-145.5 32.0,-119.5 -97.9,-194.5"/>
+        <polygon class="acc-r" points="118.6,-468.5 118.6,-494.5 39.0,-448.5 39.0,-422.5"/>
+        <polygon class="acc-l" points="-99.6,-502.5 -99.6,-528.5 39.0,-448.5 39.0,-422.5"/>
+        <polygon class="acc-t" points="-19.9,-574.5 118.6,-494.5 39.0,-448.5 -99.6,-528.5"/>
+        <polygon class="slb-r" points="671.2,-242.5 671.2,-233.5 463.3,-113.5 463.3,-122.5"/>
+        <polygon class="slb-l" points="285.8,-225.0 285.8,-216.0 463.3,-113.5 463.3,-122.5"/>
+        <polygon class="slb-t" points="493.6,-345.0 671.2,-242.5 463.3,-122.5 285.8,-225.0"/>
+        <polygon class="mut-r" points="645.2,-242.5 645.2,-264.5 600.2,-238.5 600.2,-216.5"/>
+        <polygon class="mut-l" points="448.6,-304.0 448.6,-326.0 600.2,-238.5 600.2,-216.5"/>
+        <polygon class="mut-t" points="493.6,-352.0 645.2,-264.5 600.2,-238.5 448.6,-326.0"/>
+        <polygon class="mut-r" points="586.3,-208.5 586.3,-230.5 541.3,-204.5 541.3,-182.5"/>
+        <polygon class="mut-l" points="389.7,-270.0 389.7,-292.0 541.3,-204.5 541.3,-182.5"/>
+        <polygon class="mut-t" points="434.7,-318.0 586.3,-230.5 541.3,-204.5 389.7,-292.0"/>
+        <polygon class="mut-r" points="527.4,-174.5 527.4,-196.5 482.4,-170.5 482.4,-148.5"/>
+        <polygon class="mut-l" points="330.8,-236.0 330.8,-258.0 482.4,-170.5 482.4,-148.5"/>
+        <polygon class="mut-t" points="375.9,-284.0 527.4,-196.5 482.4,-170.5 330.8,-258.0"/>
+        <line class="ln" x1="70.1" y1="-308.5" x2="96.1" y2="-293.5" marker-end="url(#ah)"/>
+        <line class="ln" x1="13.0" y1="-275.5" x2="39.0" y2="-260.5" marker-end="url(#ah)"/>
+        <line class="ln" x1="-44.2" y1="-242.5" x2="-18.2" y2="-227.5" marker-end="url(#ah)"/>
+        <line class="lnsc" x1="238.2" y1="-211.5" x2="181.0" y2="-178.5" stroke-dasharray="5 4"/>
+        <line class="lnsc" x1="226.0" y1="-218.5" x2="238.2" y2="-211.5" stroke-dasharray="5 4"/>
+        <line class="lnsc" x1="168.9" y1="-185.5" x2="181.0" y2="-178.5" stroke-dasharray="5 4"/>
+        <line class="lnd" x1="111.7" y1="-152.5" x2="177.5" y2="-49.5" stroke-dasharray="3 4" marker-end="url(#ah)"/>
+        <text class="lb" x="161.1" y="105.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">lms_auth_user_db</tspan><tspan x="161.1" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="103.9" y="138.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">lms_learning_db</tspan><tspan x="103.9" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="46.8" y="171.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">lms_operations_db</tspan><tspan x="46.8" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="-10.4" y="204.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">lms_integration_db</tspan><tspan x="-10.4" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="0.9" y="22.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">ElastiCache Redis 7.1</tspan><tspan x="0.9" dy="11" class="s">cache.t4g.micro · 1노드</tspan><tspan x="0.9" dy="11" class="s">auth refresh token</tspan></text>
+        <text class="lb" x="-257.2" y="129.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PRIVATE SUBNET</tspan><tspan x="-257.2" dy="11" class="zs">10.40.10.0/24 · 10.40.11.0/24</tspan></text>
+        <text class="lb" x="0.9" y="-357.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">Application LB</tspan><tspan x="0.9" dy="11" class="s">internet-facing · HTTP:80</tspan><tspan x="0.9" dy="11" class="s">경로 규칙 4 · 기본 404</tspan></text>
+        <text class="lb" x="-106.5" y="-285.5" text-anchor="middle"><tspan x="-106.5" dy="0" class="n">admin EC2 t3.micro</tspan><tspan x="-106.5" dy="11" class="s">SSH 터널 전용</tspan></text>
+        <text class="lb" x="161.1" y="-275.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">auth-user-service</tspan><tspan x="161.1" dy="11" class="s">:8081 · 512/2048 · 1/1 실행</tspan></text>
+        <text class="lb" x="103.9" y="-242.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">learning-service</tspan><tspan x="103.9" dy="11" class="s">:8082 · 512/2048 · 1/1 실행</tspan></text>
+        <text class="lb" x="46.8" y="-209.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">operations-service</tspan><tspan x="46.8" dy="11" class="s">:8083 · 512/1024 · 1/1 실행</tspan></text>
+        <text class="lb" x="-10.4" y="-176.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">integration-service</tspan><tspan x="-10.4" dy="11" class="s">:8084 · 512/1024 · 0/0 미기동</tspan></text>
+        <text class="lb" x="-257.2" y="-250.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PUBLIC SUBNET</tspan><tspan x="-257.2" dy="11" class="zs">10.40.0.0/24 · 10.40.1.0/24 · NAT 없음</tspan></text>
+        <text class="lb" x="245.1" y="-148.5" text-anchor="middle"><tspan x="245.1" dy="0" class="n">Service Connect</tspan><tspan x="245.1" dy="11" class="s">new-bm-lms-dev.internal</tspan><tspan x="245.1" dy="11" class="s">ALB 미경유 내부 호출</tspan></text>
+        <text class="lb" x="9.5" y="-527.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n">CloudFront</tspan><tspan x="9.5" dy="11" class="s">d3eylh4fl880qc.cloudfront.net</tspan><tspan x="9.5" dy="11" class="s">HTTPS 종단 · 캐시 비활성</tspan></text>
+        <text class="lb" x="9.5" y="-610.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n2">브라우저</tspan><tspan x="9.5" dy="12" class="s">수강생 · 강사 · 멘토 · 매니저 · 외부 검증자</tspan></text>
+        <text class="lb" x="546.9" y="-301.2" text-anchor="middle"><tspan x="546.9" dy="0" class="n">S3 new-bm-lms-dev-files</tspan><tspan x="546.9" dy="11" class="s">버저닝 · TLS-only · SSE</tspan></text>
+        <text class="lb" x="488.0" y="-267.2" text-anchor="middle"><tspan x="488.0" dy="0" class="n">Secrets Manager ×8</tspan><tspan x="488.0" dy="11" class="s">DB 비번 4 · JWT · 내부키 · GitHub 2</tspan></text>
+        <text class="lb" x="429.1" y="-233.2" text-anchor="middle"><tspan x="429.1" dy="0" class="n">ECR ×5 · CloudWatch Logs ×5</tspan><tspan x="429.1" dy="11" class="s">이미지 · 로그 14일 보관</tspan></text>
+        <text class="lb" x="675.5" y="-285.0" text-anchor="start"><tspan x="675.5" dy="0" class="z">VPC 밖 · 리전 관리형</tspan><tspan x="675.5" dy="11" class="zs">ECS task가 IAM role로 접근</tspan><tspan x="675.5" dy="11" class="zs">CloudTrail(멀티리전) 별도</tspan></text>
+        <text class="lb" x="-290.1" y="-422.5" text-anchor="start"><tspan x="-290.1" dy="0" class="z2">VPC 10.40.0.0/16</tspan><tspan x="-290.1" dy="12" class="zs">ap-northeast-2 (서울) · AZ 2a · 2b</tspan></text>
+      </svg>
+    </div>
+
+    <div class="iso-legend">
+      <span><i class="sw-acc"></i> 요청을 처리하는 실행 중 구성</span>
+      <span><i class="sw-dat"></i> 데이터 저장소</span>
+      <span><i class="sw-mut"></i> 미기동 · 보조 · 관리형</span>
+    </div>
+
+    <p class="iso-cap">
+      2026-08-06 Terraform 코드(<code>terraform/</code>)와 AWS 실조회 결과를 대조해 작성했습니다.
+      블록에 적힌 사양·기동 수는 조회 시점의 실제 값입니다. 문서 기준일(08-05)보다 하루 뒤 시점입니다.
+      웹 프런트 정적 배포는 이 Terraform 구성에 포함돼 있지 않아 그리지 않았습니다.
+    </p>
+
+    <h3>서비스 구성</h3>
+    <p>
+      같은 시스템을 사용자·기능 관점에서 본 것입니다. 위 배포 구성이 “어디서 도는가”라면,
+      아래는 “무엇을 하는가”입니다.
     </p>
 
     <div class="arch">
@@ -804,7 +1056,7 @@
         <div class="tier__head"><span>전달</span><span>AWS CloudFront + S3 · Application Load Balancer</span></div>
         <div class="nodes">
           <div class="node"><span class="node__name">웹 (React 19)</span><span class="node__note">S3 정적 배포 → CDN</span></div>
-          <div class="node"><span class="node__name">API 진입점</span><span class="node__note">경로 기반 라우팅 · JWT 검증</span></div>
+          <div class="node"><span class="node__name">API 진입점</span><span class="node__note">경로 기반 라우팅(규칙 4개) · 인증은 각 서비스가 검증</span></div>
         </div>
       </div>
 
@@ -839,11 +1091,11 @@
         <div class="nodes">
           <div class="node">
             <span class="node__name">PostgreSQL (RDS)</span>
-            <span class="node__note">단일 인스턴스 · 서비스별 스키마 분리 · 테이블 100종</span>
+            <span class="node__note">서비스별 인스턴스 4대 · 인스턴스 안에서 스키마 분리 · 테이블 100종</span>
           </div>
           <div class="node">
             <span class="node__name">Redis</span>
-            <span class="node__note">세션 토큰 · 캐시</span>
+            <span class="node__note">auth-user-service refresh token 저장소</span>
           </div>
           <div class="node">
             <span class="node__name">S3</span>
