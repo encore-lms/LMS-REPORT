@@ -28,12 +28,33 @@ GitHub Pages가 정본 발행처다. `main`에 push하면 저장소 루트가 �
 
 ## 파일 구조 규칙
 
-HTML 한 장이 문서 하나다. 외부 리소스를 부르지 않는 **자기완결 문서**로 유지한다.
+HTML은 내용만 담고, 스타일과 동작은 `assets/`에서 역할별로 나눠 관리한다.
+문서가 늘어도 공통 파일은 한 벌만 고치면 된다.
 
-- CSS·스크립트·이미지는 전부 파일 안에 인라인한다. CDN·외부 폰트·외부 이미지 금지.
+```
+index.html                          목차
+2026-08-05_임원보고_진행현황.html    보고서 본문
+assets/
+  tokens.css        색·서체 토큰            (공용, 가장 먼저 로드)
+  base.css          리셋·body·링크          (공용)
+  theme-toggle.css  토글 버튼 · 인쇄 규칙   (공용)
+  theme-toggle.js   토글 동작               (공용)
+  report.css        보고서 레이아웃·컴포넌트
+  diagram.css       아이소메트릭 구성도
+  diagram.js        구성도 확대·이동
+  countdown.js      종료 목표까지 남은 일수
+  index.css         목차 페이지
+```
+
+- **외부 호스트는 부르지 않는다.** CDN·웹폰트·외부 이미지 금지. 참조는 저장소 안 상대 경로만 쓴다.
 - 폰트는 시스템 스택으로 처리한다. 웹폰트 URL을 링크하면 조용히 폴백되어 의도한 서체가 안 나온다.
-- 색은 `:root`의 CSS 변수로만 정의하고 컴포넌트는 변수를 참조한다.
+- 색은 `tokens.css`의 CSS 변수로만 정의하고 컴포넌트는 변수를 참조한다.
   라이트/다크 값을 세 곳(`:root` · `prefers-color-scheme` · `[data-theme]`)에 각각 선언한다.
+- CSS는 위 순서대로 링크한다. `base.css`의 `a`와 `theme-toggle.css`의 `@media print`가
+  뒤 파일에 같은 명시도로 다시 선언되면 결과가 뒤집힌다. 페이지 전용 CSS에서 `a`·`body`를
+  재정의하지 않는다.
+- `report.css`와 `index.css`는 `.doc`·`.masthead` 등 같은 클래스를 다른 값으로 쓴다.
+  **한 페이지에 둘을 같이 링크하면 안 된다.**
 - 표·다이어그램처럼 넓은 요소는 자체 `overflow-x: auto` 컨테이너 안에 둔다.
   본문(`body`)이 가로로 스크롤되면 안 된다.
 
@@ -51,19 +72,24 @@ Pages는 파일을 가공 없이 서빙하므로 **각 HTML이 완전한 문서�
 | `<meta name="viewport">` | 모바일 배율 |
 | `<meta name="robots" content="noindex, nofollow">` | 검색엔진 색인 차단 |
 | 테마 선적용 `<script>` | 저장된 `data-theme`을 첫 페인트 전에 적용 (색 번쩍임 방지) |
+| `<link rel="stylesheet">` | `assets/`의 CSS를 순서대로 |
 
-테마 토글 버튼과 그 스크립트는 `<body>` 끝에 둔다. 토글은 루트 요소에
-`data-theme="dark|light"`를 찍고 `localStorage`에 남기므로, 해당 셀렉터가
-`prefers-color-scheme` 미디어쿼리를 양방향으로 이겨야 한다.
+테마 선적용 스니펫만은 **인라인으로 남긴다.** 외부 파일로 빼면 내려받는 동안
+이전 테마 색이 먼저 그려졌다가 바뀐다. 이것이 인라인을 허용하는 유일한 예외다.
+
+`<script src>`는 `<body>` 끝에 둔다. 토글은 루트 요소에 `data-theme="dark|light"`를 찍고
+`localStorage`에 남기므로, 해당 셀렉터가 `prefers-color-scheme` 미디어쿼리를
+양방향으로 이겨야 한다.
 
 ## 로컬 확인
 
 ```bash
-open index.html
+python3 -m http.server 8000    # 그 뒤 http://127.0.0.1:8000/
 ```
 
-빌드 단계가 없어 로컬에서 파일을 직접 열면 배포본과 같은 화면이 나온다.
-다크 모드는 문서 우상단 토글로 보거나 OS 테마를 바꿔서 본다.
+빌드 단계가 없어 서빙한 화면이 곧 배포본이다.
+`file://`로 직접 열어도 대개 보이지만, 브라우저 설정에 따라 `assets/` 로드가 막힐 수 있어
+확인은 위처럼 HTTP로 한다. 다크 모드는 우상단 토글이나 OS 테마로 본다.
 
 ## 근거 표기 규칙
 
