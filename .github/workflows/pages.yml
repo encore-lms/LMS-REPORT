@@ -26,12 +26,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      # 루트를 그대로 올리되 배포에 불필요한 것은 뺀다.
+      # 발행 HTML 은 생성물이라 저장소에 두지 않는다(공동 작업 시 충돌 1순위였다).
+      # 조각에서 여기서 조립한다.
+      - name: 보고서 조립
+        run: python3 build.py
+      # 루트를 올리되 배포에 필요 없는 것은 뺀다.
       # path: . 로 두면 .git 전체가 아티팩트에 담겨 업로드가 커진다.
       - name: 배포본 준비
         run: |
           mkdir -p _site
-          rsync -a --exclude='.git' --exclude='_site' --exclude='.github' ./ _site/
+          rsync -a \
+            --exclude='.git' --exclude='.github' --exclude='_site' \
+            --exclude='sections' --exclude='build.py' --exclude='.gitignore' \
+            ./ _site/
+          echo "--- 배포본 목록 ---" && ls -1 _site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
