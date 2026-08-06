@@ -676,9 +676,8 @@
     <h2>8월 31일까지 일정</h2>
 
     <p>
-      원래 계획(7월 31일 기능 완성 → 8월 전체 QA)은 이미 어긋났습니다.
-      아래는 <strong>현 시점에서 다시 짠 실행 계획</strong>이며,
-      증명서 축을 완성한 뒤 QA로 넘어가는 구조입니다.
+      §4의 두 구간을 주 단위로 편 것입니다. <strong>8월 21일까지 구현을 끝내고</strong>,
+      마지막 주는 <strong>증명서 실데이터 검증과 전체 QA</strong>에 씁니다.
     </p>
 
     <div class="sched">
@@ -701,10 +700,10 @@
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">증명서 백엔드 구현</div>
+          <div class="sched__task">증명서 발급 백엔드</div>
           <div class="sched__cell on">착수</div>
+          <div class="sched__cell on">구현</div>
           <div class="sched__cell on">완성</div>
-          <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
         </div>
@@ -717,51 +716,43 @@
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">증명서 화면 실연동</div>
+          <div class="sched__task">증명서 화면 실연동 (수강생 4 · 운영 4)</div>
           <div class="sched__cell"></div>
           <div class="sched__cell on">연동</div>
-          <div class="sched__cell on">실데이터</div>
+          <div class="sched__cell on">완료</div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">P1 잔여 (공통 화면·세션)</div>
-          <div class="sched__cell"></div>
+          <div class="sched__task">잔여 개선 (공통 화면 · 비밀번호 · 세션)</div>
           <div class="sched__cell"></div>
           <div class="sched__cell on">처리</div>
+          <div class="sched__cell on">완료</div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">사용자 검수 (UAT)</div>
-          <div class="sched__cell"></div>
-          <div class="sched__cell on qa">1차</div>
-          <div class="sched__cell on qa">2차</div>
+          <div class="sched__task">증명서 실데이터 전환·재검증</div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
-        </div>
-        <div class="sched__row">
-          <div class="sched__task">권한·보안·회귀 점검</div>
           <div class="sched__cell"></div>
-          <div class="sched__cell"></div>
-          <div class="sched__cell on qa">점검</div>
-          <div class="sched__cell on qa">회귀</div>
+          <div class="sched__cell on qa">검증</div>
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">버그 수정만 (코드 동결)</div>
+          <div class="sched__task">전체 QA (역할별 시나리오 · 결함 수정)</div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
-          <div class="sched__cell on qa">수정</div>
+          <div class="sched__cell on qa">QA</div>
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">운영 매뉴얼 · 교육</div>
+          <div class="sched__task">PLAY 미니게임 7화면</div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
-          <div class="sched__cell on qa">작성</div>
+          <div class="sched__cell on qa">선택</div>
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
@@ -789,7 +780,7 @@
           <tr>
             <td class="t-tight">08-07 금</td>
             <td>신규 기능 개발 중단 선언, 증명서 백엔드 설계 확정, 분석 엔진 AWS 기동</td>
-            <td>P2 전체를 9월로 이월</td>
+            <td>선택 항목(PLAY)을 완전히 제외</td>
           </tr>
           <tr>
             <td class="t-tight">08-14 금</td>
@@ -798,12 +789,12 @@
           </tr>
           <tr>
             <td class="t-tight">08-21 금</td>
-            <td>2차 검수 완료, 심각 결함 0건, 권한·보안 점검 통과</td>
-            <td>P1 잔여를 이월하고 회귀에 집중</td>
+            <td><strong>구간 1 종료</strong> — 증명서 8화면 실연동·잔여 개선까지 구현 전량 완료</td>
+            <td>미완분만 안고 QA 진입, PLAY 제외 확정</td>
           </tr>
           <tr>
             <td class="t-tight">08-28 금</td>
-            <td>코드 동결, 릴리즈 후보 배포, 운영 매뉴얼 인계</td>
+            <td>실데이터 검증·전체 QA 완료, 심각 결함 0건, 릴리즈 후보 배포</td>
             <td>08-31 배포를 9월 초로 순연</td>
           </tr>
           <tr>
