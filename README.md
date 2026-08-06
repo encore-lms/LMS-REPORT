@@ -7,17 +7,17 @@ LMS 역량증명서 프로젝트의 **보고서 산출물** 저장소. 발행용
 
 ## 발행
 
-GitHub Pages가 정본 발행처다. `main`에 push하면 `.github/workflows/pages.yml`이
-저장소 루트를 아티팩트로 올려 배포한다.
+GitHub Pages가 정본 발행처다. `main`에 push하면 GitHub 내장 빌더가 브랜치를 그대로 서빙한다.
 
 - 사이트: <https://encore-lms.github.io/LMS-REPORT/>
-- 배포 방식: **Settings → Pages → Source = `GitHub Actions`** (`build_type: workflow`)
-- 발행 HTML 은 **저장소에 없다.** 워크플로가 `build.py` 로 조각을 조립해 배포한다.
-- `sections/` 와 `build.py` 는 배포본에서 제외된다. 파일명·경로가 URL이 된다.
+- 배포 방식: **Settings → Pages → Source = `Deploy from a branch` (main / root)** (`build_type: legacy`)
+- 발행 HTML 은 **저장소에 커밋한다.** 내장 빌더는 브랜치의 파일을 그대로 올리므로 없으면 404다.
+- 섹션을 고치면 `python3 build.py` 를 돌려 **발행본까지 함께 커밋**한다.
+- `.nojekyll` 이 있어 Jekyll 변환을 타지 않는다. 파일명·경로가 URL이 된다.
 
-### ⚠️ Pages 설정을 `Deploy from a branch`로 되돌리지 말 것
+### ⚠️ 배포 방식은 하나만 — 워크플로를 다시 만들지 말 것
 
-워크플로 파일과 Pages 설정이 어긋나면 배포가 통째로 막힌다. 2026-08-06에 실제로 겪었다.
+워크플로 파일과 Pages 설정이 어긋나면 배포가 통째로 막힌다. 2026-08-06에 반나절을 잃었다.
 
 - 설정이 `legacy`인데 워크플로가 있으면 → 내장 빌더와 워크플로가 같은 배포 슬롯을 두고 경합해
   `Multiple artifacts named "github-pages"` · `deployment_queued` 타임아웃으로 **양쪽 다 실패**한다.
@@ -25,19 +25,22 @@ GitHub Pages가 정본 발행처다. `main`에 push하면 `.github/workflows/pag
 - 워크플로 안의 `actions/configure-pages`가 실행될 때마다 설정을 `workflow`로 되돌리므로,
   `legacy`로 고정하려면 워크플로 파일을 지워야 한다. 둘 중 하나만 남긴다.
 
+**배포 ID = 커밋 sha다.** 같은 sha 로 실패·취소가 쌓이면 이후 배포가 생성 직후
+`Deployment cancelled` 로 즉시 죽는다. 재시도(`POST /pages/builds`)로는 절대 풀리지 않는다.
+→ **새 커밋을 만들어 sha 를 바꾼 뒤 push** 하는 것이 유일한 해법이다.
+
 막혔을 때 복구 순서 — **한 사람이, 다른 사람이 push하지 않는 동안** 실행한다.
 
 ```bash
 gh run list --limit 10 --json databaseId,status \
   --jq '.[] | select(.status=="in_progress" or .status=="queued") | .databaseId' \
   | xargs -I{} gh run cancel {}
-gh api -X POST repos/encore-lms/LMS-REPORT/pages/deployments/<막힌_sha>/cancel
-gh api -X PUT repos/encore-lms/LMS-REPORT/pages -f build_type=workflow
-gh workflow run pages.yml --ref main
+gh api -X PUT repos/encore-lms/LMS-REPORT/pages \
+  -f build_type=legacy -f 'source[branch]=main' -f 'source[path]=/'
+git commit --allow-empty -m "build: 배포 sha 갱신" && git push    # sha 를 바꿔야 풀린다
 ```
 
-배포 ID가 커밋 sha라, 같은 sha로 실패가 쌓이면 재시도가 계속 취소된다.
-그때는 새 커밋을 만들어 sha를 바꾼 뒤 배포한다.
+`Unpublish site` 는 쓰지 않는다. 재게시 배포까지 같은 장애에 걸리면 사이트가 내려간 채 남는다.
 
 **저장소가 public이라 사이트도 공개다.** 링크를 아는 사람은 로그인 없이 열람할 수 있다.
 검색엔진 색인만 `robots.txt`와 각 문서의 `<meta name="robots" content="noindex, nofollow">`로
@@ -50,7 +53,7 @@ gh workflow run pages.yml --ref main
 | --- | --- | --- | --- |
 | `2026-08-05_임원보고_진행현황.html` | 2026-08-05 | 임원진 | [Pages에서 보기](https://encore-lms.github.io/LMS-REPORT/2026-08-05_%EC%9E%84%EC%9B%90%EB%B3%B4%EA%B3%A0_%EC%A7%84%ED%96%89%ED%98%84%ED%99%A9.html) |
 
-발행 HTML 은 git 에 없으므로 저장소 안 상대 링크로 걸지 않는다. 원본은 `sections/` 조각이다.
+본문 원본은 `sections/` 조각이고, 표의 파일은 조립 결과물이다.
 문서를 추가하면 `index.html`의 목록에도 카드를 넣는다. 루트 `index.html`이 목차 페이지다.
 
 ## 파일 구조 규칙
@@ -60,9 +63,10 @@ HTML은 내용만 담고, 스타일과 동작은 `assets/`에서 역할별로 �
 
 ```
 index.html                          목차
-build.py                            보고서 조립기 (발행 HTML 생성 — git 미추적)
+2026-08-05_임원보고_진행현황.html    발행본 (build.py 생성물이지만 legacy 배포용으로 커밋)
+build.py                            보고서 조립기
 sections/
-  _shell.html       머리(head·masthead)·꼬리(footer·스크립트) 틀
+  00-shell.html     머리(head·masthead)·꼬리(footer·스크립트) 틀
   01-요약.html       섹션 조각 — 번호 순으로 조립된다
   02-현재-진행-상황.html
   03-아키텍처.html   (구성도 SVG·패널 데이터 포함)
@@ -124,26 +128,28 @@ Pages는 파일을 가공 없이 서빙하므로 **각 HTML이 완전한 문서�
 
 ```bash
 # 섹션 추가: 다음 번호로 조각을 만들고 조립
-$EDITOR sections/08-새-섹션.html      # <section>…</section> 전체, 번호 자리는 {{NUM}}
-python3 build.py
+$EDITOR sections/08-새-섹션.html      # <section>…</section> 전체, 번호 자리는 <!--NUM-->
+python3 build.py                     # 발행본까지 함께 커밋해야 배포된다
 
 # 중간 삽입·순서 변경: 파일명 번호만 바꾸면 된다
-# ({{NUM}} 토큰이 조립 순서대로 채워지므로 본문 수정 불필요)
+# (<!--NUM--> 토큰이 조립 순서대로 채워지므로 본문 수정 불필요)
 ```
 
 조각 형식은 기존 파일을 따른다: `<section>` 바로 안에
-`<div class="sec-num">{{NUM}}</div>` 과 `<h2>제목</h2>`.
+`<div class="sec-num"><!--NUM--></div>` 과 `<h2>제목</h2>`.
+**토큰에 `{{ }}` 를 쓰지 않는다** — Jekyll(Liquid)이 템플릿으로 해석해 빌드를 깨뜨린다.
+같은 이유로 `sections/` 파일명은 `_` 로 시작하지 않는다.
 구성도(SVG·패널 JSON)를 재생성할 때는 `sections/03-아키텍처.html` 을
 대상으로 치환한 뒤 조립한다.
 
 ## 로컬 확인
 
 ```bash
-python3 build.py               # 발행 HTML 생성 (저장소에 없으므로 먼저 실행)
-python3 -m http.server 8000    # 그 뒤 http://127.0.0.1:8000/
+python3 -m http.server 8000    # http://127.0.0.1:8000/
 ```
 
-워크플로도 같은 `build.py` 를 돌리므로 서빙한 화면이 곧 배포본이다.
+발행본이 저장소에 있으므로 바로 서빙하면 되고, 그 화면이 곧 배포본이다.
+섹션을 고쳤다면 `python3 build.py` 를 먼저 돌린다.
 `file://`로 직접 열어도 대개 보이지만, 브라우저 설정에 따라 `assets/` 로드가 막힐 수 있어
 확인은 위처럼 HTTP로 한다. 다크 모드는 우상단 토글이나 OS 테마로 본다.
 
