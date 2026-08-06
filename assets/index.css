@@ -1,0 +1,89 @@
+/* 보고서 목차 페이지. 본문 폭과 masthead 크기가 보고서와 달라 따로 둔다. */
+
+.doc {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 4vw, 3rem) 6rem;
+}
+
+.masthead {
+  display: grid;
+  gap: 1.25rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--ink);
+}
+.masthead__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--brand-ink);
+  margin: 0;
+}
+.masthead h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin: 0;
+  text-wrap: balance;
+}
+.masthead__sub {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 1rem;
+}
+
+.list {
+  display: grid;
+  gap: 1rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: block;
+  padding: 1.25rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  text-decoration: none;
+  color: inherit;
+}
+.card:hover { border-color: var(--brand); background: var(--brand-wash); }
+.card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.card__title {
+  margin: 0.5rem 0 0.35rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+.card__desc {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  max-width: var(--measure);
+}
+
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-soft);
+}
+footer p {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  max-width: var(--measure);
+}
