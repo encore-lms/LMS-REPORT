@@ -254,3 +254,16 @@
   .iso-toolbar { display: none; }
   .iso-panel { display: none; }
 }
+
+/* ── 라벨 배경판 ───────────────────────────────
+   텍스트가 뒤 블록·점선과 섞여 보이던 것을 배경판이 끊어 준다.
+   블록과 같은 data-id 를 가져 강조·흐림·클릭이 함께 움직인다. */
+.iso .lbg {
+  fill: var(--surface);
+  fill-opacity: 0.94;
+  stroke: var(--iso-edge);
+  stroke-width: 1;
+}
+.iso .lbg.is-active { stroke: var(--brand); stroke-width: 1.5; }
+.iso .lbg.is-dim { opacity: 0.13; }
+.iso .lbg[data-id], .iso text[data-id] { cursor: pointer; }
