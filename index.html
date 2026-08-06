@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="LMS 역량증명서 프로젝트 보고서 목록.">
+
+<title>LMS 역량증명서 프로젝트 — 보고서</title>
+
+<script>
+  /* 저장된 테마를 첫 페인트 전에 적용한다. 본문 뒤에서 적용하면 색이 한 번 번쩍인다. */
+  try {
+    var saved = localStorage.getItem('lms-report-theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
+
+<style>
+  :root {
+    color-scheme: light;
+    --paper:      #f2f5f4;
+    --surface:    #ffffff;
+    --surface-2:  #e9efed;
+    --line:       #d2dcda;
+    --line-soft:  #e2eae8;
+    --ink:        #0d1a19;
+    --ink-2:      #3d4c4a;
+    --ink-3:      #6b7a78;
+    --brand:      #1a8c85;
+    --brand-ink:  #0f5f5a;
+    --brand-wash: #e4f0ee;
+
+    --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 68ch;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme='light'])) {
+      color-scheme: dark;
+      --paper:      #0e1413;
+      --surface:    #161d1c;
+      --surface-2:  #1e2726;
+      --line:       #2d3937;
+      --line-soft:  #232d2c;
+      --ink:        #e3ebe9;
+      --ink-2:      #b3c1bf;
+      --ink-3:      #849290;
+      --brand:      #35b8af;
+      --brand-ink:  #57cdc4;
+      --brand-wash: #17302e;
+    }
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --paper:      #0e1413;
+    --surface:    #161d1c;
+    --surface-2:  #1e2726;
+    --line:       #2d3937;
+    --line-soft:  #232d2c;
+    --ink:        #e3ebe9;
+    --ink-2:      #b3c1bf;
+    --ink-3:      #849290;
+    --brand:      #35b8af;
+    --brand-ink:  #57cdc4;
+    --brand-wash: #17302e;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --paper:      #f2f5f4;
+    --surface:    #ffffff;
+    --surface-2:  #e9efed;
+    --line:       #d2dcda;
+    --line-soft:  #e2eae8;
+    --ink:        #0d1a19;
+    --ink-2:      #3d4c4a;
+    --ink-3:      #6b7a78;
+    --brand:      #1a8c85;
+    --brand-ink:  #0f5f5a;
+    --brand-wash: #e4f0ee;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+
+  .doc {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 4vw, 3rem) 6rem;
+  }
+
+  .masthead {
+    display: grid;
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .masthead__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: var(--brand-ink);
+    margin: 0;
+  }
+  .masthead h1 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .masthead__sub {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 1rem;
+  }
+
+  .list {
+    display: grid;
+    gap: 1rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .card {
+    display: block;
+    padding: 1.25rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card:hover { border-color: var(--brand); background: var(--brand-wash); }
+  .card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .card__title {
+    margin: 0.5rem 0 0.35rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+  }
+  .card__desc {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    max-width: var(--measure);
+  }
+
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line-soft);
+  }
+  footer p {
+    margin: 0;
+    color: var(--ink-3);
+    font-size: 0.8rem;
+    max-width: var(--measure);
+  }
+  a { color: var(--brand-ink); }
+  a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+  /* ── 테마 토글 ────────────────────────────────── */
+  .theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.4rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.1);
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--brand); }
+  .theme-toggle svg { width: 0.95rem; height: 0.95rem; display: block; }
+  .theme-toggle[data-next='dark'] .icon--sun { display: none; }
+  .theme-toggle[data-next='light'] .icon--moon { display: none; }
+
+  @media print {
+    .theme-toggle { display: none; }
+    body { background: #ffffff; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <header class="masthead">
+    <p class="masthead__eyebrow">LMS 역량증명서 프로젝트</p>
+    <h1>보고서</h1>
+    <p class="masthead__sub">
+      대외·임원 보고용으로 발행한 문서 목록입니다. 각 문서는 발행 시점의 기준일 현황을 담고 있으며,
+      이후 변경 사항은 다음 기준일 문서에 반영합니다.
+    </p>
+  </header>
+
+  <ul class="list">
+    <li>
+      <a class="card" href="./2026-08-05_임원보고_진행현황.html">
+        <p class="card__meta">
+          <span>기준일 2026-08-05</span>
+          <span>대상 임원진</span>
+          <span>작성 황설현</span>
+        </p>
+        <h2 class="card__title">진행 현황 및 8월 마감 계획</h2>
+        <p class="card__desc">
+          현재 구현 범위와 남은 작업, 8월 31일 종료를 위한 일정·범위 결정 사항을 정리했습니다.
+        </p>
+      </a>
+    </li>
+  </ul>
+
+  <footer>
+    <p>
+      설계·결정 문서의 정본은 별도 저장소(LMS-DOCS)에 있습니다.
+      이 사이트는 검색엔진 색인 대상에서 제외되어 있으나 링크를 아는 사람은 열람할 수 있으므로,
+      대외 공유 시에는 공개 범위를 확인해 주세요.
+    </p>
+  </footer>
+
+</div>
+
+<button class="theme-toggle" type="button" id="themeToggle" data-next="dark">
+  <svg class="icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+  <span class="theme-toggle__label">다크</span>
+</button>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    var label = btn.querySelector('.theme-toggle__label');
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    /* data-theme이 없으면 OS 설정을 따르므로, 실제 표시 중인 테마를 그쪽에서 읽는다. */
+    function current() {
+      return document.documentElement.dataset.theme || (media.matches ? 'dark' : 'light');
+    }
+
+    function sync() {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      btn.dataset.next = next;
+      label.textContent = next === 'dark' ? '다크' : '라이트';
+      btn.setAttribute('aria-label', (next === 'dark' ? '다크' : '라이트') + ' 모드로 전환');
+    }
+
+    btn.addEventListener('click', function () {
+      var next = btn.dataset.next;
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('lms-report-theme', next); } catch (e) {}
+      sync();
+    });
+
+    media.addEventListener('change', sync);
+    sync();
+  })();
+</script>
+
+</body>
+</html>
