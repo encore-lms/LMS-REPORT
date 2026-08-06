@@ -5,41 +5,65 @@ LMS 역량증명서 프로젝트의 **보고서 산출물** 저장소. 발행용
 설계·결정 문서는 `LMS-DOCS`(Obsidian Vault, Markdown)가 정본이고, 이 저장소는
 **대외/임원 보고용으로 렌더링되는 단일 HTML 문서**만 다룬다.
 
+## 발행
+
+GitHub Pages가 정본 발행처다. `main`에 push하면 저장소 루트가 그대로 서빙된다.
+
+- 사이트: <https://encore-lms.github.io/LMS-REPORT/>
+- 소스: `main` 브랜치 `/ (root)` — 빌드 단계가 없어 커밋한 HTML이 그대로 나간다.
+- `.nojekyll`이 있으므로 Jekyll 변환을 타지 않는다. 파일명·경로가 URL이 된다.
+
+**저장소가 public이라 사이트도 공개다.** 링크를 아는 사람은 로그인 없이 열람할 수 있다.
+검색엔진 색인만 `robots.txt`와 각 문서의 `<meta name="robots" content="noindex, nofollow">`로
+막아 두었다 — 접근 제한이 아니라 색인 제한이다. 비공개가 필요하면 저장소를 private으로
+돌려야 하고, 그 경우 Pages는 GitHub Team 이상 플랜이 필요하다.
+
 ## 문서 목록
 
 | 파일 | 기준일 | 대상 | 발행 |
 | --- | --- | --- | --- |
-| [`2026-08-05_임원보고_진행현황.html`](./2026-08-05_임원보고_진행현황.html) | 2026-08-05 | 임원진 | [Artifact](https://claude.ai/code/artifact/c2e4ec46-9170-40e0-8700-a20a5e55c7fa) |
+| [`2026-08-05_임원보고_진행현황.html`](./2026-08-05_임원보고_진행현황.html) | 2026-08-05 | 임원진 | [Pages](https://encore-lms.github.io/LMS-REPORT/2026-08-05_%EC%9E%84%EC%9B%90%EB%B3%B4%EA%B3%A0_%EC%A7%84%ED%96%89%ED%98%84%ED%99%A9.html) |
+
+문서를 추가하면 `index.html`의 목록에도 카드를 넣는다. 루트 `index.html`이 목차 페이지다.
 
 ## 파일 구조 규칙
 
 HTML 한 장이 문서 하나다. 외부 리소스를 부르지 않는 **자기완결 문서**로 유지한다.
 
-- CSS·스크립트·이미지는 전부 파일 안에 인라인한다. CDN·외부 폰트·외부 이미지 금지
-  (발행 환경의 CSP가 외부 호스트 요청을 차단한다).
+- CSS·스크립트·이미지는 전부 파일 안에 인라인한다. CDN·외부 폰트·외부 이미지 금지.
 - 폰트는 시스템 스택으로 처리한다. 웹폰트 URL을 링크하면 조용히 폴백되어 의도한 서체가 안 나온다.
 - 색은 `:root`의 CSS 변수로만 정의하고 컴포넌트는 변수를 참조한다.
   라이트/다크 값을 세 곳(`:root` · `prefers-color-scheme` · `[data-theme]`)에 각각 선언한다.
 - 표·다이어그램처럼 넓은 요소는 자체 `overflow-x: auto` 컨테이너 안에 둔다.
   본문(`body`)이 가로로 스크롤되면 안 된다.
 
-### 문서 상단의 태그에 대해
+### 문서 골격
 
-파일은 `<meta charset>` → `<title>` → `<style>` → 본문 순으로 시작하고,
-`<!doctype>` · `<html>` · `<head>` · `<body>` 태그는 **쓰지 않는다**.
-발행 시 이 골격이 자동으로 감싸지기 때문이다. 상단 `<meta>` 2줄은 로컬에서
-파일을 브라우저로 직접 열었을 때 한글 깨짐과 모바일 배율을 막기 위한 것으로,
-발행본에서는 무시된다.
+Pages는 파일을 가공 없이 서빙하므로 **각 HTML이 완전한 문서여야 한다.**
+`<!doctype html>` → `<html lang="ko">` → `<head>` → `<body>` 순서를 지킨다.
+`<!doctype>`이 빠지면 브라우저가 quirks mode로 렌더링해 박스 모델과 여백이 달라진다.
+
+`<head>`에 들어가는 것:
+
+| 태그 | 이유 |
+| --- | --- |
+| `<meta charset="utf-8">` | 한글 깨짐 방지 |
+| `<meta name="viewport">` | 모바일 배율 |
+| `<meta name="robots" content="noindex, nofollow">` | 검색엔진 색인 차단 |
+| 테마 선적용 `<script>` | 저장된 `data-theme`을 첫 페인트 전에 적용 (색 번쩍임 방지) |
+
+테마 토글 버튼과 그 스크립트는 `<body>` 끝에 둔다. 토글은 루트 요소에
+`data-theme="dark|light"`를 찍고 `localStorage`에 남기므로, 해당 셀렉터가
+`prefers-color-scheme` 미디어쿼리를 양방향으로 이겨야 한다.
 
 ## 로컬 확인
 
 ```bash
-open 2026-08-05_임원보고_진행현황.html
+open index.html
 ```
 
-다크 모드 확인은 OS 테마를 바꿔서 본다. 발행본에는 뷰어용 테마 토글이 붙는데,
-그 토글은 루트 요소에 `data-theme="dark|light"`를 찍으므로 해당 셀렉터가
-`prefers-color-scheme` 미디어쿼리를 양방향으로 이겨야 한다.
+빌드 단계가 없어 로컬에서 파일을 직접 열면 배포본과 같은 화면이 나온다.
+다크 모드는 문서 우상단 토글로 보거나 OS 테마를 바꿔서 본다.
 
 ## 근거 표기 규칙
 
