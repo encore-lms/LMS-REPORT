@@ -45,3 +45,8 @@ jobs:
           path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Pages 큐 처리가 10분을 넘는 날이 있다(2026-08-06 실측 — 기본 600초에서
+          # 액션이 포기·취소했지만 서버에서는 배포가 완료됨). 느린 배포를 실패로
+          # 뒤집고 그 취소가 다음 배포를 막는 잠금이 되므로, 30분까지 기다린다.
+          timeout: 1800000
