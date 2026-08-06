@@ -539,6 +539,7 @@
 
   /* ── 아이소메트릭 구성도 ──────────────────────── */
   .isowrap {
+    position: relative;            /* 확대 컨트롤의 기준 */
     margin: 2rem 0 0;
     padding: 1rem 0;
     overflow-x: auto;              /* 좁은 화면에서 본문(body)이 아니라 이 안이 스크롤되게 */
@@ -548,11 +549,13 @@
   .iso {
     display: block;
     width: 100%;
-    /* 하한 아래로 줄지 않게 막는다. 42rem까지 허용하면 라벨이 5.5px까지 작아져 못 읽는다.
-       58rem이면 데스크톱(8.4px)과 비슷한 7.5px를 유지하고, 좁은 화면은 가로 스크롤로 본다. */
+    /* 하한 아래로 줄지 않게 막는다. 58rem이면 이름 라벨이 9px대를 유지하고,
+       좁은 화면은 가로 스크롤이나 확대로 본다. */
     min-width: 58rem;
     height: auto;
   }
+  .iso.is-zoomed { cursor: grab; }
+  .iso.is-zoomed:active { cursor: grabbing; }
   .iso polygon { stroke: var(--iso-edge); stroke-width: 1; stroke-linejoin: round; }
   .acc-t { fill: var(--iso-acc-t); }
   .acc-l { fill: var(--iso-acc-l); }
@@ -567,15 +570,83 @@
   .slb-l { fill: var(--iso-slb-l); }
   .slb-r { fill: var(--iso-slb-r); }
   .iso .lb { font-family: var(--font-mono); }
-  .iso .n  { font-size: 10.5px; font-weight: 700; fill: var(--ink); }
-  .iso .n2 { font-size: 13.5px; font-weight: 700; fill: var(--ink); }
-  .iso .s  { font-size: 9px; fill: var(--ink-3); }
-  .iso .z  { font-size: 10px; font-weight: 700; fill: var(--brand-ink); letter-spacing: 0.1em; }
-  .iso .z2 { font-size: 14px; font-weight: 800; fill: var(--ink); letter-spacing: 0.02em; }
-  .iso .zs { font-size: 9.5px; fill: var(--ink-3); }
-  .iso .ln, .iso .lnv { stroke: var(--brand); stroke-width: 1.5; fill: none; }
+  .iso .n  { font-size: 13px; font-weight: 700; fill: var(--ink); }
+  .iso .n2 { font-size: 16px; font-weight: 700; fill: var(--ink); }
+  .iso .s  { font-size: 10.5px; fill: var(--ink-3); }
+  .iso .z  { font-size: 11.5px; font-weight: 700; fill: var(--brand-ink); letter-spacing: 0.1em; }
+  .iso .z2 { font-size: 16px; font-weight: 800; fill: var(--ink); letter-spacing: 0.02em; }
+  .iso .zs { font-size: 11px; fill: var(--ink-3); }
+  .iso .ln, .iso .lnv { stroke: var(--brand); stroke-width: 1.6; fill: none; }
   .iso .lnsc { stroke: var(--brand-ink); stroke-width: 1.5; fill: none; }
   .iso .ahp { fill: var(--brand); }
+
+  /* 요청 경로를 따라 점선이 흐르는 방향 표시. 과하지 않게 이 선들만 움직인다. */
+  .iso .ln, .iso .lnv {
+    stroke-dasharray: 7 5;
+    animation: iso-flow 1.4s linear infinite;
+  }
+  @keyframes iso-flow { to { stroke-dashoffset: -12; } }
+  @media (prefers-reduced-motion: reduce) {
+    .iso .ln, .iso .lnv { animation: none; stroke-dasharray: none; }
+  }
+
+  /* 흐름 단계 배지 ①~④ */
+  .iso .stb circle { fill: var(--brand); stroke: var(--surface); stroke-width: 1.5; }
+  .iso .stb text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--surface);
+  }
+
+  /* 확대 컨트롤 */
+  .iso-controls {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 2;
+    display: flex;
+    gap: 0.3rem;
+  }
+  .iso-controls button {
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1;
+    color: var(--ink-2);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .iso-controls button:hover { color: var(--ink); border-color: var(--brand); }
+
+  /* 흐름 단계 설명 */
+  .iso-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+    margin: 0.6rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-2);
+  }
+  .iso-steps li { display: inline-flex; align-items: center; gap: 0.5em; }
+  .iso-steps b {
+    display: inline-grid;
+    place-items: center;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 50%;
+    background: var(--brand);
+    color: var(--surface);
+    font-size: 0.9em;
+  }
 
   .iso-cap {
     margin: 0.75rem 0 0;
@@ -923,6 +994,11 @@
     </p>
 
     <div class="isowrap">
+      <div class="iso-controls">
+        <button type="button" data-zoom="in" aria-label="확대">＋</button>
+        <button type="button" data-zoom="out" aria-label="축소">－</button>
+        <button type="button" data-zoom="reset" aria-label="원래 크기">⟲</button>
+      </div>
       <svg class="iso" viewBox="-386 -666 1293 1025" role="img"
            aria-label="AWS 인프라 아이소메트릭 구성도. CloudFront 아래 VPC 10.40.0.0/16 안에 퍼블릭 서브넷의 ALB와 ECS Fargate 서비스 4개, 프라이빗 서브넷의 서비스별 RDS PostgreSQL 4대와 Redis가 있고, VPC 밖에 S3·Secrets Manager·ECR·CloudWatch가 있다.">
         <defs>
@@ -934,7 +1010,7 @@
         <line class="lnv" x1="103.9" y1="-210.0" x2="103.9" y2="144.0" marker-end="url(#ah)"/>
         <line class="lnv" x1="46.8" y1="-177.0" x2="46.8" y2="177.0" marker-end="url(#ah)"/>
         <line class="lnv" x1="-10.4" y1="-144.0" x2="-10.4" y2="210.0" marker-end="url(#ah)"/>
-        <line class="lnv" x1="-0.9" y1="-314.5" x2="-0.9" y2="39.5" marker-end="url(#ah)"/>
+        <line class="lnv" x1="113.4" y1="-270.5" x2="26.8" y2="59.5" marker-end="url(#ah)"/>
         <line class="lnv" x1="-0.9" y1="-489.5" x2="-0.9" y2="-340.5" marker-end="url(#ah)"/>
         <line class="lnv" x1="-0.9" y1="-588.5" x2="-0.9" y2="-515.5" marker-end="url(#ah)"/>
         <polygon class="slb-r" points="290.1,157.5 290.1,166.5 37.2,312.5 37.2,303.5"/>
@@ -998,27 +1074,31 @@
         <line class="lnsc" x1="226.0" y1="-218.5" x2="238.2" y2="-211.5" stroke-dasharray="5 4"/>
         <line class="lnsc" x1="168.9" y1="-185.5" x2="181.0" y2="-178.5" stroke-dasharray="5 4"/>
         <line class="lnd" x1="111.7" y1="-152.5" x2="177.5" y2="-49.5" stroke-dasharray="3 4" marker-end="url(#ah)"/>
-        <text class="lb" x="161.1" y="105.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">lms_auth_user_db</tspan><tspan x="161.1" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="103.9" y="138.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">lms_learning_db</tspan><tspan x="103.9" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="46.8" y="171.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">lms_operations_db</tspan><tspan x="46.8" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="-10.4" y="204.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">lms_integration_db</tspan><tspan x="-10.4" dy="11" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="0.9" y="22.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">ElastiCache Redis 7.1</tspan><tspan x="0.9" dy="11" class="s">cache.t4g.micro · 1노드</tspan><tspan x="0.9" dy="11" class="s">auth refresh token</tspan></text>
-        <text class="lb" x="-257.2" y="129.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PRIVATE SUBNET</tspan><tspan x="-257.2" dy="11" class="zs">10.40.10.0/24 · 10.40.11.0/24</tspan></text>
-        <text class="lb" x="0.9" y="-357.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">Application LB</tspan><tspan x="0.9" dy="11" class="s">internet-facing · HTTP:80</tspan><tspan x="0.9" dy="11" class="s">경로 규칙 4 · 기본 404</tspan></text>
-        <text class="lb" x="-106.5" y="-285.5" text-anchor="middle"><tspan x="-106.5" dy="0" class="n">admin EC2 t3.micro</tspan><tspan x="-106.5" dy="11" class="s">SSH 터널 전용</tspan></text>
-        <text class="lb" x="161.1" y="-275.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">auth-user-service</tspan><tspan x="161.1" dy="11" class="s">:8081 · 512/2048 · 1/1 실행</tspan></text>
-        <text class="lb" x="103.9" y="-242.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">learning-service</tspan><tspan x="103.9" dy="11" class="s">:8082 · 512/2048 · 1/1 실행</tspan></text>
-        <text class="lb" x="46.8" y="-209.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">operations-service</tspan><tspan x="46.8" dy="11" class="s">:8083 · 512/1024 · 1/1 실행</tspan></text>
-        <text class="lb" x="-10.4" y="-176.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">integration-service</tspan><tspan x="-10.4" dy="11" class="s">:8084 · 512/1024 · 0/0 미기동</tspan></text>
-        <text class="lb" x="-257.2" y="-250.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PUBLIC SUBNET</tspan><tspan x="-257.2" dy="11" class="zs">10.40.0.0/24 · 10.40.1.0/24 · NAT 없음</tspan></text>
-        <text class="lb" x="245.1" y="-148.5" text-anchor="middle"><tspan x="245.1" dy="0" class="n">Service Connect</tspan><tspan x="245.1" dy="11" class="s">new-bm-lms-dev.internal</tspan><tspan x="245.1" dy="11" class="s">ALB 미경유 내부 호출</tspan></text>
-        <text class="lb" x="9.5" y="-527.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n">CloudFront</tspan><tspan x="9.5" dy="11" class="s">d3eylh4fl880qc.cloudfront.net</tspan><tspan x="9.5" dy="11" class="s">HTTPS 종단 · 캐시 비활성</tspan></text>
-        <text class="lb" x="9.5" y="-610.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n2">브라우저</tspan><tspan x="9.5" dy="12" class="s">수강생 · 강사 · 멘토 · 매니저 · 외부 검증자</tspan></text>
-        <text class="lb" x="546.9" y="-301.2" text-anchor="middle"><tspan x="546.9" dy="0" class="n">S3 new-bm-lms-dev-files</tspan><tspan x="546.9" dy="11" class="s">버저닝 · TLS-only · SSE</tspan></text>
-        <text class="lb" x="488.0" y="-267.2" text-anchor="middle"><tspan x="488.0" dy="0" class="n">Secrets Manager ×8</tspan><tspan x="488.0" dy="11" class="s">DB 비번 4 · JWT · 내부키 · GitHub 2</tspan></text>
-        <text class="lb" x="429.1" y="-233.2" text-anchor="middle"><tspan x="429.1" dy="0" class="n">ECR ×5 · CloudWatch Logs ×5</tspan><tspan x="429.1" dy="11" class="s">이미지 · 로그 14일 보관</tspan></text>
-        <text class="lb" x="675.5" y="-285.0" text-anchor="start"><tspan x="675.5" dy="0" class="z">VPC 밖 · 리전 관리형</tspan><tspan x="675.5" dy="11" class="zs">ECS task가 IAM role로 접근</tspan><tspan x="675.5" dy="11" class="zs">CloudTrail(멀티리전) 별도</tspan></text>
-        <text class="lb" x="-290.1" y="-422.5" text-anchor="start"><tspan x="-290.1" dy="0" class="z2">VPC 10.40.0.0/16</tspan><tspan x="-290.1" dy="12" class="zs">ap-northeast-2 (서울) · AZ 2a · 2b</tspan></text>
+        <text class="lb" x="161.1" y="103.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">lms_auth_user_db</tspan><tspan x="161.1" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="103.9" y="136.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">lms_learning_db</tspan><tspan x="103.9" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="46.8" y="169.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">lms_operations_db</tspan><tspan x="46.8" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="-10.4" y="202.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">lms_integration_db</tspan><tspan x="-10.4" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
+        <text class="lb" x="0.9" y="18.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">ElastiCache Redis 7.1</tspan><tspan x="0.9" dy="14" class="s">cache.t4g.micro · 1노드</tspan><tspan x="0.9" dy="14" class="s">auth refresh token</tspan></text>
+        <text class="lb" x="-257.2" y="129.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PRIVATE SUBNET</tspan><tspan x="-257.2" dy="14" class="zs">10.40.10.0/24 · 10.40.11.0/24</tspan></text>
+        <text class="lb" x="0.9" y="-361.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">Application LB</tspan><tspan x="0.9" dy="14" class="s">internet-facing · HTTP:80</tspan><tspan x="0.9" dy="14" class="s">경로 규칙 4 · 기본 404</tspan></text>
+        <text class="lb" x="-106.5" y="-287.5" text-anchor="middle"><tspan x="-106.5" dy="0" class="n">admin EC2 t3.micro</tspan><tspan x="-106.5" dy="14" class="s">SSH 터널 전용</tspan></text>
+        <text class="lb" x="161.1" y="-277.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">auth-user-service</tspan><tspan x="161.1" dy="14" class="s">:8081 · 512/2048 · 1/1 실행</tspan></text>
+        <text class="lb" x="103.9" y="-244.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">learning-service</tspan><tspan x="103.9" dy="14" class="s">:8082 · 512/2048 · 1/1 실행</tspan></text>
+        <text class="lb" x="46.8" y="-211.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">operations-service</tspan><tspan x="46.8" dy="14" class="s">:8083 · 512/1024 · 1/1 실행</tspan></text>
+        <text class="lb" x="-10.4" y="-178.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">integration-service</tspan><tspan x="-10.4" dy="14" class="s">:8084 · 512/1024 · 0/0 미기동</tspan></text>
+        <text class="lb" x="-257.2" y="-250.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PUBLIC SUBNET</tspan><tspan x="-257.2" dy="14" class="zs">10.40.0.0/24 · 10.40.1.0/24 · NAT 없음</tspan></text>
+        <text class="lb" x="245.1" y="-148.5" text-anchor="middle"><tspan x="245.1" dy="0" class="n">Service Connect</tspan><tspan x="245.1" dy="14" class="s">new-bm-lms-dev.internal</tspan><tspan x="245.1" dy="14" class="s">ALB 미경유 내부 호출</tspan></text>
+        <text class="lb" x="9.5" y="-531.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n">CloudFront</tspan><tspan x="9.5" dy="14" class="s">d3eylh4fl880qc.cloudfront.net</tspan><tspan x="9.5" dy="14" class="s">HTTPS 종단 · 캐시 비활성</tspan></text>
+        <text class="lb" x="9.5" y="-610.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n2">브라우저</tspan><tspan x="9.5" dy="15" class="s">수강생 · 강사 · 멘토 · 매니저 · 외부 검증자</tspan></text>
+        <text class="lb" x="546.9" y="-301.2" text-anchor="middle"><tspan x="546.9" dy="0" class="n">S3 new-bm-lms-dev-files</tspan><tspan x="546.9" dy="14" class="s">버저닝 · TLS-only · SSE</tspan></text>
+        <text class="lb" x="488.0" y="-267.2" text-anchor="middle"><tspan x="488.0" dy="0" class="n">Secrets Manager ×8</tspan><tspan x="488.0" dy="14" class="s">DB 비번 4 · JWT · 내부키 · GitHub 2</tspan></text>
+        <text class="lb" x="429.1" y="-233.2" text-anchor="middle"><tspan x="429.1" dy="0" class="n">ECR ×5 · CloudWatch Logs ×5</tspan><tspan x="429.1" dy="14" class="s">이미지 · 로그 14일 보관</tspan></text>
+        <text class="lb" x="675.5" y="-285.0" text-anchor="start"><tspan x="675.5" dy="0" class="z">VPC 밖 · 리전 관리형</tspan><tspan x="675.5" dy="14" class="zs">ECS task가 IAM role로 접근</tspan><tspan x="675.5" dy="14" class="zs">CloudTrail(멀티리전) 별도</tspan></text>
+        <text class="lb" x="-290.1" y="-422.5" text-anchor="start"><tspan x="-290.1" dy="0" class="z2">VPC 10.40.0.0/16</tspan><tspan x="-290.1" dy="15" class="zs">ap-northeast-2 (서울) · AZ 2a · 2b</tspan></text>
+        <g class="stb"><circle cx="-0.9" cy="-567.5" r="10"/><text x="-0.9" y="-564.0" text-anchor="middle">1</text></g>
+        <g class="stb"><circle cx="-0.9" cy="-415.0" r="10"/><text x="-0.9" y="-411.5" text-anchor="middle">2</text></g>
+        <g class="stb"><circle cx="26.0" cy="-268.0" r="10"/><text x="26.0" y="-264.5" text-anchor="middle">3</text></g>
+        <g class="stb"><circle cx="103.9" cy="-33.0" r="10"/><text x="103.9" y="-29.5" text-anchor="middle">4</text></g>
       </svg>
     </div>
 
@@ -1028,10 +1108,18 @@
       <span><i class="sw-mut"></i> 미기동 · 보조 · 관리형</span>
     </div>
 
+    <ol class="iso-steps">
+      <li><b>1</b> 브라우저가 CloudFront로 HTTPS 요청</li>
+      <li><b>2</b> CloudFront가 ALB 오리진으로 전달 (HTTP · 캐시 없음)</li>
+      <li><b>3</b> ALB가 경로 규칙 4개로 서비스 분기</li>
+      <li><b>4</b> 각 서비스가 전용 RDS · Redis 접근 (프라이빗 서브넷)</li>
+    </ol>
+
     <p class="iso-cap">
       2026-08-06 Terraform 코드(<code>terraform/</code>)와 AWS 실조회 결과를 대조해 작성했습니다.
       블록에 적힌 사양·기동 수는 조회 시점의 실제 값입니다. 문서 기준일(08-05)보다 하루 뒤 시점입니다.
       웹 프런트 정적 배포는 이 Terraform 구성에 포함돼 있지 않아 그리지 않았습니다.
+      그림은 우상단 버튼이나 더블클릭 · Ctrl+휠로 확대하고, 확대 상태에서 드래그로 이동합니다.
     </p>
 
     <h3>서비스 구성</h3>
@@ -1633,6 +1721,83 @@
 
     media.addEventListener('change', sync);
     sync();
+  })();
+</script>
+
+<script>
+  /* 구성도 확대·이동 — viewBox만 바꾸므로 문서 레이아웃은 움직이지 않는다. */
+  (function () {
+    var wrap = document.querySelector('.isowrap');
+    var svg = wrap && wrap.querySelector('.iso');
+    if (!svg) return;
+
+    var vb0 = svg.getAttribute('viewBox').split(/\s+/).map(Number);
+    var vb = vb0.slice();
+
+    function apply() {
+      svg.setAttribute('viewBox', vb.join(' '));
+      svg.classList.toggle('is-zoomed', vb[2] < vb0[2] - 0.5);
+    }
+    function clampPan() {
+      vb[0] = Math.min(Math.max(vb[0], vb0[0]), vb0[0] + vb0[2] - vb[2]);
+      vb[1] = Math.min(Math.max(vb[1], vb0[1]), vb0[1] + vb0[3] - vb[3]);
+    }
+    /* (cx,cy)를 화면상 같은 자리에 고정한 채 배율만 바꾼다. 최대 8배, 최소 원본. */
+    function zoomAt(f, cx, cy) {
+      var w = Math.min(Math.max(vb[2] / f, vb0[2] / 8), vb0[2]);
+      var real = vb[2] / w;
+      vb[0] = cx - (cx - vb[0]) / real;
+      vb[1] = cy - (cy - vb[1]) / real;
+      vb[2] = w;
+      vb[3] = vb[3] / real;
+      clampPan();
+      apply();
+    }
+    function pointToUser(e) {
+      var r = svg.getBoundingClientRect();
+      return [vb[0] + (e.clientX - r.left) / r.width * vb[2],
+              vb[1] + (e.clientY - r.top) / r.height * vb[3]];
+    }
+
+    wrap.querySelectorAll('.iso-controls [data-zoom]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.zoom === 'reset') { vb = vb0.slice(); apply(); return; }
+        zoomAt(b.dataset.zoom === 'in' ? 1.35 : 1 / 1.35,
+               vb[0] + vb[2] / 2, vb[1] + vb[3] / 2);
+      });
+    });
+
+    svg.addEventListener('dblclick', function (e) {
+      var p = pointToUser(e);
+      zoomAt(1.6, p[0], p[1]);
+    });
+
+    /* 트랙패드 핀치는 브라우저에서 ctrl+휠로 들어온다. 일반 휠 스크롤은 건드리지 않는다. */
+    wrap.addEventListener('wheel', function (e) {
+      if (!e.ctrlKey) return;
+      e.preventDefault();
+      var p = pointToUser(e);
+      zoomAt(e.deltaY < 0 ? 1.2 : 1 / 1.2, p[0], p[1]);
+    }, { passive: false });
+
+    var drag = null;
+    svg.addEventListener('pointerdown', function (e) {
+      if (vb[2] >= vb0[2] - 0.5) return;   /* 확대 전에는 이동할 것이 없다 */
+      drag = { x: e.clientX, y: e.clientY, vx: vb[0], vy: vb[1] };
+      svg.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var r = svg.getBoundingClientRect();
+      vb[0] = drag.vx - (e.clientX - drag.x) * vb[2] / r.width;
+      vb[1] = drag.vy - (e.clientY - drag.y) * vb[3] / r.height;
+      clampPan();
+      apply();
+    });
+    ['pointerup', 'pointercancel'].forEach(function (t) {
+      svg.addEventListener(t, function () { drag = null; });
+    });
   })();
 </script>
 
