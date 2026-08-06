@@ -1,7 +1,6 @@
-# 발행 HTML 은 sections/ 조각에서 조립하는 생성물이다.
-# 저장소에 두면 어느 섹션을 고치든 이 파일이 함께 바뀌어 공동 작업 시 충돌한다.
-# 배포는 pages.yml 이 build.py 를 돌려 만든다. 로컬 확인은 `python3 build.py` 후 진행.
-2026-08-05_임원보고_진행현황.html
+# 발행 HTML 은 build.py 생성물이지만, Pages legacy(Deploy from a branch) 배포는
+# 브랜치의 파일을 그대로 서빙하므로 저장소에 커밋해야 한다.
+# 섹션을 고치면 build.py 를 돌려 발행본까지 함께 커밋한다.
 
 # 로컬 미리보기 산출물
 _site/
