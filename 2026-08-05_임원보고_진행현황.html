@@ -726,7 +726,7 @@
   <a class="home-link" href="./">← 보고서 목록</a>
 
   <header class="masthead">
-    <p class="masthead__eyebrow">임원 보고 · 종료 D-26</p>
+    <p class="masthead__eyebrow">임원 보고 · 종료 <span data-cd="dday">D-25</span></p>
     <h1>LMS 역량증명서 프로젝트<br>진행 현황 및 8월 마감 계획</h1>
     <p class="masthead__sub">
       학습관리(LMS)와 <strong>역량 증명서 발급·외부 검증</strong>을 하나로 묶은 플랫폼입니다.
@@ -737,8 +737,8 @@
     <div class="masthead__meta">
       <span>기준일 <b>2026-08-05</b></span>
       <span>작성 <b>황설현 · 이정훈</b></span>
-      <span>종료 목표 <b>2026-08-31</b></span>
-      <span>잔여 영업일 <b>18일</b></span>
+      <span>종료 목표 <b data-deadline>2026-08-31</b></span>
+      <span>잔여 마감일 <b data-cd="days">25일</b></span>
       <span>개발 인력 <b>3명</b></span>
     </div>
   </header>
@@ -783,9 +783,9 @@
         <p class="kpi__delta">웹·API 응답 확인</p>
       </div>
       <div class="kpi">
-        <p class="kpi__label">잔여 영업일</p>
-        <p class="kpi__val">18<small>일</small></p>
-        <p class="kpi__delta flat">08-06 ~ 08-31</p>
+        <p class="kpi__label">잔여 마감일</p>
+        <p class="kpi__val"><span data-cd="days-num">25</span><small>일</small></p>
+        <p class="kpi__delta flat" data-cd="range">08-06 ~ 08-31</p>
       </div>
     </div>
 
@@ -1384,7 +1384,7 @@
     <div class="call">
       <p class="call__title">읽는 법</p>
       <p>
-        P0 4건의 합계가 <strong>12~17 영업일</strong>입니다. 잔여 영업일이 18일이므로
+        P0 4건의 합계가 <strong>12~17 영업일</strong>입니다. 잔여 영업일이 <span data-cd="biz">18</span>일이므로
         <strong>P0만 하면 들어가고, P2까지 하면 넘칩니다.</strong> 이것이 §7 결정 안건의 근거입니다.
       </p>
     </div>
@@ -1615,7 +1615,7 @@
         <div>
           <p class="dec__q">8월 종료 범위를 “증명서 축 완성”으로 확정할 것인가</p>
           <p class="dec__b">
-            P0만 수행하면 18영업일 안에 들어갑니다. PLAY·데이터연동·UI 통일까지 넣으면 넘칩니다.
+            P0만 수행하면 <span data-cd="biz">18</span>영업일 안에 들어갑니다. PLAY·데이터연동·UI 통일까지 넣으면 넘칩니다.
             증명서는 이 제품의 존재 이유이므로 다른 것을 미루는 편이 합리적입니다.
           </p>
           <p class="dec__rec">권고 — P0 4건만 8월 범위로 확정, P2 3건은 9월 이월</p>
@@ -1721,6 +1721,61 @@
 
     media.addEventListener('change', sync);
     sync();
+  })();
+</script>
+
+<script>
+  /* 종료 목표까지 남은 일수 계산.
+     정본은 masthead의 [data-deadline] 값 하나이며, 그 날짜만 고치면 문서 전체가 따라간다.
+     스크립트가 막히거나 실패해도 마크업에 적힌 정적 값이 그대로 보인다. */
+  (function () {
+    var src = document.querySelector('[data-deadline]');
+    if (!src) return;
+
+    var deadline = src.textContent.trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(deadline)) return;
+
+    /* 열람자의 기기 시간대와 무관하게 KST 날짜를 기준으로 센다.
+       en-CA 로캘은 YYYY-MM-DD 형식을 준다. */
+    function todayKST() {
+      return new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).format(new Date());
+    }
+    /* 일수 차이는 DST가 없는 UTC 자정 기준으로 계산해야 어긋나지 않는다. */
+    function utc(ymd) {
+      var p = ymd.split('-');
+      return Date.UTC(+p[0], p[1] - 1, +p[2]);
+    }
+    /* 주말만 제외한다. 공휴일은 반영하지 않는다. 양 끝 날짜를 모두 포함한다. */
+    function businessDays(from, to) {
+      var d = utc(from), end = utc(to), n = 0;
+      while (d <= end) {
+        var w = new Date(d).getUTCDay();
+        if (w !== 0 && w !== 6) n++;
+        d += 86400000;
+      }
+      return n;
+    }
+    function mmdd(ymd) { return ymd.slice(5); }
+
+    var today = todayKST();
+    var left = Math.round((utc(deadline) - utc(today)) / 86400000);
+    var over = left < 0 ? -left : 0;
+
+    var text = {
+      days:      left > 0 ? left + '일' : left === 0 ? '오늘' : '경과 ' + over + '일',
+      'days-num': left > 0 ? String(left) : '0',
+      dday:      left > 0 ? 'D-' + left : left === 0 ? 'D-DAY' : 'D+' + over,
+      biz:       left >= 0 ? String(businessDays(today, deadline)) : '0',
+      range:     left >= 0 ? mmdd(today) + ' ~ ' + mmdd(deadline) : '마감 경과 ' + over + '일'
+    };
+
+    Object.keys(text).forEach(function (key) {
+      document.querySelectorAll('[data-cd="' + key + '"]').forEach(function (el) {
+        el.textContent = text[key];
+      });
+    });
   })();
 </script>
 
