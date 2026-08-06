@@ -1,9 +1,11 @@
-/* 아이소메트릭 배포 구성도. 면 색은 tokens.css의 --iso-* 를 쓴다. */
+/* 배포 구성도(2D 정렬 다이어그램)와 그 인터랙션.
+   카드에는 이름·상태만 두고, 상세는 아래 패널이 맡는다.
+   면 색은 tokens.css 의 --iso-* 토큰을 그대로 쓴다. */
 
 .isowrap {
   position: relative;            /* 확대 컨트롤의 기준 */
   margin: 2rem 0 0;
-  padding: 1rem 0;
+  padding: 1.25rem 1rem;
   overflow-x: auto;              /* 좁은 화면에서 본문(body)이 아니라 이 안이 스크롤되게 */
   background: var(--surface);
   border-radius: 3px;
@@ -11,57 +13,80 @@
 .iso {
   display: block;
   width: 100%;
-  /* 하한 아래로 줄지 않게 막는다. 58rem이면 이름 라벨이 9px대를 유지하고,
-     좁은 화면은 가로 스크롤이나 확대로 본다. */
-  min-width: 58rem;
+  max-width: 66rem;
+  margin: 0 auto;
+  /* 하한 아래로 줄지 않게 막는다. 좁은 화면은 가로 스크롤이나 확대로 본다. */
+  min-width: 46rem;
   height: auto;
 }
 .iso.is-zoomed { cursor: grab; }
 .iso.is-zoomed:active { cursor: grabbing; }
-.iso polygon { stroke: var(--iso-edge); stroke-width: 1; stroke-linejoin: round; }
-.acc-t { fill: var(--iso-acc-t); }
-.acc-l { fill: var(--iso-acc-l); }
-.acc-r { fill: var(--iso-acc-r); }
-.dat-t { fill: var(--iso-dat-t); }
-.dat-l { fill: var(--iso-dat-l); }
-.dat-r { fill: var(--iso-dat-r); }
-.mut-t { fill: var(--iso-mut-t); }
-.mut-l { fill: var(--iso-mut-l); }
-.mut-r { fill: var(--iso-mut-r); }
-.slb-t { fill: var(--iso-slb-t); }
-.slb-l { fill: var(--iso-slb-l); }
-.slb-r { fill: var(--iso-slb-r); }
-.iso .lb { font-family: var(--font-mono); }
-.iso .n  { font-size: 13px; font-weight: 700; fill: var(--ink); }
-.iso .n2 { font-size: 16px; font-weight: 700; fill: var(--ink); }
-.iso .s  { font-size: 10.5px; fill: var(--ink-3); }
+
+/* ── 컨테이너 ─────────────────────────────────── */
+.iso .ct--vpc     { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.iso .ct--subnet  { fill: var(--iso-slb-t); stroke: var(--line-soft); }
+.iso .ct--managed { fill: none; stroke: var(--line); stroke-dasharray: 6 5; }
+.iso .ct--ghost   { fill: none; stroke: var(--line); stroke-dasharray: 3 4; }
+
+/* ── 카드 ─────────────────────────────────────── */
+.iso .nd { cursor: pointer; }
+.iso .nd:focus { outline: none; }
+.iso .nd .bg { stroke: var(--iso-edge); stroke-width: 1; transition: opacity 0.15s ease; }
+.iso .tone-acc .bg { fill: var(--iso-acc-t); }
+.iso .tone-dat .bg { fill: var(--iso-dat-t); }
+.iso .tone-mut .bg { fill: var(--iso-mut-t); }
+
+.iso .nd:hover .bg,
+.iso .nd:focus-visible .bg { stroke: var(--brand); stroke-width: 1.5; }
+.iso .nd.is-active .bg     { stroke: var(--brand); stroke-width: 2.5; }
+.iso .nd.is-active .n      { fill: var(--brand-ink); }
+
+/* 흐름·계층으로 걸러낸 대상. 지우지 않고 흐리게 둬야 위치 감각이 유지된다. */
+.iso .nd.is-dim,
+.iso line.is-dim,
+.iso polyline.is-dim,
+.iso .stb.is-dim { opacity: 0.15; }
+
+/* 상태 점: 실행 중 여부를 색으로 */
+.iso .dt-on  { fill: var(--good); }
+.iso .dt-off { fill: var(--ink-3); }
+
+/* ── 텍스트 ───────────────────────────────────── */
+.iso text { font-family: var(--font-mono); }
+.iso .n  { font-size: 14px; font-weight: 700; fill: var(--ink); }
+.iso .n2 { font-size: 15px; font-weight: 700; fill: var(--ink); }
+.iso .s  { font-size: 11px; fill: var(--ink-3); }
+.iso .sc { fill: var(--brand-ink); }
 .iso .z  { font-size: 11.5px; font-weight: 700; fill: var(--brand-ink); letter-spacing: 0.1em; }
-.iso .z2 { font-size: 16px; font-weight: 800; fill: var(--ink); letter-spacing: 0.02em; }
-.iso .zs { font-size: 11px; fill: var(--ink-3); }
-.iso .ln, .iso .lnv { stroke: var(--brand); stroke-width: 1.6; fill: none; }
-.iso .lnsc { stroke: var(--brand-ink); stroke-width: 1.5; fill: none; }
-.iso .ahp { fill: var(--brand); }
+.iso .zs { font-size: 11px; fill: var(--ink-3); letter-spacing: 0; }
+
+/* ── 연결선 ───────────────────────────────────── */
+.iso line, .iso polyline { fill: none; transition: opacity 0.15s ease; }
+.iso .ln   { stroke: var(--brand); stroke-width: 1.7; }
+.iso .lnsc { stroke: var(--brand-ink); stroke-width: 1.5; }
+.iso .lnd  { stroke: var(--ink-3); stroke-width: 1.3; }
+.iso .ahp  { fill: var(--brand); }
 
 /* 요청 경로를 따라 점선이 흐르는 방향 표시. 과하지 않게 이 선들만 움직인다. */
-.iso .ln, .iso .lnv {
+.iso .ln {
   stroke-dasharray: 7 5;
   animation: iso-flow 1.4s linear infinite;
 }
 @keyframes iso-flow { to { stroke-dashoffset: -12; } }
 @media (prefers-reduced-motion: reduce) {
-  .iso .ln, .iso .lnv { animation: none; stroke-dasharray: none; }
+  .iso .ln { animation: none; stroke-dasharray: none; }
 }
 
-/* 흐름 단계 배지 ①~④ */
+/* 흐름 단계 배지 1~4 */
+.iso .stb { transition: opacity 0.15s ease; }
 .iso .stb circle { fill: var(--brand); stroke: var(--surface); stroke-width: 1.5; }
 .iso .stb text {
-  font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
   fill: var(--surface);
 }
 
-/* 확대 컨트롤 */
+/* ── 확대 컨트롤 ──────────────────────────────── */
 .iso-controls {
   position: absolute;
   top: 0.6rem;
@@ -86,83 +111,7 @@
 }
 .iso-controls button:hover { color: var(--ink); border-color: var(--brand); }
 
-/* 흐름 단계 설명 */
-.iso-steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.5rem;
-  margin: 0.6rem 0 0;
-  padding: 0;
-  list-style: none;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-2);
-}
-.iso-steps li { display: inline-flex; align-items: center; gap: 0.5em; }
-.iso-steps b {
-  display: inline-grid;
-  place-items: center;
-  width: 1.3em;
-  height: 1.3em;
-  border-radius: 50%;
-  background: var(--brand);
-  color: var(--surface);
-  font-size: 0.9em;
-}
-
-.iso-cap {
-  margin: 0.75rem 0 0;
-  font-size: 0.82rem;
-  color: var(--ink-3);
-  max-width: none;
-}
-.iso-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.5rem;
-  margin: 1rem 0 0;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-3);
-}
-.iso-legend > span { display: inline-flex; align-items: center; gap: 0.45em; }
-.iso-legend i {
-  width: 0.85rem;
-  height: 0.85rem;
-  border: 1px solid var(--iso-edge);
-  border-radius: 2px;
-}
-.iso-legend .sw-acc { background: var(--iso-acc-t); }
-.iso-legend .sw-dat { background: var(--iso-dat-t); }
-.iso-legend .sw-mut { background: var(--iso-mut-t); border-style: dashed; }
-
-/* ── 탐색 인터랙션 ─────────────────────────────
-   블록에는 이름·상태만 두고, 상세는 아래 패널이 맡는다.
-   그림 안 글자를 줄여야 구조가 먼저 보인다. */
-.iso .nd { cursor: pointer; }
-.iso .nd:focus { outline: none; }
-.iso .nd polygon { transition: opacity 0.15s ease; }
-
-/* 호버·포커스·고정 상태는 윤곽을 굵게 해서 알린다. 색을 바꾸면 계층 구분이 흐려진다. */
-.iso .nd:hover polygon,
-.iso .nd:focus-visible polygon,
-.iso .nd.is-active polygon {
-  stroke: var(--brand);
-  stroke-width: 2;
-}
-.iso .nd.is-active polygon { stroke-width: 2.5; }
-.iso text[data-id].is-active .n { fill: var(--brand-ink); }
-
-/* 흐름 단계나 계층으로 걸러낸 대상. 지우지 않고 흐리게 둬야 위치 감각이 유지된다. */
-.iso .nd.is-dim polygon,
-.iso text[data-id].is-dim,
-.iso line.is-dim,
-.iso .stb.is-dim { opacity: 0.22; }
-.iso .slab.is-dim { opacity: 0.4; }
-
-.iso .stb { transition: opacity 0.15s ease; }
-
-/* ── 흐름·계층 툴바 ─────────────────────────── */
+/* ── 흐름·계층 툴바 ───────────────────────────── */
 .iso-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -198,7 +147,7 @@
 /* 꺼진 계층은 눌리지 않은 상태로 보여야 한다. */
 .iso-seg--layer button:not(.is-on) { text-decoration: line-through; opacity: 0.6; }
 
-/* ── 상세 패널 ─────────────────────────────── */
+/* ── 상세 패널 ────────────────────────────────── */
 .iso-panel {
   min-height: 7.5rem;
   margin: 0.75rem 0 0;
@@ -245,25 +194,40 @@
 .iso-panel dt { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-3); }
 .iso-panel dd { margin: 0; color: var(--ink-2); }
 
+/* ── 범례 ─────────────────────────────────────── */
+.iso-cap {
+  margin: 0.75rem 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  max-width: none;
+}
+.iso-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+  margin: 1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+.iso-legend > span { display: inline-flex; align-items: center; gap: 0.45em; }
+.iso-legend i {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid var(--iso-edge);
+  border-radius: 2px;
+}
+.iso-legend .sw-acc { background: var(--iso-acc-t); }
+.iso-legend .sw-dat { background: var(--iso-dat-t); }
+.iso-legend .sw-mut { background: var(--iso-mut-t); border-style: dashed; }
+
 @media (max-width: 44rem) {
   .iso-panel dl { grid-template-columns: minmax(0, 1fr); gap: 0 0; }
   .iso-panel dd { margin-bottom: 0.5rem; }
 }
 
 @media print {
+  .iso-controls { display: none; }
   .iso-toolbar { display: none; }
   .iso-panel { display: none; }
 }
-
-/* ── 라벨 배경판 ───────────────────────────────
-   텍스트가 뒤 블록·점선과 섞여 보이던 것을 배경판이 끊어 준다.
-   블록과 같은 data-id 를 가져 강조·흐림·클릭이 함께 움직인다. */
-.iso .lbg {
-  fill: var(--surface);
-  fill-opacity: 0.94;
-  stroke: var(--iso-edge);
-  stroke-width: 1;
-}
-.iso .lbg.is-active { stroke: var(--brand); stroke-width: 1.5; }
-.iso .lbg.is-dim { opacity: 0.13; }
-.iso .lbg[data-id], .iso text[data-id] { cursor: pointer; }
