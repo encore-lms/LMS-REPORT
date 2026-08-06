@@ -1,0 +1,501 @@
+<!doctype html>
+<!-- 생성 파일 — 원본은 sections/ 조각이며 build.py 가 조립한다. 직접 수정 금지. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="LMS 역량증명서 프로젝트의 2026-08-05 기준 진행 현황과 8월 마감 계획.">
+
+<title>LMS 역량증명서 프로젝트 — 임원 보고</title>
+
+<script>
+  /* 저장된 테마를 첫 페인트 전에 적용한다. 본문 뒤에서 적용하면 색이 한 번 번쩍인다. */
+  try {
+    var saved = localStorage.getItem('lms-report-theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
+
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/theme-toggle.css">
+<link rel="stylesheet" href="assets/report.css">
+<link rel="stylesheet" href="assets/diagram.css">
+</head>
+<body>
+
+<div class="doc">
+
+  <a class="home-link" href="./">← 보고서 목록</a>
+
+  <header class="masthead">
+    <p class="masthead__eyebrow">임원 보고 · 종료 <span data-cd="dday">D-25</span></p>
+    <h1>LMS 역량증명서 프로젝트<br>진행 현황 및 8월 마감 계획</h1>
+    <p class="masthead__sub">
+      학습관리(LMS)와 <strong>역량 증명서 발급·외부 검증</strong>을 하나로 묶은 플랫폼입니다.
+      기능의 대부분은 이미 실제 서버에 연결되어 배포 환경에서 동작합니다.
+      남은 핵심은 <strong>증명서 발급 폐쇄 루프</strong> 하나이며, 이 보고서는 그것을 8월 31일 안에
+      끝내기 위한 현황·구조·일정·결정 사항을 담습니다.
+    </p>
+    <div class="masthead__meta">
+      <span>기준일 <b>2026-08-05</b></span>
+      <span>작성 <b>황설현 · 이정훈</b></span>
+      <span>종료 목표 <b data-deadline>2026-08-31</b></span>
+      <span>잔여 마감일 <b data-cd="days">25일</b></span>
+      <span>개발 인력 <b>3명</b></span>
+    </div>
+  </header>
+
+  <div class="prov-key">
+    <span><span class="prov prov--live">실측</span> 오늘 저장소·배포 환경에서 직접 측정</span>
+    <span><span class="prov">문서</span> 설계·회고 문서 기재값</span>
+    <span><span class="prov">결정</span> 기록된 합의 사항</span>
+  </div>
+
+<!-- {{SECTIONS}} -->
+
+  <footer>
+    <p>
+      본 보고서의 <span class="prov prov--live">실측</span> 표시 수치는 2026-08-05에
+      저장소 코드와 배포 환경(웹·API)에서 직접 측정했습니다.
+      화면 수는 라우트(주소) 단위 기준이며, 설계 문서의 Figma 프레임 단위 집계(활성 255장)와는 세는 방식이 다릅니다.
+      일정의 소요일 추정은 지난 4주 실적 속도를 근거로 한 추정치이며 확정값이 아닙니다.
+    </p>
+  </footer>
+
+</div>
+
+<button class="theme-toggle" type="button" id="themeToggle" data-next="dark">
+  <svg class="icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+  <span class="theme-toggle__label">다크</span>
+</button>
+
+<script type="application/json" id="isoData">
+{
+ "cloudfront": {
+  "name": "CloudFront",
+  "kind": "CloudFront 배포",
+  "status": "Deployed · HTTPS 종단",
+  "layer": "edge",
+  "rows": [
+   [
+    "도메인",
+    "d3eylh4fl880qc.cloudfront.net"
+   ],
+   [
+    "프로토콜",
+    "HTTP/2 + HTTP/3 · IPv6"
+   ],
+   [
+    "뷰어",
+    "HTTPS 강제(HTTP 는 리다이렉트) · 기본 인증서"
+   ],
+   [
+    "캐시",
+    "비활성 — API 라 모든 요청을 오리진으로"
+   ],
+   [
+    "오리진",
+    "ALB 로 HTTP 연결 (ALB 에 인증서 없음)"
+   ],
+   [
+    "엣지",
+    "PriceClass_200 (서울 포함)"
+   ]
+  ]
+ },
+ "alb": {
+  "name": "Application LB",
+  "kind": "Application Load Balancer",
+  "status": "active · 2 AZ",
+  "layer": "public",
+  "rows": [
+   [
+    "구성",
+    "internet-facing · HTTP :80"
+   ],
+   [
+    "규칙 90",
+    "operations — /admin/dashboard* · /admin/csv-ingest*(기능 폐지로 미사용 경로)"
+   ],
+   [
+    "규칙 100·101",
+    "auth — /auth/*, /users/*, /student/*, /admin/mentor*"
+   ],
+   [
+    "규칙 120",
+    "learning — /student/*, /admin/*, /instructor/*, /verify/*"
+   ],
+   [
+    "기본 동작",
+    "일치 규칙 없으면 404 고정 응답"
+   ]
+  ]
+ },
+ "ec2": {
+  "name": "admin EC2",
+  "kind": "관리용 EC2",
+  "status": "SSH 터널 전용",
+  "layer": "public",
+  "rows": [
+   [
+    "인스턴스",
+    "t3.micro"
+   ],
+   [
+    "접근",
+    "공개 HTTP 비활성 · 허용 IP에서 SSH 터널로만"
+   ],
+   [
+    "용도",
+    "ECS·RDS·Redis·ALB 상태 조회용 읽기 전용 대시보드"
+   ]
+  ]
+ },
+ "svc-auth": {
+  "name": "auth-user-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8081 · 1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트 · 사양",
+    "8081 · 512 CPU / 2048 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "100 · 101"
+   ],
+   [
+    "Service Connect",
+    "server + client — learning 의 /internal/* 호출"
+   ],
+   [
+    "연결",
+    "lms_auth_user_db · Redis"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT · 내부 API 키 · GitHub OAuth"
+   ]
+  ]
+ },
+ "svc-learning": {
+  "name": "learning-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8082 · 1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트 · 사양",
+    "8082 · 512 CPU / 2048 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "120 (가장 넓은 경로)"
+   ],
+   [
+    "Service Connect",
+    "server + client — auth 의 /internal/* 호출"
+   ],
+   [
+    "연결",
+    "lms_learning_db"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT · 내부 API 키 · GitHub App 키"
+   ]
+  ]
+ },
+ "svc-operations": {
+  "name": "operations-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8083 · 1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트 · 사양",
+    "8083 · 512 CPU / 1024 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "90 — learning 의 광역 /admin/* 보다 먼저 매칭"
+   ],
+   [
+    "담당",
+    "운영 대시보드 — CSV 인입은 08-06 폐지, 지표는 HRD 라이브 집계"
+   ],
+   [
+    "연결",
+    "lms_operations_db"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT"
+   ]
+  ]
+ },
+ "svc-integration": {
+  "name": "integration-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8084 · 0/0 미기동",
+  "layer": "public",
+  "rows": [
+   [
+    "상태",
+    "서비스는 있으나 실행 태스크 0 — ALB 규칙도 없음"
+   ],
+   [
+    "예정 담당",
+    "외부 연동"
+   ],
+   [
+    "연결",
+    "lms_integration_db (생성만 됨)"
+   ]
+  ]
+ },
+ "db-auth": {
+  "name": "lms_auth_user_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "PostgreSQL 16.13",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "auth-user-service"
+   ]
+  ]
+ },
+ "db-learning": {
+  "name": "lms_learning_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "PostgreSQL 16.13",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "learning-service"
+   ]
+  ]
+ },
+ "db-operations": {
+  "name": "lms_operations_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "PostgreSQL 16.13",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "operations-service"
+   ]
+  ]
+ },
+ "db-integration": {
+  "name": "lms_integration_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "미사용",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "integration-service"
+   ]
+  ]
+ },
+ "redis": {
+  "name": "ElastiCache Redis",
+  "kind": "ElastiCache 복제 그룹",
+  "status": "7.1 · auth 토큰 저장소",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "Redis 7.1"
+   ],
+   [
+    "노드",
+    "cache.t4g.micro × 1 · 자동 페일오버 없음"
+   ],
+   [
+    "암호화",
+    "저장 시 적용 · 전송 구간 미적용"
+   ],
+   [
+    "용도",
+    "auth-user-service refresh token 저장소"
+   ]
+  ]
+ },
+ "s3": {
+  "name": "S3 버킷",
+  "kind": "S3",
+  "status": "파일 저장소 · 버전 관리",
+  "layer": "managed",
+  "rows": [
+   [
+    "이름",
+    "new-bm-lms-dev-files"
+   ],
+   [
+    "설정",
+    "버전 관리 · 퍼블릭 접근 차단 · 서버측 암호화"
+   ],
+   [
+    "정책",
+    "TLS 연결만 허용"
+   ],
+   [
+    "별도",
+    "CloudTrail 로그용 버킷 1개 더"
+   ]
+  ]
+ },
+ "secrets": {
+  "name": "Secrets Manager",
+  "kind": "Secrets Manager",
+  "status": "비밀 8개 보관",
+  "layer": "managed",
+  "rows": [
+   [
+    "DB 비밀번호",
+    "서비스별 4개 — Terraform 이 생성해 저장"
+   ],
+   [
+    "JWT 서명 키",
+    "auth 가 발급 · learning/operations 가 검증"
+   ],
+   [
+    "내부 API 키",
+    "서비스 간 /internal/* 호출 인증"
+   ],
+   [
+    "GitHub",
+    "OAuth client secret · App private key"
+   ]
+  ]
+ },
+ "obs": {
+  "name": "ECR · CloudWatch",
+  "kind": "ECR · CloudWatch",
+  "status": "이미지 5 · 로그 5",
+  "layer": "managed",
+  "rows": [
+   [
+    "ECR",
+    "서비스 4개 + db-init 이미지 저장소"
+   ],
+   [
+    "CloudWatch Logs",
+    "/ecs/new-bm-lms-dev/* · 14일 보관"
+   ],
+   [
+    "Container Insights",
+    "클러스터에서 활성"
+   ],
+   [
+    "CloudTrail",
+    "멀티리전 · 전용 S3 로 감사 로그"
+   ]
+  ]
+ }
+}
+</script>
+
+<script src="assets/theme-toggle.js"></script>
+<script src="assets/countdown.js"></script>
+<script src="assets/diagram.js"></script>
+<script src="assets/diagram-explore.js"></script>
+
+</body>
+</html>
