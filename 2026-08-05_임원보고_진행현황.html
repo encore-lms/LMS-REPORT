@@ -302,106 +302,69 @@
         <button type="button" data-zoom="out" aria-label="축소">－</button>
         <button type="button" data-zoom="reset" aria-label="원래 크기">⟲</button>
       </div>
-      <svg class="iso" viewBox="-386 -666 1293 1025" role="img"
-           aria-label="AWS 인프라 아이소메트릭 구성도. CloudFront 아래 VPC 10.40.0.0/16 안에 퍼블릭 서브넷의 ALB와 ECS Fargate 서비스 4개, 프라이빗 서브넷의 서비스별 RDS PostgreSQL 4대와 Redis가 있고, VPC 밖에 S3·Secrets Manager·ECR·CloudWatch가 있다.">
+      <svg class="iso" viewBox="-571 -666 1478 1025" role="img"
+           aria-label="AWS 인프라 아이소메트릭 구성도. CloudFront 아래 VPC 10.40.0.0/16 안에 퍼블릭 서브넷의 ALB와 ECS Fargate 서비스 4개, 프라이빗 서브넷의 서비스별 RDS PostgreSQL 4대와 Redis가 있고, VPC 밖에 S3·Secrets Manager·ECR·CloudWatch가 있다. 블록을 누르면 아래 패널에 상세가 나온다.">
         <defs>
           <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
             <path d="M0 1 L7 4 L0 7 z" class="ahp"/>
           </marker>
         </defs>
-        <line class="lnv" x1="161.1" y1="-243.0" x2="161.1" y2="111.0" marker-end="url(#ah)"/>
-        <line class="lnv" x1="103.9" y1="-210.0" x2="103.9" y2="144.0" marker-end="url(#ah)"/>
-        <line class="lnv" x1="46.8" y1="-177.0" x2="46.8" y2="177.0" marker-end="url(#ah)"/>
-        <line class="lnv" x1="-10.4" y1="-144.0" x2="-10.4" y2="210.0" marker-end="url(#ah)"/>
-        <line class="lnv" x1="113.4" y1="-270.5" x2="26.8" y2="59.5" marker-end="url(#ah)"/>
-        <line class="lnv" x1="-0.9" y1="-489.5" x2="-0.9" y2="-340.5" marker-end="url(#ah)"/>
-        <line class="lnv" x1="-0.9" y1="-588.5" x2="-0.9" y2="-515.5" marker-end="url(#ah)"/>
-        <polygon class="slb-r" points="290.1,157.5 290.1,166.5 37.2,312.5 37.2,303.5"/>
-        <polygon class="slb-l" points="-257.2,133.5 -257.2,142.5 37.2,312.5 37.2,303.5"/>
-        <polygon class="slb-t" points="-4.3,-12.5 290.1,157.5 37.2,303.5 -257.2,133.5"/>
-        <polygon class="dat-r" points="248.5,161.5 248.5,135.5 203.5,161.5 203.5,187.5"/>
-        <polygon class="dat-l" points="73.6,112.5 73.6,86.5 203.5,161.5 203.5,187.5"/>
-        <polygon class="dat-t" points="118.6,60.5 248.5,135.5 203.5,161.5 73.6,86.5"/>
-        <polygon class="dat-r" points="191.4,194.5 191.4,168.5 146.4,194.5 146.4,220.5"/>
-        <polygon class="dat-l" points="16.5,145.5 16.5,119.5 146.4,194.5 146.4,220.5"/>
-        <polygon class="dat-t" points="61.5,93.5 191.4,168.5 146.4,194.5 16.5,119.5"/>
-        <polygon class="dat-r" points="134.2,227.5 134.2,201.5 89.2,227.5 89.2,253.5"/>
-        <polygon class="dat-l" points="-40.7,178.5 -40.7,152.5 89.2,227.5 89.2,253.5"/>
-        <polygon class="dat-t" points="4.3,126.5 134.2,201.5 89.2,227.5 -40.7,152.5"/>
-        <polygon class="mut-r" stroke-dasharray="4 3" points="77.1,260.5 77.1,234.5 32.0,260.5 32.0,286.5"/>
-        <polygon class="mut-l" stroke-dasharray="4 3" points="-97.9,211.5 -97.9,185.5 32.0,260.5 32.0,286.5"/>
-        <polygon class="mut-t" stroke-dasharray="4 3" points="-52.8,159.5 77.1,234.5 32.0,260.5 -97.9,185.5"/>
-        <polygon class="dat-r" points="92.7,71.5 92.7,45.5 13.0,91.5 13.0,117.5"/>
-        <polygon class="dat-l" points="-90.9,57.5 -90.9,31.5 13.0,91.5 13.0,117.5"/>
-        <polygon class="dat-t" points="-11.3,-14.5 92.7,45.5 13.0,91.5 -90.9,31.5"/>
-        <polygon class="slb-r" points="290.1,-222.5 290.1,-213.5 37.2,-67.5 37.2,-76.5"/>
-        <polygon class="slb-l" points="-257.2,-246.5 -257.2,-237.5 37.2,-67.5 37.2,-76.5"/>
-        <polygon class="slb-t" points="-4.3,-392.5 290.1,-222.5 37.2,-76.5 -257.2,-246.5"/>
-        <polygon class="acc-r" points="92.7,-308.5 92.7,-334.5 13.0,-288.5 13.0,-262.5"/>
-        <polygon class="acc-l" points="-90.9,-322.5 -90.9,-348.5 13.0,-288.5 13.0,-262.5"/>
-        <polygon class="acc-t" points="-11.3,-394.5 92.7,-334.5 13.0,-288.5 -90.9,-348.5"/>
-        <polygon class="mut-r" points="-32.0,-236.5 -32.0,-262.5 -77.1,-236.5 -77.1,-210.5"/>
-        <polygon class="mut-l" points="-181.0,-270.5 -181.0,-296.5 -77.1,-236.5 -77.1,-210.5"/>
-        <polygon class="mut-t" points="-136.0,-322.5 -32.0,-262.5 -77.1,-236.5 -181.0,-296.5"/>
-        <polygon class="acc-r" points="248.5,-218.5 248.5,-244.5 203.5,-218.5 203.5,-192.5"/>
-        <polygon class="acc-l" points="73.6,-267.5 73.6,-293.5 203.5,-218.5 203.5,-192.5"/>
-        <polygon class="acc-t" points="118.6,-319.5 248.5,-244.5 203.5,-218.5 73.6,-293.5"/>
-        <polygon class="acc-r" points="191.4,-185.5 191.4,-211.5 146.4,-185.5 146.4,-159.5"/>
-        <polygon class="acc-l" points="16.5,-234.5 16.5,-260.5 146.4,-185.5 146.4,-159.5"/>
-        <polygon class="acc-t" points="61.5,-286.5 191.4,-211.5 146.4,-185.5 16.5,-260.5"/>
-        <polygon class="acc-r" points="134.2,-152.5 134.2,-178.5 89.2,-152.5 89.2,-126.5"/>
-        <polygon class="acc-l" points="-40.7,-201.5 -40.7,-227.5 89.2,-152.5 89.2,-126.5"/>
-        <polygon class="acc-t" points="4.3,-253.5 134.2,-178.5 89.2,-152.5 -40.7,-227.5"/>
-        <polygon class="mut-r" stroke-dasharray="4 3" points="77.1,-119.5 77.1,-145.5 32.0,-119.5 32.0,-93.5"/>
-        <polygon class="mut-l" stroke-dasharray="4 3" points="-97.9,-168.5 -97.9,-194.5 32.0,-119.5 32.0,-93.5"/>
-        <polygon class="mut-t" stroke-dasharray="4 3" points="-52.8,-220.5 77.1,-145.5 32.0,-119.5 -97.9,-194.5"/>
-        <polygon class="acc-r" points="118.6,-468.5 118.6,-494.5 39.0,-448.5 39.0,-422.5"/>
-        <polygon class="acc-l" points="-99.6,-502.5 -99.6,-528.5 39.0,-448.5 39.0,-422.5"/>
-        <polygon class="acc-t" points="-19.9,-574.5 118.6,-494.5 39.0,-448.5 -99.6,-528.5"/>
-        <polygon class="slb-r" points="671.2,-242.5 671.2,-233.5 463.3,-113.5 463.3,-122.5"/>
-        <polygon class="slb-l" points="285.8,-225.0 285.8,-216.0 463.3,-113.5 463.3,-122.5"/>
-        <polygon class="slb-t" points="493.6,-345.0 671.2,-242.5 463.3,-122.5 285.8,-225.0"/>
-        <polygon class="mut-r" points="645.2,-242.5 645.2,-264.5 600.2,-238.5 600.2,-216.5"/>
-        <polygon class="mut-l" points="448.6,-304.0 448.6,-326.0 600.2,-238.5 600.2,-216.5"/>
-        <polygon class="mut-t" points="493.6,-352.0 645.2,-264.5 600.2,-238.5 448.6,-326.0"/>
-        <polygon class="mut-r" points="586.3,-208.5 586.3,-230.5 541.3,-204.5 541.3,-182.5"/>
-        <polygon class="mut-l" points="389.7,-270.0 389.7,-292.0 541.3,-204.5 541.3,-182.5"/>
-        <polygon class="mut-t" points="434.7,-318.0 586.3,-230.5 541.3,-204.5 389.7,-292.0"/>
-        <polygon class="mut-r" points="527.4,-174.5 527.4,-196.5 482.4,-170.5 482.4,-148.5"/>
-        <polygon class="mut-l" points="330.8,-236.0 330.8,-258.0 482.4,-170.5 482.4,-148.5"/>
-        <polygon class="mut-t" points="375.9,-284.0 527.4,-196.5 482.4,-170.5 330.8,-258.0"/>
-        <line class="ln" x1="70.1" y1="-308.5" x2="96.1" y2="-293.5" marker-end="url(#ah)"/>
-        <line class="ln" x1="13.0" y1="-275.5" x2="39.0" y2="-260.5" marker-end="url(#ah)"/>
-        <line class="ln" x1="-44.2" y1="-242.5" x2="-18.2" y2="-227.5" marker-end="url(#ah)"/>
+        <line class="lnv" data-flow="4" x1="161.1" y1="-243.0" x2="161.1" y2="111.0" marker-end="url(#ah)"/>
+        <line class="lnv" data-flow="4" x1="103.9" y1="-210.0" x2="103.9" y2="144.0" marker-end="url(#ah)"/>
+        <line class="lnv" data-flow="4" x1="46.8" y1="-177.0" x2="46.8" y2="177.0" marker-end="url(#ah)"/>
+        <line class="lnv" data-flow="4" x1="-10.4" y1="-144.0" x2="-10.4" y2="210.0" marker-end="url(#ah)"/>
+        <line class="lnv" data-flow="4" x1="113.4" y1="-270.5" x2="26.8" y2="59.5" marker-end="url(#ah)"/>
+        <line class="lnv" data-flow="2" x1="-0.9" y1="-489.5" x2="-0.9" y2="-340.5" marker-end="url(#ah)"/>
+        <line class="lnv" data-flow="1" x1="-0.9" y1="-588.5" x2="-0.9" y2="-515.5" marker-end="url(#ah)"/>
+        <g class="slab" aria-hidden="true"><polygon class="slb-r" points="290.1,157.5 290.1,166.5 37.2,312.5 37.2,303.5"/><polygon class="slb-l" points="-257.2,133.5 -257.2,142.5 37.2,312.5 37.2,303.5"/><polygon class="slb-t" points="-4.3,-12.5 290.1,157.5 37.2,303.5 -257.2,133.5"/></g>
+        <g class="nd" data-id="db-auth" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="lms_auth_user_db, available"><polygon class="dat-r" points="248.5,161.5 248.5,135.5 203.5,161.5 203.5,187.5"/><polygon class="dat-l" points="73.6,112.5 73.6,86.5 203.5,161.5 73.6,112.5"/><polygon class="dat-t" points="118.6,60.5 248.5,135.5 203.5,161.5 73.6,86.5"/></g>
+        <g class="nd" data-id="db-learning" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="lms_learning_db, available"><polygon class="dat-r" points="191.4,194.5 191.4,168.5 146.4,194.5 146.4,220.5"/><polygon class="dat-l" points="16.5,145.5 16.5,119.5 146.4,194.5 16.5,145.5"/><polygon class="dat-t" points="61.5,93.5 191.4,168.5 146.4,194.5 16.5,119.5"/></g>
+        <g class="nd" data-id="db-operations" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="lms_operations_db, available"><polygon class="dat-r" points="134.2,227.5 134.2,201.5 89.2,227.5 89.2,253.5"/><polygon class="dat-l" points="-40.7,178.5 -40.7,152.5 89.2,227.5 -40.7,178.5"/><polygon class="dat-t" points="4.3,126.5 134.2,201.5 89.2,227.5 -40.7,152.5"/></g>
+        <g class="nd" data-id="db-integration" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="lms_integration_db, 미사용"><polygon class="mut-r" stroke-dasharray="4 3" points="77.1,260.5 77.1,234.5 32.0,260.5 32.0,286.5"/><polygon class="mut-l" stroke-dasharray="4 3" points="-97.9,211.5 -97.9,185.5 32.0,260.5 -97.9,211.5"/><polygon class="mut-t" stroke-dasharray="4 3" points="-52.8,159.5 77.1,234.5 32.0,260.5 -97.9,185.5"/></g>
+        <g class="nd" data-id="redis" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="ElastiCache Redis, 1노드 · available"><polygon class="dat-r" points="92.7,71.5 92.7,45.5 13.0,91.5 13.0,117.5"/><polygon class="dat-l" points="-90.9,57.5 -90.9,31.5 13.0,91.5 -90.9,57.5"/><polygon class="dat-t" points="-11.3,-14.5 92.7,45.5 13.0,91.5 -90.9,31.5"/></g>
+        <g class="slab" aria-hidden="true"><polygon class="slb-r" points="290.1,-222.5 290.1,-213.5 37.2,-67.5 37.2,-76.5"/><polygon class="slb-l" points="-257.2,-246.5 -257.2,-237.5 37.2,-67.5 37.2,-76.5"/><polygon class="slb-t" points="-4.3,-392.5 290.1,-222.5 37.2,-76.5 -257.2,-246.5"/></g>
+        <g class="nd" data-id="alb" data-layer="public" data-flow="2 3" tabindex="0" role="button" aria-label="Application LB, active · 2 AZ"><polygon class="acc-r" points="92.7,-308.5 92.7,-334.5 13.0,-288.5 13.0,-262.5"/><polygon class="acc-l" points="-90.9,-322.5 -90.9,-348.5 13.0,-288.5 -90.9,-322.5"/><polygon class="acc-t" points="-11.3,-394.5 92.7,-334.5 13.0,-288.5 -90.9,-348.5"/></g>
+        <g class="nd" data-id="ec2" data-layer="public" data-flow="" tabindex="0" role="button" aria-label="admin EC2, SSH 터널 전용"><polygon class="mut-r" points="-32.0,-236.5 -32.0,-262.5 -77.1,-236.5 -77.1,-210.5"/><polygon class="mut-l" points="-181.0,-270.5 -181.0,-296.5 -77.1,-236.5 -181.0,-270.5"/><polygon class="mut-t" points="-136.0,-322.5 -32.0,-262.5 -77.1,-236.5 -181.0,-296.5"/></g>
+        <g class="nd" data-id="svc-auth" data-layer="public" data-flow="3 4" tabindex="0" role="button" aria-label="auth-user-service, 1/1 실행"><polygon class="acc-r" points="248.5,-218.5 248.5,-244.5 203.5,-218.5 203.5,-192.5"/><polygon class="acc-l" points="73.6,-267.5 73.6,-293.5 203.5,-218.5 73.6,-267.5"/><polygon class="acc-t" points="118.6,-319.5 248.5,-244.5 203.5,-218.5 73.6,-293.5"/></g>
+        <g class="nd" data-id="svc-learning" data-layer="public" data-flow="3 4" tabindex="0" role="button" aria-label="learning-service, 1/1 실행"><polygon class="acc-r" points="191.4,-185.5 191.4,-211.5 146.4,-185.5 146.4,-159.5"/><polygon class="acc-l" points="16.5,-234.5 16.5,-260.5 146.4,-185.5 16.5,-234.5"/><polygon class="acc-t" points="61.5,-286.5 191.4,-211.5 146.4,-185.5 16.5,-260.5"/></g>
+        <g class="nd" data-id="svc-operations" data-layer="public" data-flow="3 4" tabindex="0" role="button" aria-label="operations-service, 1/1 실행"><polygon class="acc-r" points="134.2,-152.5 134.2,-178.5 89.2,-152.5 89.2,-126.5"/><polygon class="acc-l" points="-40.7,-201.5 -40.7,-227.5 89.2,-152.5 -40.7,-201.5"/><polygon class="acc-t" points="4.3,-253.5 134.2,-178.5 89.2,-152.5 -40.7,-227.5"/></g>
+        <g class="nd" data-id="svc-integration" data-layer="public" data-flow="3 4" tabindex="0" role="button" aria-label="integration-service, 0/0 미기동"><polygon class="mut-r" stroke-dasharray="4 3" points="77.1,-119.5 77.1,-145.5 32.0,-119.5 32.0,-93.5"/><polygon class="mut-l" stroke-dasharray="4 3" points="-97.9,-168.5 -97.9,-194.5 32.0,-119.5 -97.9,-168.5"/><polygon class="mut-t" stroke-dasharray="4 3" points="-52.8,-220.5 77.1,-145.5 32.0,-119.5 -97.9,-194.5"/></g>
+        <g class="nd" data-id="cloudfront" data-layer="edge" data-flow="1 2" tabindex="0" role="button" aria-label="CloudFront, Deployed"><polygon class="acc-r" points="118.6,-468.5 118.6,-494.5 39.0,-448.5 39.0,-422.5"/><polygon class="acc-l" points="-99.6,-502.5 -99.6,-528.5 39.0,-448.5 -99.6,-502.5"/><polygon class="acc-t" points="-19.9,-574.5 118.6,-494.5 39.0,-448.5 -99.6,-528.5"/></g>
+        <g class="slab" aria-hidden="true"><polygon class="slb-r" points="671.2,-242.5 671.2,-233.5 463.3,-113.5 463.3,-122.5"/><polygon class="slb-l" points="285.8,-225.0 285.8,-216.0 463.3,-113.5 463.3,-122.5"/><polygon class="slb-t" points="493.6,-345.0 671.2,-242.5 463.3,-122.5 285.8,-225.0"/></g>
+        <g class="nd" data-id="s3" data-layer="managed" data-flow="" tabindex="0" role="button" aria-label="S3 버킷, 파일 저장소"><polygon class="mut-r" points="645.2,-242.5 645.2,-264.5 600.2,-238.5 600.2,-216.5"/><polygon class="mut-l" points="448.6,-304.0 448.6,-326.0 600.2,-238.5 448.6,-304.0"/><polygon class="mut-t" points="493.6,-352.0 645.2,-264.5 600.2,-238.5 448.6,-326.0"/></g>
+        <g class="nd" data-id="secrets" data-layer="managed" data-flow="" tabindex="0" role="button" aria-label="Secrets Manager, 8개 보관"><polygon class="mut-r" points="586.3,-208.5 586.3,-230.5 541.3,-204.5 541.3,-182.5"/><polygon class="mut-l" points="389.7,-270.0 389.7,-292.0 541.3,-204.5 389.7,-270.0"/><polygon class="mut-t" points="434.7,-318.0 586.3,-230.5 541.3,-204.5 389.7,-292.0"/></g>
+        <g class="nd" data-id="obs" data-layer="managed" data-flow="" tabindex="0" role="button" aria-label="ECR · CloudWatch, 이미지 5 · 로그 5"><polygon class="mut-r" points="527.4,-174.5 527.4,-196.5 482.4,-170.5 482.4,-148.5"/><polygon class="mut-l" points="330.8,-236.0 330.8,-258.0 482.4,-170.5 330.8,-236.0"/><polygon class="mut-t" points="375.9,-284.0 527.4,-196.5 482.4,-170.5 330.8,-258.0"/></g>
+        <line class="ln" data-flow="3" x1="70.1" y1="-308.5" x2="96.1" y2="-293.5" marker-end="url(#ah)"/>
+        <line class="ln" data-flow="3" x1="13.0" y1="-275.5" x2="39.0" y2="-260.5" marker-end="url(#ah)"/>
+        <line class="ln" data-flow="3" x1="-44.2" y1="-242.5" x2="-18.2" y2="-227.5" marker-end="url(#ah)"/>
         <line class="lnsc" x1="238.2" y1="-211.5" x2="181.0" y2="-178.5" stroke-dasharray="5 4"/>
         <line class="lnsc" x1="226.0" y1="-218.5" x2="238.2" y2="-211.5" stroke-dasharray="5 4"/>
         <line class="lnsc" x1="168.9" y1="-185.5" x2="181.0" y2="-178.5" stroke-dasharray="5 4"/>
-        <line class="lnd" x1="111.7" y1="-152.5" x2="177.5" y2="-49.5" stroke-dasharray="3 4" marker-end="url(#ah)"/>
-        <text class="lb" x="161.1" y="103.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">lms_auth_user_db</tspan><tspan x="161.1" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="103.9" y="136.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">lms_learning_db</tspan><tspan x="103.9" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="46.8" y="169.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">lms_operations_db</tspan><tspan x="46.8" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="-10.4" y="202.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">lms_integration_db</tspan><tspan x="-10.4" dy="14" class="s">PostgreSQL 16.13 · db.t4g.micro · 20GiB</tspan></text>
-        <text class="lb" x="0.9" y="18.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">ElastiCache Redis 7.1</tspan><tspan x="0.9" dy="14" class="s">cache.t4g.micro · 1노드</tspan><tspan x="0.9" dy="14" class="s">auth refresh token</tspan></text>
-        <text class="lb" x="-257.2" y="129.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PRIVATE SUBNET</tspan><tspan x="-257.2" dy="14" class="zs">10.40.10.0/24 · 10.40.11.0/24</tspan></text>
-        <text class="lb" x="0.9" y="-361.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">Application LB</tspan><tspan x="0.9" dy="14" class="s">internet-facing · HTTP:80</tspan><tspan x="0.9" dy="14" class="s">경로 규칙 4 · 기본 404</tspan></text>
-        <text class="lb" x="-106.5" y="-287.5" text-anchor="middle"><tspan x="-106.5" dy="0" class="n">admin EC2 t3.micro</tspan><tspan x="-106.5" dy="14" class="s">SSH 터널 전용</tspan></text>
-        <text class="lb" x="161.1" y="-277.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">auth-user-service</tspan><tspan x="161.1" dy="14" class="s">:8081 · 512/2048 · 1/1 실행</tspan></text>
-        <text class="lb" x="103.9" y="-244.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">learning-service</tspan><tspan x="103.9" dy="14" class="s">:8082 · 512/2048 · 1/1 실행</tspan></text>
-        <text class="lb" x="46.8" y="-211.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">operations-service</tspan><tspan x="46.8" dy="14" class="s">:8083 · 512/1024 · 1/1 실행</tspan></text>
-        <text class="lb" x="-10.4" y="-178.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">integration-service</tspan><tspan x="-10.4" dy="14" class="s">:8084 · 512/1024 · 0/0 미기동</tspan></text>
-        <text class="lb" x="-257.2" y="-250.5" text-anchor="start"><tspan x="-257.2" dy="0" class="z">PUBLIC SUBNET</tspan><tspan x="-257.2" dy="14" class="zs">10.40.0.0/24 · 10.40.1.0/24 · NAT 없음</tspan></text>
-        <text class="lb" x="245.1" y="-148.5" text-anchor="middle"><tspan x="245.1" dy="0" class="n">Service Connect</tspan><tspan x="245.1" dy="14" class="s">new-bm-lms-dev.internal</tspan><tspan x="245.1" dy="14" class="s">ALB 미경유 내부 호출</tspan></text>
-        <text class="lb" x="9.5" y="-531.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n">CloudFront</tspan><tspan x="9.5" dy="14" class="s">d3eylh4fl880qc.cloudfront.net</tspan><tspan x="9.5" dy="14" class="s">HTTPS 종단 · 캐시 비활성</tspan></text>
+        <text class="lb" data-id="db-auth" x="161.1" y="103.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">lms_auth_user_db</tspan><tspan x="161.1" dy="14" class="s">available</tspan></text>
+        <text class="lb" data-id="db-learning" x="103.9" y="136.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">lms_learning_db</tspan><tspan x="103.9" dy="14" class="s">available</tspan></text>
+        <text class="lb" data-id="db-operations" x="46.8" y="169.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">lms_operations_db</tspan><tspan x="46.8" dy="14" class="s">available</tspan></text>
+        <text class="lb" data-id="db-integration" x="-10.4" y="202.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">lms_integration_db</tspan><tspan x="-10.4" dy="14" class="s">미사용</tspan></text>
+        <text class="lb" data-id="redis" x="0.9" y="30.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">ElastiCache Redis</tspan><tspan x="0.9" dy="14" class="s">1노드 · available</tspan></text>
+        <text class="lb" x="-257.2" y="129.5" text-anchor="end"><tspan x="-257.2" dy="0" class="z">PRIVATE SUBNET</tspan><tspan x="-257.2" dy="14" class="zs">10.40.10.0/24 · 10.40.11.0/24</tspan></text>
+        <text class="lb" data-id="alb" x="0.9" y="-349.5" text-anchor="middle"><tspan x="0.9" dy="0" class="n">Application LB</tspan><tspan x="0.9" dy="14" class="s">active · 2 AZ</tspan></text>
+        <text class="lb" data-id="ec2" x="-106.5" y="-287.5" text-anchor="middle"><tspan x="-106.5" dy="0" class="n">admin EC2</tspan><tspan x="-106.5" dy="14" class="s">SSH 터널 전용</tspan></text>
+        <text class="lb" data-id="svc-auth" x="161.1" y="-277.0" text-anchor="middle"><tspan x="161.1" dy="0" class="n">auth-user-service</tspan><tspan x="161.1" dy="14" class="s">1/1 실행</tspan></text>
+        <text class="lb" data-id="svc-learning" x="103.9" y="-244.0" text-anchor="middle"><tspan x="103.9" dy="0" class="n">learning-service</tspan><tspan x="103.9" dy="14" class="s">1/1 실행</tspan></text>
+        <text class="lb" data-id="svc-operations" x="46.8" y="-211.0" text-anchor="middle"><tspan x="46.8" dy="0" class="n">operations-service</tspan><tspan x="46.8" dy="14" class="s">1/1 실행</tspan></text>
+        <text class="lb" data-id="svc-integration" x="-10.4" y="-178.0" text-anchor="middle"><tspan x="-10.4" dy="0" class="n">integration-service</tspan><tspan x="-10.4" dy="14" class="s">0/0 미기동</tspan></text>
+        <text class="lb" x="-257.2" y="-250.5" text-anchor="end"><tspan x="-257.2" dy="0" class="z">PUBLIC SUBNET</tspan><tspan x="-257.2" dy="14" class="zs">10.40.0.0/24 · 10.40.1.0/24 · NAT 없음</tspan></text>
+        <text class="lb" x="245.1" y="-148.5" text-anchor="middle"><tspan x="245.1" dy="0" class="n">Service Connect</tspan><tspan x="245.1" dy="14" class="s">ALB 미경유 내부 호출</tspan></text>
+        <text class="lb" data-id="cloudfront" x="9.5" y="-519.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n">CloudFront</tspan><tspan x="9.5" dy="14" class="s">Deployed</tspan></text>
         <text class="lb" x="9.5" y="-610.5" text-anchor="middle"><tspan x="9.5" dy="0" class="n2">브라우저</tspan><tspan x="9.5" dy="15" class="s">수강생 · 강사 · 멘토 · 매니저 · 외부 검증자</tspan></text>
-        <text class="lb" x="546.9" y="-301.2" text-anchor="middle"><tspan x="546.9" dy="0" class="n">S3 new-bm-lms-dev-files</tspan><tspan x="546.9" dy="14" class="s">버저닝 · TLS-only · SSE</tspan></text>
-        <text class="lb" x="488.0" y="-267.2" text-anchor="middle"><tspan x="488.0" dy="0" class="n">Secrets Manager ×8</tspan><tspan x="488.0" dy="14" class="s">DB 비번 4 · JWT · 내부키 · GitHub 2</tspan></text>
-        <text class="lb" x="429.1" y="-233.2" text-anchor="middle"><tspan x="429.1" dy="0" class="n">ECR ×5 · CloudWatch Logs ×5</tspan><tspan x="429.1" dy="14" class="s">이미지 · 로그 14일 보관</tspan></text>
-        <text class="lb" x="675.5" y="-285.0" text-anchor="start"><tspan x="675.5" dy="0" class="z">VPC 밖 · 리전 관리형</tspan><tspan x="675.5" dy="14" class="zs">ECS task가 IAM role로 접근</tspan><tspan x="675.5" dy="14" class="zs">CloudTrail(멀티리전) 별도</tspan></text>
+        <text class="lb" data-id="s3" x="546.9" y="-303.2" text-anchor="middle"><tspan x="546.9" dy="0" class="n">S3 버킷</tspan><tspan x="546.9" dy="14" class="s">파일 저장소</tspan></text>
+        <text class="lb" data-id="secrets" x="488.0" y="-269.2" text-anchor="middle"><tspan x="488.0" dy="0" class="n">Secrets Manager</tspan><tspan x="488.0" dy="14" class="s">8개 보관</tspan></text>
+        <text class="lb" data-id="obs" x="429.1" y="-235.2" text-anchor="middle"><tspan x="429.1" dy="0" class="n">ECR · CloudWatch</tspan><tspan x="429.1" dy="14" class="s">이미지 5 · 로그 5</tspan></text>
+        <text class="lb" x="675.5" y="-285.0" text-anchor="start"><tspan x="675.5" dy="0" class="z">VPC 밖 · 리전 관리형</tspan><tspan x="675.5" dy="14" class="zs">ECS task 가 IAM role 로 접근</tspan></text>
+        <g class="stb" data-flow="1"><circle cx="-0.9" cy="-567.5" r="10"/><text x="-0.9" y="-564.0" text-anchor="middle">1</text></g>
+        <g class="stb" data-flow="2"><circle cx="-0.9" cy="-415.0" r="10"/><text x="-0.9" y="-411.5" text-anchor="middle">2</text></g>
+        <g class="stb" data-flow="3"><circle cx="26.0" cy="-268.0" r="10"/><text x="26.0" y="-264.5" text-anchor="middle">3</text></g>
+        <g class="stb" data-flow="4"><circle cx="103.9" cy="-33.0" r="10"/><text x="103.9" y="-29.5" text-anchor="middle">4</text></g>
         <text class="lb" x="-290.1" y="-422.5" text-anchor="start"><tspan x="-290.1" dy="0" class="z2">VPC 10.40.0.0/16</tspan><tspan x="-290.1" dy="15" class="zs">ap-northeast-2 (서울) · AZ 2a · 2b</tspan></text>
-        <g class="stb"><circle cx="-0.9" cy="-567.5" r="10"/><text x="-0.9" y="-564.0" text-anchor="middle">1</text></g>
-        <g class="stb"><circle cx="-0.9" cy="-415.0" r="10"/><text x="-0.9" y="-411.5" text-anchor="middle">2</text></g>
-        <g class="stb"><circle cx="26.0" cy="-268.0" r="10"/><text x="26.0" y="-264.5" text-anchor="middle">3</text></g>
-        <g class="stb"><circle cx="103.9" cy="-33.0" r="10"/><text x="103.9" y="-29.5" text-anchor="middle">4</text></g>
       </svg>
     </div>
 
@@ -411,17 +374,31 @@
       <span><i class="sw-mut"></i> 미기동 · 보조 · 관리형</span>
     </div>
 
-    <ol class="iso-steps">
-      <li><b>1</b> 브라우저가 CloudFront로 HTTPS 요청</li>
-      <li><b>2</b> CloudFront가 ALB 오리진으로 전달 (HTTP · 캐시 없음)</li>
-      <li><b>3</b> ALB가 경로 규칙 4개로 서비스 분기</li>
-      <li><b>4</b> 각 서비스가 전용 RDS · Redis 접근 (프라이빗 서브넷)</li>
-    </ol>
+    <div class="iso-toolbar">
+      <div class="iso-seg" role="group" aria-label="요청 흐름 단계">
+        <button type="button" data-flow="" class="is-on">전체</button>
+        <button type="button" data-flow="1"><b>1</b> 브라우저 → CloudFront</button>
+        <button type="button" data-flow="2"><b>2</b> CloudFront → ALB</button>
+        <button type="button" data-flow="3"><b>3</b> ALB → 서비스</button>
+        <button type="button" data-flow="4"><b>4</b> 서비스 → 데이터</button>
+      </div>
+      <div class="iso-seg iso-seg--layer" role="group" aria-label="계층 표시">
+        <button type="button" data-layer="public" class="is-on" aria-pressed="true">퍼블릭</button>
+        <button type="button" data-layer="private" class="is-on" aria-pressed="true">프라이빗</button>
+        <button type="button" data-layer="managed" class="is-on" aria-pressed="true">VPC 밖</button>
+      </div>
+    </div>
+
+    <div class="iso-panel" id="isoPanel" aria-live="polite">
+      <p class="iso-panel__hint">블록에 마우스를 올리거나 누르면 사양·경로·연결 대상이 여기에 나옵니다.</p>
+    </div>
+
 
     <p class="iso-cap">
       2026-08-06 Terraform 코드(<code>terraform/</code>)와 AWS 실조회 결과를 대조해 작성했습니다.
       블록에 적힌 사양·기동 수는 조회 시점의 실제 값입니다. 문서 기준일(08-05)보다 하루 뒤 시점입니다.
       웹 프런트 정적 배포는 이 Terraform 구성에 포함돼 있지 않아 그리지 않았습니다.
+      블록을 누르면 상세가 고정되고, 위 버튼으로 흐름 단계만 보거나 계층을 껐다 켤 수 있습니다.
       그림은 우상단 버튼이나 더블클릭 · Ctrl+휠로 확대하고, 확대 상태에서 드래그로 이동합니다.
     </p>
 
@@ -997,9 +974,443 @@
   <span class="theme-toggle__label">다크</span>
 </button>
 
+<script type="application/json" id="isoData">
+{
+ "db-auth": {
+  "name": "lms_auth_user_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "available",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "auth-user-service"
+   ]
+  ]
+ },
+ "db-learning": {
+  "name": "lms_learning_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "available",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "learning-service"
+   ]
+  ]
+ },
+ "db-operations": {
+  "name": "lms_operations_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "available",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "operations-service"
+   ]
+  ]
+ },
+ "db-integration": {
+  "name": "lms_integration_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "미사용",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "integration-service"
+   ]
+  ]
+ },
+ "redis": {
+  "name": "ElastiCache Redis",
+  "kind": "ElastiCache 복제 그룹",
+  "status": "1노드 · available",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "Redis 7.1"
+   ],
+   [
+    "노드",
+    "cache.t4g.micro × 1 · 자동 페일오버 없음"
+   ],
+   [
+    "암호화",
+    "저장 시 적용 · 전송 구간 미적용"
+   ],
+   [
+    "용도",
+    "auth-user-service refresh token 저장소"
+   ]
+  ]
+ },
+ "alb": {
+  "name": "Application LB",
+  "kind": "Application Load Balancer",
+  "status": "active · 2 AZ",
+  "layer": "public",
+  "rows": [
+   [
+    "구성",
+    "internet-facing · HTTP :80"
+   ],
+   [
+    "규칙 90",
+    "operations — /admin/dashboard*, /admin/csv-ingest*"
+   ],
+   [
+    "규칙 100·101",
+    "auth — /auth/*, /users/*, /student/*, /admin/mentor*"
+   ],
+   [
+    "규칙 120",
+    "learning — /student/*, /admin/*, /instructor/*, /verify/*"
+   ],
+   [
+    "기본 동작",
+    "일치 규칙 없으면 404 고정 응답"
+   ]
+  ]
+ },
+ "ec2": {
+  "name": "admin EC2",
+  "kind": "관리용 EC2",
+  "status": "SSH 터널 전용",
+  "layer": "public",
+  "rows": [
+   [
+    "인스턴스",
+    "t3.micro"
+   ],
+   [
+    "접근",
+    "공개 HTTP 비활성 · 허용 IP에서 SSH 터널로만"
+   ],
+   [
+    "용도",
+    "ECS·RDS·Redis·ALB 상태 조회용 읽기 전용 대시보드"
+   ]
+  ]
+ },
+ "svc-auth": {
+  "name": "auth-user-service",
+  "kind": "ECS Fargate 서비스",
+  "status": "1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트",
+    "8081"
+   ],
+   [
+    "사양",
+    "512 CPU / 2048 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "100 · 101"
+   ],
+   [
+    "Service Connect",
+    "server + client — learning 의 /internal/* 호출"
+   ],
+   [
+    "연결",
+    "lms_auth_user_db · Redis"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT · 내부 API 키 · GitHub OAuth"
+   ]
+  ]
+ },
+ "svc-learning": {
+  "name": "learning-service",
+  "kind": "ECS Fargate 서비스",
+  "status": "1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트",
+    "8082"
+   ],
+   [
+    "사양",
+    "512 CPU / 2048 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "120 (가장 넓은 경로)"
+   ],
+   [
+    "Service Connect",
+    "server + client — auth 의 /internal/* 호출"
+   ],
+   [
+    "연결",
+    "lms_learning_db"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT · 내부 API 키 · GitHub App 키"
+   ]
+  ]
+ },
+ "svc-operations": {
+  "name": "operations-service",
+  "kind": "ECS Fargate 서비스",
+  "status": "1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트",
+    "8083"
+   ],
+   [
+    "사양",
+    "512 CPU / 1024 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "90 — learning 의 광역 /admin/* 보다 먼저 매칭"
+   ],
+   [
+    "담당",
+    "운영 대시보드 · CSV 인입"
+   ],
+   [
+    "연결",
+    "lms_operations_db"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT"
+   ]
+  ]
+ },
+ "svc-integration": {
+  "name": "integration-service",
+  "kind": "ECS Fargate 서비스",
+  "status": "0/0 미기동",
+  "layer": "public",
+  "rows": [
+   [
+    "포트",
+    "8084"
+   ],
+   [
+    "사양",
+    "512 CPU / 1024 MiB"
+   ],
+   [
+    "상태",
+    "서비스는 있으나 실행 태스크 0 — ALB 규칙도 없음"
+   ],
+   [
+    "예정 담당",
+    "외부 연동"
+   ],
+   [
+    "연결",
+    "lms_integration_db (생성만 됨)"
+   ]
+  ]
+ },
+ "cloudfront": {
+  "name": "CloudFront",
+  "kind": "CloudFront 배포",
+  "status": "Deployed",
+  "layer": "edge",
+  "rows": [
+   [
+    "도메인",
+    "d3eylh4fl880qc.cloudfront.net"
+   ],
+   [
+    "프로토콜",
+    "HTTP/2 + HTTP/3 · IPv6"
+   ],
+   [
+    "뷰어",
+    "HTTPS 강제(HTTP 는 리다이렉트) · 기본 인증서"
+   ],
+   [
+    "캐시",
+    "비활성 — API 라 모든 요청을 오리진으로"
+   ],
+   [
+    "오리진",
+    "ALB 로 HTTP 연결 (ALB 에 인증서 없음)"
+   ],
+   [
+    "엣지",
+    "PriceClass_200 (서울 포함)"
+   ]
+  ]
+ },
+ "s3": {
+  "name": "S3 버킷",
+  "kind": "S3",
+  "status": "파일 저장소",
+  "layer": "managed",
+  "rows": [
+   [
+    "이름",
+    "new-bm-lms-dev-files"
+   ],
+   [
+    "설정",
+    "버전 관리 · 퍼블릭 접근 차단 · 서버측 암호화"
+   ],
+   [
+    "정책",
+    "TLS 연결만 허용"
+   ],
+   [
+    "별도",
+    "CloudTrail 로그용 버킷 1개 더"
+   ]
+  ]
+ },
+ "secrets": {
+  "name": "Secrets Manager",
+  "kind": "Secrets Manager",
+  "status": "8개 보관",
+  "layer": "managed",
+  "rows": [
+   [
+    "DB 비밀번호",
+    "서비스별 4개 — Terraform 이 생성해 저장"
+   ],
+   [
+    "JWT 서명 키",
+    "auth 가 발급 · learning/operations 가 검증"
+   ],
+   [
+    "내부 API 키",
+    "서비스 간 /internal/* 호출 인증"
+   ],
+   [
+    "GitHub",
+    "OAuth client secret · App private key"
+   ]
+  ]
+ },
+ "obs": {
+  "name": "ECR · CloudWatch",
+  "kind": "ECR · CloudWatch",
+  "status": "이미지 5 · 로그 5",
+  "layer": "managed",
+  "rows": [
+   [
+    "ECR",
+    "서비스 4개 + db-init 이미지 저장소"
+   ],
+   [
+    "CloudWatch Logs",
+    "/ecs/new-bm-lms-dev/* · 14일 보관"
+   ],
+   [
+    "Container Insights",
+    "클러스터에서 활성"
+   ],
+   [
+    "CloudTrail",
+    "멀티리전 · 전용 S3 로 감사 로그"
+   ]
+  ]
+ }
+}
+</script>
+
 <script src="assets/theme-toggle.js"></script>
 <script src="assets/countdown.js"></script>
 <script src="assets/diagram.js"></script>
+<script src="assets/diagram-explore.js"></script>
 
 </body>
 </html>
