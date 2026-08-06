@@ -135,3 +135,122 @@
 .iso-legend .sw-acc { background: var(--iso-acc-t); }
 .iso-legend .sw-dat { background: var(--iso-dat-t); }
 .iso-legend .sw-mut { background: var(--iso-mut-t); border-style: dashed; }
+
+/* ── 탐색 인터랙션 ─────────────────────────────
+   블록에는 이름·상태만 두고, 상세는 아래 패널이 맡는다.
+   그림 안 글자를 줄여야 구조가 먼저 보인다. */
+.iso .nd { cursor: pointer; }
+.iso .nd:focus { outline: none; }
+.iso .nd polygon { transition: opacity 0.15s ease; }
+
+/* 호버·포커스·고정 상태는 윤곽을 굵게 해서 알린다. 색을 바꾸면 계층 구분이 흐려진다. */
+.iso .nd:hover polygon,
+.iso .nd:focus-visible polygon,
+.iso .nd.is-active polygon {
+  stroke: var(--brand);
+  stroke-width: 2;
+}
+.iso .nd.is-active polygon { stroke-width: 2.5; }
+.iso text[data-id].is-active .n { fill: var(--brand-ink); }
+
+/* 흐름 단계나 계층으로 걸러낸 대상. 지우지 않고 흐리게 둬야 위치 감각이 유지된다. */
+.iso .nd.is-dim polygon,
+.iso text[data-id].is-dim,
+.iso line.is-dim,
+.iso .stb.is-dim { opacity: 0.22; }
+.iso .slab.is-dim { opacity: 0.4; }
+
+.iso .stb { transition: opacity 0.15s ease; }
+
+/* ── 흐름·계층 툴바 ─────────────────────────── */
+.iso-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0.9rem 0 0;
+}
+.iso-seg { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.iso-seg button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.iso-seg button:hover { color: var(--ink); border-color: var(--brand); }
+.iso-seg button.is-on { color: var(--brand-ink); border-color: var(--brand); background: var(--brand-wash); }
+.iso-seg button b {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--surface);
+  font-size: 0.85em;
+}
+/* 꺼진 계층은 눌리지 않은 상태로 보여야 한다. */
+.iso-seg--layer button:not(.is-on) { text-decoration: line-through; opacity: 0.6; }
+
+/* ── 상세 패널 ─────────────────────────────── */
+.iso-panel {
+  min-height: 7.5rem;
+  margin: 0.75rem 0 0;
+  padding: 1rem 1.15rem;
+  background: var(--surface-2);
+  border-radius: 3px;
+}
+.iso-panel__hint { margin: 0; color: var(--ink-3); font-size: 0.85rem; }
+.iso-panel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.9rem;
+  margin: 0 0 0.7rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.iso-panel__name {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.iso-panel__kind { font-size: 0.78rem; color: var(--ink-3); }
+.iso-panel__state {
+  margin-left: auto;
+  padding: 0.1em 0.55em;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border-radius: 2px;
+  color: var(--brand-ink);
+  background: var(--brand-wash);
+  border: 1px solid var(--brand);
+}
+.iso-panel__state.is-idle { color: var(--ink-3); background: transparent; border-color: var(--line); }
+.iso-panel dl {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, max-content) minmax(0, 1fr);
+  gap: 0.3rem 1.1rem;
+  margin: 0;
+  font-size: 0.84rem;
+}
+.iso-panel dt { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-3); }
+.iso-panel dd { margin: 0; color: var(--ink-2); }
+
+@media (max-width: 44rem) {
+  .iso-panel dl { grid-template-columns: minmax(0, 1fr); gap: 0 0; }
+  .iso-panel dd { margin-bottom: 0.5rem; }
+}
+
+@media print {
+  .iso-toolbar { display: none; }
+  .iso-panel { display: none; }
+}
