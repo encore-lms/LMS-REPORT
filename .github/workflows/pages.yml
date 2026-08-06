@@ -26,8 +26,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # 루트를 그대로 올리되 배포에 불필요한 것은 뺀다.
+      # path: . 로 두면 .git 전체가 아티팩트에 담겨 업로드가 커진다.
+      - name: 배포본 준비
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='_site' --exclude='.github' ./ _site/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
