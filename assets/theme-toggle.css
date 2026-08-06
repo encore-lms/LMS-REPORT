@@ -1,0 +1,31 @@
+/* 라이트/다크 토글 버튼. 두 페이지가 같은 마크업을 쓴다. */
+
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.4rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.1);
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--brand); }
+.theme-toggle svg { width: 0.95rem; height: 0.95rem; display: block; }
+.theme-toggle[data-next='dark'] .icon--sun { display: none; }
+.theme-toggle[data-next='light'] .icon--moon { display: none; }
+
+/* 인쇄·PDF 저장 시에는 조작 요소를 뺀다. */
+@media print {
+  .theme-toggle { display: none; }
+  body { background: #ffffff; }
+}
