@@ -28,12 +28,17 @@
   margin: 0;
   text-wrap: balance;
 }
+/* 도입부 — 문단 사이는 masthead 그리드 간격(1.5rem)보다 좁게 묶어
+   여러 문단이 한 덩어리로 읽히게 한다. */
 .masthead__sub {
+  display: grid;
+  gap: 0.85rem;
   max-width: var(--measure);
   margin: 0;
   color: var(--ink-2);
   font-size: 1.05rem;
 }
+.masthead__sub p { margin: 0; }
 .masthead__meta {
   display: flex;
   flex-wrap: wrap;
