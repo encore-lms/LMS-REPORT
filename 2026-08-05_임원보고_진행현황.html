@@ -100,7 +100,7 @@
     <ul>
       <li><strong>멘토 도메인</strong> — 당시 “프론트·백엔드 모두 미착수, 최대 공백”. 현재 <span class="num">15</span>개 화면과 API가 모두 동작하며, 팀 허브 구조로 재설계까지 끝났습니다.</li>
       <li><strong>강사 도메인</strong> — 당시 37%(10/27). 현재 전 화면 실연동.</li>
-      <li><strong>운영(매니저) 도메인</strong> — 당시 67%(28/42). 현재 데이터·연동 3화면을 뺀 전부 실연동.</li>
+      <li><strong>운영(매니저) 도메인</strong> — 당시 67%(28/42). 현재 전부 실연동 — 남아 있던 데이터·연동 3화면은 08-06 기능 폐지(CSV 인입 포함)로 화면째 삭제.</li>
       <li><strong>수강생 도메인</strong> — 당시 75%(39/52). 현재 증명서·PLAY를 뺀 전부 실연동.</li>
       <li><strong>증명서 도메인</strong> — <span class="pill pill--none">미해소</span> 유일하게 그대로 남았습니다.</li>
     </ul>
@@ -207,8 +207,8 @@
           </tr>
           <tr>
             <td>데이터·연동 3화면</td>
-            <td><span class="pill pill--hold">보류</span></td>
-            <td>API는 응답하나 고정 빈 값 반환 — 메뉴 차단 중</td>
+            <td><span class="pill pill--hold">제거</span></td>
+            <td>08-06 기능 폐지로 화면째 삭제 — 대시보드 지표는 HRD 라이브 집계 단일 소스로 전환</td>
           </tr>
           <tr>
             <td>PLAY 미니게임</td>
@@ -424,7 +424,7 @@
                 대용량 제출이 태스크 메모리를 밀어내지 않습니다.</td>
           </tr>
           <tr>
-            <td>매니저 25명이 운영 대시보드·CSV 인입을 동시 사용</td>
+            <td>매니저 25명이 운영 대시보드를 동시 사용</td>
             <td class="t-tight">operations-service</td>
             <td>운영 경로(규칙 90)를 learning의 광역 <code>/admin/*</code>보다 먼저 매칭시켜
                 수강생 트래픽과 분리했습니다. 동시 사용자 상한이 25명이라 512 CPU/1024MiB로 충분합니다.</td>
@@ -640,13 +640,6 @@
             <td>이정훈</td>
             <td class="t-tight">1일</td>
             <td>웹과 API가 서로 다른 도메인이라 브라우저가 세션 쿠키를 차단 → 간헐적 강제 로그아웃</td>
-          </tr>
-          <tr>
-            <td>P2</td>
-            <td>데이터·연동 3화면</td>
-            <td>이정훈</td>
-            <td class="t-tight">3일</td>
-            <td>CSV 매핑 · 인입 격리 큐 · 외부 연동. 화면 완성, 백엔드가 빈 값만 반환</td>
           </tr>
           <tr>
             <td>P2</td>
@@ -900,10 +893,10 @@
         <div>
           <p class="dec__q">8월 종료 범위를 “증명서 축 완성”으로 확정할 것인가</p>
           <p class="dec__b">
-            P0만 수행하면 <span data-cd="biz">18</span>영업일 안에 들어갑니다. PLAY·데이터연동·UI 통일까지 넣으면 넘칩니다.
+            P0만 수행하면 <span data-cd="biz">18</span>영업일 안에 들어갑니다. PLAY·UI 통일까지 넣으면 넘칩니다.
             증명서는 이 제품의 존재 이유이므로 다른 것을 미루는 편이 합리적입니다.
           </p>
-          <p class="dec__rec">권고 — P0 4건만 8월 범위로 확정, P2 3건은 9월 이월</p>
+          <p class="dec__rec">권고 — P0 4건만 8월 범위로 확정, P2 2건은 9월 이월</p>
         </div>
       </div>
 
@@ -1025,7 +1018,7 @@
    ],
    [
     "규칙 90",
-    "operations — /admin/dashboard*, /admin/csv-ingest*"
+    "operations — /admin/dashboard* · /admin/csv-ingest*(기능 폐지로 미사용 경로)"
    ],
    [
     "규칙 100·101",
@@ -1133,7 +1126,7 @@
    ],
    [
     "담당",
-    "운영 대시보드 · CSV 인입"
+    "운영 대시보드 — CSV 인입은 08-06 폐지, 지표는 HRD 라이브 집계"
    ],
    [
     "연결",
