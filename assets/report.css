@@ -352,3 +352,44 @@ footer p { color: var(--ink-3); font-size: 0.8rem; max-width: none; }
   text-decoration: none;
 }
 .home-link:hover { color: var(--brand-ink); }
+
+/* ── 접기 (긴 근거·상세) ───────────────────────
+   결론은 항상 보이고, 근거는 필요할 때만 편다. */
+.fold {
+  margin: 1.25rem 0 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.fold > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.7rem 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  cursor: pointer;
+  list-style: none;
+}
+.fold > summary::-webkit-details-marker { display: none; }
+/* 삼각형은 직접 그린다 — 브라우저 기본 마커는 위치·색이 제각각이다. */
+.fold > summary::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--brand);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.15s ease;
+}
+.fold[open] > summary::before { transform: rotate(90deg); }
+.fold > summary:hover { color: var(--ink); }
+.fold[open] > summary { border-bottom: 1px dashed var(--line-soft); }
+.fold .tw { margin-top: 0.75rem; }
+.fold > *:last-child { margin-bottom: 1rem; }
+
+/* 인쇄본에는 접힌 내용도 모두 펼쳐 나와야 한다. */
+@media print {
+  .fold > summary { display: none; }
+  .fold { border: 0; }
+}
