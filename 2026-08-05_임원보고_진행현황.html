@@ -1,7 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="LMS 역량증명서 프로젝트의 2026-08-05 기준 진행 현황과 8월 마감 계획.">
 
 <title>LMS 역량증명서 프로젝트 — 임원 보고</title>
+
+<script>
+  /* 저장된 테마를 첫 페인트 전에 적용한다. 본문 뒤에서 적용하면 색이 한 번 번쩍인다. */
+  try {
+    var saved = localStorage.getItem('lms-report-theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
 
 <style>
   :root {
@@ -460,9 +473,57 @@
     .sec-num { grid-row: auto; position: static; border-top: 0; padding-top: 0; margin-bottom: 0.4rem; }
     .bar { grid-template-columns: 5.5rem 1fr 4.5rem; gap: 0.5rem; }
   }
+
+  /* ── 테마 토글 ────────────────────────────────── */
+  .theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    padding: 0.4rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.1);
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--brand); }
+  .theme-toggle svg { width: 0.95rem; height: 0.95rem; display: block; }
+  .theme-toggle[data-next='dark'] .icon--sun { display: none; }
+  .theme-toggle[data-next='light'] .icon--moon { display: none; }
+
+  /* 인쇄·PDF 저장 시에는 조작 요소를 뺀다. */
+  @media print {
+    .theme-toggle { display: none; }
+    body { background: #ffffff; }
+  }
+
+  .home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    text-decoration: none;
+  }
+  .home-link:hover { color: var(--brand-ink); }
 </style>
+</head>
+<body>
 
 <div class="doc">
+
+  <a class="home-link" href="./">← 보고서 목록</a>
 
   <header class="masthead">
     <p class="masthead__eyebrow">임원 보고 · 종료 D-26</p>
@@ -1277,3 +1338,49 @@
   </footer>
 
 </div>
+
+<button class="theme-toggle" type="button" id="themeToggle" data-next="dark">
+  <svg class="icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+  <span class="theme-toggle__label">다크</span>
+</button>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    var label = btn.querySelector('.theme-toggle__label');
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    /* data-theme이 없으면 OS 설정을 따르므로, 실제 표시 중인 테마를 그쪽에서 읽는다. */
+    function current() {
+      return document.documentElement.dataset.theme || (media.matches ? 'dark' : 'light');
+    }
+
+    function sync() {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      btn.dataset.next = next;
+      label.textContent = next === 'dark' ? '다크' : '라이트';
+      btn.setAttribute('aria-label', (next === 'dark' ? '다크' : '라이트') + ' 모드로 전환');
+    }
+
+    btn.addEventListener('click', function () {
+      var next = btn.dataset.next;
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('lms-report-theme', next); } catch (e) {}
+      sync();
+    });
+
+    media.addEventListener('change', sync);
+    sync();
+  })();
+</script>
+
+</body>
+</html>
