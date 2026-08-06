@@ -12,7 +12,8 @@ GitHub Pages가 정본 발행처다. `main`에 push하면 `.github/workflows/pag
 
 - 사이트: <https://encore-lms.github.io/LMS-REPORT/>
 - 배포 방식: **Settings → Pages → Source = `GitHub Actions`** (`build_type: workflow`)
-- 빌드 단계가 없어 커밋한 HTML이 그대로 나간다. 파일명·경로가 URL이 된다.
+- 발행 HTML 은 **저장소에 없다.** 워크플로가 `build.py` 로 조각을 조립해 배포한다.
+- `sections/` 와 `build.py` 는 배포본에서 제외된다. 파일명·경로가 URL이 된다.
 
 ### ⚠️ Pages 설정을 `Deploy from a branch`로 되돌리지 말 것
 
@@ -47,8 +48,9 @@ gh workflow run pages.yml --ref main
 
 | 파일 | 기준일 | 대상 | 발행 |
 | --- | --- | --- | --- |
-| [`2026-08-05_임원보고_진행현황.html`](./2026-08-05_임원보고_진행현황.html) | 2026-08-05 | 임원진 | [Pages](https://encore-lms.github.io/LMS-REPORT/2026-08-05_%EC%9E%84%EC%9B%90%EB%B3%B4%EA%B3%A0_%EC%A7%84%ED%96%89%ED%98%84%ED%99%A9.html) |
+| `2026-08-05_임원보고_진행현황.html` | 2026-08-05 | 임원진 | [Pages에서 보기](https://encore-lms.github.io/LMS-REPORT/2026-08-05_%EC%9E%84%EC%9B%90%EB%B3%B4%EA%B3%A0_%EC%A7%84%ED%96%89%ED%98%84%ED%99%A9.html) |
 
+발행 HTML 은 git 에 없으므로 저장소 안 상대 링크로 걸지 않는다. 원본은 `sections/` 조각이다.
 문서를 추가하면 `index.html`의 목록에도 카드를 넣는다. 루트 `index.html`이 목차 페이지다.
 
 ## 파일 구조 규칙
@@ -58,8 +60,7 @@ HTML은 내용만 담고, 스타일과 동작은 `assets/`에서 역할별로 �
 
 ```
 index.html                          목차
-2026-08-05_임원보고_진행현황.html    보고서 발행본 (build.py 생성물 — 직접 수정 금지)
-build.py                            보고서 조립기
+build.py                            보고서 조립기 (발행 HTML 생성 — git 미추적)
 sections/
   _shell.html       머리(head·masthead)·꼬리(footer·스크립트) 틀
   01-요약.html       섹션 조각 — 번호 순으로 조립된다
@@ -138,10 +139,11 @@ python3 build.py
 ## 로컬 확인
 
 ```bash
+python3 build.py               # 발행 HTML 생성 (저장소에 없으므로 먼저 실행)
 python3 -m http.server 8000    # 그 뒤 http://127.0.0.1:8000/
 ```
 
-빌드 단계가 없어 서빙한 화면이 곧 배포본이다.
+워크플로도 같은 `build.py` 를 돌리므로 서빙한 화면이 곧 배포본이다.
 `file://`로 직접 열어도 대개 보이지만, 브라우저 설정에 따라 `assets/` 로드가 막힐 수 있어
 확인은 위처럼 HTTP로 한다. 다크 모드는 우상단 토글이나 OS 테마로 본다.
 
