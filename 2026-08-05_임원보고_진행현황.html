@@ -548,7 +548,9 @@
   .iso {
     display: block;
     width: 100%;
-    min-width: 42rem;              /* 이보다 좁아지면 라벨이 뭉개져 읽을 수 없다 */
+    /* 하한 아래로 줄지 않게 막는다. 42rem까지 허용하면 라벨이 5.5px까지 작아져 못 읽는다.
+       58rem이면 데스크톱(8.4px)과 비슷한 7.5px를 유지하고, 좁은 화면은 가로 스크롤로 본다. */
+    min-width: 58rem;
     height: auto;
   }
   .iso polygon { stroke: var(--iso-edge); stroke-width: 1; stroke-linejoin: round; }
