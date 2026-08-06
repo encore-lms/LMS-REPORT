@@ -1,0 +1,160 @@
+  <section>
+    <div class="sec-num">{{NUM}}</div>
+    <h2>현재 진행 상황</h2>
+
+    <h3>역할별 완성도 <span class="prov prov--live">실측</span></h3>
+    <p>
+      라우트(화면 주소) 단위로 실제 API 연결 여부를 확인한 결과입니다.
+      빗금은 화면은 완성됐으나 데이터가 아직 임시(mock)이거나 메뉴에서 차단된 상태입니다.
+    </p>
+
+    <div class="bars">
+      <div class="bar">
+        <span class="bar__label">강사</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">32 / 32</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">멘토</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">8 / 8</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">외부 검증</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">2 / 2</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">운영(매니저)</span>
+        <span class="bar__track"><span class="bar__fill" style="width:83%"></span></span>
+        <span class="bar__val">44 / 53</span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">수강생</span>
+        <span class="bar__track"><span class="bar__fill" style="width:80%"></span></span>
+        <span class="bar__val">43 / 54</span>
+      </div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">영역</th>
+            <th scope="col">상태</th>
+            <th scope="col">근거 (오늘 확인)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>로그인 · 권한</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>배포 API 로그인 <span class="num">200</span> 응답, 5개 역할 계정 검증</td>
+          </tr>
+          <tr>
+            <td>수강생 학습 여정</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>과정·출결·퀴즈·과제·기록실·프로젝트·트러블슈팅·마일리지·QnA</td>
+          </tr>
+          <tr>
+            <td>강사 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>퀴즈·과제·검토·추천서·템플릿·자료실 전 화면</td>
+          </tr>
+          <tr>
+            <td>멘토 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td><code>/mentor/v1/*</code> 5개 엔드포인트 라이브 <span class="num">200</span></td>
+          </tr>
+          <tr>
+            <td>운영 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>대시보드·교육과정·마일리지·평판·멘토링·설정·PLAY 관리</td>
+          </tr>
+          <tr>
+            <td>외부 검증 URL</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td><code>GET /verify/{token}</code> 라이브 <span class="num">200</span></td>
+          </tr>
+          <tr>
+            <td>증명서 조회·발급</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td><code>GET /student/certificate</code> <span class="num">404</span> — 화면은 임시 데이터로 렌더</td>
+          </tr>
+          <tr>
+            <td>증명서 인증 검토</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td><code>/admin/certificates/reviews</code> <span class="num">404</span> — 메뉴 차단 중</td>
+          </tr>
+          <tr>
+            <td>데이터·연동 3화면</td>
+            <td><span class="pill pill--hold">제거</span></td>
+            <td>08-06 기능 폐지로 화면째 삭제 — 대시보드 지표는 HRD 라이브 집계 단일 소스로 전환</td>
+          </tr>
+          <tr>
+            <td>PLAY 미니게임</td>
+            <td><span class="pill pill--hold">2차 이월</span></td>
+            <td>7월 6일 결정 — 화면 완성, 백엔드 미착수</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>산출물 규모 <span class="prov prov--live">실측</span></h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">저장소</th>
+            <th scope="col">역할</th>
+            <th scope="col" class="t-num">커밋</th>
+            <th scope="col" class="t-num">최신 PR</th>
+            <th scope="col">품질 확인</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LMS-FE</td>
+            <td>웹 화면 전체 (React)</td>
+            <td class="t-num">3,343</td>
+            <td class="t-num">#777</td>
+            <td class="t-tight">타입검사 통과 · 테스트 817개 통과</td>
+          </tr>
+          <tr>
+            <td>LMS-BE</td>
+            <td>API 서버 4종 (Spring Boot)</td>
+            <td class="t-num">1,455</td>
+            <td class="t-num">#546</td>
+            <td class="t-tight">전 서비스 컴파일 통과 · 개발↔운영 브랜치 동기</td>
+          </tr>
+          <tr>
+            <td>LMS-AI</td>
+            <td>증명서 점수·분석 엔진 (Python)</td>
+            <td class="t-num">96</td>
+            <td class="t-num">#47</td>
+            <td class="t-tight">테스트 파일 16개</td>
+          </tr>
+          <tr>
+            <td>LMS-TERRAFORM</td>
+            <td>AWS 인프라 코드</td>
+            <td class="t-num">17</td>
+            <td class="t-num">#3</td>
+            <td class="t-tight">모듈 9종</td>
+          </tr>
+          <tr>
+            <td>LMS-DOCS</td>
+            <td>설계·결정 문서</td>
+            <td class="t-num">650</td>
+            <td class="t-num">#207</td>
+            <td class="t-tight">보고서 100여 건 누적</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      백엔드 내역: 인증·사용자 <span class="num">99</span>개, 학습 <span class="num">333</span>개,
+      운영 <span class="num">6</span>개 = <strong class="num">438</strong>개 엔드포인트.
+      데이터 테이블 <span class="num">100</span>종, 스키마 변경 이력 <span class="num">161</span>건.
+    </p>
+  </section>
