@@ -114,94 +114,100 @@
       아래 케이스별 가설은 그 가정에서 나온 <strong>추정이며 실측이 아닙니다.</strong>
     </p>
 
-    <div class="tw">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">부하 케이스 (가설)</th>
-            <th scope="col">몰리는 지점</th>
-            <th scope="col">현재 구성이 받는 방식</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>강의 시작 전후 10여 분에 265명이 출결 체크</td>
-            <td class="t-tight">learning-service</td>
-            <td>출결은 짧은 읽기·쓰기 트랜잭션이라 512 CPU 태스크 1개로 이 피크(수십 RPS 추정)를 받습니다.
-                가장 넓은 경로(규칙 120)를 맡는 서비스라 메모리도 2048MiB로 가장 크게 잡았습니다.</td>
-          </tr>
-          <tr>
-            <td>일과 시작에 로그인·토큰 갱신이 한꺼번에 몰림</td>
-            <td class="t-tight">auth-user-service · Redis</td>
-            <td>refresh token을 RDS가 아닌 Redis에 둬 토큰 갱신이 DB를 거치지 않습니다.
-                290계정 전원이 세션을 유지해도 저장량은 수백 KB 수준(추정)이라 cache.t4g.micro 1노드면 됩니다.</td>
-          </tr>
-          <tr>
-            <td>과제 마감 직전 파일 제출이 몰림</td>
-            <td class="t-tight">learning-service · S3</td>
-            <td>파일 본문은 S3로 가고 서비스는 메타데이터만 다룹니다.
-                대용량 제출이 태스크 메모리를 밀어내지 않습니다.</td>
-          </tr>
-          <tr>
-            <td>매니저 25명이 운영 대시보드를 동시 사용</td>
-            <td class="t-tight">operations-service</td>
-            <td>운영 경로(규칙 90)를 learning의 광역 <code>/admin/*</code>보다 먼저 매칭시켜
-                수강생 트래픽과 분리했습니다. 동시 사용자 상한이 25명이라 512 CPU/1024MiB로 충분합니다.</td>
-          </tr>
-          <tr>
-            <td>증명서 공개 링크로 외부 검증자가 유입</td>
-            <td class="t-tight">learning-service <code>/verify/*</code></td>
-            <td>비로그인 조회 1건 = 읽기 1회입니다. 캐시 없이도 가볍고,
-                유입이 커지면 CloudFront 캐시를 켜는 선택지가 남아 있습니다.</td>
-          </tr>
-          <tr>
-            <td>배포·장애로 태스크가 재시작</td>
-            <td class="t-tight">전 서비스</td>
-            <td>태스크가 1개뿐이라 콜드스타트(약 60초) 동안 해당 서비스가 비지만, 이 규모에선 감수합니다.
-                헬스체크 유예 120초로 재시작이 크래시루프가 되는 것만 막았습니다.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <details class="fold">
+      <summary>부하 케이스 6가지와 현재 구성이 받는 방식</summary>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">부하 케이스 (가설)</th>
+              <th scope="col">몰리는 지점</th>
+              <th scope="col">현재 구성이 받는 방식</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>강의 시작 전후 10여 분에 265명이 출결 체크</td>
+              <td class="t-tight">learning-service</td>
+              <td>출결은 짧은 읽기·쓰기 트랜잭션이라 512 CPU 태스크 1개로 이 피크(수십 RPS 추정)를 받습니다.
+                  가장 넓은 경로(규칙 120)를 맡는 서비스라 메모리도 2048MiB로 가장 크게 잡았습니다.</td>
+            </tr>
+            <tr>
+              <td>일과 시작에 로그인·토큰 갱신이 한꺼번에 몰림</td>
+              <td class="t-tight">auth-user-service · Redis</td>
+              <td>refresh token을 RDS가 아닌 Redis에 둬 토큰 갱신이 DB를 거치지 않습니다.
+                  290계정 전원이 세션을 유지해도 저장량은 수백 KB 수준(추정)이라 cache.t4g.micro 1노드면 됩니다.</td>
+            </tr>
+            <tr>
+              <td>과제 마감 직전 파일 제출이 몰림</td>
+              <td class="t-tight">learning-service · S3</td>
+              <td>파일 본문은 S3로 가고 서비스는 메타데이터만 다룹니다.
+                  대용량 제출이 태스크 메모리를 밀어내지 않습니다.</td>
+            </tr>
+            <tr>
+              <td>매니저 25명이 운영 대시보드를 동시 사용</td>
+              <td class="t-tight">operations-service</td>
+              <td>운영 경로(규칙 90)를 learning의 광역 <code>/admin/*</code>보다 먼저 매칭시켜
+                  수강생 트래픽과 분리했습니다. 동시 사용자 상한이 25명이라 512 CPU/1024MiB로 충분합니다.</td>
+            </tr>
+            <tr>
+              <td>증명서 공개 링크로 외부 검증자가 유입</td>
+              <td class="t-tight">learning-service <code>/verify/*</code></td>
+              <td>비로그인 조회 1건 = 읽기 1회입니다. 캐시 없이도 가볍고,
+                  유입이 커지면 CloudFront 캐시를 켜는 선택지가 남아 있습니다.</td>
+            </tr>
+            <tr>
+              <td>배포·장애로 태스크가 재시작</td>
+              <td class="t-tight">전 서비스</td>
+              <td>태스크가 1개뿐이라 콜드스타트(약 60초) 동안 해당 서비스가 비지만, 이 규모에선 감수합니다.
+                  헬스체크 유예 120초로 재시작이 크래시루프가 되는 것만 막았습니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
 
     <p>
       같은 가정에서 <strong>일부러 뺀 것</strong>도 있습니다. 이 규모가 정당화하지 못하는 비용입니다.
     </p>
 
-    <div class="tw">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">선택</th>
-            <th scope="col">아낀 것</th>
-            <th scope="col">감수한 것</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>NAT Gateway 없이 ECS를 퍼블릭 서브넷에 배치</td>
-            <td>NAT 고정비(시간당 + 처리량 과금)</td>
-            <td>태스크가 공인 IP를 가짐 — 보안그룹으로 ALB에서 오는 인바운드만 허용해 보완</td>
-          </tr>
-          <tr>
-            <td>전 구간 단일 인스턴스 — RDS 단일 AZ · Redis 1노드 · 서비스당 태스크 1개 · 오토스케일 없음</td>
-            <td>대기(standby) 인스턴스 비용 — multi-AZ는 인스턴스 비용이 2배</td>
-            <td>AZ 장애·재시작 시 수 분 중단. 290명 규모의 교육 서비스라 감수</td>
-          </tr>
-          <tr>
-            <td>도메인·인증서 없이 CloudFront 기본 도메인</td>
-            <td>도메인·인증서 관리</td>
-            <td>주소가 <code>*.cloudfront.net</code> — HTTPS 자체는 확보</td>
-          </tr>
-          <tr>
-            <td>DB는 서비스별 4대로 나누되 전부 db.t4g.micro</td>
-            <td>—</td>
-            <td>데이터 경계만은 규모와 무관하게 처음부터 나눴습니다. 운영 중에 쪼개는 비용이 훨씬 크고,
-                micro 4대 비용은 큰 인스턴스 1대와 비슷합니다(추정)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <details class="fold">
+      <summary>일부러 뺀 것과 감수한 트레이드오프</summary>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">선택</th>
+              <th scope="col">아낀 것</th>
+              <th scope="col">감수한 것</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NAT Gateway 없이 ECS를 퍼블릭 서브넷에 배치</td>
+              <td>NAT 고정비(시간당 + 처리량 과금)</td>
+              <td>태스크가 공인 IP를 가짐 — 보안그룹으로 ALB에서 오는 인바운드만 허용해 보완</td>
+            </tr>
+            <tr>
+              <td>전 구간 단일 인스턴스 — RDS 단일 AZ · Redis 1노드 · 서비스당 태스크 1개 · 오토스케일 없음</td>
+              <td>대기(standby) 인스턴스 비용 — multi-AZ는 인스턴스 비용이 2배</td>
+              <td>AZ 장애·재시작 시 수 분 중단. 290명 규모의 교육 서비스라 감수</td>
+            </tr>
+            <tr>
+              <td>도메인·인증서 없이 CloudFront 기본 도메인</td>
+              <td>도메인·인증서 관리</td>
+              <td>주소가 <code>*.cloudfront.net</code> — HTTPS 자체는 확보</td>
+            </tr>
+            <tr>
+              <td>DB는 서비스별 4대로 나누되 전부 db.t4g.micro</td>
+              <td>—</td>
+              <td>데이터 경계만은 규모와 무관하게 처음부터 나눴습니다. 운영 중에 쪼개는 비용이 훨씬 크고,
+                  micro 4대 비용은 큰 인스턴스 1대와 비슷합니다(추정)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
 
     <div class="call">
       <p class="call__title">이 구성의 한계선과 확장 기준 (추정)</p>
@@ -218,80 +224,6 @@
         그 다음 단계는 순서대로 RDS multi-AZ·읽기 분리 → NAT + 프라이빗 서브넷 이전입니다.
       </p>
     </div>
-
-    <h3>증명서 발급 흐름 <span class="prov">결정</span> <span class="prov">08-06 개정</span></h3>
-    <p>
-      제품의 핵심 가치이자 <strong>현재 유일하게 끊긴 구간</strong>입니다.
-      08-06에 흐름을 개정했습니다 — 수강생 요청 트리거를 없애고,
-      <strong>수료가 확정된 다음 날 00:00 배치가 전원 생성</strong>하는 방식으로 바꿉니다.
-      산출물이 전부 S3 불변 파일이므로 <strong>승인 시점의 객체 버전을 그대로 동결</strong>할 수 있고,
-      이후 원본 데이터가 바뀌어도 발급본은 변하지 않습니다. 외부인은 공개 링크로 진위를 확인합니다.
-    </p>
-
-    <div class="tw">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">단계</th>
-            <th scope="col">담당</th>
-            <th scope="col">현재 상태</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1. 원천 스냅샷 — 수료 익일 00:00 배치가 학습·프로젝트·평가 데이터를 S3에 저장</td>
-            <td>시스템</td>
-            <td><span class="pill pill--none">미구현</span></td>
-          </tr>
-          <tr>
-            <td>2. 전처리 — 증명서에 표시할 항목만 가공해 <code>cohort=N/student_uuid=…</code> 아래
-                영역별(종합요약 · 기술검증 · 프로젝트 …)로 저장</td>
-            <td>시스템</td>
-            <td><span class="pill pill--none">미구현</span></td>
-          </tr>
-          <tr>
-            <td>3. 분석 — 6축 점수는 확정 함수, 서술만 OpenAI.
-                <code>scores</code>·<code>ai</code>를 모델·프롬프트 버전 메타와 함께 같은 파티션에 저장</td>
-            <td>시스템 · LMS-AI</td>
-            <td><span class="pill pill--none">미구현</span> LMS-AI는 ECS 미배포</td>
-          </tr>
-          <tr>
-            <td>4. 준비 완료 — <strong>학생 단위 상태</strong>로 검토 큐 등록
-                (한 명의 실패가 코호트 전체를 막지 않게, 실패는 학생 단위 재시도)</td>
-            <td>시스템</td>
-            <td><span class="pill pill--none">미구현</span></td>
-          </tr>
-          <tr>
-            <td>5. 검토 — 매니저가 미리보고 승인 또는 보완 요청(학생 단위 재처리)</td>
-            <td>운영자</td>
-            <td><span class="pill pill--none">백엔드 미구현</span> 화면은 완성, 메뉴 차단</td>
-          </tr>
-          <tr>
-            <td>6. 승인 = 동결 — 그 시점의 S3 객체 버전 ID를 증명서에 고정</td>
-            <td>운영자</td>
-            <td><span class="pill pill--none">미구현</span></td>
-          </tr>
-          <tr>
-            <td>7. 열람·공개 — 수강생이 자신의 증명서를 확인하고 공개 여부 선택</td>
-            <td>수강생</td>
-            <td><span class="pill pill--done">공개 설정 동작</span> 열람 화면 완성 (임시 데이터)</td>
-          </tr>
-          <tr>
-            <td>8. 외부 검증 — <code>/verify/*</code> 공개 링크로 동결 스냅샷 조회</td>
-            <td>외부</td>
-            <td><span class="pill pill--done">동작</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p>
-      이전 결정(수강생 요청 시 생성)에서 바뀐 것은 트리거 하나이며, 대가는 요청하지 않을 학생
-      몫까지 나가는 OpenAI 서술 비용입니다. 선행 조건은 둘입니다 —
-      배치 실행 주체(서비스당 태스크가 1개라 Spring <code>@Scheduled</code>로 충분, 오토스케일 V2
-      도입 시 분산 락 필요)와 <strong>LMS-AI의 ECS 배포</strong>(현재 로컬 실행만).
-      S3 버저닝이 켜져 있어(실측) 보완 요청으로 재처리해도 승인된 발급본은 버전 ID로 불변입니다.
-    </p>
 
     <h3>설계 대비 실제 구성 <span class="prov">결정</span></h3>
     <p>
