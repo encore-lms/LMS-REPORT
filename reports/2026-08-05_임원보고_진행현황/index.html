@@ -151,7 +151,7 @@
     <p>
       프론트엔드 · 백엔드 · 인프라 저장소를 대조해 <strong>대 · 중 · 소분류</strong>로 정리했습니다.
       전체 <span class="num">112</span>개 항목 중 <span class="num">93</span>개가 완료입니다.
-      남은 <span class="num">19</span>개는 <strong>Data Pipeline 12건</strong>(원천 수집 · 전처리 · 분석),
+      남은 <span class="num">19</span>개는 <strong>Data Pipeline 11건</strong>(원천 수집 · 전처리 · 분석),
       <strong>역량 증명서 3건</strong>(본문 조회 · 스냅샷 · 감사 로그),
       <strong>인프라 2건</strong>(integration 서비스 · 오토스케일),
       그리고 2차 이월된 PLAY 3건이며, 각 항목의 후속 조치는 아래 표에 적었습니다.
@@ -414,8 +414,9 @@
     <h2>남은 구현과 8월 일정</h2>
 
     <p>
-      두 구간으로 나눕니다. <strong>8월 21일까지</strong> PLAY 미니게임을 뺀 남은 구현을 모두 끝내고,<br>
-      <strong>8월 22일부터 말일까지</strong>는 역량 증명서 검증과 전체 QA에 씁니다.
+      §2 구현 현황표에서 남은 <span class="num">19</span>개 항목을 일정에 옮긴 것입니다.
+      <strong>8월 21일까지</strong> Data Pipeline과 증명서 잔여 구현을 끝내고,<br>
+      <strong>8월 22일부터 말일까지</strong>는 실데이터 검증과 전체 QA에 씁니다.
     </p>
 
     <div class="tw">
@@ -431,11 +432,22 @@
           <tr>
             <td class="t-tight">~ 8/21<br><span class="sub">12영업일</span></td>
             <td>
-              <strong>역량 증명서 잔여 구현</strong> — 인증 요청·검토·승인·공개 흐름은 08-07 자로 연결됐습니다.
-              남은 것은 <strong>증명서 본문 데이터 조회</strong>, 승인 시 내용 동결(스냅샷)과 감사 로그,
-              <strong>분석 엔진(LMS-AI) AWS 배포</strong>와 역량 점수·AI 분석 연결입니다
+              <strong>Data Pipeline 구축</strong> <span class="num">11</span>건 —
+              수료 익일 00:00 배치로 원천 데이터를 S3에 적재하고,
+              증명서에 쓸 항목만 전처리해 <code>cohort=NN/student_uuid=…</code> 규칙으로 저장한 뒤,
+              역량 점수(확정 함수)와 AI 서술을 만들어 같은 파티션에 넣습니다.
+              <strong>LMS-AI의 AWS 배포가 선행 조건</strong>이며, BE에 S3 연동이 없어 그 작업부터 시작합니다
             </td>
-            <td class="t-tight">전원</td>
+            <td class="t-tight">이정훈</td>
+          </tr>
+          <tr>
+            <td class="t-tight">~ 8/21</td>
+            <td>
+              <strong>역량 증명서 잔여 구현</strong> <span class="num">3</span>건 —
+              인증 요청·검토·승인·공개 흐름은 08-07 자로 연결됐습니다. 남은 것은
+              <strong>증명서 본문 데이터 조회</strong>, 승인 시 내용 동결(스냅샷), 발급 감사 로그입니다
+            </td>
+            <td class="t-tight">황설현</td>
           </tr>
           <tr>
             <td class="t-tight">~ 8/21</td>
@@ -456,14 +468,24 @@
           <tr>
             <td class="t-tight">선택</td>
             <td>
-              <strong>PLAY 미니게임 7화면</strong> — 7월 6일 2차 이월로 결정된 범위.
-              위 두 구간이 일정대로 끝나 여유가 생길 때만 착수
+              <strong>PLAY 미니게임</strong> <span class="num">3</span>종(타자·코딩·퀴즈, 7화면) —
+              7월 6일 2차 이월로 결정된 범위. 위 구간이 일정대로 끝나 여유가 생길 때만 착수
+            </td>
+            <td class="t-tight">—</td>
+          </tr>
+          <tr>
+            <td class="t-tight">범위 밖</td>
+            <td>
+              <strong>인프라 확장</strong> <span class="num">2</span>건 —
+              integration 서비스는 외부 연동에 착수할 때 기동하고,
+              오토스케일은 CPU·메모리 75% 초과가 지속될 때 적용(V2)합니다
             </td>
             <td class="t-tight">—</td>
           </tr>
         </tbody>
       </table>
     </div>
+
   </section>
 
 </div>
