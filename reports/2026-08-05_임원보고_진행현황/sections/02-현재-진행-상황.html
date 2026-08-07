@@ -75,7 +75,7 @@
           <tr><td>이력서</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>마일리지 (상점·장바구니·내역)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>멘토링 신청 · 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>PLAY 미니게임</td><td><span class="pill pill--wip">부분</span></td><td class="t-tight">7월 6일 2차 이월 결정 — 화면은 완성, 백엔드 미착수. 8월 두 구간이 일정대로 끝나 여유가 생길 때만 착수</td></tr>
+          <tr><td>PLAY 미니게임</td><td><span class="pill pill--wip">부분</span></td><td class="act">7월 6일 2차 이월 결정 — 화면은 완성, 백엔드 미착수. 8월 두 구간이 일정대로 끝나 여유가 생길 때만 착수</td></tr>
           <tr><td rowspan="7">강사</td><td>대시보드 · 담당 기수</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>퀴즈 출제 · 템플릿 · 채점</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>과제 출제 · 제출물 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
@@ -100,21 +100,21 @@
           <tr><td>검토 · 보완 요청 · 인증 완료</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>공개 설정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>외부 검증 링크</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>증명서 본문 조회</td><td><span class="pill pill--none">미구현</span></td><td class="t-tight"><code>GET /student/certificate</code> 신설 — 현재 화면은 임시 데이터로 렌더 중</td></tr>
-          <tr><td>역량 점수 · AI 분석</td><td><span class="pill pill--none">미구현</span></td><td class="t-tight">점수 산정 기준 확정 후 API 신설. LMS-AI 배포가 선행되어야 하며, 관련 자동 테스트 3건이 실패 중</td></tr>
-          <tr><td>스냅샷 · 감사 로그</td><td><span class="pill pill--none">미구현</span></td><td class="t-tight">승인 시점 내용 동결(스냅샷)과 이력 API 신설 — 화면(<code>/admin/certificates/:id/snapshot</code>·<code>/audit</code>)은 완성</td></tr>
+          <tr><td>증명서 본문 조회</td><td><span class="pill pill--none">미구현</span></td><td class="act"><code>GET /student/certificate</code> 신설 — 현재 화면은 임시 데이터로 렌더 중</td></tr>
+          <tr><td>역량 점수 · AI 분석</td><td><span class="pill pill--none">미구현</span></td><td class="act">점수 산정 기준 확정 후 API 신설. LMS-AI 배포가 선행되어야 하며, 관련 자동 테스트 3건이 실패 중</td></tr>
+          <tr><td>스냅샷 · 감사 로그</td><td><span class="pill pill--none">미구현</span></td><td class="act">승인 시점 내용 동결(스냅샷)과 이력 API 신설 — 화면(<code>/admin/certificates/:id/snapshot</code>·<code>/audit</code>)은 완성</td></tr>
           <tr><td rowspan="12">인프라 (Terraform)</td><td>VPC · 서브넷 (2 AZ)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>ALB 경로 라우팅</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>CloudFront (HTTPS)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>ECS Fargate — auth · learning · operations</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>ECS Fargate — integration</td><td><span class="pill pill--none">미구현</span></td><td class="t-tight">외부 연동 착수 시 기동. 현재 소스는 골격만 있고 실행 태스크 0 · ALB 규칙 없음</td></tr>
+          <tr><td>ECS Fargate — integration</td><td><span class="pill pill--none">미구현</span></td><td class="act">외부 연동 착수 시 기동. 현재 소스는 골격만 있고 실행 태스크 0 · ALB 규칙 없음</td></tr>
           <tr><td>RDS PostgreSQL ×4</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>ElastiCache Redis</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>S3 · Secrets Manager · ECR</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>CloudWatch · CloudTrail</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           <tr><td>CI/CD (GitHub OIDC → ECS)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>LMS-AI 서버 배포</td><td><span class="pill pill--none">미구현</span></td><td class="t-tight">Terraform 에 ECS 서비스 추가 — 증명서 점수·AI 분석의 선행 조건</td></tr>
-          <tr><td>오토스케일</td><td><span class="pill pill--none">미구현</span></td><td class="t-tight">V2 예정 — Container Insights 에서 CPU·메모리 75% 초과가 지속되면 적용</td></tr>
+          <tr><td>LMS-AI 서버 배포</td><td><span class="pill pill--none">미구현</span></td><td class="act">Terraform 에 ECS 서비스 추가 — 증명서 점수·AI 분석의 선행 조건</td></tr>
+          <tr><td>오토스케일</td><td><span class="pill pill--none">미구현</span></td><td class="act">V2 예정 — Container Insights 에서 CPU·메모리 75% 초과가 지속되면 적용</td></tr>
           </tbody>
         </table>
       </div>
@@ -204,35 +204,35 @@
             <td>웹 화면 전체 (React)</td>
             <td class="t-num">3,601</td>
             <td class="t-num">#832</td>
-            <td class="t-tight">타입검사 통과 · 테스트 814/817 통과 (증명서 AI 점수 3건 실패)</td>
+            <td class="act">타입검사 통과 · 테스트 814/817 통과 (증명서 AI 점수 3건 실패)</td>
           </tr>
           <tr>
             <td>LMS-BE</td>
             <td>API 서버 4종 (Spring Boot)</td>
             <td class="t-num">1,565</td>
             <td class="t-num">#582</td>
-            <td class="t-tight">전 서비스 컴파일 통과 · 개발↔운영 브랜치 동기</td>
+            <td class="act">전 서비스 컴파일 통과 · 개발↔운영 브랜치 동기</td>
           </tr>
           <tr>
             <td>LMS-AI</td>
             <td>증명서 점수·분석 엔진 (Python)</td>
             <td class="t-num">96</td>
             <td class="t-num">#47</td>
-            <td class="t-tight">테스트 파일 16개</td>
+            <td class="act">테스트 파일 16개</td>
           </tr>
           <tr>
             <td>LMS-TERRAFORM</td>
             <td>AWS 인프라 코드</td>
             <td class="t-num">17</td>
             <td class="t-num">#3</td>
-            <td class="t-tight">모듈 9종</td>
+            <td class="act">모듈 9종</td>
           </tr>
           <tr>
             <td>LMS-DOCS</td>
             <td>설계·결정 문서</td>
             <td class="t-num">650</td>
             <td class="t-num">#207</td>
-            <td class="t-tight">보고서 100여 건 누적</td>
+            <td class="act">보고서 100여 건 누적</td>
           </tr>
         </tbody>
       </table>

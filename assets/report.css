@@ -424,3 +424,11 @@ footer p { color: var(--ink-3); font-size: 0.8rem; max-width: none; }
 .impl tbody td[rowspan],
 .impl tbody td[rowspan] + td,
 .impl tbody tr > td:first-child:not([rowspan]) { white-space: nowrap; }
+/* 후속 조치는 문장이라 접혀야 한다. t-tight(nowrap)를 쓰면 표 밖으로 뻗어 잘린다. */
+.impl tbody td.act {
+  white-space: normal;
+  word-break: keep-all;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
