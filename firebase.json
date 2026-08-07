@@ -8,7 +8,7 @@
       ".github/**",
       ".gitignore",
       "**/.DS_Store",
-      "sections/**",
+      "**/sections/**",
       "build.py",
       "README.md",
       "**/node_modules/**"
@@ -19,13 +19,19 @@
       {
         "source": "**/*.@(html)",
         "headers": [
-          { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, must-revalidate"
+          }
         ]
       },
       {
         "source": "/assets/**",
         "headers": [
-          { "key": "Cache-Control", "value": "public, max-age=300" }
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=300"
+          }
         ]
       }
     ]
