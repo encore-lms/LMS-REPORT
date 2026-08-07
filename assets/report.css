@@ -257,6 +257,45 @@ td .cell-list li { margin: 0; }
   border-radius: 3px;
 }
 
+/* 그림 + 질문 나란히 — 그림이 주인공이라 넓게, 질문은 오른쪽에 붙는다.
+   좁은 화면에서는 세로로 쌓인다. */
+.fig-duo {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(16rem, 2fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1.75rem;
+}
+.fig-duo .fig { margin: 0; }
+.q-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  display: grid;
+  gap: 0.9rem;
+}
+.q-list li {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--brand);
+  border-radius: 3px;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.65;
+}
+.q-mark {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--brand-ink);
+  margin-right: 0.5em;
+}
+@media (max-width: 56rem) {
+  .fig-duo { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* ── progress bars ────────────────────────────── */
 .bars { display: grid; gap: 0.7rem; margin: 1.5rem 0; max-width: 44rem; }
 .bar { display: grid; grid-template-columns: 6.5rem 1fr 7rem; align-items: center; gap: 0.85rem; }
