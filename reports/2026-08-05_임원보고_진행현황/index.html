@@ -334,6 +334,87 @@
       </table>
     </div>
 
+    <h3>구현 현황 <span class="prov prov--live">실측</span></h3>
+    <p>
+      프론트엔드 · 백엔드 · 인프라 저장소를 대조해 기능 단위로 정리했습니다.
+      전체 <span class="num">57</span>개 항목 중 <span class="num">50</span>개가 완료이고,
+      남은 것은 <strong>역량 증명서 3건</strong>과 <strong>인프라 3건</strong>, 부분 구현인 PLAY 1건입니다.
+    </p>
+
+    <details class="fold">
+      <summary>기능별 구현 현황 전체 (57개 항목)</summary>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">기능(대분류)</th>
+              <th scope="col">기능(중분류)</th>
+              <th scope="col">완료 여부</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr><td rowspan="5">계정 · 권한</td><td>로그인 · 인증(JWT)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>사용자 · 역할 관리</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>수강생 온보딩</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>프로필 (4개 역할)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>GitHub 계정 연결</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td rowspan="13">수강생 학습</td><td>대시보드</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>과정 · 공지 · 자료실</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>출결 (조회 · 제출)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>퀴즈 응시 · 결과</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>과제 제출</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>기록실 (블로그·스터디·자격증)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>프로젝트 · 변경 요청</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>트러블슈팅</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>QnA</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>이력서</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>마일리지 (상점·장바구니·내역)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>멘토링 신청 · 조회</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>PLAY 미니게임</td><td><span class="pill pill--wip">부분</span></td></tr>
+          <tr><td rowspan="7">강사</td><td>대시보드 · 담당 기수</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>퀴즈 출제 · 템플릿 · 채점</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>과제 출제 · 제출물 관리</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>프로젝트 · 트러블슈팅 검토</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>변경 요청 처리</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>추천서 작성 · 이력</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>공지 작성</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td rowspan="3">멘토</td><td>콘솔 · 팀 · 멘티 조회</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>멘토링 일지 작성 · 제출</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>멘티 평가 · 추천</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td rowspan="9">운영(매니저)</td><td>대시보드 (HRD 단일 소스)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>교육과정 · 기수 · 커리큘럼</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>학생 관리 · 활동 조회</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>마일리지 (지급·상품·한도·구매요청)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>멘토 배정 · 일지 · 템플릿</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>평판 관리</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>PLAY 타자 텍스트 관리</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>설정 · HRD API 키</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>퀴즈 · QnA · 기록 관리</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td rowspan="8">역량 증명서</td><td>상태 조회 · 정식 인증 요청</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>검토 큐 · 데이터 준비 완료</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>검토 · 보완 요청 · 인증 완료</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>공개 설정</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>외부 검증 링크</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>증명서 본문 조회</td><td><span class="pill pill--none">미구현</span></td></tr>
+          <tr><td>역량 점수 · AI 분석</td><td><span class="pill pill--none">미구현</span></td></tr>
+          <tr><td>스냅샷 · 감사 로그</td><td><span class="pill pill--none">미구현</span></td></tr>
+          <tr><td rowspan="12">인프라 (Terraform)</td><td>VPC · 서브넷 (2 AZ)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>ALB 경로 라우팅</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>CloudFront (HTTPS)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>ECS Fargate — auth · learning · operations</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>ECS Fargate — integration</td><td><span class="pill pill--none">미구현</span></td></tr>
+          <tr><td>RDS PostgreSQL ×4</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>ElastiCache Redis</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>S3 · Secrets Manager · ECR</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>CloudWatch · CloudTrail</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>CI/CD (GitHub OIDC → ECS)</td><td><span class="pill pill--done">완료</span></td></tr>
+          <tr><td>LMS-AI 서버 배포</td><td><span class="pill pill--none">미구현</span></td></tr>
+          <tr><td>오토스케일</td><td><span class="pill pill--none">미구현</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
   </section>
 
   <!-- ══ 3 ══ -->
