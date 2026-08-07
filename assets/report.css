@@ -403,3 +403,15 @@ footer p { color: var(--ink-3); font-size: 0.8rem; max-width: none; }
   .fold > summary { display: none; }
   .fold { border: 0; }
 }
+
+/* ── 구현 현황표 ───────────────────────────────
+   대분류를 rowspan 으로 묶으면 그룹 첫 행만 중분류가 두 번째 셀이 된다.
+   열 위치로 색·굵기를 정하는 tbody td:first-child 규칙과 어긋나 같은 열이
+   행마다 다르게 보이므로, 이 표에서는 셀 역할로 다시 지정한다. */
+.impl td { color: var(--ink); font-weight: 400; }
+.impl td[rowspan] {
+  font-weight: 600;
+  vertical-align: top;
+  white-space: nowrap;
+  background: var(--surface-2);
+}
