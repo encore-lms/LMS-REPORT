@@ -2,62 +2,23 @@
     <div class="sec-num"><!--NUM--></div>
     <h2>GOV AI Project QnA</h2>
 
-    <figure class="fig">
-      <img src="../../assets/gov-ai-architecture.png" width="1024" height="1164"
-           alt="전체 시스템 아키텍처 — 훈련생 학습 환경(PlayLang·ATmux·Q&amp;A 봇)에서 수집 에이전트를 거쳐 학습 데이터 레이크에 쌓이고, LLM 분석 엔진 4종을 지나 일간/주간 AI 리포트·강사/매니저 대시보드로 전달되며, 승인 후 피드백이 훈련생에게 되돌아가는 흐름">
-    </figure>
+    <div class="fig-duo">
+      <figure class="fig">
+        <img src="../../assets/gov-ai-architecture.png" width="1024" height="1164"
+             alt="전체 시스템 아키텍처 — 훈련생 학습 환경(PlayLang·ATmux·Q&amp;A 봇)에서 수집 에이전트를 거쳐 학습 데이터 레이크에 쌓이고, LLM 분석 엔진 4종을 지나 일간/주간 AI 리포트·강사/매니저 대시보드로 전달되며, 승인 후 피드백이 훈련생에게 되돌아가는 흐름">
+      </figure>
 
-    <!--
-      ══ 문항 추가 방법 ══════════════════════════════════════════════
-      아래 <ol class="qna"> 안에 <li> 를 하나 넣으면 문항이 하나 늘어난다.
-      번호(Q01, Q02…)는 CSS 카운터라 자동으로 매겨진다 — 순서를 바꿔도 알아서 맞는다.
-      빈 상태 문구(.qna-empty)는 첫 문항을 넣을 때 지운다.
-
-      <li>
-        <div class="q-head">
-          <span class="q-no"></span>
-          <span class="q-tag">§3.2 수집 파이프라인</span>
-          <span class="pill pill--hold">답변 대기</span>
-        </div>
-        <p class="q-body">질문 본문 — 한 문장으로.</p>
-        <p class="q-why">왜 묻는지 · 무엇이 걸려 있는지. (없으면 이 줄 삭제)</p>
-        <div class="q-a q-a--todo">답변이 정해지면 이 자리에 적습니다.</div>
-      </li>
-
-      ── 분류 태그(.q-tag)는 제안서 목차를 그대로 쓴다 ──
-      §1 사업 개요 · §2 아키텍처 · §3.1 AI 에이전트군 · §3.2 수집 파이프라인 ·
-      §3.3 LLM 분석 · §3.4 리포팅·피드백 · §4 3단계 계획 · §6 기술 스택 ·
-      §7 기대 효과 · §8 리스크 · 그 밖(사업 외 맥락)은 「운영」
-
-      ── 상태(.pill) 3종 ──
-      pill--hold 답변 대기   pill--wip 확인 중   pill--done 답변 완료
-      답변이 확정되면 pill 을 pill--done 으로 바꾸고
-      .q-a 에서 q-a--todo 클래스를 뺀 뒤 내용을 채운다.
-      ═══════════════════════════════════════════════════════════════
-    -->
-
-    <ol class="qna">
-      <li>
-        <div class="q-head">
-          <span class="q-no"></span>
-          <span class="q-tag">§2 아키텍처</span>
-          <span class="pill pill--hold">답변 대기</span>
-        </div>
-        <p class="q-body">위 시스템 아키텍처 중 현재 구현이 완료된 범위는 어디까지인가?</p>
-        <div class="q-a q-a--todo">답변이 정해지면 이 자리에 적습니다.</div>
-      </li>
-      <li>
-        <div class="q-head">
-          <span class="q-no"></span>
-          <span class="q-tag">운영</span>
-          <span class="pill pill--hold">답변 대기</span>
-        </div>
-        <p class="q-body">
+      <ol class="q-list">
+        <li>
+          <span class="q-mark">Q01</span>
+          위 시스템 아키텍처 중 현재 구현이 완료된 범위는 어디까지인가요?
+        </li>
+        <li>
+          <span class="q-mark">Q02</span>
           시스템 구현 완료 시 현재 LMS와 동일한 인프라에서 구동되는 것인지,
-          아니라면 GOV-AI를 운영할 별도 주체가 있는 것인지?
-        </p>
-        <div class="q-a q-a--todo">답변이 정해지면 이 자리에 적습니다.</div>
-      </li>
-    </ol>
+          아니라면 GOV-AI를 운영할 별도 주체가 있나요?
+        </li>
+      </ol>
+    </div>
 
   </section>
