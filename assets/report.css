@@ -233,6 +233,16 @@ td .num, th .num { font-variant-numeric: tabular-nums; }
   font-variant-numeric: tabular-nums;
 }
 .t-tight { white-space: nowrap; }
+/* 표 셀 안 목록 — 역할별 기능처럼 항목을 줄 단위로 끊어 보여줄 때.
+   전역 ul 의 measure 제한·아래 여백이 셀 안에서는 방해가 되므로 되돌린다. */
+td .cell-list {
+  max-width: none;
+  margin: 0;
+  padding-left: 1.05rem;
+  display: grid;
+  gap: 0.3rem;
+}
+td .cell-list li { margin: 0; }
 
 /* ── progress bars ────────────────────────────── */
 .bars { display: grid; gap: 0.7rem; margin: 1.5rem 0; max-width: 44rem; }
