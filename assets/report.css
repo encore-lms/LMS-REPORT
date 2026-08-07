@@ -430,3 +430,77 @@ footer p { color: var(--ink-3); font-size: 0.8rem; max-width: none; }
   line-height: 1.55;
   color: var(--ink-2);
 }
+
+/* ── QnA 문항 ─────────────────────────────────
+   문항 하나 = <li> 하나. 번호는 CSS 카운터라 순서를 바꿔도 다시 매겨진다. */
+.qna {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  max-width: var(--measure);
+  counter-reset: qna;
+}
+.qna > li {
+  counter-increment: qna;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--line-soft);
+}
+.qna > li:last-child { border-bottom: 1px solid var(--line-soft); }
+
+.q-head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.55rem;
+}
+/* 번호는 내용이 아니라 위치 표시다 — 마크업에 숫자를 적지 않는다. */
+.q-no::before { content: "Q" counter(qna, decimal-leading-zero); }
+.q-no {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+.q-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  padding: 0.1em 0.5em;
+  border-radius: 2px;
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+
+.q-body {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+  word-break: keep-all;
+}
+.q-why {
+  margin: 0.4rem 0 0;
+  font-size: 0.87rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  word-break: keep-all;
+}
+/* 답변은 질문과 같은 흐름에 두되 왼쪽 선으로 구분한다 — 카드로 감싸면 문항이 무거워진다. */
+.q-a {
+  margin: 0.7rem 0 0;
+  padding: 0.15rem 0 0.15rem 0.85rem;
+  border-left: 2px solid var(--good);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink);
+  word-break: keep-all;
+}
+.q-a--todo { border-left-color: var(--line); color: var(--ink-3); font-style: italic; }
+
+.qna-empty {
+  color: var(--ink-3);
+  font-size: 0.9rem;
+  word-break: keep-all;
+}
+/* 빈 상태에는 번호를 붙이지 않는다. */
+.qna > li.qna-empty { counter-increment: none; }
