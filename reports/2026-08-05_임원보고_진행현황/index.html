@@ -481,6 +481,116 @@
 
   </section>
 
+  <!-- ══ 4 ══ -->
+  <section>
+    <div class="sec-num">04</div>
+    <h2>GOV AI Project QnA</h2>
+
+    <p>
+      2026-07-08 자 「정부지원 AI 활용 교육 사업 제안서」를 검토하며
+      확인이 필요한 사항을 모읍니다. 답변이 정해지는 대로 각 문항에 채워 넣고,
+      결정으로 이어진 항목은 <strong>답변 완료</strong>로 표시합니다.
+    </p>
+
+    <details class="fold">
+      <summary>제안서 요약 — 3개월간 무엇을 만드는가</summary>
+
+      <p>
+        훈련생의 학습을 AI 에이전트가 상시 지원하면서 그 과정에서 나오는 백데이터를 모으고,
+        LLM으로 분석해 강사·매니저에게 리포트를 주고, 그 리포트를 근거로 다시 훈련생에게
+        피드백이 나가는 <strong>폐쇄 루프</strong>를 만드는 사업입니다.
+      </p>
+
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col" class="t-tight">항목</th>
+              <th scope="col">제안서 내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="t-tight">기간</td>
+              <td>총 <span class="num">3</span>개월 — 1개월 단위 3단계 (로드맵 기준 08/02 착수)</td>
+            </tr>
+            <tr>
+              <td class="t-tight">대상</td>
+              <td>6개월 교육 과정 훈련생 A·B·C 그룹 및 교육 관계자 전원</td>
+            </tr>
+            <tr>
+              <td class="t-tight">산출물</td>
+              <td>
+                ① 학습 지원 AI 에이전트군(PlayLang·ATmux·Q&amp;A 봇)
+                ② 학습 데이터 수집 파이프라인
+                ③ LLM 분석·리포팅 엔진
+                ④ 강사/매니저 대시보드 및 피드백 시스템
+              </td>
+            </tr>
+            <tr>
+              <td class="t-tight">단계</td>
+              <td>
+                <strong>1단계</strong> 에이전트·수집 기반 →
+                <strong>2단계</strong> LLM 분석·AI 리포팅 →
+                <strong>3단계</strong> 피드백 루프 완성 및 전 그룹 확대
+              </td>
+            </tr>
+            <tr>
+              <td class="t-tight">기술</td>
+              <td>
+                Python 3.12+ (uv · FastAPI · PostgreSQL), TypeScript (VSCode 확장 · 웹 UI),
+                Docker + docker-compose, LLM API (Claude 등)
+              </td>
+            </tr>
+            <tr>
+              <td class="t-tight">원칙</td>
+              <td>
+                <strong>Human-in-the-Loop</strong> — AI가 피드백 초안을 만들되
+                평가성 판단은 반드시 강사·매니저 승인을 거쳐 전달
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!--
+      ══ 문항 추가 방법 ══════════════════════════════════════════════
+      아래 <ol class="qna"> 안에 <li> 를 하나 넣으면 문항이 하나 늘어난다.
+      번호(Q01, Q02…)는 CSS 카운터라 자동으로 매겨진다 — 순서를 바꿔도 알아서 맞는다.
+      빈 상태 문구(.qna-empty)는 첫 문항을 넣을 때 지운다.
+
+      <li>
+        <div class="q-head">
+          <span class="q-no"></span>
+          <span class="q-tag">§3.2 수집 파이프라인</span>
+          <span class="pill pill--hold">답변 대기</span>
+        </div>
+        <p class="q-body">질문 본문 — 한 문장으로.</p>
+        <p class="q-why">왜 묻는지 · 무엇이 걸려 있는지. (없으면 이 줄 삭제)</p>
+        <div class="q-a q-a--todo">답변이 정해지면 이 자리에 적습니다.</div>
+      </li>
+
+      ── 분류 태그(.q-tag)는 제안서 목차를 그대로 쓴다 ──
+      §1 사업 개요 · §2 아키텍처 · §3.1 AI 에이전트군 · §3.2 수집 파이프라인 ·
+      §3.3 LLM 분석 · §3.4 리포팅·피드백 · §4 3단계 계획 · §6 기술 스택 ·
+      §7 기대 효과 · §8 리스크 · 그 밖(사업 외 맥락)은 「운영」
+
+      ── 상태(.pill) 3종 ──
+      pill--hold 답변 대기   pill--wip 확인 중   pill--done 답변 완료
+      답변이 확정되면 pill 을 pill--done 으로 바꾸고
+      .q-a 에서 q-a--todo 클래스를 뺀 뒤 내용을 채운다.
+      ═══════════════════════════════════════════════════════════════
+    -->
+
+    <ol class="qna">
+      <li class="qna-empty">
+        등록된 문항이 아직 없습니다. 확인이 필요한 사항을 알려주시면 문항으로 정리해 채웁니다.
+      </li>
+    </ol>
+
+  </section>
+
 </div>
 
 <button class="theme-toggle" type="button" id="themeToggle" data-next="dark">
