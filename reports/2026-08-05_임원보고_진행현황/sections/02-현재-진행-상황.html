@@ -38,83 +38,140 @@
 
     <h3>구현 현황 <span class="prov prov--live">실측</span></h3>
     <p>
-      프론트엔드 · 백엔드 · 인프라 저장소를 대조해 기능 단위로 정리했습니다.
-      전체 <span class="num">57</span>개 항목 중 <span class="num">50</span>개가 완료입니다.
-      남은 <span class="num">7</span>개는 <strong>역량 증명서 3건</strong>(본문 조회 · 점수·AI 분석 · 스냅샷/감사 로그),
-      <strong>인프라 3건</strong>(integration 서비스 · LMS-AI 배포 · 오토스케일),
-      그리고 2차 이월된 PLAY 1건이며, 각 항목의 후속 조치는 아래 표에 적었습니다.
+      프론트엔드 · 백엔드 · 인프라 저장소를 대조해 <strong>대 · 중 · 소분류</strong>로 정리했습니다.
+      전체 <span class="num">112</span>개 항목 중 <span class="num">93</span>개가 완료입니다.
+      남은 <span class="num">19</span>개는 <strong>Data Pipeline 12건</strong>(원천 수집 · 전처리 · 분석),
+      <strong>역량 증명서 3건</strong>(본문 조회 · 스냅샷 · 감사 로그),
+      <strong>인프라 2건</strong>(integration 서비스 · 오토스케일),
+      그리고 2차 이월된 PLAY 3건이며, 각 항목의 후속 조치는 아래 표에 적었습니다.
     </p>
 
     <details class="fold">
-      <summary>기능별 구현 현황 전체 (57개 항목)</summary>
+      <summary>기능별 구현 현황 전체 (112개 항목)</summary>
       <div class="tw">
         <table class="impl">
           <thead>
             <tr>
-              <th scope="col">기능(대분류)</th>
-              <th scope="col">기능(중분류)</th>
+              <th scope="col">대분류</th>
+              <th scope="col">중분류</th>
+              <th scope="col">소분류</th>
               <th scope="col">완료 여부</th>
               <th scope="col">후속 조치</th>
             </tr>
           </thead>
           <tbody>
-          <tr><td rowspan="5">계정 · 권한</td><td>로그인 · 인증(JWT)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>사용자 · 역할 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>수강생 온보딩</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>프로필 (4개 역할)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>GitHub 계정 연결</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td rowspan="13">수강생 학습</td><td>대시보드</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>과정 · 공지 · 자료실</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>출결 (조회 · 제출)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>퀴즈 응시 · 결과</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>과제 제출</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>기록실 (블로그·스터디·자격증)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>프로젝트 · 변경 요청</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>트러블슈팅</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>QnA</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>이력서</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>마일리지 (상점·장바구니·내역)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>멘토링 신청 · 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>PLAY 미니게임</td><td><span class="pill pill--wip">부분</span></td><td class="act">7월 6일 2차 이월 결정 — 화면은 완성, 백엔드 미착수. 8월 두 구간이 일정대로 끝나 여유가 생길 때만 착수</td></tr>
-          <tr><td rowspan="7">강사</td><td>대시보드 · 담당 기수</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>퀴즈 출제 · 템플릿 · 채점</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>과제 출제 · 제출물 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>프로젝트 · 트러블슈팅 검토</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>변경 요청 처리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>추천서 작성 · 이력</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>공지 작성</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td rowspan="3">멘토</td><td>콘솔 · 팀 · 멘티 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>멘토링 일지 작성 · 제출</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>멘티 평가 · 추천</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td rowspan="9">운영(매니저)</td><td>대시보드 (HRD 단일 소스)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>교육과정 · 기수 · 커리큘럼</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>학생 관리 · 활동 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>마일리지 (지급·상품·한도·구매요청)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>멘토 배정 · 일지 · 템플릿</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>평판 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>PLAY 타자 텍스트 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>설정 · HRD API 키</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>퀴즈 · QnA · 기록 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td rowspan="8">역량 증명서</td><td>상태 조회 · 정식 인증 요청</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>검토 큐 · 데이터 준비 완료</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>검토 · 보완 요청 · 인증 완료</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>공개 설정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>외부 검증 링크</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>증명서 본문 조회</td><td><span class="pill pill--none">미구현</span></td><td class="act"><code>GET /student/certificate</code> 신설 — 현재 화면은 임시 데이터로 렌더 중</td></tr>
-          <tr><td>역량 점수 · AI 분석</td><td><span class="pill pill--none">미구현</span></td><td class="act">점수 산정 기준 확정 후 API 신설. LMS-AI 배포가 선행되어야 하며, 관련 자동 테스트 3건이 실패 중</td></tr>
-          <tr><td>스냅샷 · 감사 로그</td><td><span class="pill pill--none">미구현</span></td><td class="act">승인 시점 내용 동결(스냅샷)과 이력 API 신설 — 화면(<code>/admin/certificates/:id/snapshot</code>·<code>/audit</code>)은 완성</td></tr>
-          <tr><td rowspan="12">인프라 (Terraform)</td><td>VPC · 서브넷 (2 AZ)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>ALB 경로 라우팅</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>CloudFront (HTTPS)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>ECS Fargate — auth · learning · operations</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>ECS Fargate — integration</td><td><span class="pill pill--none">미구현</span></td><td class="act">외부 연동 착수 시 기동. 현재 소스는 골격만 있고 실행 태스크 0 · ALB 규칙 없음</td></tr>
-          <tr><td>RDS PostgreSQL ×4</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>ElastiCache Redis</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>S3 · Secrets Manager · ECR</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>CloudWatch · CloudTrail</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>CI/CD (GitHub OIDC → ECS)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
-          <tr><td>LMS-AI 서버 배포</td><td><span class="pill pill--none">미구현</span></td><td class="act">Terraform 에 ECS 서비스 추가 — 증명서 점수·AI 분석의 선행 조건</td></tr>
-          <tr><td>오토스케일</td><td><span class="pill pill--none">미구현</span></td><td class="act">V2 예정 — Container Insights 에서 CPU·메모리 75% 초과가 지속되면 적용</td></tr>
+            <tr><td rowspan="8" class="lv1">계정 · 권한</td><td rowspan="3" class="lv2">인증</td><td>로그인 · 로그아웃</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>JWT 발급 · 검증</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>역할별 접근 제어(5종)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">계정</td><td>사용자 · 역할 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>임시 비밀번호 발급</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>수강생 온보딩</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="2" class="lv2">프로필</td><td>역할별 프로필 조회 · 수정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>GitHub 계정 연결</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="27" class="lv1">수강생 학습</td><td rowspan="3" class="lv2">과정</td><td>대시보드</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>공지 목록 · 상세</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>강의 자료실</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">출결</td><td>출결 현황 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>출결 폼 제출</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>첨부 파일 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">평가</td><td>퀴즈 응시</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>퀴즈 결과 확인</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>과제 제출</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">기록</td><td>블로그 기록</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>스터디 기록</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>자격증 기록</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>보완 요청 대응</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">프로젝트</td><td>프로젝트 등록 · 상세</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>GitHub 저장소 연동</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>팀원 상호평가</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>변경 요청</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="2" class="lv2">공유</td><td>트러블슈팅 작성 · 상세</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>QnA 작성 · 답변 확인</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="2" class="lv2">취업 준비</td><td>이력서 작성 · 수정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>멘토링 신청 · 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">마일리지</td><td>상점 · 장바구니</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>구매 요청</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>적립 · 사용 내역</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">PLAY</td><td>타자 게임</td><td><span class="pill pill--wip">부분</span></td><td class="act">화면 완성 · 백엔드 미착수 — 7월 6일 2차 이월</td></tr>
+            <tr><td>코딩 게임</td><td><span class="pill pill--wip">부분</span></td><td class="act">화면 완성 · 백엔드 미착수 — 7월 6일 2차 이월</td></tr>
+            <tr><td>퀴즈 게임</td><td><span class="pill pill--wip">부분</span></td><td class="act">화면 완성 · 백엔드 미착수 — 7월 6일 2차 이월</td></tr>
+            <tr><td rowspan="13" class="lv1">강사</td><td rowspan="3" class="lv2">기수 운영</td><td>담당 기수 대시보드</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>기수별 교육 현황</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>공지 작성 · 수정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">출제 · 채점</td><td>퀴즈 출제 · 수정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>퀴즈 템플릿 · 문항 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>퀴즈 제출물 채점</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>과제 출제 · 제출물 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">심사</td><td>프로젝트 인증 심사</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>트러블슈팅 인증 심사</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>학습 기록 검토</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>인증 후 변경 요청 처리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="2" class="lv2">추천</td><td>추천서 작성</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>추천서 이력 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="6" class="lv1">멘토</td><td rowspan="2" class="lv2">팀 관리</td><td>배정 팀 · 멘티 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>멘티 상세 확인</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="2" class="lv2">멘토링</td><td>예약 요청 응답</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>멘토링 일지 작성 · 제출</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="2" class="lv2">평가</td><td>팀원 역량 평가(4축)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>추천서 작성</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="20" class="lv1">운영(매니저)</td><td rowspan="3" class="lv2">현황</td><td>통합 대시보드(HRD 단일 소스)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>수강생 활동 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>학생 목록 · 상세</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">교육 운영</td><td>과정 · 기수 개설</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>커리큘럼 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>공지 · 자료 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>과제 · 퀴즈 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">검토</td><td>학습 기록 승인 · 보완요청</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>QnA 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>수강생 평가</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">마일리지</td><td>직접 지급</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>상품 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>구매 요청 처리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>유형별 한도 설정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">멘토링</td><td>멘토 배정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>일지 · 템플릿 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>멘토링 통계</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">기타</td><td>평판 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>PLAY 타자 텍스트 관리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>HRD API 키 설정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="11" class="lv1">역량 증명서</td><td rowspan="2" class="lv2">발급 요청</td><td>증명서 상태 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>정식 인증 요청</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">검토 · 승인</td><td>검토 큐 조회</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>데이터 준비 완료 전이</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>검토 · 보완 요청</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>인증 완료 처리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="3" class="lv2">열람 · 공개</td><td>증명서 본문 조회</td><td><span class="pill pill--none">미구현</span></td><td class="act"><code>GET /student/certificate</code> 신설 — 지금은 화면이 임시 데이터로 렌더된다</td></tr>
+            <tr><td>공개 설정</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>외부 검증 링크</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="2" class="lv2">증적</td><td>승인 시점 내용 동결(스냅샷)</td><td><span class="pill pill--none">미구현</span></td><td class="act">S3 객체 버전 ID를 증명서에 고정하는 API 신설 — 화면은 완성</td></tr>
+            <tr><td>발급 감사 로그</td><td><span class="pill pill--none">미구현</span></td><td class="act">이력 조회 API 신설 — 화면(<code>/audit</code>)은 완성</td></tr>
+            <tr><td rowspan="12" class="lv1">Data Pipeline</td><td rowspan="3" class="lv2">① 원천 수집</td><td>수료 익일 00:00 배치 실행</td><td><span class="pill pill--none">미구현</span></td><td class="act">서비스당 태스크 1개라 Spring <code>@Scheduled</code> 로 충분. 오토스케일(V2) 도입 시 분산 락 필요</td></tr>
+            <tr><td>학습 · 평가 데이터 추출</td><td><span class="pill pill--none">미구현</span></td><td class="act">DB · 로그에서 수강생 단위로 모아 원천 스냅샷 생성</td></tr>
+            <tr><td>S3 원천 적재</td><td><span class="pill pill--none">미구현</span></td><td class="act">BE 에 AWS SDK 사용처가 없어 S3 연동부터 필요 — 개인정보 보존 기한 · 파기 정책도 함께 정한다</td></tr>
+            <tr><td rowspan="3" class="lv2">② 전처리</td><td>증명서 표시 항목만 가공</td><td><span class="pill pill--none">미구현</span></td><td class="act">원천에서 증명서에 실제로 노출할 필드만 추린다</td></tr>
+            <tr><td>파티션 저장</td><td><span class="pill pill--none">미구현</span></td><td class="act"><code>cohort=NN/student_uuid=…/영역</code> (종합요약 · 기술검증 · 프로젝트 …) 규칙으로 적재</td></tr>
+            <tr><td>저장 형식 확정</td><td><span class="pill pill--none">미구현</span></td><td class="act">학생당 수 KB 개별 조회가 주 패턴이라 JSON 이 무난. Athena · Glue 집계를 전제할 때만 Parquet</td></tr>
+            <tr><td rowspan="4" class="lv2">③ 분석</td><td>역량 점수 산출</td><td><span class="pill pill--none">미구현</span></td><td class="act">확정 함수(LLM 아님)로 계산 — 재실행해도 같은 값이 나와야 승인 내용이 재현된다</td></tr>
+            <tr><td>AI 서술 생성</td><td><span class="pill pill--none">미구현</span></td><td class="act">OpenAI 호출. 모델 · 프롬프트 버전을 메타로 함께 저장</td></tr>
+            <tr><td>분석 결과 적재</td><td><span class="pill pill--none">미구현</span></td><td class="act">같은 파티션 아래 <code>scores</code> · <code>ai</code> 로 분리 저장</td></tr>
+            <tr><td>LMS-AI 서버 배포</td><td><span class="pill pill--none">미구현</span></td><td class="act">Terraform 에 ECS 서비스 추가 — 현재 로컬 실행만 가능하며 이 파이프라인 전체의 선행 조건</td></tr>
+            <tr><td rowspan="2" class="lv2">④ 상태 전이</td><td>학생 단위 준비 완료 처리</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>실패 재시도 · 부분 진행</td><td><span class="pill pill--none">미구현</span></td><td class="act">한 명의 실패가 기수 전체를 막지 않도록 학생 단위 상태 · 재시도 경로가 필요하다</td></tr>
+            <tr><td rowspan="15" class="lv1">인프라 (Terraform)</td><td rowspan="3" class="lv2">네트워크</td><td>VPC · 서브넷(2 AZ)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>ALB 경로 라우팅</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>CloudFront HTTPS 종단</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="5" class="lv2">실행</td><td>ECS 클러스터 · auth</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>learning</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>operations</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>integration</td><td><span class="pill pill--none">미구현</span></td><td class="act">외부 연동 착수 시 기동 — 지금은 골격만 있고 실행 태스크 0</td></tr>
+            <tr><td>오토스케일</td><td><span class="pill pill--none">미구현</span></td><td class="act">V2 — Container Insights 에서 CPU · 메모리 75% 초과가 지속되면 적용</td></tr>
+            <tr><td rowspan="3" class="lv2">데이터</td><td>RDS PostgreSQL ×4</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>ElastiCache Redis</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>S3 버킷</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td rowspan="4" class="lv2">운영</td><td>Secrets Manager</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>ECR · CloudWatch</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>CloudTrail 감사</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
+            <tr><td>CI/CD (GitHub OIDC)</td><td><span class="pill pill--done">완료</span></td><td></td></tr>
           </tbody>
         </table>
       </div>
