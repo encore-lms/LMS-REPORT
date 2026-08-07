@@ -77,14 +77,24 @@
             <td><code>GET /verify/{token}</code> 라이브 <span class="num">200</span></td>
           </tr>
           <tr>
-            <td>증명서 조회·발급</td>
-            <td><span class="pill pill--none">미구현</span></td>
-            <td><code>GET /student/certificate</code> <span class="num">404</span> — 화면은 임시 데이터로 렌더</td>
+            <td>증명서 발급 요청·승인</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>08-07 연결 — 상태 조회·인증 요청·검토 큐·보완 요청·인증 완료·공개 설정 API 구현</td>
           </tr>
           <tr>
-            <td>증명서 인증 검토</td>
+            <td>증명서 본문 조회</td>
             <td><span class="pill pill--none">미구현</span></td>
-            <td>08-06 별도 검토 큐를 폐지하고 역량 증명서 상세로 흡수 — 승인·스냅샷 API는 여전히 미구현</td>
+            <td><code>GET /student/certificate</code> 없음 — 화면은 여전히 임시 데이터로 렌더</td>
+          </tr>
+          <tr>
+            <td>증명서 점수·AI 분석</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td>점수·감정 분석 API 없음 · LMS-AI는 인프라 구성에 미포함 — 관련 자동 테스트 3건 실패 중</td>
+          </tr>
+          <tr>
+            <td>증명서 스냅샷·감사로그</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td>화면(<code>/admin/certificates/:id/snapshot</code>·<code>/audit</code>)만 있고 API 없음</td>
           </tr>
           <tr>
             <td>PLAY 미니게임</td>

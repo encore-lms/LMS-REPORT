@@ -67,32 +67,32 @@
     </p>
 
     <p class="lede">
-      남은 <span class="num">15</span>개 화면 중 <span class="num">8</span>개가
-      <strong>역량 증명서의 발급·검토·승인 흐름</strong>이고, 나머지 <span class="num">7</span>개는
+      남은 <span class="num">12</span>개 화면 중 <span class="num">5</span>개가
+      <strong>역량 증명서</strong>이고, 나머지 <span class="num">7</span>개는
       7월에 2차로 이월하기로 결정한 PLAY(수강생이 플레이하는 학습 게임) 화면입니다.
     </p>
 
     <p class="lede">
-      역량 증명서는 증명의 근거가 될 <strong>학습·평가 데이터와 산정 기준</strong>이 먼저 확정되어야
-      만들 수 있어,<br>
-      그 정리가 끝나는 대로 착수합니다.
+      역량 증명서는 <strong>발급 요청·검토·승인·공개·외부 검증까지 이어지는 뼈대가 8월 7일 자로 연결</strong>됐습니다.
+      남은 것은 그 안을 채우는 <strong>증명서 본문 데이터 조회와 역량 점수·AI 분석</strong>이며,<br>
+      점수 산정 기준이 확정되고 분석 서버(LMS-AI)가 배포되어야 완결됩니다.
     </p>
 
     <div class="kpis">
       <div class="kpi">
         <p class="kpi__label">실연동 화면</p>
-        <p class="kpi__val">131<small>/146</small></p>
-        <p class="kpi__delta">7월 6일 78/141</p>
+        <p class="kpi__val">134<small>/146</small></p>
+        <p class="kpi__delta">7월 6일 78/141 · 8월 5일 131</p>
       </div>
       <div class="kpi">
         <p class="kpi__label">백엔드 API</p>
-        <p class="kpi__val">438<small>개</small></p>
-        <p class="kpi__delta">7월 6일 216개 · +103%</p>
+        <p class="kpi__val">442<small>개</small></p>
+        <p class="kpi__delta">7월 6일 216개 · +105%</p>
       </div>
       <div class="kpi">
         <p class="kpi__label">자동 테스트</p>
-        <p class="kpi__val">817<small>개</small></p>
-        <p class="kpi__delta">전량 통과 (오늘 실행)</p>
+        <p class="kpi__val">814<small>/817</small></p>
+        <p class="kpi__delta">실패 3건 — 증명서 AI 점수 조회 (오늘 실행)</p>
       </div>
       <div class="kpi">
         <p class="kpi__label">배포 환경</p>
@@ -188,14 +188,24 @@
             <td><code>GET /verify/{token}</code> 라이브 <span class="num">200</span></td>
           </tr>
           <tr>
-            <td>증명서 조회·발급</td>
-            <td><span class="pill pill--none">미구현</span></td>
-            <td><code>GET /student/certificate</code> <span class="num">404</span> — 화면은 임시 데이터로 렌더</td>
+            <td>증명서 발급 요청·승인</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>08-07 연결 — 상태 조회·인증 요청·검토 큐·보완 요청·인증 완료·공개 설정 API 구현</td>
           </tr>
           <tr>
-            <td>증명서 인증 검토</td>
+            <td>증명서 본문 조회</td>
             <td><span class="pill pill--none">미구현</span></td>
-            <td>08-06 별도 검토 큐를 폐지하고 역량 증명서 상세로 흡수 — 승인·스냅샷 API는 여전히 미구현</td>
+            <td><code>GET /student/certificate</code> 없음 — 화면은 여전히 임시 데이터로 렌더</td>
+          </tr>
+          <tr>
+            <td>증명서 점수·AI 분석</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td>점수·감정 분석 API 없음 · LMS-AI는 인프라 구성에 미포함 — 관련 자동 테스트 3건 실패 중</td>
+          </tr>
+          <tr>
+            <td>증명서 스냅샷·감사로그</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td>화면(<code>/admin/certificates/:id/snapshot</code>·<code>/audit</code>)만 있고 API 없음</td>
           </tr>
           <tr>
             <td>PLAY 미니게임</td>
