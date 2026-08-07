@@ -2,74 +2,6 @@
     <div class="sec-num"><!--NUM--></div>
     <h2>GOV AI Project QnA</h2>
 
-    <p>
-      2026-07-08 자 「정부지원 AI 활용 교육 사업 제안서」를 검토하며
-      확인이 필요한 사항을 모읍니다. 답변이 정해지는 대로 각 문항에 채워 넣고,
-      결정으로 이어진 항목은 <strong>답변 완료</strong>로 표시합니다.
-    </p>
-
-    <details class="fold">
-      <summary>제안서 요약 — 3개월간 무엇을 만드는가</summary>
-
-      <p>
-        훈련생의 학습을 AI 에이전트가 상시 지원하면서 그 과정에서 나오는 백데이터를 모으고,
-        LLM으로 분석해 강사·매니저에게 리포트를 주고, 그 리포트를 근거로 다시 훈련생에게
-        피드백이 나가는 <strong>폐쇄 루프</strong>를 만드는 사업입니다.
-      </p>
-
-      <div class="tw">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col" class="t-tight">항목</th>
-              <th scope="col">제안서 내용</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="t-tight">기간</td>
-              <td>총 <span class="num">3</span>개월 — 1개월 단위 3단계 (로드맵 기준 08/02 착수)</td>
-            </tr>
-            <tr>
-              <td class="t-tight">대상</td>
-              <td>6개월 교육 과정 훈련생 A·B·C 그룹 및 교육 관계자 전원</td>
-            </tr>
-            <tr>
-              <td class="t-tight">산출물</td>
-              <td>
-                ① 학습 지원 AI 에이전트군(PlayLang·ATmux·Q&amp;A 봇)<br>
-                ② 학습 데이터 수집 파이프라인<br>
-                ③ LLM 분석·리포팅 엔진<br>
-                ④ 강사/매니저 대시보드 및 피드백 시스템
-              </td>
-            </tr>
-            <tr>
-              <td class="t-tight">단계</td>
-              <td>
-                <strong>1단계</strong> 에이전트·수집 기반 →
-                <strong>2단계</strong> LLM 분석·AI 리포팅 →
-                <strong>3단계</strong> 피드백 루프 완성 및 전 그룹 확대
-              </td>
-            </tr>
-            <tr>
-              <td class="t-tight">기술</td>
-              <td>
-                Python 3.12+ (uv · FastAPI · PostgreSQL), TypeScript (VSCode 확장 · 웹 UI),
-                Docker + docker-compose, LLM API (Claude 등)
-              </td>
-            </tr>
-            <tr>
-              <td class="t-tight">원칙</td>
-              <td>
-                <strong>Human-in-the-Loop</strong> — AI가 피드백 초안을 만들되
-                평가성 판단은 반드시 강사·매니저 승인을 거쳐 전달
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </details>
-
     <figure class="fig">
       <img src="../../assets/gov-ai-architecture.png" width="1024" height="1164"
            alt="전체 시스템 아키텍처 — 훈련생 학습 환경(PlayLang·ATmux·Q&amp;A 봇)에서 수집 에이전트를 거쳐 학습 데이터 레이크에 쌓이고, LLM 분석 엔진 4종을 지나 일간/주간 AI 리포트·강사/매니저 대시보드로 전달되며, 승인 후 피드백이 훈련생에게 되돌아가는 흐름">
@@ -105,8 +37,26 @@
     -->
 
     <ol class="qna">
-      <li class="qna-empty">
-        등록된 문항이 아직 없습니다. 확인이 필요한 사항을 알려주시면 문항으로 정리해 채웁니다.
+      <li>
+        <div class="q-head">
+          <span class="q-no"></span>
+          <span class="q-tag">§2 아키텍처</span>
+          <span class="pill pill--hold">답변 대기</span>
+        </div>
+        <p class="q-body">위 시스템 아키텍처 중 현재 구현이 완료된 범위는 어디까지인가?</p>
+        <div class="q-a q-a--todo">답변이 정해지면 이 자리에 적습니다.</div>
+      </li>
+      <li>
+        <div class="q-head">
+          <span class="q-no"></span>
+          <span class="q-tag">운영</span>
+          <span class="pill pill--hold">답변 대기</span>
+        </div>
+        <p class="q-body">
+          시스템 구현 완료 시 현재 LMS와 동일한 인프라에서 구동되는 것인지,
+          아니라면 GOV-AI를 운영할 별도 주체가 있는 것인지?
+        </p>
+        <div class="q-a q-a--todo">답변이 정해지면 이 자리에 적습니다.</div>
       </li>
     </ol>
 
