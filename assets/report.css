@@ -244,6 +244,48 @@ td .cell-list {
 }
 td .cell-list li { margin: 0; }
 
+/* ── 계층형 구성도 (제안 아키텍처) ─────────────── */
+.arch { display: grid; gap: 0.75rem; margin: 1.5rem 0 0.5rem; }
+.tier {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 3px;
+  padding: 0.85rem 1rem 1rem;
+}
+.tier__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--brand-ink);
+  margin-bottom: 0.7rem;
+}
+.tier__head span:last-child { color: var(--ink-3); letter-spacing: 0; font-size: 0.72rem; }
+.nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0.6rem; }
+.node {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brand);
+  border-radius: 2px;
+  padding: 0.55rem 0.7rem;
+  background: var(--surface);
+}
+.node__name { font-size: 0.84rem; font-weight: 650; color: var(--ink); display: block; }
+.node__note { font-size: 0.74rem; color: var(--ink-3); line-height: 1.5; display: block; margin-top: 0.15rem; }
+/* 계층 사이 흐름 — 라벨이 있으면 화살표 옆에 작게 붙는다. */
+.flow {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.flow::before { content: '↓  '; color: var(--brand); font-size: 0.9rem; }
+/* 되돌아가는 피드백 루프 — 아래에서 위로 향하므로 화살표 방향을 바꾼다. */
+.flow--return::before { content: '↺  '; }
+.flow--return { color: var(--brand-ink); }
+
 /* ── progress bars ────────────────────────────── */
 .bars { display: grid; gap: 0.7rem; margin: 1.5rem 0; max-width: 44rem; }
 .bar { display: grid; grid-template-columns: 6.5rem 1fr 7rem; align-items: center; gap: 0.85rem; }
