@@ -1,0 +1,1116 @@
+<!doctype html>
+<!-- 생성 파일 — 원본은 sections/ 조각이며 build.py 가 조립한다. 직접 수정 금지. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="LMS 역량증명서 프로젝트의 2026-08-05 기준 진행 현황과 8월 마감 계획.">
+
+<title>LMS 역량증명서 프로젝트 — 임원 보고</title>
+
+<script>
+  /* 저장된 테마를 첫 페인트 전에 적용한다. 본문 뒤에서 적용하면 색이 한 번 번쩍인다. */
+  try {
+    var saved = localStorage.getItem('lms-report-theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
+
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/theme-toggle.css">
+<link rel="stylesheet" href="../../assets/report.css">
+<link rel="stylesheet" href="../../assets/diagram.css">
+</head>
+<body>
+
+<div class="doc">
+
+  <a class="home-link" href="../../">← 보고서 목록</a>
+
+  <header class="masthead">
+    <p class="masthead__eyebrow">08.07 회의 자료</p>
+    <h1>LMS 역량증명서 프로젝트<br>진행 현황 및 8월 마감 계획</h1>
+    <div class="masthead__sub">
+      <p>
+        학습관리(LMS)와 <strong>역량 증명서 발급·외부 검증</strong>을 하나로 묶은 플랫폼입니다.<br>
+        기능의 대부분은 이미 실제 서버에 연결되어 배포 환경에서 동작합니다.
+      </p>
+      <p>남은 작업은 <strong>증명서 발급 폐쇄 루프</strong>입니다.</p>
+      <p>남은 작업을 8월 31일 안에 끝내기 위한 현황·구조·일정·결정 사항을 작성했습니다.</p>
+    </div>
+    <div class="masthead__meta">
+      <span>기준일 <b>2026-08-05</b></span>
+      <span>작성 <b>황설현 · 이정훈</b></span>
+      <span>종료 목표 <b data-deadline>2026-08-31</b></span>
+      <span>잔여 마감일 <b data-cd="days">25일</b></span>
+      <span>개발 인력 <b>3명</b></span>
+    </div>
+  </header>
+
+  <!-- 회의 중 바로 눌러볼 수 있는 라이브 데모 진입점. 범례(실측/문서/결정)는 08-07 회의판에서 제외. -->
+  <div class="prov-key">
+    <span><strong>배포 링크</strong>
+      <a href="https://d1szx2b6631qtg.cloudfront.net/login" target="_blank" rel="noopener">d1szx2b6631qtg.cloudfront.net/login</a>
+    </span>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <section>
+    <div class="sec-num">01</div>
+    <h2>요약</h2>
+
+    <p class="lede">
+      LMS 기능 개발은 대부분 끝났고, 지금은 완성된 화면의 <strong>UI/UX 개선과 QA</strong>를 진행하고 있습니다.<br>
+      전체 화면 <span class="num">146</span>개 중 <span class="num">131</span>개가 실제 백엔드에 연결되어
+      배포 환경에서 동작합니다.
+    </p>
+
+    <p class="lede">
+      남은 <span class="num">15</span>개 화면 중 <span class="num">8</span>개가
+      <strong>역량 증명서의 발급·검토·승인 흐름</strong>이고, 나머지 <span class="num">7</span>개는
+      7월에 2차로 이월하기로 결정한 PLAY(수강생이 플레이하는 학습 게임) 화면입니다.
+    </p>
+
+    <p class="lede">
+      역량 증명서는 증명의 근거가 될 <strong>학습·평가 데이터와 산정 기준</strong>이 먼저 확정되어야
+      만들 수 있어,<br>
+      그 정리가 끝나는 대로 착수합니다.
+    </p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <p class="kpi__label">실연동 화면</p>
+        <p class="kpi__val">131<small>/146</small></p>
+        <p class="kpi__delta">7월 6일 78/141</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">백엔드 API</p>
+        <p class="kpi__val">438<small>개</small></p>
+        <p class="kpi__delta">7월 6일 216개 · +103%</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">자동 테스트</p>
+        <p class="kpi__val">817<small>개</small></p>
+        <p class="kpi__delta">전량 통과 (오늘 실행)</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">배포 환경</p>
+        <p class="kpi__val">정상</p>
+        <p class="kpi__delta">웹·API 응답 확인</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">잔여 마감일</p>
+        <p class="kpi__val"><span data-cd="days-num">25</span><small>일</small></p>
+        <p class="kpi__delta flat" data-cd="range">08-06 ~ 08-31</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ 2 ══ -->
+  <section>
+    <div class="sec-num">02</div>
+    <h2>현재 진행 상황</h2>
+
+    <h3>역할별 완성도 <span class="prov prov--live">실측</span></h3>
+    <p>
+      라우트(화면 주소) 단위로 실제 API 연결 여부를 확인한 결과입니다.
+      미완성 파트는 화면은 완성됐으나 데이터가 아직 임시(mock)이거나 메뉴에서 차단된 상태입니다.
+    </p>
+
+    <div class="bars">
+      <div class="bar">
+        <span class="bar__label">강사</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">32/32<span class="bar__pct">(100%)</span></span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">멘토</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">8/8<span class="bar__pct">(100%)</span></span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">외부 검증</span>
+        <span class="bar__track"><span class="bar__fill" style="width:100%"></span></span>
+        <span class="bar__val">2/2<span class="bar__pct">(100%)</span></span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">운영(매니저)</span>
+        <span class="bar__track"><span class="bar__fill" style="width:92%"></span></span>
+        <span class="bar__val">45/49<span class="bar__pct">(92%)</span></span>
+      </div>
+      <div class="bar">
+        <span class="bar__label">수강생</span>
+        <span class="bar__track"><span class="bar__fill" style="width:80%"></span></span>
+        <span class="bar__val">43/54<span class="bar__pct">(80%)</span></span>
+      </div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">영역</th>
+            <th scope="col">상태</th>
+            <th scope="col">근거(08.06 기준)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>로그인 · 권한</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>배포 API 로그인 <span class="num">200</span> 응답, 5개 역할 계정 검증</td>
+          </tr>
+          <tr>
+            <td>수강생 학습 여정</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>과정·출결·퀴즈·과제·기록실·프로젝트·트러블슈팅·마일리지·QnA</td>
+          </tr>
+          <tr>
+            <td>강사 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>퀴즈·과제·검토·추천서·템플릿·자료실 전 화면</td>
+          </tr>
+          <tr>
+            <td>멘토 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td><code>/mentor/v1/*</code> 5개 엔드포인트 라이브 <span class="num">200</span></td>
+          </tr>
+          <tr>
+            <td>운영 콘솔</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td>대시보드·교육과정·마일리지·평판·멘토링·설정·PLAY 관리</td>
+          </tr>
+          <tr>
+            <td>외부 검증 URL</td>
+            <td><span class="pill pill--done">동작</span></td>
+            <td><code>GET /verify/{token}</code> 라이브 <span class="num">200</span></td>
+          </tr>
+          <tr>
+            <td>증명서 조회·발급</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td><code>GET /student/certificate</code> <span class="num">404</span> — 화면은 임시 데이터로 렌더</td>
+          </tr>
+          <tr>
+            <td>증명서 인증 검토</td>
+            <td><span class="pill pill--none">미구현</span></td>
+            <td>08-06 별도 검토 큐를 폐지하고 역량 증명서 상세로 흡수 — 승인·스냅샷 API는 여전히 미구현</td>
+          </tr>
+          <tr>
+            <td>PLAY 미니게임</td>
+            <td><span class="pill pill--hold">2차 이월</span></td>
+            <td>7월 6일 결정 — 화면 완성, 백엔드 미착수</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>산출물 규모 <span class="prov prov--live">실측</span></h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">저장소</th>
+            <th scope="col">역할</th>
+            <th scope="col" class="t-num">커밋</th>
+            <th scope="col" class="t-num">최신 PR</th>
+            <th scope="col">품질 확인</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LMS-FE</td>
+            <td>웹 화면 전체 (React)</td>
+            <td class="t-num">3,343</td>
+            <td class="t-num">#777</td>
+            <td class="t-tight">타입검사 통과 · 테스트 817개 통과</td>
+          </tr>
+          <tr>
+            <td>LMS-BE</td>
+            <td>API 서버 4종 (Spring Boot)</td>
+            <td class="t-num">1,455</td>
+            <td class="t-num">#546</td>
+            <td class="t-tight">전 서비스 컴파일 통과 · 개발↔운영 브랜치 동기</td>
+          </tr>
+          <tr>
+            <td>LMS-AI</td>
+            <td>증명서 점수·분석 엔진 (Python)</td>
+            <td class="t-num">96</td>
+            <td class="t-num">#47</td>
+            <td class="t-tight">테스트 파일 16개</td>
+          </tr>
+          <tr>
+            <td>LMS-TERRAFORM</td>
+            <td>AWS 인프라 코드</td>
+            <td class="t-num">17</td>
+            <td class="t-num">#3</td>
+            <td class="t-tight">모듈 9종</td>
+          </tr>
+          <tr>
+            <td>LMS-DOCS</td>
+            <td>설계·결정 문서</td>
+            <td class="t-num">650</td>
+            <td class="t-num">#207</td>
+            <td class="t-tight">보고서 100여 건 누적</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- ══ 3 ══ -->
+  <section class="arch-section">
+    <div class="sec-num">03</div>
+    <h2>아키텍처</h2>
+
+    <p class="lede">
+      현재 개발 환경(dev)은 <strong>실제 요청을 처리하는 API 서비스 3개</strong>와
+      <strong>서비스별 전용 PostgreSQL RDS</strong>로 동작합니다.
+      <code>integration-service</code>는 태스크가 꺼져 있고, 증명서 분석을 맡을 <strong>LMS-AI는 아직 AWS에 배포되지 않아</strong>
+      8월 마감에서 이 부분을 연결해야 합니다.
+    </p>
+
+    <div class="arch-summary" aria-label="현재 아키텍처 핵심 요약">
+      <article class="arch-summary__item">
+        <p class="arch-summary__label">요청 진입</p>
+        <p class="arch-summary__value">CloudFront → ALB</p>
+        <p class="arch-summary__body">CloudFront에서 HTTPS를 종단하고, 캐시 없이 ALB로 API 요청을 전달</p>
+      </article>
+      <article class="arch-summary__item">
+        <p class="arch-summary__label">실행 계층</p>
+        <p class="arch-summary__value">ECS 3개 기동</p>
+        <p class="arch-summary__body">auth · learning · operations는 각 1개 태스크, integration은 0개</p>
+      </article>
+      <article class="arch-summary__item">
+        <p class="arch-summary__label">데이터 경계</p>
+        <p class="arch-summary__value">RDS 4대 분리</p>
+        <p class="arch-summary__body">서비스별 PostgreSQL 4대 중 3대 사용, integration DB는 생성만 된 상태</p>
+      </article>
+      <article class="arch-summary__item arch-summary__item--gap">
+        <p class="arch-summary__label">8월 연결 포인트</p>
+        <p class="arch-summary__value">LMS-AI 미배포</p>
+        <p class="arch-summary__body">증명서 점수·서술 분석 엔진을 ECS에 배포하고 learning과 연결해야 함</p>
+      </article>
+    </div>
+
+    <h3>1. 현재 배포 구성 <span class="prov prov--live">실측</span></h3>
+    <p>
+      아래 그림은 Terraform 코드와 실제 AWS 리소스를 대조한 <strong>dev API 인프라</strong>입니다.
+      요청은 CloudFront와 ALB를 거쳐 퍼블릭 서브넷의 ECS로 들어가고,
+      RDS·Redis는 인터넷 경로가 없는 프라이빗 서브넷에 둡니다.
+      웹 프런트 정적 배포와 로컬에서만 실행 중인 LMS-AI는 이 그림의 범위 밖입니다.
+    </p>
+
+    <div class="isowrap">
+      <div class="iso-controls">
+        <button type="button" data-zoom="in" aria-label="확대">＋</button>
+        <button type="button" data-zoom="out" aria-label="축소">－</button>
+        <button type="button" data-zoom="reset" aria-label="원래 크기">⟲</button>
+      </div>
+      <svg class="iso" viewBox="0 0 1040 964" role="img"
+           aria-label="AWS dev API 인프라 구성도. 브라우저가 CloudFront를 거쳐 VPC 퍼블릭 서브넷의 ALB로 들어온다. ALB는 실행 중인 ECS Fargate 서비스 3개로 요청을 분기한다. integration-service는 미기동이며 ALB 경로가 없다. 서비스별 RDS PostgreSQL 4대 중 3대가 사용 중이고, Redis는 인증 토큰을 저장한다. VPC 밖에 S3·Secrets Manager·ECR·CloudWatch가 있다. 블록을 누르면 아래 패널에 상세가 나온다.">
+        <defs>
+          <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M0 1 L7 4 L0 7 z" class="ahp"/>
+          </marker>
+        </defs>
+        <rect class="ct ct--ghost" x="25" y="6" width="280" height="54" rx="10"/>
+        <rect class="ct ct--vpc" x="20" y="212" width="1000" height="610" rx="10"/>
+        <rect class="ct ct--subnet" x="40" y="256" width="570" height="534" rx="10"/>
+        <rect class="ct ct--subnet" x="650" y="256" width="360" height="534" rx="10"/>
+        <rect class="ct ct--managed" x="20" y="838" width="1000" height="110" rx="10"/>
+        <line class="ln" data-flow="1" marker-end="url(#ah)" x1="165" y1="60" x2="165" y2="92"/>
+        <line class="ln" data-flow="2" marker-end="url(#ah)" x1="165" y1="160" x2="165" y2="296"/>
+        <line class="ln" data-flow="3" marker-end="url(#ah)" x1="250" y1="332" x2="356" y2="334.0"/>
+        <line class="ln" data-flow="3" marker-end="url(#ah)" x1="250" y1="332" x2="356" y2="430.0"/>
+        <line class="ln" data-flow="3" marker-end="url(#ah)" x1="250" y1="332" x2="356" y2="526.0"/>
+        <line class="lnsc" stroke-dasharray="5 4" x1="380" y1="368" x2="380" y2="396"/>
+        <line class="ln" data-flow="4" marker-end="url(#ah)" x1="590" y1="334.0" x2="676" y2="334.0"/>
+        <line class="ln" data-flow="4" marker-end="url(#ah)" x1="590" y1="430.0" x2="676" y2="430.0"/>
+        <line class="ln" data-flow="4" marker-end="url(#ah)" x1="590" y1="526.0" x2="676" y2="526.0"/>
+        <line class="lnd" data-flow="-" stroke-dasharray="4 4" marker-end="url(#ah)" x1="590" y1="622.0" x2="676" y2="622.0"/>
+        <polyline class="ln" data-flow="4" marker-end="url(#ah)" points="590,350 622,350 622,732 676,732"/>
+        <g class="nd tone-acc" data-id="cloudfront" data-layer="edge" data-flow="1 2" tabindex="0" role="button" aria-label="CloudFront, Deployed · HTTPS 종단"><rect class="bg" x="25" y="96" width="280" height="64" rx="7"/><text class="n" x="41" y="124.0">CloudFront</text><circle class="dt dt-on" cx="45" cy="141.0" r="3.4"/><text class="s" x="55" y="145.0">Deployed · HTTPS 종단</text></g>
+        <g class="nd tone-acc" data-id="alb" data-layer="public" data-flow="2 3" tabindex="0" role="button" aria-label="Application LB, active · 2 AZ"><rect class="bg" x="80" y="300" width="170" height="64" rx="7"/><text class="n" x="96" y="328.0">Application LB</text><circle class="dt dt-on" cx="100" cy="345.0" r="3.4"/><text class="s" x="110" y="349.0">active · 2 AZ</text></g>
+        <g class="nd tone-mut" data-id="ec2" data-layer="public" data-flow="" tabindex="0" role="button" aria-label="admin EC2, SSH 터널 전용"><rect class="bg" x="80" y="700" width="170" height="64" rx="7"/><text class="n" x="96" y="728.0">admin EC2</text><circle class="dt dt-on" cx="100" cy="745.0" r="3.4"/><text class="s" x="110" y="749.0">SSH 터널 전용</text></g>
+        <g class="nd tone-acc" data-id="svc-auth" data-layer="public" data-flow="3 4" tabindex="0" role="button" aria-label="auth-user-service, :8081 · 1/1 실행"><rect class="bg" x="360" y="300" width="230" height="68" rx="7"/><text class="n" x="376" y="330.0">auth-user-service</text><circle class="dt dt-on" cx="380" cy="347.0" r="3.4"/><text class="s" x="390" y="351.0">:8081 · 1/1 실행</text></g>
+        <g class="nd tone-acc" data-id="svc-learning" data-layer="public" data-flow="3 4" tabindex="0" role="button" aria-label="learning-service, :8082 · 1/1 실행"><rect class="bg" x="360" y="396" width="230" height="68" rx="7"/><text class="n" x="376" y="426.0">learning-service</text><circle class="dt dt-on" cx="380" cy="443.0" r="3.4"/><text class="s" x="390" y="447.0">:8082 · 1/1 실행</text></g>
+        <g class="nd tone-acc" data-id="svc-operations" data-layer="public" data-flow="3 4" tabindex="0" role="button" aria-label="operations-service, :8083 · 1/1 실행"><rect class="bg" x="360" y="492" width="230" height="68" rx="7"/><text class="n" x="376" y="522.0">operations-service</text><circle class="dt dt-on" cx="380" cy="539.0" r="3.4"/><text class="s" x="390" y="543.0">:8083 · 1/1 실행</text></g>
+        <g class="nd tone-mut" data-id="svc-integration" data-layer="public" data-flow="" tabindex="0" role="button" aria-label="integration-service, :8084 · 0/0 미기동"><rect class="bg" stroke-dasharray="5 4" x="360" y="588" width="230" height="68" rx="7"/><text class="n" x="376" y="618.0">integration-service</text><circle class="dt dt-off" cx="380" cy="635.0" r="3.4"/><text class="s" x="390" y="639.0">:8084 · 0/0 미기동</text></g>
+        <g class="nd tone-dat" data-id="db-auth" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="lms_auth_user_db, PostgreSQL 16.13"><rect class="bg" x="680" y="300" width="300" height="68" rx="7"/><text class="n" x="696" y="330.0">lms_auth_user_db</text><circle class="dt dt-on" cx="700" cy="347.0" r="3.4"/><text class="s" x="710" y="351.0">PostgreSQL 16.13</text></g>
+        <g class="nd tone-dat" data-id="db-learning" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="lms_learning_db, PostgreSQL 16.13"><rect class="bg" x="680" y="396" width="300" height="68" rx="7"/><text class="n" x="696" y="426.0">lms_learning_db</text><circle class="dt dt-on" cx="700" cy="443.0" r="3.4"/><text class="s" x="710" y="447.0">PostgreSQL 16.13</text></g>
+        <g class="nd tone-dat" data-id="db-operations" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="lms_operations_db, PostgreSQL 16.13"><rect class="bg" x="680" y="492" width="300" height="68" rx="7"/><text class="n" x="696" y="522.0">lms_operations_db</text><circle class="dt dt-on" cx="700" cy="539.0" r="3.4"/><text class="s" x="710" y="543.0">PostgreSQL 16.13</text></g>
+        <g class="nd tone-mut" data-id="db-integration" data-layer="private" data-flow="" tabindex="0" role="button" aria-label="lms_integration_db, 미사용"><rect class="bg" stroke-dasharray="5 4" x="680" y="588" width="300" height="68" rx="7"/><text class="n" x="696" y="618.0">lms_integration_db</text><circle class="dt dt-off" cx="700" cy="635.0" r="3.4"/><text class="s" x="710" y="639.0">미사용</text></g>
+        <g class="nd tone-dat" data-id="redis" data-layer="private" data-flow="4" tabindex="0" role="button" aria-label="ElastiCache Redis, 7.1 · auth 토큰 저장소"><rect class="bg" x="680" y="700" width="300" height="64" rx="7"/><text class="n" x="696" y="728.0">ElastiCache Redis</text><circle class="dt dt-on" cx="700" cy="745.0" r="3.4"/><text class="s" x="710" y="749.0">7.1 · auth 토큰 저장소</text></g>
+        <g class="nd tone-mut" data-id="s3" data-layer="managed" data-flow="" tabindex="0" role="button" aria-label="S3 버킷, 파일 저장소 · 버전 관리"><rect class="bg" x="40" y="876" width="296" height="56" rx="7"/><text class="n" x="56" y="900.0">S3 버킷</text><circle class="dt dt-on" cx="60" cy="917.0" r="3.4"/><text class="s" x="70" y="921.0">파일 저장소 · 버전 관리</text></g>
+        <g class="nd tone-mut" data-id="secrets" data-layer="managed" data-flow="" tabindex="0" role="button" aria-label="Secrets Manager, 비밀 8개 보관"><rect class="bg" x="372" y="876" width="296" height="56" rx="7"/><text class="n" x="388" y="900.0">Secrets Manager</text><circle class="dt dt-on" cx="392" cy="917.0" r="3.4"/><text class="s" x="402" y="921.0">비밀 8개 보관</text></g>
+        <g class="nd tone-mut" data-id="obs" data-layer="managed" data-flow="" tabindex="0" role="button" aria-label="ECR · CloudWatch, 이미지 5 · 로그 5"><rect class="bg" x="704" y="876" width="296" height="56" rx="7"/><text class="n" x="720" y="900.0">ECR · CloudWatch</text><circle class="dt dt-on" cx="724" cy="917.0" r="3.4"/><text class="s" x="734" y="921.0">이미지 5 · 로그 5</text></g>
+        <text class="n2" x="165" y="28" text-anchor="middle">브라우저</text>
+        <text class="s" x="165" y="47" text-anchor="middle">수강생 · 강사 · 멘토 · 매니저 · 외부 검증자</text>
+        <g class="stb" data-flow="1"><circle cx="165" cy="76" r="11"/><text x="165" y="80" text-anchor="middle">1</text></g>
+        <g class="stb" data-flow="2"><circle cx="165" cy="228" r="11"/><text x="165" y="232" text-anchor="middle">2</text></g>
+        <text class="lb" x="36" y="810" text-anchor="start"><tspan class="z">VPC 10.40.0.0/16</tspan><tspan class="zs" dx="14">ap-northeast-2 (서울) · AZ 2a · 2b</tspan></text>
+        <text class="lb" x="594" y="282" text-anchor="end"><tspan class="z">PUBLIC SUBNET</tspan><tspan class="zs" dx="14">10.40.0.0/24 · 10.40.1.0/24 · NAT 없음</tspan></text>
+        <g class="stb" data-flow="3"><circle cx="300" cy="430" r="11"/><text x="300" y="434" text-anchor="middle">3</text></g>
+        <text class="s sc" x="394" y="386">Service Connect · ALB 미경유</text>
+        <text class="lb" x="994" y="282" text-anchor="end"><tspan class="z">PRIVATE SUBNET</tspan><tspan class="zs" dx="14">10.40.10.0/24 · 10.40.11.0/24</tspan></text>
+        <g class="stb" data-flow="4"><circle cx="635" cy="366" r="11"/><text x="635" y="370" text-anchor="middle">4</text></g>
+        <text class="lb" x="36" y="864" text-anchor="start"><tspan class="z">VPC 밖 · 리전 관리형</tspan><tspan class="zs" dx="14">ECS task 가 IAM role 로 접근 · CloudTrail(멀티리전) 별도</tspan></text>
+      </svg>
+    </div>
+
+    <div class="iso-legend">
+      <span><i class="sw-acc"></i> 요청을 처리하는 실행 중 구성</span>
+      <span><i class="sw-dat"></i> 데이터 저장소</span>
+      <span><i class="sw-mut"></i> 미기동 · 보조 · 관리형</span>
+    </div>
+
+    <div class="iso-toolbar">
+      <div class="iso-seg" role="group" aria-label="요청 흐름 단계">
+        <button type="button" data-flow="" class="is-on">전체</button>
+        <button type="button" data-flow="1"><b>1</b> 브라우저 → CloudFront</button>
+        <button type="button" data-flow="2"><b>2</b> CloudFront → ALB</button>
+        <button type="button" data-flow="3"><b>3</b> ALB → 서비스</button>
+        <button type="button" data-flow="4"><b>4</b> 서비스 → 데이터</button>
+      </div>
+      <div class="iso-seg iso-seg--layer" role="group" aria-label="계층 표시">
+        <button type="button" data-layer="public" class="is-on" aria-pressed="true">퍼블릭</button>
+        <button type="button" data-layer="private" class="is-on" aria-pressed="true">프라이빗</button>
+        <button type="button" data-layer="managed" class="is-on" aria-pressed="true">VPC 밖</button>
+      </div>
+    </div>
+
+    <div class="iso-panel" id="isoPanel" aria-live="polite">
+      <div class="iso-panel__head">
+        <p class="iso-panel__name">전체 요청 경로</p>
+        <span class="iso-panel__kind">도식 읽는 순서</span>
+        <span class="iso-panel__state">4단계</span>
+      </div>
+      <dl>
+        <dt>1. HTTPS 진입</dt><dd>브라우저 → CloudFront</dd>
+        <dt>2. 오리진 전달</dt><dd>CloudFront → ALB</dd>
+        <dt>3. 경로 분기</dt><dd>ALB → auth · learning · operations</dd>
+        <dt>4. 데이터 접근</dt><dd>서비스 → 전용 RDS · Redis · S3</dd>
+      </dl>
+    </div>
+
+
+    <p class="iso-cap">
+      <strong>근거·범위</strong> — 2026-08-06 Terraform 코드(<code>terraform/</code>)와 AWS 실조회 결과를 대조했습니다.
+      블록의 사양·기동 수는 조회 시점의 실제 값으로, 보고서 기준일(08-05)보다 하루 뒤 시점입니다.
+      블록을 선택하면 사양과 연결 대상을 볼 수 있고, 번호 버튼으로 요청 흐름만 따로 볼 수 있습니다.
+    </p>
+
+    <h3>2. 현재 규모에 맞춘 설계 판단 <span class="prov">결정</span></h3>
+    <p>
+      설계 기준은 <strong>수강생 265명 · 매니저 25명(계정 약 290개)</strong>입니다.
+      최대 처리량을 미리 확장하기보다, 현재 규모에서 필요한 데이터·보안 경계는 유지하고
+      이중화와 대기 자원은 최소화했습니다.
+    </p>
+
+    <div class="arch-principles">
+      <article>
+        <p class="arch-principles__label">유지한 경계</p>
+        <p class="arch-principles__title">서비스별 실행·DB 분리</p>
+        <p>인증·학습·운영의 소유권을 나누고, RDS와 비밀 값도 서비스 단위로 분리했습니다.</p>
+      </article>
+      <article>
+        <p class="arch-principles__label">줄인 비용</p>
+        <p class="arch-principles__title">단일 태스크·단일 AZ</p>
+        <p>서비스당 태스크 1개, RDS 단일 AZ, Redis 1노드로 이중화 대기 비용을 줄였습니다.</p>
+      </article>
+      <article>
+        <p class="arch-principles__label">보완한 노출</p>
+        <p class="arch-principles__title">접속 경로는 최소화</p>
+        <p>ECS는 NAT 없이 공인 IP를 쓰지만 인바운드는 ALB 보안 그룹만 허용하고, RDS·Redis는 프라이빗 서브넷에 두었습니다.</p>
+      </article>
+    </div>
+
+    <p class="arch-assumption">
+      오프라인 집체 교육이라 출결·로그인·과제 마감 시각에 요청이 몰릴 수 있습니다.
+      아래 6가지 부하 케이스는 이 운영 패턴에서 나온 <strong>설계 가설이며, 부하 실험 결과가 아닙니다.</strong>
+    </p>
+
+    <details class="fold">
+      <summary>상세 근거 — 예상 부하 6가지와 현재 처리 방식</summary>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">부하 케이스 (가설)</th>
+              <th scope="col">몰리는 지점</th>
+              <th scope="col">현재 구성이 받는 방식</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>강의 시작 전후 10여 분에 265명이 출결 체크</td>
+              <td class="t-tight">learning-service</td>
+              <td>출결 API는 learning이 담당하고, 현재 512 CPU / 2048MiB 태스크 1개로 운영합니다.
+                  피크 RPS와 여유는 부하 실험으로 확인해야 합니다.</td>
+            </tr>
+            <tr>
+              <td>일과 시작에 로그인·토큰 갱신이 한꺼번에 몰림</td>
+              <td class="t-tight">auth-user-service · Redis</td>
+              <td>refresh token을 RDS가 아닌 Redis에 둬 토큰 갱신이 DB를 거치지 않습니다.
+                  현재는 cache.t4g.micro 1노드며, 용량과 연결 수를 지표로 관찰합니다.</td>
+            </tr>
+            <tr>
+              <td>과제 마감 직전 파일 제출이 몰림</td>
+              <td class="t-tight">learning-service · S3</td>
+              <td>파일 본문은 S3로 가고 서비스는 메타데이터만 다룹니다.
+                  대용량 제출이 태스크 메모리를 밀어내지 않습니다.</td>
+            </tr>
+            <tr>
+              <td>매니저 25명이 운영 대시보드를 동시 사용</td>
+              <td class="t-tight">operations-service</td>
+              <td>운영 경로(규칙 90)를 learning의 광역 <code>/admin/*</code>보다 먼저 매칭시켜
+                  수강생 트래픽과 분리했습니다. 현재 사양은 512 CPU / 1024MiB입니다.</td>
+            </tr>
+            <tr>
+              <td>증명서 공개 링크로 외부 검증자가 유입</td>
+              <td class="t-tight">learning-service <code>/verify/*</code></td>
+              <td>현재 CloudFront API 캐시는 비활성입니다. 외부 검증 트래픽이 커지면
+                  공개 응답의 불변성과 TTL을 확정한 뒤 해당 경로만 캐시할 수 있습니다.</td>
+            </tr>
+            <tr>
+              <td>배포·장애로 태스크가 재시작</td>
+              <td class="t-tight">전 서비스</td>
+              <td>태스크가 1개뿐이라 콜드스타트(약 60초) 동안 해당 서비스가 비지만, 이 규모에선 감수합니다.
+                  헬스체크 유예 120초로 재시작이 크래시루프가 되는 것만 막았습니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <p class="arch-tradeoffs__intro">
+      핵심 트레이드오프는 기본으로 펼쳐 둡니다. 아래 선택은 누락이 아니라 현재 규모에서
+      대기 비용을 줄이기 위한 결정이며, 감수한 위험과 후속 기준을 함께 봐야 합니다.
+    </p>
+
+    <details class="fold arch-tradeoffs" open>
+      <summary>핵심 트레이드오프 — 줄인 비용과 감수한 위험</summary>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">현재 선택</th>
+              <th scope="col">얻은 효과</th>
+              <th scope="col">감수한 위험·후속 기준</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>NAT Gateway 없이 ECS를 퍼블릭 서브넷에 배치</td>
+              <td>NAT 고정비와 처리량 비용 제거</td>
+              <td>태스크가 공인 IP를 가짐. 현재는 ALB 보안 그룹만 인바운드로 허용하며,
+                  보안 기준 상향 시 NAT + 프라이빗 ECS로 이전</td>
+            </tr>
+            <tr>
+              <td>RDS 단일 AZ · Redis 1노드 · 서비스당 태스크 1개</td>
+              <td>이중화용 대기 자원 비용 최소화</td>
+              <td>재시작·AZ 장애 시 서비스 중단 가능. 가용성 목표가 높아지면 태스크 2개 이상과
+                  RDS multi-AZ를 선적용</td>
+            </tr>
+            <tr>
+              <td>커스텀 도메인 없이 CloudFront 기본 도메인 사용</td>
+              <td>도메인·인증서 관리 범위 축소, HTTPS는 확보</td>
+              <td>웹·API 도메인 분리로 세션 쿠키가 차단될 수 있음. 8월 QA 전 도메인 정리 필요</td>
+            </tr>
+            <tr>
+              <td>서비스별 db.t4g.micro RDS 4대 분리</td>
+              <td>서비스별 데이터 소유권과 접근 경계 유지</td>
+              <td><code>integration-service</code>가 미기동이라 전용 RDS도 미사용.
+                  기능 폐지 범위가 고정되면 보존·제거를 다시 판단</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="call call--warn">
+      <p class="call__title">용량 한계는 숫자로 확정하지 않음</p>
+      <p>
+        현재는 부하 실험 결과와 피크 자원 지표가 없어 “동시 사용자 몇 명까지”를 수용 한계로
+        단정할 수 없습니다. 약 290개 계정을 기준으로 운영하되, Container Insights에서
+        <strong>CPU·메모리 75% 초과가 지속되거나 반복될 때</strong> 해당 서비스의 태스크 수와
+        오토스케일 기준을 재산정합니다.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ══ 4 ══ -->
+  <section>
+    <div class="sec-num">04</div>
+    <h2>증명서 발급 흐름 <span class="prov">결정</span> <span class="prov">08-06 개정</span></h2>
+    <p>
+      제품의 핵심 가치이자 <strong>현재 유일하게 끊긴 구간</strong>입니다.
+      08-06에 흐름을 개정했습니다 — 수강생 요청 트리거를 없애고,
+      <strong>수료가 확정된 다음 날 00:00 배치가 전원 생성</strong>하는 방식으로 바꿉니다.
+      산출물이 전부 S3 불변 파일이므로 <strong>승인 시점의 객체 버전을 그대로 동결</strong>할 수 있고,
+      이후 원본 데이터가 바뀌어도 발급본은 변하지 않습니다. 외부인은 공개 링크로 진위를 확인합니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">단계</th>
+            <th scope="col">담당</th>
+            <th scope="col">현재 상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. 원천 스냅샷 — 수료 익일 00:00 배치가 학습·프로젝트·평가 데이터를 S3에 저장</td>
+            <td>시스템</td>
+            <td><span class="pill pill--none">미구현</span></td>
+          </tr>
+          <tr>
+            <td>2. 전처리 — 증명서에 표시할 항목만 가공해 <code>cohort=N/student_uuid=…</code> 아래
+                영역별(종합요약 · 기술검증 · 프로젝트 …)로 저장</td>
+            <td>시스템</td>
+            <td><span class="pill pill--none">미구현</span></td>
+          </tr>
+          <tr>
+            <td>3. 분석 — 6축 점수는 확정 함수, 서술만 OpenAI.
+                <code>scores</code>·<code>ai</code>를 모델·프롬프트 버전 메타와 함께 같은 파티션에 저장</td>
+            <td>시스템 · LMS-AI</td>
+            <td><span class="pill pill--none">미구현</span> LMS-AI는 ECS 미배포</td>
+          </tr>
+          <tr>
+            <td>4. 준비 완료 — <strong>학생 단위 상태</strong>로 검토 큐 등록
+                (한 명의 실패가 코호트 전체를 막지 않게, 실패는 학생 단위 재시도)</td>
+            <td>시스템</td>
+            <td><span class="pill pill--none">미구현</span></td>
+          </tr>
+          <tr>
+            <td>5. 검토 — 매니저가 미리보고 승인 또는 보완 요청(학생 단위 재처리)</td>
+            <td>운영자</td>
+            <td><span class="pill pill--none">백엔드 미구현</span> 화면은 완성, 메뉴 차단</td>
+          </tr>
+          <tr>
+            <td>6. 승인 = 동결 — 그 시점의 S3 객체 버전 ID를 증명서에 고정</td>
+            <td>운영자</td>
+            <td><span class="pill pill--none">미구현</span></td>
+          </tr>
+          <tr>
+            <td>7. 열람·공개 — 수강생이 자신의 증명서를 확인하고 공개 여부 선택</td>
+            <td>수강생</td>
+            <td><span class="pill pill--done">공개 설정 동작</span> 열람 화면 완성 (임시 데이터)</td>
+          </tr>
+          <tr>
+            <td>8. 외부 검증 — <code>/verify/*</code> 공개 링크로 동결 스냅샷 조회</td>
+            <td>외부</td>
+            <td><span class="pill pill--done">동작</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      이전 결정(수강생 요청 시 생성)에서 바뀐 것은 트리거 하나이며, 대가는 요청하지 않을 학생
+      몫까지 나가는 OpenAI 서술 비용입니다. 선행 조건은 둘입니다 —
+      배치 실행 주체(서비스당 태스크가 1개라 Spring <code>@Scheduled</code>로 충분, 오토스케일 V2
+      도입 시 분산 락 필요)와 <strong>LMS-AI의 ECS 배포</strong>(현재 로컬 실행만).
+      S3 버저닝이 켜져 있어(실측) 보완 요청으로 재처리해도 승인된 발급본은 버전 ID로 불변입니다.
+    </p>
+  </section>
+
+  <!-- ══ 5 ══ -->
+  <section>
+    <div class="sec-num">05</div>
+    <h2>남은 구현과 8월 일정</h2>
+
+    <p>
+      두 구간으로 나눕니다. <strong>8월 21일까지</strong> PLAY 미니게임을 뺀 남은 구현을 모두 끝내고,<br>
+      <strong>8월 22일부터 말일까지</strong>는 역량 증명서 검증과 전체 QA에 씁니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구간</th>
+            <th scope="col">할 일</th>
+            <th scope="col" class="t-tight">담당</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">~ 8/21<br><span class="sub">12영업일</span></td>
+            <td>
+              <strong>역량 증명서 발급 구현</strong> — 인증 요청·검토·승인 상태 전이와 승인 시 내용 동결(스냅샷),
+              수강생 4화면·운영 4화면 실연동, 분석 엔진 AWS 배포 및 백엔드 연결
+            </td>
+            <td class="t-tight">전원</td>
+          </tr>
+          <tr>
+            <td class="t-tight">~ 8/21</td>
+            <td>
+              <strong>잔여 개선</strong> — 공통 안내 화면(권한 오류·세션 만료·비밀번호 재설정),
+              임시 비밀번호 변경 경로, 세션 유지 결함
+            </td>
+            <td class="t-tight">황설현 · 이정훈</td>
+          </tr>
+          <tr>
+            <td class="t-tight">8/22 ~ 8/31<br><span class="sub">6영업일</span></td>
+            <td>
+              <strong>증명서 실데이터 검증 + 전체 QA</strong> — 합성 데이터를 실제 학습 데이터로 교체하고
+              점수·등급 재검증, 역할별 시나리오 점검, 결함 수정
+            </td>
+            <td class="t-tight">전원</td>
+          </tr>
+          <tr>
+            <td class="t-tight">선택</td>
+            <td>
+              <strong>PLAY 미니게임 7화면</strong> — 7월 6일 2차 이월로 결정된 범위.
+              위 두 구간이 일정대로 끝나 여유가 생길 때만 착수
+            </td>
+            <td class="t-tight">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<button class="theme-toggle" type="button" id="themeToggle" data-next="dark">
+  <svg class="icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+  <span class="theme-toggle__label">다크</span>
+</button>
+
+<script type="application/json" id="isoData">
+{
+ "cloudfront": {
+  "name": "CloudFront",
+  "kind": "CloudFront 배포",
+  "status": "Deployed · HTTPS 종단",
+  "layer": "edge",
+  "rows": [
+   [
+    "도메인",
+    "d3eylh4fl880qc.cloudfront.net"
+   ],
+   [
+    "프로토콜",
+    "HTTP/2 + HTTP/3 · IPv6"
+   ],
+   [
+    "뷰어",
+    "HTTPS 강제(HTTP 는 리다이렉트) · 기본 인증서"
+   ],
+   [
+    "캐시",
+    "비활성 — API 라 모든 요청을 오리진으로"
+   ],
+   [
+    "오리진",
+    "ALB 로 HTTP 연결 (ALB 에 인증서 없음)"
+   ],
+   [
+    "엣지",
+    "PriceClass_200 (서울 포함)"
+   ]
+  ]
+ },
+ "alb": {
+  "name": "Application LB",
+  "kind": "Application Load Balancer",
+  "status": "active · 2 AZ",
+  "layer": "public",
+  "rows": [
+   [
+    "구성",
+    "internet-facing · HTTP :80"
+   ],
+   [
+    "규칙 90",
+    "operations — /admin/dashboard* (csv-ingest* 경로는 08-06 ALB에서 제거)"
+   ],
+   [
+    "규칙 100·101",
+    "auth — /auth/*, /users/*, /student/*, /admin/mentor*"
+   ],
+   [
+    "규칙 120",
+    "learning — /student/*, /admin/*, /instructor/*, /verify/*"
+   ],
+   [
+    "기본 동작",
+    "일치 규칙 없으면 404 고정 응답"
+   ]
+  ]
+ },
+ "ec2": {
+  "name": "admin EC2",
+  "kind": "관리용 EC2",
+  "status": "SSH 터널 전용",
+  "layer": "public",
+  "rows": [
+   [
+    "인스턴스",
+    "t3.micro"
+   ],
+   [
+    "접근",
+    "공개 HTTP 비활성 · 허용 IP에서 SSH 터널로만"
+   ],
+   [
+    "용도",
+    "ECS·RDS·Redis·ALB 상태 조회용 읽기 전용 대시보드"
+   ]
+  ]
+ },
+ "svc-auth": {
+  "name": "auth-user-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8081 · 1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트 · 사양",
+    "8081 · 512 CPU / 2048 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "100 · 101"
+   ],
+   [
+    "Service Connect",
+    "server + client — learning 의 /internal/* 호출"
+   ],
+   [
+    "연결",
+    "lms_auth_user_db · Redis"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT · 내부 API 키 · GitHub OAuth"
+   ]
+  ]
+ },
+ "svc-learning": {
+  "name": "learning-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8082 · 1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트 · 사양",
+    "8082 · 512 CPU / 2048 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "120 (가장 넓은 경로)"
+   ],
+   [
+    "Service Connect",
+    "server + client — auth 의 /internal/* 호출"
+   ],
+   [
+    "연결",
+    "lms_learning_db"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT · 내부 API 키 · GitHub App 키"
+   ]
+  ]
+ },
+ "svc-operations": {
+  "name": "operations-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8083 · 1/1 실행",
+  "layer": "public",
+  "rows": [
+   [
+    "포트 · 사양",
+    "8083 · 512 CPU / 1024 MiB"
+   ],
+   [
+    "ALB 규칙",
+    "90 — learning 의 광역 /admin/* 보다 먼저 매칭"
+   ],
+   [
+    "담당",
+    "운영 대시보드 — CSV 인입은 08-06 폐지, 지표는 HRD 라이브 집계"
+   ],
+   [
+    "연결",
+    "lms_operations_db"
+   ],
+   [
+    "비밀",
+    "DB 비밀번호 · JWT"
+   ]
+  ]
+ },
+ "svc-integration": {
+  "name": "integration-service",
+  "kind": "ECS Fargate 서비스",
+  "status": ":8084 · 0/0 미기동",
+  "layer": "public",
+  "rows": [
+   [
+    "상태",
+    "서비스는 있으나 실행 태스크 0 — ALB 규칙도 없음"
+   ],
+   [
+    "예정 담당",
+    "외부 연동"
+   ],
+   [
+    "연결",
+    "lms_integration_db (생성만 됨)"
+   ]
+  ]
+ },
+ "db-auth": {
+  "name": "lms_auth_user_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "PostgreSQL 16.13",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "auth-user-service"
+   ]
+  ]
+ },
+ "db-learning": {
+  "name": "lms_learning_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "PostgreSQL 16.13",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "learning-service"
+   ]
+  ]
+ },
+ "db-operations": {
+  "name": "lms_operations_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "PostgreSQL 16.13",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "operations-service"
+   ]
+  ]
+ },
+ "db-integration": {
+  "name": "lms_integration_db",
+  "kind": "RDS PostgreSQL 인스턴스",
+  "status": "미사용",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "PostgreSQL 16.13"
+   ],
+   [
+    "인스턴스",
+    "db.t4g.micro · 단일 AZ(2b)"
+   ],
+   [
+    "스토리지",
+    "20GiB gp2 · 최대 100GiB 자동 확장 · 암호화"
+   ],
+   [
+    "백업",
+    "자동 7일 보관"
+   ],
+   [
+    "접근",
+    "퍼블릭 접근 차단 · VPC 안에서만"
+   ],
+   [
+    "사용 주체",
+    "integration-service"
+   ]
+  ]
+ },
+ "redis": {
+  "name": "ElastiCache Redis",
+  "kind": "ElastiCache 복제 그룹",
+  "status": "7.1 · auth 토큰 저장소",
+  "layer": "private",
+  "rows": [
+   [
+    "엔진",
+    "Redis 7.1"
+   ],
+   [
+    "노드",
+    "cache.t4g.micro × 1 · 자동 페일오버 없음"
+   ],
+   [
+    "암호화",
+    "저장 시 적용 · 전송 구간 미적용"
+   ],
+   [
+    "용도",
+    "auth-user-service refresh token 저장소"
+   ]
+  ]
+ },
+ "s3": {
+  "name": "S3 버킷",
+  "kind": "S3",
+  "status": "파일 저장소 · 버전 관리",
+  "layer": "managed",
+  "rows": [
+   [
+    "이름",
+    "new-bm-lms-dev-files"
+   ],
+   [
+    "설정",
+    "버전 관리 · 퍼블릭 접근 차단 · 서버측 암호화"
+   ],
+   [
+    "정책",
+    "TLS 연결만 허용"
+   ],
+   [
+    "별도",
+    "CloudTrail 로그용 버킷 1개 더"
+   ]
+  ]
+ },
+ "secrets": {
+  "name": "Secrets Manager",
+  "kind": "Secrets Manager",
+  "status": "비밀 8개 보관",
+  "layer": "managed",
+  "rows": [
+   [
+    "DB 비밀번호",
+    "서비스별 4개 — Terraform 이 생성해 저장"
+   ],
+   [
+    "JWT 서명 키",
+    "auth 가 발급 · learning/operations 가 검증"
+   ],
+   [
+    "내부 API 키",
+    "서비스 간 /internal/* 호출 인증"
+   ],
+   [
+    "GitHub",
+    "OAuth client secret · App private key"
+   ]
+  ]
+ },
+ "obs": {
+  "name": "ECR · CloudWatch",
+  "kind": "ECR · CloudWatch",
+  "status": "이미지 5 · 로그 5",
+  "layer": "managed",
+  "rows": [
+   [
+    "ECR",
+    "서비스 4개 + db-init 이미지 저장소"
+   ],
+   [
+    "CloudWatch Logs",
+    "/ecs/new-bm-lms-dev/* · 14일 보관"
+   ],
+   [
+    "Container Insights",
+    "클러스터에서 활성"
+   ],
+   [
+    "CloudTrail",
+    "멀티리전 · 전용 S3 로 감사 로그"
+   ]
+  ]
+ }
+}
+</script>
+
+<script src="../../assets/theme-toggle.js"></script>
+<script src="../../assets/countdown.js"></script>
+<script src="../../assets/diagram.js"></script>
+<script src="../../assets/diagram-explore.js"></script>
+
+</body>
+</html>
