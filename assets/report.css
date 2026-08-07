@@ -417,10 +417,10 @@ footer p { color: var(--ink-3); font-size: 0.8rem; max-width: none; }
   background: var(--surface-2);
 }
 
-/* 후속 조치 열은 7행만 채워져 있어, 폭을 균등 배분하면 완료 구간에서
-   오른쪽이 텅 비고 중분류가 두 줄로 접힌다. 이름 열을 먼저 확보한다. */
-.impl { table-layout: fixed; }
-.impl th:nth-child(1), .impl td:nth-child(1) { width: 8.5rem; }
-.impl th:nth-child(2) { width: 15rem; }
-.impl th:nth-child(3) { width: 6rem; }
-.impl tbody td:nth-child(-n+2) { white-space: normal; word-break: keep-all; }
+/* 4열이 되며 이름이 두 줄로 접혔다. 고정 폭(table-layout:fixed)은 오히려
+   가로 스크롤만 만들어, 이름 열을 한 줄로 붙들고 남는 폭을 후속 조치에 준다.
+   좁은 화면에서는 .tw 컨테이너가 가로로 스크롤된다. */
+.impl { min-width: 46rem; }
+.impl tbody td[rowspan],
+.impl tbody td[rowspan] + td,
+.impl tbody tr > td:first-child:not([rowspan]) { white-space: nowrap; }
