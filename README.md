@@ -56,7 +56,8 @@ Pages 로 반나절을 잃고 Firebase 로 옮겼다. 되돌리려는 사람을 
 
 | 파일 | 기준일 | 대상 | 발행 |
 | --- | --- | --- | --- |
-| `2026-08-05_임원보고_진행현황.html` | 2026-08-05 | 임원진 | [배포본 보기](https://play-report-5c8d1.web.app/2026-08-05_%EC%9E%84%EC%9B%90%EB%B3%B4%EA%B3%A0_%EC%A7%84%ED%96%89%ED%98%84%ED%99%A9.html) |
+| `reports/2026-08-05_임원보고_진행현황/` | 2026-08-05 | 임원진 | [배포본 보기](https://play-report-5c8d1.web.app/reports/2026-08-05_%EC%9E%84%EC%9B%90%EB%B3%B4%EA%B3%A0_%EC%A7%84%ED%96%89%ED%98%84%ED%99%A9/) |
+| `reports/2026-08-05_임원보고_진행현황_백업/` | 2026-08-05 | 임원진 | 08-07 시점 고정 사본 |
 
 본문 원본은 `sections/` 조각이고, 표의 파일은 조립 결과물이다.
 문서를 추가하면 `index.html`의 목록에도 카드를 넣는다. 루트 `index.html`이 목차 페이지다.
@@ -68,14 +69,16 @@ HTML은 내용만 담고, 스타일과 동작은 `assets/`에서 역할별로 �
 
 ```
 index.html                          목차
-2026-08-05_임원보고_진행현황.html    발행본 (build.py 생성물 — 워크플로가 배포 시 다시 조립한다)
-build.py                            보고서 조립기
+build.py                            보고서 조립기 (reports/ 전체를 순회)
 firebase.json                       Hosting 설정 (배포 제외 목록이 보안 방어선)
 .firebaserc                         Firebase 프로젝트 지정
 .github/workflows/firebase.yml      push → 조립 → 배포
-sections/
-  00-shell.html     머리(head·masthead)·꼬리(footer·스크립트) 틀
-  01-요약.html       섹션 조각 — 번호 순으로 조립된다
+reports/                            보고서 하나가 폴더 하나다
+  2026-08-05_임원보고_진행현황/
+    index.html      발행본 (생성물 — 직접 수정 금지)
+    sections/
+      00-shell.html   머리(head·masthead)·꼬리(footer·스크립트) 틀
+      01-요약.html     섹션 조각 — 번호 순으로 조립된다
   02-현재-진행-상황.html
   03-아키텍처.html   (구성도 SVG·패널 데이터 포함)
   04-남은-구현.html
@@ -135,13 +138,21 @@ Pages는 파일을 가공 없이 서빙하므로 **각 HTML이 완전한 문서�
 직접 고치지 않는다 — 고쳐도 다음 조립 때 사라진다.
 
 ```bash
-# 섹션 추가: 다음 번호로 조각을 만들고 조립
-$EDITOR sections/08-새-섹션.html      # <section>…</section> 전체, 번호 자리는 <!--NUM-->
-python3 build.py                     # 발행본까지 함께 커밋해야 배포된다
+# 섹션 추가: 그 보고서 폴더의 sections/ 에 다음 번호로 조각을 만들고 조립
+$EDITOR reports/<보고서>/sections/09-새-섹션.html   # 번호 자리는 <!--NUM-->
+python3 build.py                                   # 전체 조립
+python3 build.py <보고서>                           # 하나만 조립
 
 # 중간 삽입·순서 변경: 파일명 번호만 바꾸면 된다
 # (<!--NUM--> 토큰이 조립 순서대로 채워지므로 본문 수정 불필요)
+
+# 새 보고서·백업: 폴더를 통째로 복사한 뒤 조각을 고친다
+cp -R reports/2026-08-05_임원보고_진행현황 reports/<새-이름>
 ```
+
+`00-shell.html` 의 자산 경로는 `../../assets/` 다 — 발행본이
+`reports/<보고서>/index.html` 이라 루트까지 **두 단계**다. 한 단계로 쓰면
+CSS 가 통째로 404 가 되는데 화면은 글자만 남은 채 떠서 알아채기 어렵다.
 
 조각 형식은 기존 파일을 따른다: `<section>` 바로 안에
 `<div class="sec-num"><!--NUM--></div>` 과 `<h2>제목</h2>`.
