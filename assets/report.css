@@ -410,20 +410,18 @@ footer p { color: var(--ink-3); font-size: 0.8rem; max-width: none; }
    행마다 다르게 보이므로, 이 표에서는 셀 역할로 다시 지정한다. */
 /* tbody td:first-child(0-1-2)를 이겨야 하므로 tbody 를 끼워 명시도를 맞춘다. */
 .impl tbody td { color: var(--ink); font-weight: 400; }
-.impl tbody td[rowspan] {
-  font-weight: 600;
-  vertical-align: top;
-  white-space: nowrap;
-  background: var(--surface-2);
-}
+.impl tbody td[rowspan] { font-weight: 600; vertical-align: top; }
 
 /* 4열이 되며 이름이 두 줄로 접혔다. 고정 폭(table-layout:fixed)은 오히려
    가로 스크롤만 만들어, 이름 열을 한 줄로 붙들고 남는 폭을 후속 조치에 준다.
    좁은 화면에서는 .tw 컨테이너가 가로로 스크롤된다. */
-.impl { min-width: 46rem; }
-.impl tbody td[rowspan],
-.impl tbody td[rowspan] + td,
-.impl tbody tr > td:first-child:not([rowspan]) { white-space: nowrap; }
+.impl { min-width: 54rem; }
+/* 대·중분류와 소분류 이름은 접히면 계층이 안 보인다. 한 줄로 붙든다. */
+.impl tbody td.lv1,
+.impl tbody td.lv2,
+.impl tbody td:not(.act):not(.lv1):not(.lv2) { white-space: nowrap; }
+.impl tbody td.lv1 { background: var(--surface-2); }
+.impl tbody td.lv2 { color: var(--ink-2); font-weight: 600; }
 /* 후속 조치는 문장이라 접혀야 한다. t-tight(nowrap)를 쓰면 표 밖으로 뻗어 잘린다. */
 .impl tbody td.act {
   white-space: normal;
