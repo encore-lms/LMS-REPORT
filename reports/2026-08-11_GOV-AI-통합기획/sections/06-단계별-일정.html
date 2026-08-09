@@ -1,0 +1,151 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>단계별 일정</h2>
+
+    <h3>9월 중순 시연 범위 (P2) — 우리 측 제안</h3>
+    <p>
+      GOV-AI 로드맵상 <strong>9월 중순은 2단계 중반</strong>이라 완성된 시스템을 전제할 수 없습니다.
+      시연 가능한 것은 <strong>“연동이 성립함을 보이는 최소 경로”</strong>입니다.
+      욕심을 내면 양쪽 다 미완인 채로 보여주게 됩니다.
+    </p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">항목</th>
+            <th scope="col">이유</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight"><span class="pill pill--done">포함</span></td>
+            <td><strong>F1 나의 역량 히스토리</strong> — 증명서 탭 1개</td>
+            <td>우리 LMS 데이터만으로도 시간축이 서고, 실습 이벤트가 붙으면 밀도가 올라가는 것을 그 자리에서 보여줄 수 있음</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><span class="pill pill--done">포함</span></td>
+            <td><strong>이벤트 배치 적재</strong> 1경로</td>
+            <td>API 없이 파일을 주기 적재하는 방식. 연동이 실제로 붙었음을 증명하는 최소 단위</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><span class="pill pill--none">제외</span></td>
+            <td>F2 수준별 맞춤 AI 티칭</td>
+            <td>카테고리별 판정(R6)이 선행되어야 성립. 10월 이후</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><span class="pill pill--none">제외</span></td>
+            <td>실시간 API 연동</td>
+            <td>상대 Collector API가 2단계 범위. 9월 중순에 안정 연동을 기대하기 어려움</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>일정 (제안)</h3>
+    <p>
+      우리 <strong>LMS 8월 31일 마감은 그대로 둡니다.</strong> 통합 작업은 그 위에 얹히는 것이지 대체하는 것이 아닙니다.
+      두 일이 겹치는 8월 후반이 이 계획에서 가장 위험한 구간입니다.
+    </p>
+    <div class="sched">
+      <div class="sched__inner">
+        <div class="sched__head">
+          <div>작업</div>
+          <div>8/11~16</div>
+          <div>8/17~23</div>
+          <div>8/24~31</div>
+          <div>9/1~7</div>
+          <div>9/8~15</div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">통합 요구사항 정의</div>
+          <div class="sched__cell on">킥오프</div>
+          <div class="sched__cell on">확정</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">식별자 규약 · 카테고리 사전</div>
+          <div class="sched__cell on">초안</div>
+          <div class="sched__cell on">합의</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">LMS 8월 마감 (증명서)</div>
+          <div class="sched__cell on"></div>
+          <div class="sched__cell on"></div>
+          <div class="sched__cell on freeze">8/31</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">이벤트 배치 연동</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on qa">설계</div>
+          <div class="sched__cell on">구현</div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">역량 히스토리 화면 (F1)</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on">구현</div>
+          <div class="sched__cell on">연결</div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">시연 리허설</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on ship">인터뷰</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="call call--warn">
+      <p class="call__title">인력 부하</p>
+      <p>
+        현재 개발 인력은 3명이고, 8월 31일 증명서 마감이 그대로 살아 있습니다.
+        08-07 회의에서 이미 <strong>평일 야간과 주말까지 이어지는 작업 부하</strong>가 보고됐습니다.
+      </p>
+      <p>
+        위 일정은 <strong>8월 후반 2주에 마감과 통합 설계가 겹치는 것을 전제</strong>합니다.
+        그대로 가려면 통합 쪽 설계를 담당 1인으로 한정하거나,
+        9월 중순 시연 범위를 위 표보다 더 줄이는 선택이 필요합니다. 아래 D5 가 그 판단입니다.
+      </p>
+    </div>
+
+    <h3>일정에 관해 결정해야 할 것</h3>
+    <div class="decisions">
+      <div class="dec">
+        <div class="dec__n">D4</div>
+        <div>
+          <p class="dec__q">9월 중순 시연 범위를 위 제안대로 확정할 것인가</p>
+          <p class="dec__b">
+            포함 2건(역량 히스토리 화면 · 배치 적재 1경로), 제외 2건(맞춤 티칭 · 실시간 API)입니다.
+            9월 중순은 조정 불가한 유일한 고정 일정이므로, 범위를 먼저 좁히지 않으면 셋 다 미완으로 갑니다.
+          </p>
+          <p class="dec__rec">권고 — 제안대로 확정. 인력 판단(D5)에서 더 줄여야 한다면 배치 적재를 수동 1회 반입으로 대체</p>
+        </div>
+      </div>
+      <div class="dec">
+        <div class="dec__n">D5</div>
+        <div>
+          <p class="dec__q">8월 31일 증명서 마감과 통합 설계를 어떻게 병행할 것인가</p>
+          <p class="dec__b">
+            8월 후반 2주에 두 작업이 겹칩니다. 현재 인력은 3명이고 이미 야간·주말 작업이 보고된 상태입니다.
+            선택지는 셋입니다 — ① 통합 설계를 1인 전담으로 분리, ② 9월 중순 시연 범위를 더 축소,
+            ③ 증명서 마감을 조정.
+          </p>
+          <p class="dec__rec">권고 — ①과 ②의 조합. 증명서 마감은 유지</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
