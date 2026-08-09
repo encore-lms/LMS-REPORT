@@ -1,0 +1,72 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>요약</h2>
+
+    <p class="lede">
+      GOV-AI-Agent는 <strong>제안서와 3명 규모의 개념검증(PoV)</strong>까지 나와 있습니다.
+      수집 파이프라인·분석 엔진·대시보드의 실물은 아직 확인되지 않습니다.
+      제안서 로드맵대로면 <strong>9월 중순은 2단계(LLM 분석·리포팅) 진행 중</strong>이므로,
+      그 시점에 완성된 시스템을 전제로 계획을 세울 수 없습니다.
+    </p>
+
+    <p class="lede">
+      두 시스템의 역할은 겹치지 않습니다.
+      GOV-AI는 <strong>학습 과정(코딩 시도·에러·질문)</strong>을 남기고,
+      LMS는 그것을 <strong>평가·인증·증명서</strong>로 바꿉니다.
+      우리 역량증명서 6축 중 <strong>기술·문제해결·학습지속성</strong> 3축이
+      지금 데이터 부족으로 얕은데, GOV-AI 이벤트가 정확히 그 자리를 채웁니다.
+    </p>
+
+    <p class="lede">
+      그래서 통합의 실체는 시스템 합병이 아니라 <strong>데이터 계약 한 건</strong>입니다.
+      계약이 서면 나머지는 각자 개발입니다.
+      <strong>계약을 정의해서 건네는 쪽이 우리</strong>여야 하며, 그 초안이 이 문서의 4장 요구사항 명세서입니다.
+    </p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <p class="kpi__label">GOV-AI 사업 규모</p>
+        <p class="kpi__val">3<small>단계 / 3개월</small></p>
+        <p class="kpi__delta">제안서 기준 08/02 착수 · 10월 말 이관</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">현재 검증 규모</p>
+        <p class="kpi__val">3<small>명</small></p>
+        <p class="kpi__delta">Python 1개 트랙 · 주간 리포트 1회분</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">수집 이벤트 종류</p>
+        <p class="kpi__val">5<small>종</small></p>
+        <p class="kpi__delta">세션·실행·에러·힌트·단계완료</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">보강되는 증명서 축</p>
+        <p class="kpi__val">3<small>/6축</small></p>
+        <p class="kpi__delta">기술 · 문제해결 · 학습지속성</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">선결 요청 항목</p>
+        <p class="kpi__val">8<small>건</small></p>
+        <p class="kpi__delta">식별자 · 카테고리 · 연동 방식 등</p>
+      </div>
+    </div>
+
+    <div class="call call--crit">
+      <p class="call__title">가장 먼저 풀어야 할 충돌 — 가명화 vs 실명 증명서</p>
+      <p>
+        GOV-AI 제안서는 수집 시점의 <strong>식별정보 분리·가명화</strong>를 개인정보 보호 방침으로 명시합니다.
+        그러나 우리 역량증명서는 <strong>개인 실명으로 발급되어 외부 검증까지 되는 문서</strong>입니다.
+        가명화된 학습 데이터를 증명서 근거로 쓰려면 재식별 키와 그에 대한 동의 범위가 필요합니다.
+      </p>
+      <p>
+        이것은 개발 순서 문제가 아니라 <strong>설계 전제 문제</strong>라, 화요일 회의에서
+        먼저 정리되지 않으면 이후 모든 스펙이 다시 흔들립니다.
+      </p>
+      <p>
+        연결하는 쪽으로 간다면 방법은 이미 있습니다 —
+        실습 환경 진입 시 <strong>이미 배포된 LMS 로그인 API로 인증</strong>하게 하면
+        그 시점부터 모든 데이터가 수강생별로 쌓입니다 (4장 <strong>R1-A</strong>).
+      </p>
+    </div>
+
+  </section>
