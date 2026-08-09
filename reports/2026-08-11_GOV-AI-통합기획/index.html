@@ -1,0 +1,1297 @@
+<!doctype html>
+<!-- 생성 파일 — 원본은 sections/ 조각이며 build.py 가 조립한다. 직접 수정 금지. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="GOV-AI-Agent 사업과 LMS 역량증명서의 통합 서비스 기획안 — 서비스 아키텍처, 요구사항 명세서, 역할 분담, 단계별 일정.">
+
+<title>GOV-AI × LMS 통합 기획안</title>
+
+<script>
+  /* 저장된 테마를 첫 페인트 전에 적용한다. 본문 뒤에서 적용하면 색이 한 번 번쩍인다. */
+  try {
+    var saved = localStorage.getItem('lms-report-theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
+
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/theme-toggle.css">
+<link rel="stylesheet" href="../../assets/report.css">
+<link rel="stylesheet" href="../../assets/svcmap.css">
+</head>
+<body>
+
+<div class="doc">
+
+  <a class="home-link" href="../../">← 보고서 목록</a>
+
+  <header class="masthead">
+    <p class="masthead__eyebrow">08.11 킥오프 회의 자료</p>
+    <h1>GOV-AI × LMS<br>통합 기획안</h1>
+    <div class="masthead__sub">
+      <p>
+        정부지원 AI 활용 교육 사업(<strong>GOV-AI-Agent</strong>)과
+        <strong>LMS 역량증명서</strong>를 어떻게 하나로 잇는지에 대한 우리 측 안입니다.
+      </p>
+      <p>
+        두 시스템은 겹치지 않습니다. GOV-AI는 <strong>학습 과정에서 나오는 원천 데이터</strong>를 만들고,
+        LMS는 그것을 <strong>평가·인증·증명</strong>으로 바꿉니다.<br>
+        따라서 통합의 실체는 시스템 합병이 아니라 <strong>데이터 계약 한 건</strong>입니다.
+      </p>
+      <p>
+        이 문서는 그 계약에 무엇이 들어가야 하는지, 그래서
+        <strong>외부 개발 주체에 무엇을 요청해야 하는지</strong>를 정리합니다.
+      </p>
+    </div>
+    <div class="masthead__meta">
+      <span>기준일 <b>2026-08-10</b></span>
+      <span>대상 회의 <b>2026-08-11 14:00</b></span>
+      <span>1차 목표 <b>9월 중순 제안 인터뷰 시연</b></span>
+      <span>참조 <b>GOV-AI-PROJECT-260708</b></span>
+    </div>
+  </header>
+
+  <div class="prov-key">
+    <span><strong>표기</strong>
+      <span class="prov prov--live">실측</span> 저장소·산출물에서 직접 확인한 값 ·
+      나머지는 우리 측 <strong>제안</strong>이며 확정 사항이 아닙니다
+    </span>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <section>
+    <div class="sec-num">01</div>
+    <h2>요약</h2>
+
+    <p class="lede">
+      GOV-AI-Agent는 <strong>제안서와 3명 규모의 개념검증(PoV)</strong>까지 나와 있습니다.
+      수집 파이프라인·분석 엔진·대시보드의 실물은 아직 확인되지 않습니다.
+      제안서 로드맵대로면 <strong>9월 중순은 2단계(LLM 분석·리포팅) 진행 중</strong>이므로,
+      그 시점에 완성된 시스템을 전제로 계획을 세울 수 없습니다.
+    </p>
+
+    <p class="lede">
+      두 시스템의 역할은 겹치지 않습니다.
+      GOV-AI는 <strong>학습 과정(코딩 시도·에러·질문)</strong>을 남기고,
+      LMS는 그것을 <strong>평가·인증·증명서</strong>로 바꿉니다.
+      우리 역량증명서 6축 중 <strong>기술·문제해결·학습지속성</strong> 3축이
+      지금 데이터 부족으로 얕은데, GOV-AI 이벤트가 정확히 그 자리를 채웁니다.
+    </p>
+
+    <p class="lede">
+      그래서 통합의 실체는 시스템 합병이 아니라 <strong>데이터 계약 한 건</strong>입니다.
+      계약이 서면 나머지는 각자 개발입니다.
+      <strong>계약을 정의해서 건네는 쪽이 우리</strong>여야 하며, 그 초안이 이 문서의 4장 요구사항 명세서입니다.
+    </p>
+
+    <div class="kpis">
+      <div class="kpi">
+        <p class="kpi__label">GOV-AI 사업 규모</p>
+        <p class="kpi__val">3<small>단계 / 3개월</small></p>
+        <p class="kpi__delta">제안서 기준 08/02 착수 · 10월 말 이관</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">현재 검증 규모</p>
+        <p class="kpi__val">3<small>명</small></p>
+        <p class="kpi__delta">Python 1개 트랙 · 주간 리포트 1회분</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">수집 이벤트 종류</p>
+        <p class="kpi__val">5<small>종</small></p>
+        <p class="kpi__delta">세션·실행·에러·힌트·단계완료</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">보강되는 증명서 축</p>
+        <p class="kpi__val">3<small>/6축</small></p>
+        <p class="kpi__delta">기술 · 문제해결 · 학습지속성</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi__label">선결 요청 항목</p>
+        <p class="kpi__val">8<small>건</small></p>
+        <p class="kpi__delta">식별자 · 카테고리 · 연동 방식 등</p>
+      </div>
+    </div>
+
+    <div class="call call--crit">
+      <p class="call__title">가장 먼저 풀어야 할 충돌 — 가명화 vs 실명 증명서</p>
+      <p>
+        GOV-AI 제안서는 수집 시점의 <strong>식별정보 분리·가명화</strong>를 개인정보 보호 방침으로 명시합니다.
+        그러나 우리 역량증명서는 <strong>개인 실명으로 발급되어 외부 검증까지 되는 문서</strong>입니다.
+        가명화된 학습 데이터를 증명서 근거로 쓰려면 재식별 키와 그에 대한 동의 범위가 필요합니다.
+      </p>
+      <p>
+        이것은 개발 순서 문제가 아니라 <strong>설계 전제 문제</strong>라, 화요일 회의에서
+        먼저 정리되지 않으면 이후 모든 스펙이 다시 흔들립니다.
+      </p>
+      <p>
+        연결하는 쪽으로 간다면 방법은 이미 있습니다 —
+        실습 환경 진입 시 <strong>이미 배포된 LMS 로그인 API로 인증</strong>하게 하면
+        그 시점부터 모든 데이터가 수강생별로 쌓입니다 (4장 <strong>R1-A</strong>).
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ══ 2 ══ -->
+  <section>
+    <div class="sec-num">02</div>
+    <h2>GOV-AI-Agent × LMS 통합 서비스 기획안</h2>
+
+    <p>
+      기준은 하나입니다. <strong>우리 LMS에 이미 있는 자산과 GOV-AI 데이터가 만나야 성립하는 기능</strong>만 넣었습니다.
+      둘 중 하나만으로 되는 것은 통합 안건이 아니라 각자의 개발 항목입니다.
+    </p>
+
+    <h3>F1. 나의 역량 히스토리 <span class="pill pill--wip">1차</span></h3>
+    <p>
+      수강생이 실습 환경과 LMS에서 수행한 학습·실습·프로젝트 데이터를 <strong>일자별로 모으고
+      기술 카테고리별로 분류해, 학습 과정과 역량 성장 과정을 시각화</strong>합니다.
+      지금의 증명서가 “수료 시점의 한 장”이라면, 이것은 “거기까지 온 경로”입니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">화면 위치</td>
+            <td>
+              별도 페이지를 만들지 않고 <strong>수강 역량 증명서 안의 탭</strong>으로 넣습니다.
+              독립 역량 리포트 페이지는 이미 증명서로 통합하기로 결정된 바 있어, 되돌리지 않습니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">우리가 이미 가진 것</td>
+            <td>
+              과제 제출, 퀴즈 응시·결과, 프로젝트 활동, 트러블슈팅, 출결, 학습 기록(블로그·스터디·자격증) —
+              <strong>모두 날짜를 가진 채 DB에 있습니다.</strong> 시간축으로 세우는 것 자체는 우리 쪽 작업입니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI에서 받아야 할 것</td>
+            <td>
+              일자별 실습 이벤트(<code>ts</code> · <code>type</code> · <code>step</code>) —
+              <strong>시험과 시험 사이의 빈 구간을 채우는 유일한 소스</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">지금 없는 것</td>
+            <td>
+              <strong>기술 카테고리 분류 체계가 양쪽 모두 없습니다.</strong>
+              GOV-AI 이벤트에는 <code>step</code>(1~10) 숫자만 있고 그 단계가 어떤 기술인지 정의가 없으며,
+              우리 과제·퀴즈에도 동일한 분류 축이 없습니다. 이것 없이는 “카테고리별”이 성립하지 않습니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">9월 중순 시연</td>
+            <td><span class="pill pill--wip">부분 가능</span> 실 연동 대신 배치로 받은 이벤트 파일로 화면을 채우는 수준</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call call--warn">
+      <p class="call__title">기술 카테고리 사전은 우리가 정의해서 건네는 것이 맞습니다</p>
+      <p>
+        이 분류는 증명서에 표시되는 항목이고, 우리 과제·퀴즈·프로젝트도 같은 축으로 묶여야 합니다.
+        상대가 정의한 분류를 나중에 받아 맞추면 우리 데이터 전체를 다시 태깅해야 합니다.
+        <strong>우리가 카테고리 사전을 만들어 제공하고, GOV-AI는 이벤트에 그 값을 태깅해 돌려주는</strong> 방향을 제안합니다.
+      </p>
+    </div>
+
+    <h3>F2. 수준별 맞춤 AI 티칭 <span class="pill pill--hold">2차</span></h3>
+    <p>
+      수집된 실습 데이터를 근거로 <strong>수강생별·기술 카테고리별 난이도를 AI가 산정</strong>하고,
+      그 난이도에 맞는 문제를 자동으로 출제합니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">우리가 이미 가진 것</td>
+            <td>
+              <strong>퀴즈 출제·템플릿·문항 관리와 자동 채점이 이미 구현·배포되어 있습니다.</strong>
+              출제 엔진을 새로 만들 필요가 없습니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI에서 받아야 할 것</td>
+            <td><strong>카테고리별 수준 판정</strong> — 학생 × 카테고리 단위의 난이도 값과 그 근거</td>
+          </tr>
+          <tr>
+            <td class="t-tight">지금 없는 것</td>
+            <td>
+              현재 진단은 <strong>학생당 등급 하나</strong>(초급·중급·해결사)입니다.
+              “Python은 중급이지만 자료구조는 초급” 같은 카테고리별 분해가 없어,
+              지금 값으로는 카테고리별 출제를 할 수 없습니다.
+              우리 문항에도 난이도·카테고리 태그가 없어 양쪽 모두 확장이 필요합니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">9월 중순 시연</td>
+            <td><span class="pill pill--none">불가</span> F1의 카테고리 체계가 선행되어야 성립. 10월 이후 범위로 봅니다</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      이 기능의 역할 분담은 명확합니다. <strong>판정은 GOV-AI, 출제와 채점은 우리</strong>입니다.
+      상대가 출제까지 만들면 우리 퀴즈 시스템과 이중 관리가 되고,
+      수강생은 문제를 두 군데서 풀게 됩니다.
+    </p>
+
+  </section>
+
+  <!-- ══ 3 ══ -->
+  <section>
+    <div class="sec-num">03</div>
+    <h2>서비스 아키텍처</h2>
+
+    <p>
+      학습이 일어나는 곳에서 역량증명서까지 가는 전체 경로를 한 장으로 폈습니다.
+      <strong>두 시스템이 만나는 지점은 세 곳뿐</strong>이고, 그 세 곳이 곧 4장 요구사항 명세서의 대상입니다.
+    </p>
+
+    <div class="svcmap">
+      <div class="svcmap__top"></div>
+
+      <svg class="svcmap__defs" aria-hidden="true" focusable="false">
+        <defs>
+          <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 4v4M9 14h.01M15 14h.01M2 13h2M20 13h2"/></symbol>
+          <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></symbol>
+          <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-4.5A8 8 0 1 1 21 12z"/></symbol>
+          <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+          <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+          <symbol id="i-check" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 12l3 3 5-6"/></symbol>
+          <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+          <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v6M15 3v6M6 9h12v3a6 6 0 0 1-12 0zM12 18v3"/></symbol>
+          <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+          <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+          <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+          <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 9v4M12 16h.01"/></symbol>
+          <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M17 5.5a3 3 0 0 1 0 5.8M18 20a5.5 5.5 0 0 0-3-4.6"/></symbol>
+          <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></symbol>
+          <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></symbol>
+          <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+          <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a4 4 0 0 0 6 .5l2.5-2.5a4 4 0 0 0-5.7-5.7L11.5 6.7"/><path d="M14 11a4 4 0 0 0-6-.5L5.5 13a4 4 0 0 0 5.7 5.7l1.3-1.3"/></symbol>
+          <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.5l3.5 2"/></symbol>
+        </defs>
+      </svg>
+
+
+      <header class="svcmap__head">
+        <div>
+          <p class="svcmap__eyebrow">Service Architecture · GOV-AI × LMS Integration</p>
+          <p class="svcmap__title">통합 서비스 아키텍처</p>
+          <p class="svcmap__sub">학습 발생 → 수집 → 저장 → 분석·산정 → 활용 → 역량 증명</p>
+        </div>
+        <div class="svcmap__meta">
+          <p>Python · FastAPI · PostgreSQL / Spring Boot · React · AWS ECS</p>
+          <p>근거 : GOV-AI-PROJECT-260708 · LMS-AI · LMS-SV 저장소 실측</p>
+        </div>
+      </header>
+
+      <!-- 1 ── 학습 발생 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">1</span>
+          <span class="stage__name">학습 발생</span>
+          <span class="stage__en">Generation</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 학습 환경</span>
+            <p class="grp__note">실시간 데이터 발생 · 옵트인 동의 기반</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>PlayLang 조교 에이전트</p>
+                <p class="c__d">VSCode 확장 · 언어별 10단계</p>
+                <p class="c__d">소크라테스식 힌트 (정답 비공개)</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg>ATmux VIBE 코딩 환경</p>
+                <p class="c__d">원격 실습 서버 · 세션 자동 복구</p>
+                <p class="c__d">AI CLI 사용 이력 (옵트인)</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>Q&amp;A 봇 (디스코드)</p>
+                <p class="c__d">LLM 1차 응답</p>
+                <p class="c__d">미해결 시 강사 에스컬레이션</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 학습 · 평가 활동</span>
+            <p class="grp__note">이미 배포되어 동작 중 — 모두 날짜를 가진 채 DB에 있다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>과제 · 퀴즈 · 프로젝트</p>
+                <p class="c__d">제출 · 응시 · 팀 활동</p>
+                <p class="c__d">강사 채점 · 검토</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>출결 · 학습 기록</p>
+                <p class="c__d">HRD 출결 · 블로그 · 스터디</p>
+                <p class="c__d">자격증 · 트러블슈팅</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>강사 인증 심사</p>
+                <p class="c__d">프로젝트 · 트러블슈팅 인증</p>
+                <p class="c__d">승인이 점수 산정의 전제</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="link">
+            <span class="link__no">①</span>
+            <span class="link__t">로그인 연동 — 수강생 식별자를 여기서 확정한다</span>
+            <span class="link__dir">LMS → GOV-AI</span>
+            <p class="link__d">
+              실습 환경 진입 시 <code>POST /auth/login</code> 으로 인증.
+              응답의 <code>user.id</code>(UUID)를 기준 식별자로 삼는다.
+              이것이 없으면 나머지 두 지점이 성립하지 않는다 (4장 R1-A)
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2 ── 수집 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">2</span>
+          <span class="stage__name">수집</span>
+          <span class="stage__en">Ingestion</span>
+        </div>
+        <div class="stage__main">
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 수집 파이프라인</span>
+            <p class="grp__note">LMS 쪽에는 이 계층이 없다 — 활동이 곧 서비스 DB 트랜잭션이다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-funnel"/></svg>Collector API</p>
+                <p class="c__d">FastAPI · 에이전트 실시간 push</p>
+                <p class="c__d">코드 · 실행 · 에러 · 챗 로그</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg>외부 커넥터</p>
+                <p class="c__d">노션 · 깃허브 · 구글 · 디스코드</p>
+                <p class="c__d">기존 38종 주기 pull</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>가명화 · 정제</p>
+                <p class="c__d">수집 시점 식별정보 분리</p>
+                <p class="c__d">옵트인 동의 상태 태그</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 ── 저장 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">3</span>
+          <span class="stage__name">저장</span>
+          <span class="stage__en">Storage</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 데이터 레이크</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg>원천 저장소</p>
+                <p class="c__d">학습 로그 원본 보존</p>
+                <p class="c__d">보존 기간 · 파기 절차 적용</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>분석 마트</p>
+                <p class="c__d">학생 · 그룹 · 과목별 정규 지표</p>
+                <p class="c__d">현행 <code>metrics.json</code> 13종 기준</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="link">
+            <span class="link__no">②</span>
+            <span class="link__t">학습 이벤트 — 일자별 실습 로그를 우리 쪽에 적재</span>
+            <span class="link__dir">GOV-AI → LMS</span>
+            <p class="link__d">
+              <code>ts · type · step · category</code> 에 <code>lms_student_uuid</code> 를 실어 전달.
+              1차는 주기적 파일 배치, 2차에서 조회 API 로 전환한다
+            </p>
+          </div>
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 서비스 DB</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg>learning-service DB</p>
+                <p class="c__d">과제 · 퀴즈 · 프로젝트 · 출결</p>
+                <p class="c__d">학습 기록 · 인증 심사 이력</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg>실습 이벤트 적재</p>
+                <p class="c__d">계약 ②로 받은 일자별 로그</p>
+                <p class="c__d">시험과 시험 사이를 채우는 구간</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4 ── 분석 · 산정 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">4</span>
+          <span class="stage__name">분석 · 산정</span>
+          <span class="stage__en">Analysis</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · LLM 분석 4모듈</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>수준 진단</p>
+                <p class="c__d">초급 · 중급 · 해결사 등급</p>
+                <p class="c__d">등급 변화 추이</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>취약점 분석</p>
+                <p class="c__d">반복 에러 패턴 · 오답 이력</p>
+                <p class="c__d">보충 학습 추천</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>이탈 · 부진 경보</p>
+                <p class="c__d">미접속 · 단계 정체 · 참여 급감</p>
+                <p class="c__d">위험도 스코어 + 근거</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>그룹 역학</p>
+                <p class="c__d">협업 상태 · 기여 편차</p>
+                <p class="c__d">그룹 간 진도 편차</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="link">
+            <span class="link__no">③</span>
+            <span class="link__t">집계 · 판정 — 근거로만 쓰이고 증명서 점수가 되지 않는다</span>
+            <span class="link__dir">GOV-AI → LMS</span>
+            <p class="link__d">
+              카테고리별 판정 · 취약 패턴 · 모델 메타를 받는다.
+              점수는 재실행해도 같아야 하므로 <strong>LMS-AI 의 확정 함수만</strong> 만든다
+            </p>
+          </div>
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · LMS-AI</span>
+            <p class="grp__note">점수를 만드는 곳은 여기 한 군데뿐이다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>6축 확정 함수</p>
+                <p class="c__d">기술 · 소통 · 팀워크</p>
+                <p class="c__d">책임감 · 문제해결 · 학습지속성</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>상대 위치 · 동료 비교</p>
+                <p class="c__d">동일 기수 축별 백분위</p>
+                <p class="c__d">유효 모집단 15명 이상일 때</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>재현성</p>
+                <p class="c__d">재실행해도 같은 값</p>
+                <p class="c__d">승인 시점 내용 동결</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 5 ── 활용 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">5</span>
+          <span class="stage__name">활용</span>
+          <span class="stage__en">Application</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 수강생 · 강사 화면</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>나의 역량 히스토리 (F1)</p>
+                <p class="c__d">일자별 · 기술 카테고리별 성장 곡선</p>
+                <p class="c__d">증명서 안의 탭으로 편입</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>수준별 맞춤 출제 (F2)</p>
+                <p class="c__d">카테고리 난이도에 맞춘 자동 출제</p>
+                <p class="c__d">기존 퀴즈 · 채점 시스템 재사용</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 피드백 전달</span>
+            <p class="grp__note">경로를 이원화하지 않는다 — 피드백은 GOV-AI 쪽에서만 나간다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Human-in-the-Loop</p>
+                <p class="c__d">AI 초안 → 강사 · 매니저 승인 → 전달</p>
+                <p class="c__d">AI 단독 전달 금지</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>효과 추적</p>
+                <p class="c__d">전달 이후 지표 변화 자동 추적</p>
+                <p class="c__d">다음 리포트에 반영</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 6 ── 역량 증명 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">6</span>
+          <span class="stage__name">역량 증명</span>
+          <span class="stage__en">Certification</span>
+        </div>
+        <div class="stage__main">
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 증명 · 외부 검증</span>
+            <p class="grp__note">실명으로 발급되어 외부에서 조회되는 최종 산출물</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg>역량증명서</p>
+                <p class="c__d">6축 점수 · 상대 위치</p>
+                <p class="c__d">AI 서술 (모델 · 프롬프트 버전 기록)</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>승인 시 동결</p>
+                <p class="c__d">스냅샷 · 발급 감사 로그</p>
+                <p class="c__d">나중에 다시 계산해도 같은 값</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg>외부 검증 링크</p>
+                <p class="c__d">기업 · 면접관 상시 조회</p>
+                <p class="c__d">공개 범위는 수강생이 설정</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svcmap__rules">
+        <h4>이 그림이 지키는 설계 원칙</h4>
+        <ul class="rules">
+          <li>점수를 만드는 곳은 <strong>LMS-AI 한 군데</strong>. 판정은 근거일 뿐 점수가 아니다</li>
+          <li>학생 식별자와 기술 카테고리 사전은 <strong>우리가 정의해 건넨다</strong></li>
+          <li>통합의 실체는 시스템 합병이 아니라 <strong>계약 세 건</strong>이다</li>
+          <li>피드백 전달 경로는 <strong>이원화하지 않는다</strong></li>
+          <li>1차 파일 배치 → 2차 조회 API. 스키마는 처음부터 API 전제로 설계</li>
+          <li>가명화와 실명 증명서의 충돌은 <strong>설계 전제</strong>라 가장 먼저 푼다</li>
+          <li>승인된 증명서는 <strong>재실행해도 같은 값</strong>이 나와야 한다</li>
+          <li>평가성 판단은 반드시 사람 승인을 거친다 (Human-in-the-Loop)</li>
+        </ul>
+      </div>
+
+      <div class="svcmap__legend">
+        <span><i class="swatch swatch--gov"></i> GOV-AI-Agent 영역 — 외부 개발</span>
+        <span><i class="swatch swatch--lms"></i> LMS 영역 — 우리</span>
+        <span><i class="swatch swatch--link"></i> 계약 지점 — 두 시스템이 만나는 곳</span>
+        <span>GOV-AI × LMS · Service Architecture v1</span>
+      </div>
+
+    </div>
+
+    <h3>두 시스템의 성격 차이</h3>
+    <p>
+      역할을 나눌 때의 근거이기도 합니다. 같은 일을 하는 시스템이 아니므로 합칠 이유가 없고,
+      계약만 맞추면 각자 개발이 가능합니다.
+    </p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">GOV-AI-Agent</th>
+            <th scope="col">LMS (우리)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">다루는 것</td>
+            <td>학습 <strong>과정</strong> — 시도 · 에러 · 질문 · 힌트</td>
+            <td>학습 <strong>결과</strong> — 평가 · 인증 · 증명</td>
+          </tr>
+          <tr>
+            <td class="t-tight">시간 단위</td>
+            <td>이벤트 단위 (초 · 분)</td>
+            <td>제출 · 심사 단위 (일 · 주), 수료 시점 확정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">데이터 성격</td>
+            <td>비정형 · 대량 · 계속 쌓임</td>
+            <td>정형 · 검증됨 · <strong>승인 시점에 동결</strong></td>
+          </tr>
+          <tr>
+            <td class="t-tight">사람의 개입</td>
+            <td>AI 초안 → 강사 승인 후 전달</td>
+            <td>강사 · 매니저 인증 심사가 점수의 전제</td>
+          </tr>
+          <tr>
+            <td class="t-tight">최종 산출</td>
+            <td>주간 리포트 · 실시간 피드백</td>
+            <td>역량증명서 · 외부 검증 링크</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- ══ 4 ══ -->
+  <section>
+    <div class="sec-num">04</div>
+    <h2>요구사항 명세서</h2>
+
+    <p>
+      회의에서 “무엇을 만들어 주세요”라고 말하면 상대가 만든 결과를 우리가 받아 맞추게 됩니다.
+      그 순서가 뒤집히지 않도록, <strong>주고받을 데이터의 모양을 우리가 먼저 정의해 문서로 건네는</strong> 방식을 제안합니다.
+    </p>
+
+    <h3>요청의 3원칙</h3>
+    <div class="decisions">
+      <div class="dec">
+        <div class="dec__n">01</div>
+        <div>
+          <p class="dec__q">시스템 통합이 아니라 데이터 계약이다</p>
+          <p class="dec__b">
+            서로의 시스템을 열어 주는 것이 아니라, <strong>주고받을 데이터의 형식·주기·경로</strong>만 합의합니다.
+            계약이 서면 그 뒤로는 각자 개발입니다. 상대 시스템의 내부 구현은 우리 관심사가 아니고, 그 반대도 같습니다.
+          </p>
+        </div>
+      </div>
+      <div class="dec">
+        <div class="dec__n">02</div>
+        <div>
+          <p class="dec__q">식별자와 분류 체계는 우리가 정의해 제공한다</p>
+          <p class="dec__b">
+            데이터의 최종 소비처가 <strong>실명으로 발급되는 역량증명서</strong>이기 때문입니다.
+            학생 식별자와 기술 카테고리 사전을 우리가 만들어 건네고, 상대는 그 값을 붙여 돌려줍니다.
+            반대로 하면 우리 기존 데이터 전체를 다시 태깅해야 합니다.
+          </p>
+        </div>
+      </div>
+      <div class="dec">
+        <div class="dec__n">03</div>
+        <div>
+          <p class="dec__q">점수 산정은 LMS-AI 한 곳에서만 한다</p>
+          <p class="dec__b">
+            GOV-AI는 <strong>원천 데이터와 판정 근거</strong>까지 제공하고, 증명서 점수는 우리 엔진이 확정 함수로 계산합니다.
+            승인된 증명서는 재실행해도 같은 값이 나와야 하므로, 점수를 두 곳에서 만들 수 없습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h3>요청 항목</h3>
+    <p>
+      우선순위 순입니다. <strong>R1~R3이 막히면 나머지는 진행할 수 없습니다.</strong>
+    </p>
+    <div class="tw">
+      <table class="impl">
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">번호</th>
+            <th scope="col">요청 항목과 현재 상태</th>
+            <th scope="col">요청 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight lv1">R1<br><span class="sub">회의 당일</span></td>
+            <td class="act"><strong>학생 식별자 매핑 규약</strong><br>
+              <span class="sub"><code>student_id: "kim_minjun"</code> 문자열. 제안서는 수집 시 가명화 명시</span></td>
+            <td class="act">
+              <strong>현재 수강생을 특정하고 조회할 방법이 없다면, 실습 환경 진입 시
+              LMS 로그인 API로 인증하는 로그인 기능을 추가</strong>해 주세요.
+              그러면 리포트가 수강생별로 쌓입니다 — 아래 <strong>R1-A</strong> 에 API 스펙을 첨부했습니다.
+              가명화를 유지한다면 <strong>증명서에 개인 근거로 쓸 수 없음</strong>을 상호 확인
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight lv1">R2<br><span class="sub">회의 당일</span></td>
+            <td class="act"><strong>기술 카테고리 태깅</strong><br>
+              <span class="sub">이벤트에 카테고리 필드 없음</span></td>
+            <td class="act">우리가 제공하는 카테고리 사전 값을 각 이벤트에 <code>category</code> 로 부착</td>
+          </tr>
+          <tr>
+            <td class="t-tight lv1">R3<br><span class="sub">회의 당일</span></td>
+            <td class="act"><strong>단계 ↔ 커리큘럼 정의</strong><br>
+              <span class="sub"><code>step</code> 1~10 숫자만 존재. 내용 정의 없음</span></td>
+            <td class="act">언어별 10단계가 각각 무엇을 다루는지 목록. 단계 수·구성이 언어마다 다른지 여부</td>
+          </tr>
+          <tr>
+            <td class="t-tight lv1">R4<br><span class="sub">회의 당일</span></td>
+            <td class="act"><strong>데이터 전달 경로</strong><br>
+              <span class="sub">파일 산출물(<code>jsonl</code>·<code>json</code>·<code>md</code>)만 확인됨</span></td>
+            <td class="act">
+              1차는 <strong>주기적 파일 적재</strong>로 시작하고, 2차에서 조회 API로 전환.
+              API 전환 시 인증 방식·엔드포인트·응답 계약을 사전 합의
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight lv1">R5<br><span class="sub">회의 당일</span></td>
+            <td class="act"><strong>집계 주기·타임존</strong><br>
+              <span class="sub">주간 배치. <code>ts</code> 에 타임존 표기 없음</span></td>
+            <td class="act">
+              타임존을 <code>+09:00</code> 로 명시. 우리 증명서는 <strong>수료 시점 확정</strong>이 필요하므로
+              주간 주기와 별도로 <strong>기수 종료 시점 최종 스냅샷</strong>을 요청
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight lv1">R6<br><span class="sub">10월</span></td>
+            <td class="act"><strong>카테고리별 수준 판정</strong><br>
+              <span class="sub">학생당 등급 1개(초급·중급·해결사)</span></td>
+            <td class="act">학생 × 카테고리 단위로 분해된 판정과 근거. <strong>F2(맞춤 티칭)의 전제</strong></td>
+          </tr>
+          <tr>
+            <td class="t-tight lv1">R7<br><span class="sub">9월</span></td>
+            <td class="act"><strong>원천 보존·재현성</strong><br>
+              <span class="sub">재산출 정책 미확인</span></td>
+            <td class="act">
+              특정 시점 데이터를 <strong>나중에 다시 조회해도 같은 값</strong>이 나와야 함.
+              증명서는 승인 시점 내용을 동결하므로, 소급 변경이 있으면 증적이 깨짐
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight lv1">R8<br><span class="sub">9월</span></td>
+            <td class="act"><strong>개인정보 동의 범위</strong><br>
+              <span class="sub">제안서에 옵트인 동의·수집 항목 고지 명시</span></td>
+            <td class="act">
+              동의 문안에 <strong>“역량증명서 발급 및 외부 검증 목적의 활용”</strong>이 포함되는지 확인.
+              빠져 있으면 동의 문안부터 수정 필요
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>R1-A. 학생 특정 방법 — LMS 로그인 API 연동 <span class="prov prov--live">실측</span></h3>
+
+    <p>
+      매핑 테이블을 따로 만들어 주고받는 방식은 <strong>계정이 추가·변경될 때마다 어긋납니다.</strong>
+      실습 환경에 진입할 때 수강생이 <strong>LMS 계정으로 한 번 로그인</strong>하면,
+      그 시점부터 모든 이벤트가 우리 수강생 식별자에 자동으로 묶입니다.
+      별도 동기화가 필요 없고, 재직·수료 상태도 LMS 기준으로 항상 맞습니다.
+    </p>
+
+    <p>
+      아래는 이미 배포되어 동작 중인 API입니다. <strong>신규 개발 없이 바로 붙일 수 있습니다.</strong>
+      응답은 모두 <code>{ data: … }</code> 로 감싸여 있습니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">엔드포인트</th>
+            <th scope="col">요청</th>
+            <th scope="col">응답</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight"><code>POST /auth/login</code></td>
+            <td><code>{ userId, password }</code></td>
+            <td><code>token</code>(access) · <code>accessTokenExpiresAt</code> · <code>user</code> · <code>nextRoute</code><br>
+              <span class="sub">refresh token 은 <strong>HttpOnly 쿠키</strong>로 내려갑니다</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight"><code>POST /auth/refresh</code></td>
+            <td>refresh token 쿠키</td>
+            <td>access token 재발급 + refresh token 회전</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><code>GET /auth/me</code></td>
+            <td><code>Authorization: Bearer &lt;token&gt;</code></td>
+            <td>현재 사용자 정보 — 세션 유효성 확인용</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><code>POST /auth/logout</code></td>
+            <td>refresh token 쿠키</td>
+            <td>토큰 폐기</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>로그인 응답에서 바로 얻는 식별 정보</h4>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">필드</th>
+            <th scope="col">값</th>
+            <th scope="col">이벤트에 실을 항목</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight"><code>user.id</code></td>
+            <td>사용자 고유번호(UUID)</td>
+            <td><strong><code>lms_student_uuid</code> 로 사용</strong> — 계약의 기준 식별자</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><code>user.studentUuid</code></td>
+            <td>수강생 로그인 ID <span class="sub">(수강생 역할일 때만 채워짐)</span></td>
+            <td>보조 확인용. <strong>기준 식별자로 쓰지 않습니다</strong></td>
+          </tr>
+          <tr>
+            <td class="t-tight"><code>user.role</code></td>
+            <td>역할</td>
+            <td>수강생이 아닌 계정의 실습 데이터를 걸러내는 용도</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><code>user.cohortIds</code></td>
+            <td>소속 기수 UUID 목록</td>
+            <td>기수 단위 집계에 사용. <span class="sub">기수 <strong>번호</strong>는 별도 조회가 필요합니다</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight"><code>user.name</code></td>
+            <td>이름</td>
+            <td>리포트 표시용</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call call--warn">
+      <p class="call__title">붙일 때 확인해야 할 두 가지</p>
+      <p>
+        <strong>① refresh token 이 HttpOnly 쿠키입니다.</strong>
+        브라우저를 전제로 만든 방식이라, VSCode 확장이나 터미널 앱처럼 브라우저가 아닌 클라이언트에서는
+        쿠키를 직접 보관·재전송하는 처리가 필요합니다.
+        그것이 어려우면 <strong>비브라우저 클라이언트용 토큰 발급 방식을 우리 쪽에서 추가</strong>하는 것으로 협의합니다.
+      </p>
+      <p>
+        <strong>② 식별자는 <code>user.id</code> 하나로 고정합니다.</strong>
+        <code>studentUuid</code> 는 이름과 달리 로그인 ID이고 수강생 역할에서만 채워집니다.
+        두 값을 섞어 쓰면 나중에 어느 쪽 기준으로 쌓인 데이터인지 구분할 수 없게 됩니다.
+      </p>
+    </div>
+
+    <h3>데이터 계약 초안 (우리 측 제안)</h3>
+    <p>
+      회의에서 <strong>필드 단위로 합의</strong>하기 위한 초안입니다. 상대의 현행 이벤트 구조를 유지하고
+      통합에 필요한 최소 필드만 더했습니다. 굵게 표시한 것이 신규 요청분입니다.
+    </p>
+
+    <h4>① 학습 이벤트 (GOV-AI → LMS)</h4>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">필드</th>
+            <th scope="col" class="t-tight">타입</th>
+            <th scope="col">설명</th>
+            <th scope="col" class="t-tight">구분</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="t-tight"><code>schema_version</code></td><td class="t-tight">string</td><td>계약 버전. 변경 시 상호 통지</td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
+          <tr><td class="t-tight"><code>lms_student_uuid</code></td><td class="t-tight">uuid</td><td>우리 LMS 수강생 고유번호 — <strong>R1의 결과물</strong></td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
+          <tr><td class="t-tight"><code>cohort_no</code></td><td class="t-tight">int</td><td>기수 번호. 그룹(A/B/C)과 별개로 필요</td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
+          <tr><td class="t-tight"><code>ts</code></td><td class="t-tight">datetime</td><td>이벤트 시각 — <strong>타임존 포함</strong></td><td class="t-tight"><span class="pill pill--done">기존</span></td></tr>
+          <tr><td class="t-tight"><code>type</code></td><td class="t-tight">enum</td><td><code>session_start</code>·<code>run</code>·<code>error</code>·<code>hint_request</code>·<code>step_complete</code></td><td class="t-tight"><span class="pill pill--done">기존</span></td></tr>
+          <tr><td class="t-tight"><code>step</code></td><td class="t-tight">int</td><td>커리큘럼 단계 — <strong>R3의 정의와 짝</strong></td><td class="t-tight"><span class="pill pill--done">기존</span></td></tr>
+          <tr><td class="t-tight"><code>language</code></td><td class="t-tight">string</td><td>트랙 언어. 현재는 상위 폴더로만 구분됨</td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
+          <tr><td class="t-tight"><code>category</code></td><td class="t-tight">string</td><td>기술 카테고리 — <strong>우리가 제공하는 사전 값</strong></td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
+          <tr><td class="t-tight"><code>detail</code></td><td class="t-tight">object</td><td>에러 타입에 더해 <strong>메시지 전문</strong>. 코드 스냅샷 포함 여부는 협의</td><td class="t-tight"><span class="pill pill--wip">확장</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>② 주기 집계·판정 (GOV-AI → LMS)</h4>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">필드</th>
+            <th scope="col">설명</th>
+            <th scope="col" class="t-tight">쓰이는 곳</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="t-tight"><code>lms_student_uuid</code> · <code>period</code></td><td>대상 학생과 집계 구간(시작·종료일)</td><td class="t-tight">공통</td></tr>
+          <tr><td class="t-tight"><code>by_category[]</code></td><td>카테고리별 판정 — 수준·확신도·실행수·에러수·자력해결수·힌트요청수</td><td class="t-tight">F1 · F2</td></tr>
+          <tr><td class="t-tight"><code>weak_patterns[]</code></td><td>취약 패턴 문장과 근거 지표 (현행 <code>diagnoses.json</code> 구조 유지)</td><td class="t-tight">F1</td></tr>
+          <tr><td class="t-tight"><code>model_meta</code></td><td>모델명·프롬프트 버전·생성 시각 — <strong>재현성 확인용(R7)</strong></td><td class="t-tight">공통</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      피드백 초안(<code>suggested_feedback_draft</code>)은 <strong>요청 목록에 넣지 않았습니다.</strong>
+      제안서의 Human-in-the-Loop 원칙대로 강사·매니저 승인을 거쳐 GOV-AI 쪽 경로로 전달되는 것이 맞고,
+      우리 증명서는 승인·인증된 결과만 취급하기 때문입니다. 중복 전달 경로를 만들지 않습니다.
+    </p>
+
+    <h3>요청 방식</h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr><th scope="col" class="t-tight">단계</th><th scope="col">방식</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">회의 전</td>
+            <td>이 문서를 <strong>사전 배포</strong>합니다. 당일 처음 보면 읽는 데만 시간이 갑니다</td>
+          </tr>
+          <tr>
+            <td class="t-tight">회의 중</td>
+            <td>
+              위 계약 표를 띄우고 <strong>필드 단위로 가부를 확인</strong>합니다.
+              “가능·불가·조건부” 세 가지로만 답을 받고, 불가 항목은 대안을 그 자리에서 정합니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">회의 직후</td>
+            <td>합의된 값을 표에 반영해 <strong>당일 회람</strong>합니다. 구두 합의는 다음 주에 서로 다르게 기억됩니다</td>
+          </tr>
+          <tr>
+            <td class="t-tight">이후</td>
+            <td>주간 정례에서 <strong>계약 변경분만</strong> 다룹니다. 버전(<code>schema_version</code>)을 올려 이력을 남깁니다</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>회의에서 결정해야 할 것</h3>
+    <p>
+      아래 세 가지는 <strong>정해지지 않으면 명세가 확정되지 않는</strong> 항목입니다.
+    </p>
+    <div class="decisions">
+      <div class="dec">
+        <div class="dec__n">D1</div>
+        <div>
+          <p class="dec__q">학습 데이터를 가명화 상태로 둘 것인가, 증명서에 연결할 것인가</p>
+          <p class="dec__b">
+            GOV-AI 제안서는 수집 시점 가명화를 방침으로 두고, 우리 역량증명서는 실명으로 발급되어 외부 검증까지 됩니다.
+            가명화를 유지하면 실습 데이터는 <strong>그룹 통계로만</strong> 쓸 수 있고 개인 증명서 근거로는 못 씁니다.
+            연결하려면 재식별 키와 동의 문안 수정이 함께 필요합니다.
+          </p>
+          <p class="dec__rec">
+            권고 — 연결하는 방향. 실습 환경에 <strong>LMS 로그인을 붙이는 R1-A 방식</strong>이 가장 단순하고,
+            우리 쪽 신규 개발도 필요 없습니다. 다만 동의 문안 수정이 선행 조건임을 회의에서 명시
+          </p>
+        </div>
+      </div>
+      <div class="dec">
+        <div class="dec__n">D2</div>
+        <div>
+          <p class="dec__q">기술 카테고리 사전을 우리가 정의해 제공하는 것에 합의할 것인가</p>
+          <p class="dec__b">
+            “카테고리별 역량 히스토리”와 “카테고리별 맞춤 출제”가 모두 이 사전 위에 섭니다.
+            상대가 먼저 정의하면 우리 과제·퀴즈·프로젝트 데이터를 전부 다시 태깅해야 합니다.
+          </p>
+          <p class="dec__rec">권고 — 우리가 초안을 만들어 배포. 회의에서 승인만 받는 형태</p>
+        </div>
+      </div>
+      <div class="dec">
+        <div class="dec__n">D3</div>
+        <div>
+          <p class="dec__q">1차 연동을 파일 배치로 시작할 것인가</p>
+          <p class="dec__b">
+            상대의 Collector API는 2단계 범위이고 현재 확인되는 산출물은 파일뿐입니다.
+            API를 기다리면 9월 중순에 보여줄 것이 없고, 파일 배치로 시작하면 계약(스키마)만 맞으면
+            나중에 API로 갈아끼울 수 있습니다.
+          </p>
+          <p class="dec__rec">권고 — 1차 파일 배치, 2차 API 전환. 스키마는 처음부터 API 전제로 설계</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>아직 답을 받지 못한 질문</h3>
+    <p>
+      08-07 회의에서 제기했으나 답이 확정되지 않은 항목입니다. 명세를 확정하려면 먼저 확인이 필요합니다.
+    </p>
+    <ol class="q-list">
+      <li>
+        <span class="q-mark">Q01</span>
+        제안서의 시스템 아키텍처 중 <strong>현재 구현이 완료된 범위</strong>는 어디까지인가요?
+        (확인된 산출물은 3명 규모 샘플 데이터와 주간 리포트 1회분입니다)
+      </li>
+      <li>
+        <span class="q-mark">Q02</span>
+        시스템 구현 완료 시 <strong>현재 LMS와 동일한 인프라에서 구동</strong>되는 것인지,
+        아니라면 GOV-AI를 운영할 별도 주체가 있나요?
+      </li>
+      <li>
+        <span class="q-mark">Q03</span>
+        1단계 완료 기준인 <strong>“파일럿 그룹 학습 로그의 일 단위 적재”</strong>가 현재 어느 정도 진행되었나요?
+        9월 중순에 우리가 받을 수 있는 데이터의 실제 규모를 알아야 시연 범위를 확정할 수 있습니다.
+      </li>
+      <li>
+        <span class="q-mark">Q04</span>
+        현재 실습 환경에서 <strong>수강생을 어떻게 특정하고 있나요?</strong>
+        샘플의 <code>student_id</code> 는 폴더명 수준이라, 실제 운영에서 계정을 어떻게 식별하는지에 따라
+        R1-A(로그인 연동)의 적용 난이도가 달라집니다.
+      </li>
+      <li>
+        <span class="q-mark">Q05</span>
+        언어별 <strong>10단계 커리큘럼의 실제 구성</strong>이 정의되어 있나요?
+        단계와 기술 카테고리의 대응이 통합 설계의 출발점입니다.
+      </li>
+    </ol>
+
+    <div class="call">
+      <p class="call__title">이 명세의 성격</p>
+      <p>
+        API 스펙과 현행 데이터 구조는 저장소에서 <strong>확인한 사실</strong>이고,
+        요청 항목과 계약 초안은 <strong>우리 측 제안</strong>입니다.
+        확정된 합의가 아니며, 회의 결과에 따라 바뀌는 것을 전제로 작성했습니다.
+        회의 후에는 합의된 값을 이 문서에 반영해 같은 날 회람합니다.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ══ 5 ══ -->
+  <section>
+    <div class="sec-num">05</div>
+    <h2>역할 분담</h2>
+
+    <p>
+      경계는 단순합니다 — <strong>학습 과정 데이터를 만드는 쪽과, 그것을 평가·인증·증명으로 바꾸는 쪽</strong>이
+      서로 다른 일을 합니다.
+    </p>
+    <div class="tw">
+      <table class="impl">
+        <thead>
+          <tr>
+            <th scope="col">영역</th>
+            <th scope="col" class="t-tight">LMS (우리)</th>
+            <th scope="col" class="t-tight">GOV-AI</th>
+            <th scope="col">비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="lv1">학생 식별자 규약</td><td class="t-tight"><strong>정의·제공</strong></td><td class="t-tight">적용</td><td class="act">증명서가 최종 소비처이므로</td></tr>
+          <tr><td class="lv1">기술 카테고리 사전</td><td class="t-tight"><strong>정의·제공</strong></td><td class="t-tight">태깅</td><td class="act">우리 과제·퀴즈도 같은 축을 써야 함</td></tr>
+          <tr><td class="lv1">실습 환경 (조교·터미널)</td><td class="t-tight">—</td><td class="t-tight"><strong>개발·운영</strong></td><td class="act">우리가 만들 이유가 없음</td></tr>
+          <tr><td class="lv1">원천 이벤트 수집</td><td class="t-tight">—</td><td class="t-tight"><strong>개발·운영</strong></td><td class="act">제안서 1단계 범위</td></tr>
+          <tr><td class="lv1">LLM 수준 판정·취약점</td><td class="t-tight">소비</td><td class="t-tight"><strong>산출</strong></td><td class="act">판정 결과는 근거로만 사용</td></tr>
+          <tr><td class="lv1">증명서 점수 산정</td><td class="t-tight"><strong>단독</strong></td><td class="t-tight">—</td><td class="act">재현 가능해야 하는 확정 함수</td></tr>
+          <tr><td class="lv1">역량 히스토리 화면</td><td class="t-tight"><strong>개발</strong></td><td class="t-tight">데이터 제공</td><td class="act">증명서 탭으로 편입</td></tr>
+          <tr><td class="lv1">문제 출제·채점</td><td class="t-tight"><strong>단독</strong></td><td class="t-tight">난이도 판정</td><td class="act">우리 퀴즈 시스템 재사용</td></tr>
+          <tr><td class="lv1">피드백 전달</td><td class="t-tight">—</td><td class="t-tight"><strong>승인 후 전달</strong></td><td class="act">경로를 이원화하지 않음</td></tr>
+          <tr><td class="lv1">데이터 계약 관리</td><td class="t-tight"><strong>주관</strong></td><td class="t-tight">협의</td><td class="act">버전·변경 이력 관리</td></tr>
+          <tr><td class="lv1">개인정보 동의 문안</td><td class="t-tight">협의</td><td class="t-tight">협의</td><td class="act">증명서 활용 목적 포함 여부 (R8)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </section>
+
+  <!-- ══ 6 ══ -->
+  <section>
+    <div class="sec-num">06</div>
+    <h2>단계별 일정</h2>
+
+    <h3>9월 중순 시연 범위 (P2) — 우리 측 제안</h3>
+    <p>
+      GOV-AI 로드맵상 <strong>9월 중순은 2단계 중반</strong>이라 완성된 시스템을 전제할 수 없습니다.
+      시연 가능한 것은 <strong>“연동이 성립함을 보이는 최소 경로”</strong>입니다.
+      욕심을 내면 양쪽 다 미완인 채로 보여주게 됩니다.
+    </p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">항목</th>
+            <th scope="col">이유</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight"><span class="pill pill--done">포함</span></td>
+            <td><strong>F1 나의 역량 히스토리</strong> — 증명서 탭 1개</td>
+            <td>우리 LMS 데이터만으로도 시간축이 서고, 실습 이벤트가 붙으면 밀도가 올라가는 것을 그 자리에서 보여줄 수 있음</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><span class="pill pill--done">포함</span></td>
+            <td><strong>이벤트 배치 적재</strong> 1경로</td>
+            <td>API 없이 파일을 주기 적재하는 방식. 연동이 실제로 붙었음을 증명하는 최소 단위</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><span class="pill pill--none">제외</span></td>
+            <td>F2 수준별 맞춤 AI 티칭</td>
+            <td>카테고리별 판정(R6)이 선행되어야 성립. 10월 이후</td>
+          </tr>
+          <tr>
+            <td class="t-tight"><span class="pill pill--none">제외</span></td>
+            <td>실시간 API 연동</td>
+            <td>상대 Collector API가 2단계 범위. 9월 중순에 안정 연동을 기대하기 어려움</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>일정 (제안)</h3>
+    <p>
+      우리 <strong>LMS 8월 31일 마감은 그대로 둡니다.</strong> 통합 작업은 그 위에 얹히는 것이지 대체하는 것이 아닙니다.
+      두 일이 겹치는 8월 후반이 이 계획에서 가장 위험한 구간입니다.
+    </p>
+    <div class="sched">
+      <div class="sched__inner">
+        <div class="sched__head">
+          <div>작업</div>
+          <div>8/11~16</div>
+          <div>8/17~23</div>
+          <div>8/24~31</div>
+          <div>9/1~7</div>
+          <div>9/8~15</div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">통합 요구사항 정의</div>
+          <div class="sched__cell on">킥오프</div>
+          <div class="sched__cell on">확정</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">식별자 규약 · 카테고리 사전</div>
+          <div class="sched__cell on">초안</div>
+          <div class="sched__cell on">합의</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">LMS 8월 마감 (증명서)</div>
+          <div class="sched__cell on"></div>
+          <div class="sched__cell on"></div>
+          <div class="sched__cell on freeze">8/31</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">이벤트 배치 연동</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on qa">설계</div>
+          <div class="sched__cell on">구현</div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">역량 히스토리 화면 (F1)</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on">구현</div>
+          <div class="sched__cell on">연결</div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">시연 리허설</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell on ship">인터뷰</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="call call--warn">
+      <p class="call__title">인력 부하</p>
+      <p>
+        현재 개발 인력은 3명이고, 8월 31일 증명서 마감이 그대로 살아 있습니다.
+        08-07 회의에서 이미 <strong>평일 야간과 주말까지 이어지는 작업 부하</strong>가 보고됐습니다.
+      </p>
+      <p>
+        위 일정은 <strong>8월 후반 2주에 마감과 통합 설계가 겹치는 것을 전제</strong>합니다.
+        그대로 가려면 통합 쪽 설계를 담당 1인으로 한정하거나,
+        9월 중순 시연 범위를 위 표보다 더 줄이는 선택이 필요합니다. 아래 D5 가 그 판단입니다.
+      </p>
+    </div>
+
+    <h3>일정에 관해 결정해야 할 것</h3>
+    <div class="decisions">
+      <div class="dec">
+        <div class="dec__n">D4</div>
+        <div>
+          <p class="dec__q">9월 중순 시연 범위를 위 제안대로 확정할 것인가</p>
+          <p class="dec__b">
+            포함 2건(역량 히스토리 화면 · 배치 적재 1경로), 제외 2건(맞춤 티칭 · 실시간 API)입니다.
+            9월 중순은 조정 불가한 유일한 고정 일정이므로, 범위를 먼저 좁히지 않으면 셋 다 미완으로 갑니다.
+          </p>
+          <p class="dec__rec">권고 — 제안대로 확정. 인력 판단(D5)에서 더 줄여야 한다면 배치 적재를 수동 1회 반입으로 대체</p>
+        </div>
+      </div>
+      <div class="dec">
+        <div class="dec__n">D5</div>
+        <div>
+          <p class="dec__q">8월 31일 증명서 마감과 통합 설계를 어떻게 병행할 것인가</p>
+          <p class="dec__b">
+            8월 후반 2주에 두 작업이 겹칩니다. 현재 인력은 3명이고 이미 야간·주말 작업이 보고된 상태입니다.
+            선택지는 셋입니다 — ① 통합 설계를 1인 전담으로 분리, ② 9월 중순 시연 범위를 더 축소,
+            ③ 증명서 마감을 조정.
+          </p>
+          <p class="dec__rec">권고 — ①과 ②의 조합. 증명서 마감은 유지</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<button class="theme-toggle" type="button" id="themeToggle" data-next="dark">
+  <svg class="icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+  <span class="theme-toggle__label">다크</span>
+</button>
+
+<script src="../../assets/theme-toggle.js"></script>
+
+</body>
+</html>
