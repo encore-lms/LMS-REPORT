@@ -1,0 +1,416 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>서비스 아키텍처</h2>
+
+    <p>
+      학습이 일어나는 곳에서 역량증명서까지 가는 전체 경로를 한 장으로 폈습니다.
+      <strong>두 시스템이 만나는 지점은 세 곳뿐</strong>이고, 그 세 곳이 곧 4장 요구사항 명세서의 대상입니다.
+    </p>
+
+    <div class="svcmap">
+      <div class="svcmap__top"></div>
+
+      <svg class="svcmap__defs" aria-hidden="true" focusable="false">
+        <defs>
+          <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 4v4M9 14h.01M15 14h.01M2 13h2M20 13h2"/></symbol>
+          <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/></symbol>
+          <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-4.5A8 8 0 1 1 21 12z"/></symbol>
+          <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+          <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+          <symbol id="i-check" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 12l3 3 5-6"/></symbol>
+          <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+          <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v6M15 3v6M6 9h12v3a6 6 0 0 1-12 0zM12 18v3"/></symbol>
+          <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+          <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+          <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+          <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 9v4M12 16h.01"/></symbol>
+          <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M17 5.5a3 3 0 0 1 0 5.8M18 20a5.5 5.5 0 0 0-3-4.6"/></symbol>
+          <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></symbol>
+          <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></symbol>
+          <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+          <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a4 4 0 0 0 6 .5l2.5-2.5a4 4 0 0 0-5.7-5.7L11.5 6.7"/><path d="M14 11a4 4 0 0 0-6-.5L5.5 13a4 4 0 0 0 5.7 5.7l1.3-1.3"/></symbol>
+          <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.5l3.5 2"/></symbol>
+        </defs>
+      </svg>
+
+
+      <header class="svcmap__head">
+        <div>
+          <p class="svcmap__eyebrow">Service Architecture · GOV-AI × LMS Integration</p>
+          <p class="svcmap__title">통합 서비스 아키텍처</p>
+          <p class="svcmap__sub">학습 발생 → 수집 → 저장 → 분석·산정 → 활용 → 역량 증명</p>
+        </div>
+        <div class="svcmap__meta">
+          <p>Python · FastAPI · PostgreSQL / Spring Boot · React · AWS ECS</p>
+          <p>근거 : GOV-AI-PROJECT-260708 · LMS-AI · LMS-SV 저장소 실측</p>
+        </div>
+      </header>
+
+      <!-- 1 ── 학습 발생 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">1</span>
+          <span class="stage__name">학습 발생</span>
+          <span class="stage__en">Generation</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 학습 환경</span>
+            <p class="grp__note">실시간 데이터 발생 · 옵트인 동의 기반</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg>PlayLang 조교 에이전트</p>
+                <p class="c__d">VSCode 확장 · 언어별 10단계</p>
+                <p class="c__d">소크라테스식 힌트 (정답 비공개)</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-terminal"/></svg>ATmux VIBE 코딩 환경</p>
+                <p class="c__d">원격 실습 서버 · 세션 자동 복구</p>
+                <p class="c__d">AI CLI 사용 이력 (옵트인)</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg>Q&amp;A 봇 (디스코드)</p>
+                <p class="c__d">LLM 1차 응답</p>
+                <p class="c__d">미해결 시 강사 에스컬레이션</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 학습 · 평가 활동</span>
+            <p class="grp__note">이미 배포되어 동작 중 — 모두 날짜를 가진 채 DB에 있다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg>과제 · 퀴즈 · 프로젝트</p>
+                <p class="c__d">제출 · 응시 · 팀 활동</p>
+                <p class="c__d">강사 채점 · 검토</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>출결 · 학습 기록</p>
+                <p class="c__d">HRD 출결 · 블로그 · 스터디</p>
+                <p class="c__d">자격증 · 트러블슈팅</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>강사 인증 심사</p>
+                <p class="c__d">프로젝트 · 트러블슈팅 인증</p>
+                <p class="c__d">승인이 점수 산정의 전제</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="link">
+            <span class="link__no">①</span>
+            <span class="link__t">로그인 연동 — 수강생 식별자를 여기서 확정한다</span>
+            <span class="link__dir">LMS → GOV-AI</span>
+            <p class="link__d">
+              실습 환경 진입 시 <code>POST /auth/login</code> 으로 인증.
+              응답의 <code>user.id</code>(UUID)를 기준 식별자로 삼는다.
+              이것이 없으면 나머지 두 지점이 성립하지 않는다 (4장 R1-A)
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2 ── 수집 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">2</span>
+          <span class="stage__name">수집</span>
+          <span class="stage__en">Ingestion</span>
+        </div>
+        <div class="stage__main">
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 수집 파이프라인</span>
+            <p class="grp__note">LMS 쪽에는 이 계층이 없다 — 활동이 곧 서비스 DB 트랜잭션이다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-funnel"/></svg>Collector API</p>
+                <p class="c__d">FastAPI · 에이전트 실시간 push</p>
+                <p class="c__d">코드 · 실행 · 에러 · 챗 로그</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-plug"/></svg>외부 커넥터</p>
+                <p class="c__d">노션 · 깃허브 · 구글 · 디스코드</p>
+                <p class="c__d">기존 38종 주기 pull</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>가명화 · 정제</p>
+                <p class="c__d">수집 시점 식별정보 분리</p>
+                <p class="c__d">옵트인 동의 상태 태그</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 ── 저장 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">3</span>
+          <span class="stage__name">저장</span>
+          <span class="stage__en">Storage</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 데이터 레이크</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg>원천 저장소</p>
+                <p class="c__d">학습 로그 원본 보존</p>
+                <p class="c__d">보존 기간 · 파기 절차 적용</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>분석 마트</p>
+                <p class="c__d">학생 · 그룹 · 과목별 정규 지표</p>
+                <p class="c__d">현행 <code>metrics.json</code> 13종 기준</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="link">
+            <span class="link__no">②</span>
+            <span class="link__t">학습 이벤트 — 일자별 실습 로그를 우리 쪽에 적재</span>
+            <span class="link__dir">GOV-AI → LMS</span>
+            <p class="link__d">
+              <code>ts · type · step · category</code> 에 <code>lms_student_uuid</code> 를 실어 전달.
+              1차는 주기적 파일 배치, 2차에서 조회 API 로 전환한다
+            </p>
+          </div>
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 서비스 DB</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg>learning-service DB</p>
+                <p class="c__d">과제 · 퀴즈 · 프로젝트 · 출결</p>
+                <p class="c__d">학습 기록 · 인증 심사 이력</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-db"/></svg>실습 이벤트 적재</p>
+                <p class="c__d">계약 ②로 받은 일자별 로그</p>
+                <p class="c__d">시험과 시험 사이를 채우는 구간</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4 ── 분석 · 산정 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">4</span>
+          <span class="stage__name">분석 · 산정</span>
+          <span class="stage__en">Analysis</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · LLM 분석 4모듈</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>수준 진단</p>
+                <p class="c__d">초급 · 중급 · 해결사 등급</p>
+                <p class="c__d">등급 변화 추이</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>취약점 분석</p>
+                <p class="c__d">반복 에러 패턴 · 오답 이력</p>
+                <p class="c__d">보충 학습 추천</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>이탈 · 부진 경보</p>
+                <p class="c__d">미접속 · 단계 정체 · 참여 급감</p>
+                <p class="c__d">위험도 스코어 + 근거</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>그룹 역학</p>
+                <p class="c__d">협업 상태 · 기여 편차</p>
+                <p class="c__d">그룹 간 진도 편차</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="link">
+            <span class="link__no">③</span>
+            <span class="link__t">집계 · 판정 — 근거로만 쓰이고 증명서 점수가 되지 않는다</span>
+            <span class="link__dir">GOV-AI → LMS</span>
+            <p class="link__d">
+              카테고리별 판정 · 취약 패턴 · 모델 메타를 받는다.
+              점수는 재실행해도 같아야 하므로 <strong>LMS-AI 의 확정 함수만</strong> 만든다
+            </p>
+          </div>
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · LMS-AI</span>
+            <p class="grp__note">점수를 만드는 곳은 여기 한 군데뿐이다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>6축 확정 함수</p>
+                <p class="c__d">기술 · 소통 · 팀워크</p>
+                <p class="c__d">책임감 · 문제해결 · 학습지속성</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>상대 위치 · 동료 비교</p>
+                <p class="c__d">동일 기수 축별 백분위</p>
+                <p class="c__d">유효 모집단 15명 이상일 때</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>재현성</p>
+                <p class="c__d">재실행해도 같은 값</p>
+                <p class="c__d">승인 시점 내용 동결</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 5 ── 활용 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">5</span>
+          <span class="stage__name">활용</span>
+          <span class="stage__en">Application</span>
+        </div>
+        <div class="stage__main">
+
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 수강생 · 강사 화면</span>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>나의 역량 히스토리 (F1)</p>
+                <p class="c__d">일자별 · 기술 카테고리별 성장 곡선</p>
+                <p class="c__d">증명서 안의 탭으로 편입</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>수준별 맞춤 출제 (F2)</p>
+                <p class="c__d">카테고리 난이도에 맞춘 자동 출제</p>
+                <p class="c__d">기존 퀴즈 · 채점 시스템 재사용</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grp grp--gov">
+            <span class="grp__tag">GOV-AI · 피드백 전달</span>
+            <p class="grp__note">경로를 이원화하지 않는다 — 피드백은 GOV-AI 쪽에서만 나간다</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Human-in-the-Loop</p>
+                <p class="c__d">AI 초안 → 강사 · 매니저 승인 → 전달</p>
+                <p class="c__d">AI 단독 전달 금지</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>효과 추적</p>
+                <p class="c__d">전달 이후 지표 변화 자동 추적</p>
+                <p class="c__d">다음 리포트에 반영</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 6 ── 역량 증명 -->
+      <div class="stage">
+        <div class="stage__rail">
+          <span class="stage__no">6</span>
+          <span class="stage__name">역량 증명</span>
+          <span class="stage__en">Certification</span>
+        </div>
+        <div class="stage__main">
+          <div class="grp grp--lms">
+            <span class="grp__tag">LMS · 증명 · 외부 검증</span>
+            <p class="grp__note">실명으로 발급되어 외부에서 조회되는 최종 산출물</p>
+            <div class="cards">
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg>역량증명서</p>
+                <p class="c__d">6축 점수 · 상대 위치</p>
+                <p class="c__d">AI 서술 (모델 · 프롬프트 버전 기록)</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>승인 시 동결</p>
+                <p class="c__d">스냅샷 · 발급 감사 로그</p>
+                <p class="c__d">나중에 다시 계산해도 같은 값</p>
+              </div>
+              <div class="c">
+                <p class="c__t"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg>외부 검증 링크</p>
+                <p class="c__d">기업 · 면접관 상시 조회</p>
+                <p class="c__d">공개 범위는 수강생이 설정</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svcmap__rules">
+        <h4>이 그림이 지키는 설계 원칙</h4>
+        <ul class="rules">
+          <li>점수를 만드는 곳은 <strong>LMS-AI 한 군데</strong>. 판정은 근거일 뿐 점수가 아니다</li>
+          <li>학생 식별자와 기술 카테고리 사전은 <strong>우리가 정의해 건넨다</strong></li>
+          <li>통합의 실체는 시스템 합병이 아니라 <strong>계약 세 건</strong>이다</li>
+          <li>피드백 전달 경로는 <strong>이원화하지 않는다</strong></li>
+          <li>1차 파일 배치 → 2차 조회 API. 스키마는 처음부터 API 전제로 설계</li>
+          <li>가명화와 실명 증명서의 충돌은 <strong>설계 전제</strong>라 가장 먼저 푼다</li>
+          <li>승인된 증명서는 <strong>재실행해도 같은 값</strong>이 나와야 한다</li>
+          <li>평가성 판단은 반드시 사람 승인을 거친다 (Human-in-the-Loop)</li>
+        </ul>
+      </div>
+
+      <div class="svcmap__legend">
+        <span><i class="swatch swatch--gov"></i> GOV-AI-Agent 영역 — 외부 개발</span>
+        <span><i class="swatch swatch--lms"></i> LMS 영역 — 우리</span>
+        <span><i class="swatch swatch--link"></i> 계약 지점 — 두 시스템이 만나는 곳</span>
+        <span>GOV-AI × LMS · Service Architecture v1</span>
+      </div>
+
+    </div>
+
+    <h3>두 시스템의 성격 차이</h3>
+    <p>
+      역할을 나눌 때의 근거이기도 합니다. 같은 일을 하는 시스템이 아니므로 합칠 이유가 없고,
+      계약만 맞추면 각자 개발이 가능합니다.
+    </p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">GOV-AI-Agent</th>
+            <th scope="col">LMS (우리)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">다루는 것</td>
+            <td>학습 <strong>과정</strong> — 시도 · 에러 · 질문 · 힌트</td>
+            <td>학습 <strong>결과</strong> — 평가 · 인증 · 증명</td>
+          </tr>
+          <tr>
+            <td class="t-tight">시간 단위</td>
+            <td>이벤트 단위 (초 · 분)</td>
+            <td>제출 · 심사 단위 (일 · 주), 수료 시점 확정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">데이터 성격</td>
+            <td>비정형 · 대량 · 계속 쌓임</td>
+            <td>정형 · 검증됨 · <strong>승인 시점에 동결</strong></td>
+          </tr>
+          <tr>
+            <td class="t-tight">사람의 개입</td>
+            <td>AI 초안 → 강사 승인 후 전달</td>
+            <td>강사 · 매니저 인증 심사가 점수의 전제</td>
+          </tr>
+          <tr>
+            <td class="t-tight">최종 산출</td>
+            <td>주간 리포트 · 실시간 피드백</td>
+            <td>역량증명서 · 외부 검증 링크</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
