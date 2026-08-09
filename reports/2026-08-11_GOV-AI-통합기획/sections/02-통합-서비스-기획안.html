@@ -1,0 +1,121 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>GOV-AI-Agent × LMS 통합 서비스 기획안</h2>
+
+    <p>
+      기준은 하나입니다. <strong>우리 LMS에 이미 있는 자산과 GOV-AI 데이터가 만나야 성립하는 기능</strong>만 넣었습니다.
+      둘 중 하나만으로 되는 것은 통합 안건이 아니라 각자의 개발 항목입니다.
+    </p>
+
+    <h3>F1. 나의 역량 히스토리 <span class="pill pill--wip">1차</span></h3>
+    <p>
+      수강생이 실습 환경과 LMS에서 수행한 학습·실습·프로젝트 데이터를 <strong>일자별로 모으고
+      기술 카테고리별로 분류해, 학습 과정과 역량 성장 과정을 시각화</strong>합니다.
+      지금의 증명서가 “수료 시점의 한 장”이라면, 이것은 “거기까지 온 경로”입니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">화면 위치</td>
+            <td>
+              별도 페이지를 만들지 않고 <strong>수강 역량 증명서 안의 탭</strong>으로 넣습니다.
+              독립 역량 리포트 페이지는 이미 증명서로 통합하기로 결정된 바 있어, 되돌리지 않습니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">우리가 이미 가진 것</td>
+            <td>
+              과제 제출, 퀴즈 응시·결과, 프로젝트 활동, 트러블슈팅, 출결, 학습 기록(블로그·스터디·자격증) —
+              <strong>모두 날짜를 가진 채 DB에 있습니다.</strong> 시간축으로 세우는 것 자체는 우리 쪽 작업입니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI에서 받아야 할 것</td>
+            <td>
+              일자별 실습 이벤트(<code>ts</code> · <code>type</code> · <code>step</code>) —
+              <strong>시험과 시험 사이의 빈 구간을 채우는 유일한 소스</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">지금 없는 것</td>
+            <td>
+              <strong>기술 카테고리 분류 체계가 양쪽 모두 없습니다.</strong>
+              GOV-AI 이벤트에는 <code>step</code>(1~10) 숫자만 있고 그 단계가 어떤 기술인지 정의가 없으며,
+              우리 과제·퀴즈에도 동일한 분류 축이 없습니다. 이것 없이는 “카테고리별”이 성립하지 않습니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">9월 중순 시연</td>
+            <td><span class="pill pill--wip">부분 가능</span> 실 연동 대신 배치로 받은 이벤트 파일로 화면을 채우는 수준</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call call--warn">
+      <p class="call__title">기술 카테고리 사전은 우리가 정의해서 건네는 것이 맞습니다</p>
+      <p>
+        이 분류는 증명서에 표시되는 항목이고, 우리 과제·퀴즈·프로젝트도 같은 축으로 묶여야 합니다.
+        상대가 정의한 분류를 나중에 받아 맞추면 우리 데이터 전체를 다시 태깅해야 합니다.
+        <strong>우리가 카테고리 사전을 만들어 제공하고, GOV-AI는 이벤트에 그 값을 태깅해 돌려주는</strong> 방향을 제안합니다.
+      </p>
+    </div>
+
+    <h3>F2. 수준별 맞춤 AI 티칭 <span class="pill pill--hold">2차</span></h3>
+    <p>
+      수집된 실습 데이터를 근거로 <strong>수강생별·기술 카테고리별 난이도를 AI가 산정</strong>하고,
+      그 난이도에 맞는 문제를 자동으로 출제합니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">구분</th>
+            <th scope="col">내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">우리가 이미 가진 것</td>
+            <td>
+              <strong>퀴즈 출제·템플릿·문항 관리와 자동 채점이 이미 구현·배포되어 있습니다.</strong>
+              출제 엔진을 새로 만들 필요가 없습니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI에서 받아야 할 것</td>
+            <td><strong>카테고리별 수준 판정</strong> — 학생 × 카테고리 단위의 난이도 값과 그 근거</td>
+          </tr>
+          <tr>
+            <td class="t-tight">지금 없는 것</td>
+            <td>
+              현재 진단은 <strong>학생당 등급 하나</strong>(초급·중급·해결사)입니다.
+              “Python은 중급이지만 자료구조는 초급” 같은 카테고리별 분해가 없어,
+              지금 값으로는 카테고리별 출제를 할 수 없습니다.
+              우리 문항에도 난이도·카테고리 태그가 없어 양쪽 모두 확장이 필요합니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">9월 중순 시연</td>
+            <td><span class="pill pill--none">불가</span> F1의 카테고리 체계가 선행되어야 성립. 10월 이후 범위로 봅니다</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      이 기능의 역할 분담은 명확합니다. <strong>판정은 GOV-AI, 출제와 채점은 우리</strong>입니다.
+      상대가 출제까지 만들면 우리 퀴즈 시스템과 이중 관리가 되고,
+      수강생은 문제를 두 군데서 풀게 됩니다.
+    </p>
+
+  </section>
