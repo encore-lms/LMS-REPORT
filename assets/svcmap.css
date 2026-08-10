@@ -394,3 +394,7 @@
    td 의 max-width 는 table-layout:auto 에서 무시되므로 표 자체의 폭을 잡는다.
    (이 리포트 전용 — 공용 report.css 의 표는 그대로 둔다.) */
 .tw { max-width: 52rem; }
+
+/* 계약 목차 — 번호를 글로 적으므로 브라우저 마커는 끈다. */
+.contracts { list-style: none; padding-left: 0; }
+.contracts strong { color: var(--warn); }
