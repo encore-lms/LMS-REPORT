@@ -299,10 +299,10 @@
             <text x="8" y="106" font-size="13" font-weight="700" fill="var(--ink)">학습 발생</text>
             <text x="8" y="121" font-size="8.5" class="mono" fill="var(--ink-3)">GENERATION</text>
 
-            <circle cx="24" cy="390" r="12" fill="var(--brand)"/>
-            <text x="24" y="394.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">2</text>
-            <text x="8" y="420" font-size="13" font-weight="700" fill="var(--ink)">수집 · 분석</text>
-            <text x="8" y="435" font-size="8.5" class="mono" fill="var(--ink-3)">INGESTION</text>
+            <circle cx="24" cy="224" r="12" fill="var(--brand)"/>
+            <text x="24" y="228.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">2</text>
+            <text x="8" y="254" font-size="13" font-weight="700" fill="var(--ink)">수집 · 분석</text>
+            <text x="8" y="269" font-size="8.5" class="mono" fill="var(--ink-3)">INGESTION</text>
 
             <circle cx="24" cy="702" r="12" fill="var(--warn)"/>
             <text x="24" y="706.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">3</text>
@@ -339,36 +339,37 @@
 
           <!-- 계약 ① 로그인 연동 (LMS → GOV-AI) -->
           <path d="M707,164 L707,196 L430,196 L430,170" fill="none" stroke="var(--warn)" stroke-width="2.5" marker-end="url(#ar-w)"/>
-          <text x="568" y="218" text-anchor="middle" font-size="12.5" fill="var(--ink)"><tspan font-weight="700" fill="var(--warn)">계약 ① 로그인 연동</tspan> — LMS 계정 인증 · 수강생 UUID 확정</text>
+          <text x="478" y="222" font-size="12.5" fill="var(--ink)"><tspan font-weight="700" fill="var(--warn)">계약 ① 로그인 연동</tspan> — LMS 계정 인증 · 수강생 UUID 확정</text>
 
-          <!-- 실습 활동 → 원천 적재 -->
-          <path d="M180,164 L180,236" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="194" y="204" font-size="12" fill="var(--ink-2)">실습 활동 — 코딩 · 실행 · 에러 · 힌트 요청</text>
-
-          <!-- 계약 ② 원천 데이터 S3 적재 (수집·분석 앞) -->
-          <rect x="102" y="242" width="780" height="76" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
-          <text x="120" y="268" font-size="13.5" font-weight="700" fill="var(--ink)"><tspan fill="var(--warn)">계약 ②</tspan> 원천 데이터 S3 적재 — 실습 환경에서 나온 그대로</text>
-          <text x="120" y="296" font-size="12.5" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-DATARAKE/{YYYY-MM-DD}/json</text>
-
-          <path d="M180,318 L180,368" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="194" y="348" font-size="12" fill="var(--ink-2)">적재된 원천을 읽어 분석</text>
+          <!-- 실습 활동 → 수집 -->
+          <path d="M180,164 L180,206" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="194" y="192" font-size="12" fill="var(--ink-2)">실습 활동 — 코딩 · 실행 · 에러 · 힌트 요청</text>
 
           <!-- 2 · 수집 · 저장 -->
-          <rect x="102" y="374" width="356" height="98" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="118" y="398" font-size="14.5" font-weight="700" fill="var(--ink)">수집 · 저장</text>
-          <text x="118" y="420" font-size="12" fill="var(--ink-2)">Collector API — FastAPI · 실시간 push</text>
-          <text x="118" y="438" font-size="12" fill="var(--ink-2)">외부 커넥터 — 노션 · 깃허브 · 디스코드</text>
-          <text x="118" y="456" font-size="12" fill="var(--ink-2)">가명화 · 정제 → 분석 마트</text>
+          <rect x="102" y="212" width="356" height="98" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="118" y="236" font-size="14.5" font-weight="700" fill="var(--ink)">수집 · 저장</text>
+          <text x="118" y="258" font-size="12" fill="var(--ink-2)">Collector API — FastAPI · 실시간 push</text>
+          <text x="118" y="276" font-size="12" fill="var(--ink-2)">외부 커넥터 — 노션 · 깃허브 · 디스코드</text>
+          <text x="118" y="294" font-size="12" fill="var(--ink-2)">가명화 · 정제 → 분석 마트</text>
 
-          <path d="M180,472 L180,496" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <path d="M180,310 L180,352" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="194" y="338" font-size="12" fill="var(--ink-2)">수집한 원천을 S3 에 적재</text>
 
-          <rect x="102" y="502" width="356" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="118" y="526" font-size="14.5" font-weight="700" fill="var(--ink)">LLM 분석</text>
-          <text x="118" y="548" font-size="12" fill="var(--ink-2)">수준 진단 · 취약점 분석</text>
-          <text x="118" y="566" font-size="12" fill="var(--ink-2)">이탈 · 부진 경보 · 그룹 역학</text>
+          <!-- 계약 ② 원천 데이터 S3 적재 (분석 앞) -->
+          <rect x="102" y="358" width="780" height="76" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
+          <text x="120" y="384" font-size="13.5" font-weight="700" fill="var(--ink)"><tspan fill="var(--warn)">계약 ②</tspan> 원천 데이터 S3 적재 — 분석 전 원본 그대로</text>
+          <text x="120" y="412" font-size="12.5" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-DATARAKE/{YYYY-MM-DD}/json</text>
 
-          <path d="M180,584 L180,676" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="194" y="634" font-size="12" fill="var(--ink-2)">일 1회 리포트 생성 — 지표 · 판정 · 취약 패턴</text>
+          <path d="M180,434 L180,476" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="194" y="462" font-size="12" fill="var(--ink-2)">적재된 원천을 읽어 분석</text>
+
+          <rect x="102" y="482" width="356" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="118" y="506" font-size="14.5" font-weight="700" fill="var(--ink)">LLM 분석</text>
+          <text x="118" y="528" font-size="12" fill="var(--ink-2)">수준 진단 · 취약점 분석</text>
+          <text x="118" y="546" font-size="12" fill="var(--ink-2)">이탈 · 부진 경보 · 그룹 역학</text>
+
+          <path d="M180,564 L180,676" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="194" y="624" font-size="12" fill="var(--ink-2)">일 1회 리포트 생성 — 지표 · 판정 · 취약 패턴</text>
 
           <!-- 3 · 계약 ③ 리포트 S3 적재 -->
           <rect x="102" y="682" width="780" height="76" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
@@ -396,7 +397,7 @@
 
           <!-- 계약 ④ 재생성 루프 (승인 반려 → LLM 분석으로 되돌아가 다시 생성)
                계약 박스가 거의 전폭이라 레인 왼쪽 밖(x=84)으로 우회해 관통을 피한다. -->
-          <path d="M532,1042 L84,1042 L84,592" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ar-w)"/>
+          <path d="M532,1042 L84,1042 L84,572" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ar-w)"/>
           <text x="98" y="806" font-size="12.5" font-weight="700" fill="var(--warn)">계약 ④ 재생성 요청</text>
           <text x="98" y="824" font-size="11.5" fill="var(--ink-2)">수강생 지정 재생성 API</text>
           <text x="98" y="841" font-size="11.5" fill="var(--ink-2)">승인 전까지 수강생에게 비공개</text>
@@ -548,7 +549,7 @@
 
     <h3>요청 2 — 원천 데이터 적재 : S3 데이터 레이크</h3>
     <p>
-      실습 환경에서 나온 <strong>원천 데이터를 분석 전에 S3에 쌓아</strong> 주세요.
+      수집한 <strong>원천 데이터를 분석 전에 S3에 쌓아</strong> 주세요.
       나중에 <strong>같은 값이 다시 나오는지 검증</strong>하거나 재분석할 때 근거가 됩니다.
     </p>
 
