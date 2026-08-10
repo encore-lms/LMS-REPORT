@@ -256,6 +256,15 @@ td .cell-list li { margin: 0; }
   border: 1px solid var(--line-soft);
   border-radius: 3px;
 }
+/* 그림이 링크일 때 — 클릭 가능함이 보이도록 호버에서 살짝 띄운다. */
+.fig a { display: block; max-width: 64rem; }
+.fig a:hover img, .fig a:focus-visible img { border-color: var(--brand); }
+.fig figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+.fig + .fig { margin-top: 1.25rem; }
 
 /* 그림 + 질문 나란히 — 그림이 주인공이라 넓게, 질문은 오른쪽에 붙는다.
    좁은 화면에서는 세로로 쌓인다. */
