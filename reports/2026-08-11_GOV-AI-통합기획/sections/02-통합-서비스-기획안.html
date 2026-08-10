@@ -2,68 +2,135 @@
     <div class="sec-num"><!--NUM--></div>
     <h2>GOV-AI-Agent × LMS 통합 서비스 기획안</h2>
 
+    <h3>개인별 리포트 발행
+      <span class="flow__who flow__who--gov">GOV-AI</span> ×
+      <span class="flow__who flow__who--lms">LMS</span></h3>
     <p>
-      기준은 하나입니다. <strong>우리 LMS에 이미 있는 자산과 GOV-AI 데이터가 만나야 성립하는 기능</strong>만 넣었습니다.
-      둘 중 하나만으로 되는 것은 통합 안건이 아니라 각자의 개발 항목입니다.
+      실습 활동을 일자별로 모아 <strong>개인별 리포트로 생성</strong>하고,
+      <strong>매니저 승인을 거쳐 수강생에게 알림으로 전달</strong>합니다.
+      생성까지가 GOV-AI, 검토 · 승인 · 알림이 LMS 몫입니다.
     </p>
 
-    <h3>F1. 나의 역량 히스토리 <span class="pill pill--wip">1차</span></h3>
+    <div class="steps">
+      <div class="step">
+        <span class="step__no">1</span>
+        <div class="step__body">
+          <span class="step__t">로그인</span>
+          <span class="step__d">ATmux · VS Code 확장에서 LMS 계정 인증</span>
+          <span class="flow__who flow__who--link">계약 ①</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">2</span>
+        <div class="step__body">
+          <span class="step__t">작업 수행</span>
+          <span class="step__d">코딩 · 실행 · 에러 · 힌트 요청</span>
+          <span class="flow__who flow__who--stu">수강생</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">3</span>
+        <div class="step__body">
+          <span class="step__t">수집 · 분류</span>
+          <span class="step__d">일자별로 모아 수강생 고유번호 기준으로 분류</span>
+          <span class="flow__who flow__who--gov">GOV-AI</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">4</span>
+        <div class="step__body">
+          <span class="step__t">분석</span>
+          <span class="step__d">지표 산출 · 수준 판정 · 취약 패턴</span>
+          <span class="flow__who flow__who--gov">GOV-AI</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">5</span>
+        <div class="step__body">
+          <span class="step__t">리포트 생성</span>
+          <span class="step__d"><code>GOV-AI-REPORT/수강생UUID/YYYY-MM-DD/report</code> 로 적재</span>
+          <span class="flow__who flow__who--link">계약 ②</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">6</span>
+        <div class="step__body">
+          <span class="step__t">매니저 알림</span>
+          <span class="step__d">“수강생별 OO과정 OO기 AI 리포트 검토 필요”</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">7</span>
+        <div class="step__body">
+          <span class="step__t">매니저 승인</span>
+          <span class="step__d">수강생별 리포트 확인 후 승인</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+      <div class="step step--sub">
+        <span class="step__no">7-1</span>
+        <div class="step__body">
+          <span class="step__t">재생성 · 직접 수정</span>
+          <span class="step__d">승인하지 않을 경우 리포트를 다시 생성하거나 매니저가 직접 고친다</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">8</span>
+        <div class="step__body">
+          <span class="step__t">수강생 알림 발송</span>
+          <span class="step__d">승인된 수강생에게 “일간 또는 주간 리포트가 도착하였습니다”</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>나의 역량 히스토리 <span class="flow__who flow__who--lms">LMS</span></h3>
     <p>
-      수강생이 실습 환경과 LMS에서 수행한 학습·실습·프로젝트 데이터를 <strong>일자별로 모으고
-      기술 카테고리별로 분류해, 학습 과정과 역량 성장 과정을 시각화</strong>합니다.
+      넘어온 리포트를 LMS 데이터와 합쳐 <strong>일자별 · 기술 카테고리별로 정리</strong>하고,
+      강사 · 매니저 승인을 거쳐 수강생에게 공개합니다.
       지금의 증명서가 “수료 시점의 한 장”이라면, 이것은 “거기까지 온 경로”입니다.
     </p>
 
-    <h4>기능 플로우</h4>
     <div class="flow">
       <div class="flow__step">
         <span class="flow__no">1</span>
-        <p class="flow__t">로그인</p>
-        <p class="flow__d">ATmux · VSCode 확장에서 LMS 계정 인증</p>
-        <span class="flow__who flow__who--link">계약 ①</span>
+        <p class="flow__t">리포트 조회</p>
+        <p class="flow__d">수강생 UUID 경로로 일자별 리포트 수신</p>
+        <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">2</span>
-        <p class="flow__t">작업 수행</p>
-        <p class="flow__d">코딩 · 실행 · 에러 · 힌트 요청</p>
-        <span class="flow__who flow__who--gov">GOV-AI</span>
+        <p class="flow__t">전처리</p>
+        <p class="flow__d">카드가 쓸 형태로 가공 — 일자별 집계 · 카테고리 롤업</p>
+        <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">3</span>
-        <p class="flow__t">수집 · 분류</p>
-        <p class="flow__d">일자별로 모아 <strong>수강생 고유번호 기준</strong>으로 분류</p>
-        <span class="flow__who flow__who--link">계약 ②</span>
+        <p class="flow__t">LMS 데이터 결합</p>
+        <p class="flow__d">과제 · 퀴즈 · 프로젝트 · 출결 이력과 같은 시간축에 병합</p>
+        <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">4</span>
-        <p class="flow__t">전처리</p>
-        <p class="flow__d">수집된 데이터를 카드가 쓸 형태로 가공 — 일자별 집계 · 카테고리 롤업</p>
+        <p class="flow__t">검토 · 승인</p>
+        <p class="flow__d">강사 · 매니저가 수강생별 리포트 확인 후 승인 · 반려</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">5</span>
-        <p class="flow__t">히스토리 배치</p>
-        <p class="flow__d">가공된 데이터를 교육과정 탭의 카드로 렌더</p>
+        <p class="flow__t">공개</p>
+        <p class="flow__d">승인된 리포트만 교육과정 탭 카드로 노출</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
     </div>
 
-    <p>
-      1단계가 없으면 3단계의 “수강생 고유번호 기준 분류”가 성립하지 않습니다.
-      로그인 연동이 이 기능의 첫 관문인 이유입니다.
-    </p>
-
     <h4>화면 배치 (제안)</h4>
-    <p>
-      역량 히스토리에 무엇을 담을지는 아직 정해진 바가 없어, <strong>우리 측 임의 제안</strong>으로 6개 카드를 구성했습니다.
-      회의에서 덜어내거나 바꾸는 것을 전제로 봐 주세요.
-      위에서 아래로 <strong>“얼마나 성장했나 → 어떻게 학습했나 → 무엇이 부족한가”</strong> 순으로 읽히게 배치했습니다.
-    </p>
-
     <div class="wire">
       <div class="wire__b wire__b--full">
         <span class="wire__n">01</span>
@@ -78,7 +145,7 @@
       <div class="wire__b">
         <span class="wire__n">03</span>
         <p class="wire__t">기술 카테고리 레이더</p>
-        <p class="wire__d">카테고리별 현재 수준. 기술 카테고리 사전(R2)과 카테고리별 판정(R6)이 선행되어야 성립</p>
+        <p class="wire__d">카테고리별 현재 수준. <strong>리포트에 카테고리 분류가 담겨 올 때만</strong> 성립 — 없으면 이 카드는 빠진다</p>
       </div>
       <div class="wire__b wire__b--full">
         <span class="wire__n">04</span>
@@ -95,119 +162,6 @@
         <p class="wire__t">취약 패턴과 다음 할 일</p>
         <p class="wire__d">반복 에러 유형 상위 3개와 보충 학습 추천. 수강생이 바로 행동할 수 있는 형태로</p>
       </div>
-    </div>
-
-    <h3>F2. 수준별 맞춤 AI 티칭 <span class="pill pill--hold">2차</span></h3>
-    <p>
-      매일 쌓이는 학습 데이터를 AI가 학습해 <strong>기술 카테고리를 자동으로 뽑아내고,
-      그 카테고리에 맞는 퀴즈와 정답을 생성</strong>합니다. 만들어진 문제는 <strong>PLAY에서 풀고 채점</strong>되며,
-      그 결과가 다시 다음 문제 생성에 들어가는 <strong>사이클</strong>입니다.
-      F1이 “지나온 경로를 보여주는” 기능이라면, 이것은 그 경로를 <strong>다음 문제로 되돌려 주는</strong> 기능입니다.
-    </p>
-
-    <h4>기능 플로우</h4>
-    <div class="flow">
-      <div class="flow__step">
-        <span class="flow__no">1</span>
-        <p class="flow__t">히스토리 학습</p>
-        <p class="flow__d">매일 수집된 데이터로 그 수강생의 학습 히스토리를 학습</p>
-        <span class="flow__who flow__who--tbd">주체 미정</span>
-      </div>
-      <div class="flow__arrow" aria-hidden="true">→</div>
-      <div class="flow__step">
-        <span class="flow__no">2</span>
-        <p class="flow__t">카테고리 자동 생성</p>
-        <p class="flow__d">작업한 내역에서 기술 카테고리를 자동으로 뽑아낸다</p>
-        <span class="flow__who flow__who--tbd">주체 미정</span>
-      </div>
-      <div class="flow__arrow" aria-hidden="true">→</div>
-      <div class="flow__step">
-        <span class="flow__no">3</span>
-        <p class="flow__t">퀴즈 · 정답 생성</p>
-        <p class="flow__d">학습 내역을 근거로 카테고리별 문제와 정답을 생성</p>
-        <span class="flow__who flow__who--tbd">주체 미정</span>
-      </div>
-      <div class="flow__arrow" aria-hidden="true">→</div>
-      <div class="flow__step">
-        <span class="flow__no">4</span>
-        <p class="flow__t">PLAY 렌더 · 채점</p>
-        <p class="flow__d">PLAY에서 문제를 띄우고 채점한 뒤 결과 제출</p>
-        <span class="flow__who flow__who--lms">LMS</span>
-      </div>
-      <div class="flow__arrow" aria-hidden="true">→</div>
-      <div class="flow__step">
-        <span class="flow__no">5</span>
-        <p class="flow__t">사이클 반복</p>
-        <p class="flow__d">학습 내역과 채점 결과를 합쳐 다음 문제를 다시 생성</p>
-        <span class="flow__who flow__who--tbd">주체 미정</span>
-      </div>
-    </div>
-
-    <p>
-      5번이 1번으로 돌아가는 <strong>순환 구조</strong>입니다. 한 번 출제하고 끝나는 것이 아니라,
-      풀수록 다음 문제가 달라져야 “수준별”이 성립합니다.
-      <strong>4번만 우리 몫이 확정</strong>이고 1 · 2 · 3 · 5번은 담당이 정해지지 않았습니다 —
-      이 기능에서 회의가 실제로 정해야 할 것은 그 경계입니다.
-    </p>
-
-    <h4>화면 배치 (제안)</h4>
-    <p>
-      PLAY는 게임 선택(<code>/student/play</code>) → 게임 → 결과 세 화면으로 이미 나뉘어 있습니다
-      <span class="prov prov--live">실측</span> — 타자 · 코딩 · CS 퀴즈 3종.
-      AI 티칭은 그중 <strong>CS 퀴즈에 얹고</strong>, 생성된 문제를 세 화면에 나눠 보여줍니다.
-      아래는 <strong>우리 측 임의 제안</strong>입니다.
-    </p>
-
-    <div class="wire">
-      <div class="wire__b wire__b--full">
-        <span class="wire__n">01 · 게임 선택 화면</span>
-        <p class="wire__t">오늘의 맞춤 세트</p>
-        <p class="wire__d">지금 내 수준에 맞춰 편성된 문제 묶음으로 바로 진입. 게임 카드 위 최상단에 놓아 “무엇을 풀지 고르는 부담”을 없앤다</p>
-      </div>
-      <div class="wire__b">
-        <span class="wire__n">02 · 게임 선택 화면</span>
-        <p class="wire__t">카테고리별 내 난이도</p>
-        <p class="wire__d">2번에서 자동 생성된 카테고리와 그 안의 내 수준. 문제가 왜 이렇게 나왔는지의 근거가 된다</p>
-      </div>
-      <div class="wire__b">
-        <span class="wire__n">03 · 게임 선택 화면</span>
-        <p class="wire__t">취약 카테고리 먼저</p>
-        <p class="wire__d">약한 카테고리를 앞쪽에 편성. 무엇을 왜 먼저 푸는지 한 줄로 설명해 납득하고 시작하게 한다</p>
-      </div>
-      <div class="wire__b wire__b--full">
-        <span class="wire__n">04 · 게임 화면</span>
-        <p class="wire__t">문항별 난이도 · 카테고리 표시</p>
-        <p class="wire__d">지금 푸는 문제가 어느 카테고리의 몇 단계인지 표시. 맞춤 출제가 실제로 동작한다는 것이 플레이 중에 보여야 한다</p>
-      </div>
-      <div class="wire__b">
-        <span class="wire__n">05 · 결과 화면</span>
-        <p class="wire__t">정답률과 다음 난이도</p>
-        <p class="wire__d">이번 결과로 난이도가 올라갔는지 · 유지인지 · 내려갔는지. 5번 환류 단계가 수강생 눈에 보이는 지점</p>
-      </div>
-      <div class="wire__b">
-        <span class="wire__n">06 · 결과 화면</span>
-        <p class="wire__t">틀린 유형 재도전</p>
-        <p class="wire__d">틀린 문항과 같은 유형을 다음 세트에 다시 넣겠다는 안내와 바로 재도전 진입</p>
-      </div>
-    </div>
-
-    <div class="call call--warn">
-      <p class="call__title">이 플로우에서 먼저 정해야 할 것</p>
-      <p>
-        <strong>1 · 2 · 3 · 5번을 누가 만드나.</strong> 문제를 고르는 것이 아니라 <strong>생성</strong>하는 구조라,
-        생성 주체 · 모델 · 프롬프트를 누가 관리하고 <strong>생성된 정답이 틀렸을 때 누가 책임지는지</strong>까지 함께 정해야 합니다.
-        평가에 쓰이는 문제라면 사람 검수 절차도 필요합니다.
-      </p>
-      <p>
-        <strong>카테고리를 자동 생성한다면, 우리가 사전을 정의해 건네는 방식(R2)과 어긋납니다.</strong>
-        둘 중 하나를 골라야 하며, 증명서에 표시되는 분류라 <strong>기수마다 카테고리가 달라지면 비교가 되지 않습니다.</strong>
-        4장 D2와 함께 결정해야 합니다.
-      </p>
-      <p>
-        <strong>PLAY 자체도 선행 조건입니다.</strong> PLAY 3종은 화면만 완성되어 있고
-        <strong>백엔드가 미착수 상태로 2차 이월</strong>된 범위입니다 <span class="prov prov--live">실측</span>.
-        AI 티칭을 얹으려면 PLAY 백엔드가 먼저 서야 합니다 — 이 기능이 10월 이후인 이유입니다.
-      </p>
     </div>
 
   </section>
