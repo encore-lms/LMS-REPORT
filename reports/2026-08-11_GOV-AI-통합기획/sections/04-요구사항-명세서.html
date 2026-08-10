@@ -18,7 +18,8 @@
     <h3>계약 1 — 수강생 식별 : 실습 환경에 LMS 로그인 연동</h3>
     <p>
       <strong>ATmux · VS Code 확장(PlayLang) 이용 시 LMS 로그인 API로 인증</strong>하도록 개선해 주세요.
-      로그인 응답의 <code>user.id</code>(UUID)가 이후 모든 데이터의 기준 식별자가 됩니다.
+      로그인 응답의 <code>user.id</code>(UUID)가 이후 모든 데이터의 기준 식별자,
+      곧 경로 규약의 <code>{수강생 고유 번호}</code> 가 됩니다.
       현재 수강생을 특정할 방법이 없는 상태라, 이것이 없으면 계약 3의 경로 규약이 성립하지 않습니다.
     </p>
     <p>
@@ -76,7 +77,7 @@
           <tr>
             <td class="t-tight"><code>user.id</code></td>
             <td>사용자 고유번호(UUID)</td>
-            <td><strong><code>lms_student_uuid</code> 로 사용</strong> — 계약의 기준 식별자</td>
+            <td><strong><code>lms_student_uuid</code> 로 사용</strong> — 계약의 기준 식별자이자 경로의 <code>{수강생 고유 번호}</code></td>
           </tr>
           <tr>
             <td class="t-tight"><code>user.studentUuid</code></td>
