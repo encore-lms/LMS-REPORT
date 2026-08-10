@@ -3,17 +3,17 @@
     <h2>요구사항 명세서</h2>
 
     <p>
-      외부 개발 주체에 요청하는 것은 <strong>세 건</strong>입니다.
-      ①이 서면 모든 데이터가 수강생 단위로 묶이고, ②가 서면 그 데이터가 우리 쪽으로 흘러오며,
-      ③이 있어야 승인하지 않은 리포트를 다시 만들 수 있습니다.
-      회의에서는 이 세 건의 가부와 세부 형식만 확인하면 됩니다.
+      외부 개발 주체에 요청하는 것은 <strong>네 건</strong>입니다.
+      ①이 서면 모든 데이터가 수강생 단위로 묶이고, ② · ③이 서면 원천과 분석 결과가 우리 쪽으로 흘러오며,
+      ④가 있어야 승인하지 않은 리포트를 다시 만들 수 있습니다.
+      회의에서는 이 네 건의 가부와 세부 형식만 확인하면 됩니다.
     </p>
 
     <h3>요청 1 — 수강생 식별 : 실습 환경에 LMS 로그인 연동</h3>
     <p>
       <strong>ATmux · VS Code 확장(PlayLang) 이용 시 LMS 로그인 API로 인증</strong>하도록 개선해 주세요.
       로그인 응답의 <code>user.id</code>(UUID)가 이후 모든 데이터의 기준 식별자가 됩니다.
-      현재 수강생을 특정할 방법이 없는 상태라, 이것이 없으면 요청 2의 경로 규약이 성립하지 않습니다.
+      현재 수강생을 특정할 방법이 없는 상태라, 이것이 없으면 요청 3의 경로 규약이 성립하지 않습니다.
     </p>
     <p>
       아래는 이미 배포되어 동작 중인 API입니다 <span class="prov prov--live">실측</span> —
@@ -111,15 +111,47 @@
       </p>
     </div>
 
-    <h3>요청 2 — S3 적재 : 원천 데이터와 리포트</h3>
+    <h3>요청 2 — 원천 데이터 적재 : S3 데이터 레이크</h3>
     <p>
-      <strong>수집한 원천 데이터</strong>와 <strong>일자별 분석 리포트</strong>를 아래 두 경로 규약으로 S3에 저장해 주세요.
-      리포트는 수강생 고유 번호가 경로 첫 단이라 LMS가 학생 단위로 바로 조회할 수 있고,
-      원천 데이터는 나중에 <strong>같은 값이 다시 나오는지 검증</strong>하거나 재분석할 때 근거가 됩니다.
+      실습 환경에서 나온 <strong>원천 데이터를 분석 전에 S3에 쌓아</strong> 주세요.
+      나중에 <strong>같은 값이 다시 나오는지 검증</strong>하거나 재분석할 때 근거가 됩니다.
     </p>
 
-    <pre class="pathspec"><code>GOV-AI-DATARAKE/{YYYY-MM-DD}/json                      원천 데이터
-GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report    일자별 리포트</code></pre>
+    <pre class="pathspec"><code>GOV-AI-DATARAKE/{YYYY-MM-DD}/json</code></pre>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">항목</th>
+            <th scope="col">확인할 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">담기는 범위</td>
+            <td>실습 이벤트 원본인지 정제 후인지, <strong>가명화 전인지 후인지</strong> — 개인정보 동의 범위와 직결됩니다</td>
+          </tr>
+          <tr>
+            <td class="t-tight">수강생 구분</td>
+            <td>날짜 단위 묶음이라 <strong>경로에 수강생 구분이 없습니다</strong> — 개별 조회가 필요하면 경로 조정을 협의</td>
+          </tr>
+          <tr>
+            <td class="t-tight">적재 시각</td>
+            <td>실시간인지 일 1회 묶음인지</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>요청 3 — 리포트 적재 : S3 경로 규약</h3>
+    <p>
+      일자별 분석 리포트를 아래 경로 규약으로 S3에 저장해 주세요.
+      수강생 고유 번호가 경로 첫 단이라 LMS가 학생 단위로 바로 조회할 수 있고,
+      날짜 파티션이 역량 히스토리의 일자별 카드에 그대로 대응합니다.
+    </p>
+
+    <pre class="pathspec"><code>GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</code></pre>
 
     <div class="tw">
       <table>
@@ -132,14 +164,9 @@ GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report    일자별 리포�
         </thead>
         <tbody>
           <tr>
-            <td class="t-tight"><code>GOV-AI-DATARAKE</code></td>
-            <td>원천 데이터 프리픽스</td>
-            <td>날짜 단위 묶음 — <strong>수강생 구분이 경로에 없어</strong> 개별 조회는 파일 안을 열어야 합니다</td>
-          </tr>
-          <tr>
             <td class="t-tight"><code>GOV-AI-REPORT</code></td>
-            <td>리포트 프리픽스</td>
-            <td>다른 산출물과 섞이지 않게 최상위에서 구분</td>
+            <td>고정 프리픽스</td>
+            <td>원천 데이터와 섞이지 않게 최상위에서 구분</td>
           </tr>
           <tr>
             <td class="t-tight"><code>수강생 고유 번호</code></td>
@@ -175,13 +202,6 @@ GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report    일자별 리포�
             <td>어느 쪽 계정의 버킷인지, 상대에게 줄 쓰기 권한(IAM)의 범위</td>
           </tr>
           <tr>
-            <td class="t-tight">원천 데이터 범위</td>
-            <td>
-              <code>DATARAKE</code> 에 담기는 것 — 실습 이벤트 원본인지 정제 후인지,
-              <strong>가명화 전인지 후인지</strong>. 개인정보 동의 범위와 직결됩니다
-            </td>
-          </tr>
-          <tr>
             <td class="t-tight">리포트 스키마</td>
             <td>파일 안에 어떤 항목이 담기는지 — 지표 · 수준 판정 · 취약 패턴 등.
               <strong>필드를 따로 요구하지 않고, 리포트에 담겨 오는 것을 그대로 씁니다</strong></td>
@@ -202,7 +222,7 @@ GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report    일자별 리포�
       </table>
     </div>
 
-    <h3>요청 3 — 리포트 재생성 : 수강생 지정 API</h3>
+    <h3>요청 4 — 리포트 재생성 : 수강생 지정 API</h3>
     <p>
       강사 · 매니저가 검토 단계에서 <strong>승인하지 않은 리포트를 다시 생성</strong>할 수 있도록
       API를 열어 주세요. LMS 검토 화면에서 바로 호출합니다.
@@ -235,7 +255,7 @@ GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report    일자별 리포�
           <tr>
             <td class="t-tight">결과 반영</td>
             <td>
-              재생성된 리포트를 <strong>요청 2와 같은 S3 경로</strong>에 올려 주세요.
+              재생성된 리포트를 <strong>요청 3과 같은 S3 경로</strong>에 올려 주세요.
               덮어쓸지 버전을 남길지는 협의 — <strong>증명서 증적과 직결</strong>됩니다
             </td>
           </tr>
