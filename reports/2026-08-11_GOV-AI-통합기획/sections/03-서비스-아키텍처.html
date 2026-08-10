@@ -4,7 +4,7 @@
 
     <p>
       두 시스템을 나란히 놓고 <strong>데이터가 어디서 어디로 흐르는지</strong>를 화살표로 그렸습니다.
-      회색 화살표가 데이터 흐름이고, <strong>주황이 두 시스템이 만나는 계약 세 건</strong>입니다.
+      회색 화살표가 데이터 흐름이고, <strong>주황이 두 시스템이 만나는 계약 네 건</strong>입니다.
     </p>
 
     <div class="arch">
@@ -19,8 +19,8 @@
       </header>
 
       <div class="arch__body">
-        <svg viewBox="0 0 900 1290" role="img"
-             aria-label="통합 서비스 아키텍처 — 왼쪽 GOV-AI 레인에서 실습 데이터가 수집·분석되어 S3 리포트로 발행되고, 오른쪽 LMS 레인이 그것을 읽어 파이프라인·검토 승인을 거쳐 역량 히스토리와 증명서로 공개한다. 계약 세 건(로그인 연동, S3 리포트, 재생성 요청)이 두 레인을 잇는다">
+        <svg viewBox="0 0 900 1420" role="img"
+             aria-label="통합 서비스 아키텍처 — 왼쪽 GOV-AI 레인에서 실습 데이터가 S3 데이터 레이크에 쌓이고 수집·분석을 거쳐 리포트로 발행되면, 오른쪽 LMS 레인이 그것을 읽어 파이프라인·검토 승인을 거쳐 역량 히스토리와 증명서로 공개한다. 계약 네 건(로그인 연동, 원천 데이터 적재, 리포트 적재, 재생성 요청)이 두 레인을 잇는다">
           <defs>
             <marker id="ar-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-2)"/>
@@ -31,8 +31,8 @@
           </defs>
 
           <!-- 레인 배경 -->
-          <rect x="90" y="8" width="380" height="628" rx="8" fill="var(--surface-2)"/>
-          <rect x="520" y="8" width="374" height="1264" rx="8" fill="var(--brand-wash)"/>
+          <rect x="90" y="8" width="380" height="758" rx="8" fill="var(--surface-2)"/>
+          <rect x="520" y="8" width="374" height="1394" rx="8" fill="var(--brand-wash)"/>
 
           <!-- 레인 라벨 -->
           <rect x="102" y="20" width="168" height="28" rx="14" fill="var(--ink-2)"/>
@@ -47,30 +47,30 @@
             <text x="8" y="106" font-size="13" font-weight="700" fill="var(--ink)">학습 발생</text>
             <text x="8" y="121" font-size="8.5" class="mono" fill="var(--ink-3)">GENERATION</text>
 
-            <circle cx="24" cy="260" r="12" fill="var(--brand)"/>
-            <text x="24" y="264.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">2</text>
-            <text x="8" y="290" font-size="13" font-weight="700" fill="var(--ink)">수집 · 분석</text>
-            <text x="8" y="305" font-size="8.5" class="mono" fill="var(--ink-3)">INGESTION</text>
+            <circle cx="24" cy="390" r="12" fill="var(--brand)"/>
+            <text x="24" y="394.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">2</text>
+            <text x="8" y="420" font-size="13" font-weight="700" fill="var(--ink)">수집 · 분석</text>
+            <text x="8" y="435" font-size="8.5" class="mono" fill="var(--ink-3)">INGESTION</text>
 
-            <circle cx="24" cy="572" r="12" fill="var(--warn)"/>
-            <text x="24" y="576.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">3</text>
-            <text x="8" y="602" font-size="13" font-weight="700" fill="var(--ink)">리포트 발행</text>
-            <text x="8" y="617" font-size="8.5" class="mono" fill="var(--ink-3)">REPORT</text>
+            <circle cx="24" cy="702" r="12" fill="var(--warn)"/>
+            <text x="24" y="706.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">3</text>
+            <text x="8" y="732" font-size="13" font-weight="700" fill="var(--ink)">리포트 발행</text>
+            <text x="8" y="747" font-size="8.5" class="mono" fill="var(--ink-3)">REPORT</text>
 
-            <circle cx="24" cy="720" r="12" fill="var(--brand)"/>
-            <text x="24" y="724.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">4</text>
-            <text x="8" y="750" font-size="13" font-weight="700" fill="var(--ink)">적재 · 가공</text>
-            <text x="8" y="765" font-size="8.5" class="mono" fill="var(--ink-3)">PIPELINE</text>
+            <circle cx="24" cy="850" r="12" fill="var(--brand)"/>
+            <text x="24" y="854.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">4</text>
+            <text x="8" y="880" font-size="13" font-weight="700" fill="var(--ink)">적재 · 가공</text>
+            <text x="8" y="895" font-size="8.5" class="mono" fill="var(--ink-3)">PIPELINE</text>
 
-            <circle cx="24" cy="888" r="12" fill="var(--brand)"/>
-            <text x="24" y="892.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">5</text>
-            <text x="8" y="918" font-size="13" font-weight="700" fill="var(--ink)">검토 · 승인</text>
-            <text x="8" y="933" font-size="8.5" class="mono" fill="var(--ink-3)">REVIEW</text>
+            <circle cx="24" cy="1018" r="12" fill="var(--brand)"/>
+            <text x="24" y="1022.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">5</text>
+            <text x="8" y="1048" font-size="13" font-weight="700" fill="var(--ink)">검토 · 승인</text>
+            <text x="8" y="1063" font-size="8.5" class="mono" fill="var(--ink-3)">REVIEW</text>
 
-            <circle cx="24" cy="1038" r="12" fill="var(--brand)"/>
-            <text x="24" y="1042.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">6</text>
-            <text x="8" y="1068" font-size="13" font-weight="700" fill="var(--ink)">공개 · 증명</text>
-            <text x="8" y="1083" font-size="8.5" class="mono" fill="var(--ink-3)">PUBLISH</text>
+            <circle cx="24" cy="1168" r="12" fill="var(--brand)"/>
+            <text x="24" y="1172.5" text-anchor="middle" font-size="11" font-weight="700" fill="var(--surface)">6</text>
+            <text x="8" y="1198" font-size="13" font-weight="700" fill="var(--ink)">공개 · 증명</text>
+            <text x="8" y="1213" font-size="8.5" class="mono" fill="var(--ink-3)">PUBLISH</text>
           </g>
 
           <!-- 1 · 학습 발생 -->
@@ -89,79 +89,83 @@
           <path d="M707,164 L707,196 L430,196 L430,170" fill="none" stroke="var(--warn)" stroke-width="2.5" marker-end="url(#ar-w)"/>
           <text x="568" y="218" text-anchor="middle" font-size="12.5" fill="var(--ink)"><tspan font-weight="700" fill="var(--warn)">계약 ① 로그인 연동</tspan> — LMS 계정 인증 · 수강생 UUID 확정</text>
 
-          <!-- 학습 이벤트 push -->
-          <path d="M180,164 L180,242" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="194" y="205" font-size="12" fill="var(--ink-2)">학습 이벤트 — 실시간 push</text>
+          <!-- 실습 활동 → 원천 적재 -->
+          <path d="M180,164 L180,236" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="194" y="204" font-size="12" fill="var(--ink-2)">실습 활동 — 코딩 · 실행 · 에러 · 힌트 요청</text>
+
+          <!-- 계약 ② 원천 데이터 S3 적재 (수집·분석 앞) -->
+          <rect x="102" y="242" width="780" height="76" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
+          <text x="120" y="268" font-size="13.5" font-weight="700" fill="var(--ink)"><tspan fill="var(--warn)">계약 ②</tspan> 원천 데이터 S3 적재 — 실습 환경에서 나온 그대로</text>
+          <text x="120" y="296" font-size="12.5" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-DATARAKE/{YYYY-MM-DD}/json</text>
+
+          <path d="M180,318 L180,368" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="194" y="348" font-size="12" fill="var(--ink-2)">적재된 원천을 읽어 분석</text>
 
           <!-- 2 · 수집 · 저장 -->
-          <rect x="102" y="248" width="356" height="116" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="118" y="272" font-size="14.5" font-weight="700" fill="var(--ink)">수집 · 저장</text>
-          <text x="118" y="294" font-size="12" fill="var(--ink-2)">Collector API — FastAPI · 실시간 push</text>
-          <text x="118" y="312" font-size="12" fill="var(--ink-2)">외부 커넥터 — 노션 · 깃허브 · 디스코드</text>
-          <text x="118" y="330" font-size="12" fill="var(--ink-2)">가명화 · 정제 → 데이터 레이크 · 분석 마트</text>
-          <text x="118" y="348" font-size="12" fill="var(--ink-2)">원천 데이터 S3 적재 — 일자별</text>
+          <rect x="102" y="374" width="356" height="98" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="118" y="398" font-size="14.5" font-weight="700" fill="var(--ink)">수집 · 저장</text>
+          <text x="118" y="420" font-size="12" fill="var(--ink-2)">Collector API — FastAPI · 실시간 push</text>
+          <text x="118" y="438" font-size="12" fill="var(--ink-2)">외부 커넥터 — 노션 · 깃허브 · 디스코드</text>
+          <text x="118" y="456" font-size="12" fill="var(--ink-2)">가명화 · 정제 → 분석 마트</text>
 
-          <path d="M180,364 L180,386" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <path d="M180,472 L180,496" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
 
-          <rect x="102" y="392" width="356" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="118" y="416" font-size="14.5" font-weight="700" fill="var(--ink)">LLM 분석</text>
-          <text x="118" y="438" font-size="12" fill="var(--ink-2)">수준 진단 · 취약점 분석</text>
-          <text x="118" y="456" font-size="12" fill="var(--ink-2)">이탈 · 부진 경보 · 그룹 역학</text>
+          <rect x="102" y="502" width="356" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="118" y="526" font-size="14.5" font-weight="700" fill="var(--ink)">LLM 분석</text>
+          <text x="118" y="548" font-size="12" fill="var(--ink-2)">수준 진단 · 취약점 분석</text>
+          <text x="118" y="566" font-size="12" fill="var(--ink-2)">이탈 · 부진 경보 · 그룹 역학</text>
 
-          <path d="M180,474 L180,554" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="194" y="518" font-size="12" fill="var(--ink-2)">일 1회 리포트 생성 — 지표 · 판정 · 취약 패턴</text>
+          <path d="M180,584 L180,676" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="194" y="634" font-size="12" fill="var(--ink-2)">일 1회 리포트 생성 — 지표 · 판정 · 취약 패턴</text>
 
-          <!-- 3 · 계약 ② S3 리포트 (두 레인에 걸침) -->
-          <rect x="102" y="552" width="780" height="102" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
-          <text x="120" y="578" font-size="13.5" font-weight="700" fill="var(--ink)"><tspan fill="var(--warn)">계약 ②</tspan> S3 적재 — 원천 데이터와 리포트가 넘어오는 곳</text>
-          <text x="120" y="604" font-size="12" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-DATARAKE/{YYYY-MM-DD}/json</text>
-          <text x="392" y="604" font-size="11" fill="var(--ink-3)">원천 데이터</text>
-          <text x="120" y="628" font-size="12" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</text>
-          <text x="500" y="628" font-size="11" fill="var(--ink-3)">일자별 리포트</text>
+          <!-- 3 · 계약 ③ 리포트 S3 적재 -->
+          <rect x="102" y="682" width="780" height="76" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
+          <text x="120" y="708" font-size="13.5" font-weight="700" fill="var(--ink)"><tspan fill="var(--warn)">계약 ③</tspan> 리포트 S3 적재 — 분석 결과가 넘어오는 곳</text>
+          <text x="120" y="736" font-size="12.5" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</text>
 
-          <path d="M560,654 L560,702" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="574" y="684" font-size="12" fill="var(--ink-2)">수강생 UUID 경로 조회 — 일 1회 배치</text>
+          <path d="M560,758 L560,832" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="574" y="800" font-size="12" fill="var(--ink-2)">수강생 UUID 경로 조회 — 일 1회 배치</text>
 
           <!-- 4 · 리포트 파이프라인 -->
-          <rect x="532" y="708" width="350" height="100" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="548" y="732" font-size="14.5" font-weight="700" fill="var(--ink)">리포트 파이프라인</text>
-          <text x="548" y="754" font-size="12" fill="var(--ink-2)">수신 · 적재 → 전처리</text>
-          <text x="548" y="772" font-size="12" fill="var(--ink-2)">일자별 집계 · 카테고리 롤업</text>
-          <text x="548" y="790" font-size="12" fill="var(--ink-2)">LMS 데이터 결합 — 과제 · 퀴즈 · 출결</text>
+          <rect x="532" y="838" width="350" height="100" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="548" y="862" font-size="14.5" font-weight="700" fill="var(--ink)">리포트 파이프라인</text>
+          <text x="548" y="884" font-size="12" fill="var(--ink-2)">수신 · 적재 → 전처리</text>
+          <text x="548" y="902" font-size="12" fill="var(--ink-2)">일자별 집계 · 카테고리 롤업</text>
+          <text x="548" y="920" font-size="12" fill="var(--ink-2)">LMS 데이터 결합 — 과제 · 퀴즈 · 출결</text>
 
-          <path d="M560,808 L560,870" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="574" y="844" font-size="12" fill="var(--ink-2)">검토 큐 등록 — 매니저에게 검토 알림</text>
+          <path d="M560,938 L560,1000" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="574" y="974" font-size="12" fill="var(--ink-2)">검토 큐 등록 — 매니저에게 검토 알림</text>
 
           <!-- 5 · 검토 · 승인 -->
-          <rect x="532" y="876" width="350" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="548" y="900" font-size="14.5" font-weight="700" fill="var(--ink)">강사 · 매니저 — 검토 · 승인</text>
-          <text x="548" y="922" font-size="12" fill="var(--ink-2)">수강생별 리포트 확인 → 승인 · 반려</text>
-          <text x="548" y="940" font-size="12" fill="var(--ink-2)">재생성 요청 또는 직접 수정</text>
+          <rect x="532" y="1006" width="350" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="548" y="1030" font-size="14.5" font-weight="700" fill="var(--ink)">강사 · 매니저 — 검토 · 승인</text>
+          <text x="548" y="1052" font-size="12" fill="var(--ink-2)">수강생별 리포트 확인 → 승인 · 반려</text>
+          <text x="548" y="1070" font-size="12" fill="var(--ink-2)">재생성 요청 또는 직접 수정</text>
 
-          <!-- 계약 ③ 재생성 루프 (승인 반려 → LLM 분석으로 되돌아가 다시 생성)
-               S3 박스가 거의 전폭이라 레인 왼쪽 밖(x=84)으로 우회해 관통을 피한다. -->
-          <path d="M532,912 L84,912 L84,482" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ar-w)"/>
-          <text x="98" y="682" font-size="12.5" font-weight="700" fill="var(--warn)">계약 ③ 재생성 요청</text>
-          <text x="98" y="700" font-size="11.5" fill="var(--ink-2)">수강생 지정 재생성 API</text>
-          <text x="98" y="717" font-size="11.5" fill="var(--ink-2)">승인 전까지 수강생에게 비공개</text>
+          <!-- 계약 ④ 재생성 루프 (승인 반려 → LLM 분석으로 되돌아가 다시 생성)
+               계약 박스가 거의 전폭이라 레인 왼쪽 밖(x=84)으로 우회해 관통을 피한다. -->
+          <path d="M532,1042 L84,1042 L84,592" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ar-w)"/>
+          <text x="98" y="806" font-size="12.5" font-weight="700" fill="var(--warn)">계약 ④ 재생성 요청</text>
+          <text x="98" y="824" font-size="11.5" fill="var(--ink-2)">수강생 지정 재생성 API</text>
+          <text x="98" y="841" font-size="11.5" fill="var(--ink-2)">승인 전까지 수강생에게 비공개</text>
 
-          <path d="M560,958 L560,1020" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="574" y="994" font-size="12" fill="var(--ink-2)">승인된 리포트만 공개 — 수강생 알림 발송</text>
+          <path d="M560,1088 L560,1150" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="574" y="1124" font-size="12" fill="var(--ink-2)">승인된 리포트만 공개 — 수강생 알림 발송</text>
 
           <!-- 6 · 공개 · 증명 -->
-          <rect x="532" y="1026" width="350" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="548" y="1050" font-size="14.5" font-weight="700" fill="var(--ink)">수강생 — 역량 히스토리 탭</text>
-          <text x="548" y="1072" font-size="12" fill="var(--ink-2)">교육과정 허브 · 일자별 성장 곡선</text>
-          <text x="548" y="1090" font-size="12" fill="var(--ink-2)">카테고리별 수준 · 학습 마일스톤</text>
+          <rect x="532" y="1156" width="350" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="548" y="1180" font-size="14.5" font-weight="700" fill="var(--ink)">수강생 — 역량 히스토리 탭</text>
+          <text x="548" y="1202" font-size="12" fill="var(--ink-2)">교육과정 허브 · 일자별 성장 곡선</text>
+          <text x="548" y="1220" font-size="12" fill="var(--ink-2)">카테고리별 수준 · 학습 마일스톤</text>
 
-          <path d="M560,1108 L560,1152" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="574" y="1136" font-size="12" fill="var(--ink-2)">수료 시</text>
+          <path d="M560,1238 L560,1282" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="574" y="1266" font-size="12" fill="var(--ink-2)">수료 시</text>
 
-          <rect x="532" y="1158" width="350" height="100" rx="6" fill="var(--surface)" stroke="var(--line)"/>
-          <text x="548" y="1182" font-size="14.5" font-weight="700" fill="var(--ink)">수료 시점 — 역량증명서</text>
-          <text x="548" y="1204" font-size="12" fill="var(--ink-2)">데이터 동결 → LMS-AI 6축 점수</text>
-          <text x="548" y="1222" font-size="12" fill="var(--ink-2)">재실행해도 같은 값 · 증명서 발급</text>
-          <text x="548" y="1240" font-size="12" fill="var(--ink-2)">외부 검증 링크 — 기업 · 면접관 조회</text>
+          <rect x="532" y="1288" width="350" height="100" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+          <text x="548" y="1312" font-size="14.5" font-weight="700" fill="var(--ink)">수료 시점 — 역량증명서</text>
+          <text x="548" y="1334" font-size="12" fill="var(--ink-2)">데이터 동결 → LMS-AI 6축 점수</text>
+          <text x="548" y="1352" font-size="12" fill="var(--ink-2)">재실행해도 같은 값 · 증명서 발급</text>
+          <text x="548" y="1370" font-size="12" fill="var(--ink-2)">외부 검증 링크 — 기업 · 면접관 조회</text>
 
         </svg>
       </div>
