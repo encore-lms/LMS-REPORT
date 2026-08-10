@@ -3,140 +3,20 @@
     <h2>요구사항 명세서</h2>
 
     <p>
-      회의에서 “무엇을 만들어 주세요”라고 말하면 상대가 만든 결과를 우리가 받아 맞추게 됩니다.
-      그 순서가 뒤집히지 않도록, <strong>주고받을 데이터의 모양을 우리가 먼저 정의해 문서로 건네는</strong> 방식을 제안합니다.
+      외부 개발 주체에 요청하는 것은 <strong>두 건</strong>입니다.
+      ①이 서면 모든 데이터가 수강생 단위로 묶이고, ②가 서면 그 데이터가 우리 쪽으로 흘러옵니다.
+      회의에서는 이 두 건의 가부와 세부 형식만 확인하면 됩니다.
     </p>
 
-    <h3>요청의 3원칙</h3>
-    <div class="decisions">
-      <div class="dec">
-        <div class="dec__n">01</div>
-        <div>
-          <p class="dec__q">시스템 통합이 아니라 데이터 계약이다</p>
-          <p class="dec__b">
-            서로의 시스템을 열어 주는 것이 아니라, <strong>주고받을 데이터의 형식·주기·경로</strong>만 합의합니다.
-            계약이 서면 그 뒤로는 각자 개발입니다. 상대 시스템의 내부 구현은 우리 관심사가 아니고, 그 반대도 같습니다.
-          </p>
-        </div>
-      </div>
-      <div class="dec">
-        <div class="dec__n">02</div>
-        <div>
-          <p class="dec__q">식별자와 분류 체계는 우리가 정의해 제공한다</p>
-          <p class="dec__b">
-            데이터의 최종 소비처가 <strong>실명으로 발급되는 역량증명서</strong>이기 때문입니다.
-            학생 식별자와 기술 카테고리 사전을 우리가 만들어 건네고, 상대는 그 값을 붙여 돌려줍니다.
-            반대로 하면 우리 기존 데이터 전체를 다시 태깅해야 합니다.
-          </p>
-        </div>
-      </div>
-      <div class="dec">
-        <div class="dec__n">03</div>
-        <div>
-          <p class="dec__q">점수 산정은 LMS-AI 한 곳에서만 한다</p>
-          <p class="dec__b">
-            GOV-AI는 <strong>원천 데이터와 판정 근거</strong>까지 제공하고, 증명서 점수는 우리 엔진이 확정 함수로 계산합니다.
-            승인된 증명서는 재실행해도 같은 값이 나와야 하므로, 점수를 두 곳에서 만들 수 없습니다.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <h3>요청 항목</h3>
+    <h3>요청 1 — 수강생 식별 : 실습 환경에 LMS 로그인 연동</h3>
     <p>
-      우선순위 순입니다. <strong>R1~R3이 막히면 나머지는 진행할 수 없습니다.</strong>
+      <strong>ATmux · VS Code 확장(PlayLang) 이용 시 LMS 로그인 API로 인증</strong>하도록 개선해 주세요.
+      로그인 응답의 <code>user.id</code>(UUID)가 이후 모든 데이터의 기준 식별자가 됩니다.
+      현재 수강생을 특정할 방법이 없는 상태라, 이것이 없으면 요청 2의 경로 규약이 성립하지 않습니다.
     </p>
-    <div class="tw">
-      <table class="impl">
-        <thead>
-          <tr>
-            <th scope="col" class="t-tight">번호</th>
-            <th scope="col">요청 항목과 현재 상태</th>
-            <th scope="col">요청 내용</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="t-tight lv1">R1<br><span class="sub">회의 당일</span></td>
-            <td class="act"><strong>학생 식별자 매핑 규약</strong><br>
-              <span class="sub"><code>student_id: "kim_minjun"</code> 문자열. 제안서는 수집 시 가명화 명시</span></td>
-            <td class="act">
-              <strong>현재 수강생을 특정하고 조회할 방법이 없다면, 실습 환경 진입 시
-              LMS 로그인 API로 인증하는 로그인 기능을 추가</strong>해 주세요.
-              그러면 리포트가 수강생별로 쌓입니다 — 아래 <strong>R1-A</strong> 에 API 스펙을 첨부했습니다.
-              가명화를 유지한다면 <strong>증명서에 개인 근거로 쓸 수 없음</strong>을 상호 확인
-            </td>
-          </tr>
-          <tr>
-            <td class="t-tight lv1">R2<br><span class="sub">회의 당일</span></td>
-            <td class="act"><strong>기술 카테고리 태깅</strong><br>
-              <span class="sub">이벤트에 카테고리 필드 없음</span></td>
-            <td class="act">우리가 제공하는 카테고리 사전 값을 각 이벤트에 <code>category</code> 로 부착</td>
-          </tr>
-          <tr>
-            <td class="t-tight lv1">R3<br><span class="sub">회의 당일</span></td>
-            <td class="act"><strong>단계 ↔ 커리큘럼 정의</strong><br>
-              <span class="sub"><code>step</code> 1~10 숫자만 존재. 내용 정의 없음</span></td>
-            <td class="act">언어별 10단계가 각각 무엇을 다루는지 목록. 단계 수·구성이 언어마다 다른지 여부</td>
-          </tr>
-          <tr>
-            <td class="t-tight lv1">R4<br><span class="sub">회의 당일</span></td>
-            <td class="act"><strong>데이터 전달 경로</strong><br>
-              <span class="sub">파일 산출물(<code>jsonl</code>·<code>json</code>·<code>md</code>)만 확인됨</span></td>
-            <td class="act">
-              1차는 <strong>주기적 파일 적재</strong>로 시작하고, 2차에서 조회 API로 전환.
-              API 전환 시 인증 방식·엔드포인트·응답 계약을 사전 합의
-            </td>
-          </tr>
-          <tr>
-            <td class="t-tight lv1">R5<br><span class="sub">회의 당일</span></td>
-            <td class="act"><strong>집계 주기·타임존</strong><br>
-              <span class="sub">주간 배치. <code>ts</code> 에 타임존 표기 없음</span></td>
-            <td class="act">
-              타임존을 <code>+09:00</code> 로 명시. 우리 증명서는 <strong>수료 시점 확정</strong>이 필요하므로
-              주간 주기와 별도로 <strong>기수 종료 시점 최종 스냅샷</strong>을 요청
-            </td>
-          </tr>
-          <tr>
-            <td class="t-tight lv1">R6<br><span class="sub">10월</span></td>
-            <td class="act"><strong>카테고리별 수준 판정</strong><br>
-              <span class="sub">학생당 등급 1개(초급·중급·해결사)</span></td>
-            <td class="act">학생 × 카테고리 단위로 분해된 판정과 근거. <strong>F2(맞춤 티칭)의 전제</strong></td>
-          </tr>
-          <tr>
-            <td class="t-tight lv1">R7<br><span class="sub">9월</span></td>
-            <td class="act"><strong>원천 보존·재현성</strong><br>
-              <span class="sub">재산출 정책 미확인</span></td>
-            <td class="act">
-              특정 시점 데이터를 <strong>나중에 다시 조회해도 같은 값</strong>이 나와야 함.
-              증명서는 승인 시점 내용을 동결하므로, 소급 변경이 있으면 증적이 깨짐
-            </td>
-          </tr>
-          <tr>
-            <td class="t-tight lv1">R8<br><span class="sub">9월</span></td>
-            <td class="act"><strong>개인정보 동의 범위</strong><br>
-              <span class="sub">제안서에 옵트인 동의·수집 항목 고지 명시</span></td>
-            <td class="act">
-              동의 문안에 <strong>“역량증명서 발급 및 외부 검증 목적의 활용”</strong>이 포함되는지 확인.
-              빠져 있으면 동의 문안부터 수정 필요
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>R1-A. 학생 특정 방법 — LMS 로그인 API 연동 <span class="prov prov--live">실측</span></h3>
-
     <p>
-      매핑 테이블을 따로 만들어 주고받는 방식은 <strong>계정이 추가·변경될 때마다 어긋납니다.</strong>
-      실습 환경에 진입할 때 수강생이 <strong>LMS 계정으로 한 번 로그인</strong>하면,
-      그 시점부터 모든 이벤트가 우리 수강생 식별자에 자동으로 묶입니다.
-      별도 동기화가 필요 없고, 재직·수료 상태도 LMS 기준으로 항상 맞습니다.
-    </p>
-
-    <p>
-      아래는 이미 배포되어 동작 중인 API입니다. <strong>신규 개발 없이 바로 붙일 수 있습니다.</strong>
-      응답은 모두 <code>{ data: … }</code> 로 감싸여 있습니다.
+      아래는 이미 배포되어 동작 중인 API입니다 <span class="prov prov--live">실측</span> —
+      <strong>우리 쪽 신규 개발 없이 바로 붙일 수 있습니다.</strong> 응답은 모두 <code>{ data: … }</code> 로 감싸여 있습니다.
     </p>
 
     <div class="tw">
@@ -174,7 +54,8 @@
       </table>
     </div>
 
-    <h4>로그인 응답에서 바로 얻는 식별 정보</h4>
+        <h4>로그인 응답에서 바로 얻는 식별 정보</h4>
+
     <div class="tw">
       <table>
         <thead>
@@ -229,178 +110,82 @@
       </p>
     </div>
 
-    <h3>데이터 계약 초안 (우리 측 제안)</h3>
+    <h3>요청 2 — 리포트 적재 : S3 경로 규약</h3>
     <p>
-      회의에서 <strong>필드 단위로 합의</strong>하기 위한 초안입니다. 상대의 현행 이벤트 구조를 유지하고
-      통합에 필요한 최소 필드만 더했습니다. 굵게 표시한 것이 신규 요청분입니다.
+      일자별 분석 리포트를 아래 경로 규약으로 <strong>S3에 저장</strong>해 주세요.
+      수강생 고유 번호가 경로 첫 단이라 LMS가 학생 단위로 바로 조회할 수 있고,
+      날짜 파티션이 역량 히스토리의 일자별 카드에 그대로 대응합니다.
     </p>
 
-    <h4>① 학습 이벤트 (GOV-AI → LMS)</h4>
+    <pre class="pathspec"><code>GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</code></pre>
+
     <div class="tw">
       <table>
         <thead>
           <tr>
-            <th scope="col" class="t-tight">필드</th>
-            <th scope="col" class="t-tight">타입</th>
-            <th scope="col">설명</th>
-            <th scope="col" class="t-tight">구분</th>
+            <th scope="col" class="t-tight">경로 요소</th>
+            <th scope="col">값</th>
+            <th scope="col">비고</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td class="t-tight"><code>schema_version</code></td><td class="t-tight">string</td><td>계약 버전. 변경 시 상호 통지</td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
-          <tr><td class="t-tight"><code>lms_student_uuid</code></td><td class="t-tight">uuid</td><td>우리 LMS 수강생 고유번호 — <strong>R1의 결과물</strong></td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
-          <tr><td class="t-tight"><code>cohort_no</code></td><td class="t-tight">int</td><td>기수 번호. 그룹(A/B/C)과 별개로 필요</td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
-          <tr><td class="t-tight"><code>ts</code></td><td class="t-tight">datetime</td><td>이벤트 시각 — <strong>타임존 포함</strong></td><td class="t-tight"><span class="pill pill--done">기존</span></td></tr>
-          <tr><td class="t-tight"><code>type</code></td><td class="t-tight">enum</td><td><code>session_start</code>·<code>run</code>·<code>error</code>·<code>hint_request</code>·<code>step_complete</code></td><td class="t-tight"><span class="pill pill--done">기존</span></td></tr>
-          <tr><td class="t-tight"><code>step</code></td><td class="t-tight">int</td><td>커리큘럼 단계 — <strong>R3의 정의와 짝</strong></td><td class="t-tight"><span class="pill pill--done">기존</span></td></tr>
-          <tr><td class="t-tight"><code>language</code></td><td class="t-tight">string</td><td>트랙 언어. 현재는 상위 폴더로만 구분됨</td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
-          <tr><td class="t-tight"><code>category</code></td><td class="t-tight">string</td><td>기술 카테고리 — <strong>우리가 제공하는 사전 값</strong></td><td class="t-tight"><span class="pill pill--wip">신규</span></td></tr>
-          <tr><td class="t-tight"><code>detail</code></td><td class="t-tight">object</td><td>에러 타입에 더해 <strong>메시지 전문</strong>. 코드 스냅샷 포함 여부는 협의</td><td class="t-tight"><span class="pill pill--wip">확장</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h4>② 주기 집계·판정 (GOV-AI → LMS)</h4>
-    <div class="tw">
-      <table>
-        <thead>
           <tr>
-            <th scope="col" class="t-tight">필드</th>
-            <th scope="col">설명</th>
-            <th scope="col" class="t-tight">쓰이는 곳</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="t-tight"><code>lms_student_uuid</code> · <code>period</code></td><td>대상 학생과 집계 구간(시작·종료일)</td><td class="t-tight">공통</td></tr>
-          <tr><td class="t-tight"><code>by_category[]</code></td><td>카테고리별 판정 — 수준·확신도·실행수·에러수·자력해결수·힌트요청수</td><td class="t-tight">F1 · F2</td></tr>
-          <tr><td class="t-tight"><code>weak_patterns[]</code></td><td>취약 패턴 문장과 근거 지표 (현행 <code>diagnoses.json</code> 구조 유지)</td><td class="t-tight">F1</td></tr>
-          <tr><td class="t-tight"><code>model_meta</code></td><td>모델명·프롬프트 버전·생성 시각 — <strong>재현성 확인용(R7)</strong></td><td class="t-tight">공통</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p>
-      피드백 초안(<code>suggested_feedback_draft</code>)은 <strong>요청 목록에 넣지 않았습니다.</strong>
-      제안서의 Human-in-the-Loop 원칙대로 강사·매니저 승인을 거쳐 GOV-AI 쪽 경로로 전달되는 것이 맞고,
-      우리 증명서는 승인·인증된 결과만 취급하기 때문입니다. 중복 전달 경로를 만들지 않습니다.
-    </p>
-
-    <h3>요청 방식</h3>
-    <div class="tw">
-      <table>
-        <thead>
-          <tr><th scope="col" class="t-tight">단계</th><th scope="col">방식</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="t-tight">회의 전</td>
-            <td>이 문서를 <strong>사전 배포</strong>합니다. 당일 처음 보면 읽는 데만 시간이 갑니다</td>
+            <td class="t-tight"><code>GOV-AI-REPORT</code></td>
+            <td>고정 프리픽스</td>
+            <td>다른 산출물과 섞이지 않게 최상위에서 구분</td>
           </tr>
           <tr>
-            <td class="t-tight">회의 중</td>
-            <td>
-              위 계약 표를 띄우고 <strong>필드 단위로 가부를 확인</strong>합니다.
-              “가능·불가·조건부” 세 가지로만 답을 받고, 불가 항목은 대안을 그 자리에서 정합니다
-            </td>
+            <td class="t-tight"><code>수강생 고유 번호</code></td>
+            <td>로그인 응답의 <code>user.id</code> (UUID)</td>
+            <td><strong>요청 1의 결과물</strong> — 다른 식별자를 쓰지 않습니다</td>
           </tr>
           <tr>
-            <td class="t-tight">회의 직후</td>
-            <td>합의된 값을 표에 반영해 <strong>당일 회람</strong>합니다. 구두 합의는 다음 주에 서로 다르게 기억됩니다</td>
+            <td class="t-tight"><code>YYYY-MM-DD</code></td>
+            <td>집계 기준일</td>
+            <td>KST(+09:00) 기준으로 통일</td>
           </tr>
           <tr>
-            <td class="t-tight">이후</td>
-            <td>주간 정례에서 <strong>계약 변경분만</strong> 다룹니다. 버전(<code>schema_version</code>)을 올려 이력을 남깁니다</td>
+            <td class="t-tight"><code>report</code></td>
+            <td>일자별 리포트 파일</td>
+            <td>형식은 JSON 제안 — 지표 · 판정 · 근거 필드 구성은 협의</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h3>회의에서 결정해야 할 것</h3>
-    <p>
-      아래 세 가지는 <strong>정해지지 않으면 명세가 확정되지 않는</strong> 항목입니다.
-    </p>
-    <div class="decisions">
-      <div class="dec">
-        <div class="dec__n">D1</div>
-        <div>
-          <p class="dec__q">학습 데이터를 가명화 상태로 둘 것인가, 증명서에 연결할 것인가</p>
-          <p class="dec__b">
-            GOV-AI 제안서는 수집 시점 가명화를 방침으로 두고, 우리 역량증명서는 실명으로 발급되어 외부 검증까지 됩니다.
-            가명화를 유지하면 실습 데이터는 <strong>그룹 통계로만</strong> 쓸 수 있고 개인 증명서 근거로는 못 씁니다.
-            연결하려면 재식별 키와 동의 문안 수정이 함께 필요합니다.
-          </p>
-          <p class="dec__rec">
-            권고 — 연결하는 방향. 실습 환경에 <strong>LMS 로그인을 붙이는 R1-A 방식</strong>이 가장 단순하고,
-            우리 쪽 신규 개발도 필요 없습니다. 다만 동의 문안 수정이 선행 조건임을 회의에서 명시
-          </p>
-        </div>
-      </div>
-      <div class="dec">
-        <div class="dec__n">D2</div>
-        <div>
-          <p class="dec__q">기술 카테고리 사전을 우리가 정의해 제공하는 것에 합의할 것인가</p>
-          <p class="dec__b">
-            “카테고리별 역량 히스토리”와 “카테고리별 맞춤 출제”가 모두 이 사전 위에 섭니다.
-            상대가 먼저 정의하면 우리 과제·퀴즈·프로젝트 데이터를 전부 다시 태깅해야 합니다.
-          </p>
-          <p class="dec__rec">권고 — 우리가 초안을 만들어 배포. 회의에서 승인만 받는 형태</p>
-        </div>
-      </div>
-      <div class="dec">
-        <div class="dec__n">D3</div>
-        <div>
-          <p class="dec__q">1차 연동을 파일 배치로 시작할 것인가</p>
-          <p class="dec__b">
-            상대의 Collector API는 2단계 범위이고 현재 확인되는 산출물은 파일뿐입니다.
-            API를 기다리면 9월 중순에 보여줄 것이 없고, 파일 배치로 시작하면 계약(스키마)만 맞으면
-            나중에 API로 갈아끼울 수 있습니다.
-          </p>
-          <p class="dec__rec">권고 — 1차 파일 배치, 2차 API 전환. 스키마는 처음부터 API 전제로 설계</p>
-        </div>
-      </div>
-    </div>
-
-    <h3>아직 답을 받지 못한 질문</h3>
-    <p>
-      08-07 회의에서 제기했으나 답이 확정되지 않은 항목입니다. 명세를 확정하려면 먼저 확인이 필요합니다.
-    </p>
-    <ol class="q-list">
-      <li>
-        <span class="q-mark">Q01</span>
-        제안서의 시스템 아키텍처 중 <strong>현재 구현이 완료된 범위</strong>는 어디까지인가요?
-        (확인된 산출물은 3명 규모 샘플 데이터와 주간 리포트 1회분입니다)
-      </li>
-      <li>
-        <span class="q-mark">Q02</span>
-        시스템 구현 완료 시 <strong>현재 LMS와 동일한 인프라에서 구동</strong>되는 것인지,
-        아니라면 GOV-AI를 운영할 별도 주체가 있나요?
-      </li>
-      <li>
-        <span class="q-mark">Q03</span>
-        1단계 완료 기준인 <strong>“파일럿 그룹 학습 로그의 일 단위 적재”</strong>가 현재 어느 정도 진행되었나요?
-        9월 중순에 우리가 받을 수 있는 데이터의 실제 규모를 알아야 시연 범위를 확정할 수 있습니다.
-      </li>
-      <li>
-        <span class="q-mark">Q04</span>
-        현재 실습 환경에서 <strong>수강생을 어떻게 특정하고 있나요?</strong>
-        샘플의 <code>student_id</code> 는 폴더명 수준이라, 실제 운영에서 계정을 어떻게 식별하는지에 따라
-        R1-A(로그인 연동)의 적용 난이도가 달라집니다.
-      </li>
-      <li>
-        <span class="q-mark">Q05</span>
-        언어별 <strong>10단계 커리큘럼의 실제 구성</strong>이 정의되어 있나요?
-        단계와 기술 카테고리의 대응이 통합 설계의 출발점입니다.
-      </li>
-    </ol>
-
-    <div class="call">
-      <p class="call__title">이 명세의 성격</p>
-      <p>
-        API 스펙과 현행 데이터 구조는 저장소에서 <strong>확인한 사실</strong>이고,
-        요청 항목과 계약 초안은 <strong>우리 측 제안</strong>입니다.
-        확정된 합의가 아니며, 회의 결과에 따라 바뀌는 것을 전제로 작성했습니다.
-        회의 후에는 합의된 값을 이 문서에 반영해 같은 날 회람합니다.
-      </p>
+    <h4>함께 정할 것</h4>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">항목</th>
+            <th scope="col">확인할 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">버킷 소유 · 권한</td>
+            <td>어느 쪽 계정의 버킷인지, 상대에게 줄 쓰기 권한(IAM)의 범위</td>
+          </tr>
+          <tr>
+            <td class="t-tight">리포트 스키마</td>
+            <td>파일 안에 어떤 항목이 담기는지 — 지표 · 수준 판정 · 취약 패턴 등.
+              <strong>필드를 따로 요구하지 않고, 리포트에 담겨 오는 것을 그대로 씁니다</strong></td>
+          </tr>
+          <tr>
+            <td class="t-tight">적재 시각</td>
+            <td>일 1회 기준 몇 시에 도착하는지 — LMS 조회 배치가 그 뒤에 돕니다</td>
+          </tr>
+          <tr>
+            <td class="t-tight">재적재 정책</td>
+            <td>같은 날짜를 다시 올릴 때 덮어쓰는지 — <strong>증명서 증적은 소급 변경되면 깨집니다</strong></td>
+          </tr>
+          <tr>
+            <td class="t-tight">개인정보 동의</td>
+            <td>동의 문안에 <strong>“역량증명서 발급 목적의 활용”</strong>이 포함되는지</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
   </section>
