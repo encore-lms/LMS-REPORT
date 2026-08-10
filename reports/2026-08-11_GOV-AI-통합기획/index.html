@@ -147,7 +147,7 @@
         <span class="step__no">6</span>
         <div class="step__body">
           <span class="step__t">매니저 알림</span>
-          <span class="step__d">“수강생별 OO과정 OO기 AI 리포트 검토 필요”</span>
+          <span class="step__d">주 1회 통합 후 “수강생별 OO과정 OO기 AI 리포트 검토 필요”</span>
           <span class="flow__who flow__who--lms">LMS</span>
         </div>
       </div>
@@ -171,7 +171,7 @@
         <span class="step__no">8</span>
         <div class="step__body">
           <span class="step__t">수강생 알림 발송</span>
-          <span class="step__d">승인된 수강생에게 “일간 또는 주간 리포트가 도착하였습니다”</span>
+          <span class="step__d">승인된 수강생에게 “주간 리포트가 도착하였습니다”</span>
           <span class="flow__who flow__who--lms">LMS</span>
         </div>
       </div>
@@ -179,7 +179,7 @@
 
     <h3>나의 역량 히스토리 <span class="flow__who flow__who--lms">LMS</span></h3>
     <p>
-      넘어온 리포트를 LMS 데이터와 합쳐 <strong>일자별 · 기술 카테고리별로 정리</strong>하고,
+      적재된 리포트를 <strong>주 단위로 모아 통합 · 분석</strong>하고,
       강사 · 매니저 승인을 거쳐 수강생에게 공개합니다.
       지금의 증명서가 “수료 시점의 한 장”이라면, 이것은 “거기까지 온 경로”입니다.
     </p>
@@ -187,34 +187,27 @@
     <div class="flow">
       <div class="flow__step">
         <span class="flow__no">1</span>
-        <p class="flow__t">리포트 조회</p>
-        <p class="flow__d">수강생 UUID 경로로 일자별 리포트 수신</p>
+        <p class="flow__t">주간 데이터 조회</p>
+        <p class="flow__d">수강생 UUID 경로에서 주 1회, 해당 주간 리포트 수신</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">2</span>
-        <p class="flow__t">전처리</p>
-        <p class="flow__d">카드가 쓸 형태로 가공 — 일자별 집계 · 카테고리 롤업</p>
+        <p class="flow__t">통합 · 분석</p>
+        <p class="flow__d">주간 AI Report 보고서로 통합하고 카드가 쓸 형태로 분석</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">3</span>
-        <p class="flow__t">LMS 데이터 결합</p>
-        <p class="flow__d">과제 · 퀴즈 · 프로젝트 · 출결 이력과 같은 시간축에 병합</p>
-        <span class="flow__who flow__who--lms">LMS</span>
-      </div>
-      <div class="flow__arrow" aria-hidden="true">→</div>
-      <div class="flow__step">
-        <span class="flow__no">4</span>
         <p class="flow__t">검토 · 승인</p>
         <p class="flow__d">강사 · 매니저가 수강생별 리포트 확인 후 승인 · 반려</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
-        <span class="flow__no">5</span>
+        <span class="flow__no">4</span>
         <p class="flow__t">공개</p>
         <p class="flow__d">승인된 리포트만 교육과정 탭 카드로 노출</p>
         <span class="flow__who flow__who--lms">LMS</span>
@@ -589,7 +582,7 @@
     <p>
       일자별 분석 리포트를 아래 경로 규약으로 S3에 저장해 주세요.
       수강생 고유 번호가 경로 첫 단이라 LMS가 학생 단위로 바로 조회할 수 있고,
-      날짜 파티션이 역량 히스토리의 일자별 카드에 그대로 대응합니다.
+      날짜 파티션 덕분에 LMS 가 주 단위로 해당 주간 리포트만 모아 조회할 수 있습니다.
     </p>
 
     <pre class="pathspec"><code>GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</code></pre>
@@ -649,7 +642,7 @@
           </tr>
           <tr>
             <td class="t-tight">적재 시각</td>
-            <td>일 1회 기준 몇 시에 도착하는지 — LMS 조회 배치가 그 뒤에 돕니다</td>
+            <td>일 1회 기준 몇 시에 도착하는지 — LMS 는 <strong>주 1회</strong> 모아서 조회하므로, 주간 마감 시각도 함께 확인합니다</td>
           </tr>
           <tr>
             <td class="t-tight">재적재 정책</td>
