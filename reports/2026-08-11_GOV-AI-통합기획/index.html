@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="GOV-AI-Agent 사업과 LMS 역량증명서의 통합 서비스 기획안 — 서비스 아키텍처, 요구사항 명세서, 역할 분담, 단계별 일정.">
+<meta name="description" content="GOV-AI-Agent 사업과 LMS 역량증명서의 통합 서비스 기획안 — 서비스 아키텍처, 요구사항 명세서, 단계별 일정.">
 
 <title>GOV-AI × LMS 통합 기획안</title>
 
@@ -731,44 +731,6 @@
   <!-- ══ 5 ══ -->
   <section>
     <div class="sec-num">05</div>
-    <h2>역할 분담</h2>
-
-    <p>
-      경계는 단순합니다 — <strong>학습 과정 데이터를 만드는 쪽과, 그것을 평가·인증·증명으로 바꾸는 쪽</strong>이
-      서로 다른 일을 합니다. 우리가 정의해 건네는 것은 <strong>학생 식별자 하나</strong>이고,
-      분석 산출물은 <strong>리포트에 담겨 오는 것을 그대로 씁니다</strong> — 항목을 따로 협의해 받지 않습니다.
-    </p>
-    <div class="tw">
-      <table class="impl">
-        <thead>
-          <tr>
-            <th scope="col">영역</th>
-            <th scope="col" class="t-tight">LMS (우리)</th>
-            <th scope="col" class="t-tight">GOV-AI</th>
-            <th scope="col">비고</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="lv1">학생 식별자 규약</td><td class="t-tight"><strong>정의·제공</strong></td><td class="t-tight">적용</td><td class="act">증명서가 최종 소비처이므로</td></tr>
-          <tr><td class="lv1">실습 환경 (조교·터미널)</td><td class="t-tight">—</td><td class="t-tight"><strong>개발·운영</strong></td><td class="act">우리가 만들 이유가 없음</td></tr>
-          <tr><td class="lv1">원천 이벤트 수집</td><td class="t-tight">—</td><td class="t-tight"><strong>개발·운영</strong></td><td class="act">제안서 1단계 범위</td></tr>
-          <tr><td class="lv1">LLM 수준 판정·취약점</td><td class="t-tight">소비</td><td class="t-tight"><strong>산출</strong></td><td class="act">판정 결과는 근거로만 사용</td></tr>
-          <tr><td class="lv1">증명서 점수 산정</td><td class="t-tight"><strong>단독</strong></td><td class="t-tight">—</td><td class="act">재현 가능해야 하는 확정 함수</td></tr>
-          <tr><td class="lv1">역량 히스토리 화면</td><td class="t-tight"><strong>개발</strong></td><td class="t-tight">데이터 제공</td><td class="act">교육과정 허브 탭 신설</td></tr>
-          <tr><td class="lv1">리포트 파이프라인</td><td class="t-tight"><strong>개발</strong></td><td class="t-tight">—</td><td class="act">S3 리포트 조회 · 전처리 → 역량 히스토리 카드 데이터로 변환</td></tr>
-          <tr><td class="lv1">리포트 검토 · 승인</td><td class="t-tight"><strong>개발 · 운영</strong></td><td class="t-tight">—</td><td class="act">강사 · 매니저가 LMS 안에서 승인 — 승인 전에는 수강생에게 보이지 않음</td></tr>
-          <tr><td class="lv1">데이터 계약 관리</td><td class="t-tight"><strong>주관</strong></td><td class="t-tight">협의</td><td class="act">버전·변경 이력 관리</td></tr>
-          <tr><td class="lv1">개인정보 동의 문안</td><td class="t-tight">협의</td><td class="t-tight">협의</td><td class="act">증명서 활용 목적 포함 여부</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-
-  </section>
-
-  <!-- ══ 6 ══ -->
-  <section>
-    <div class="sec-num">06</div>
     <h2>단계별 일정</h2>
 
     <h3>9월 중순 시연 범위 — 우리 측 제안</h3>
