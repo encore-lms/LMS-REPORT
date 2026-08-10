@@ -158,9 +158,9 @@
             <td>
               <ul class="cell-list">
                 <li>
-                  <strong>핵심</strong> — AI 에이전트가 VS코드·ATmux 환경에서 훈련생의 학습을
+                  <strong>핵심</strong> — AI 에이전트가 VS Code·ATmux 환경에서 수강생의 학습을
                   상시 지원하고, 학습 과정에서 발생하는 백데이터를 수집·축적하며,
-                  강사·매니저에게 학습별·그룹별 리포트 제공
+                  강사·매니저에게 학생별·그룹별 리포트 제공
                 </li>
               </ul>
             </td>
@@ -387,7 +387,7 @@
           <!-- 1 · 학습 발생 -->
           <rect x="102" y="64" width="356" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
           <text x="118" y="88" font-size="14.5" font-weight="700" fill="var(--ink)">실습 환경</text>
-          <text x="118" y="110" font-size="12" fill="var(--ink-2)">PlayLang 조교 — VSCode 확장 · 단계별 힌트</text>
+          <text x="118" y="110" font-size="12" fill="var(--ink-2)">PlayLang 조교 — VS Code 확장 · 단계별 힌트</text>
           <text x="118" y="128" font-size="12" fill="var(--ink-2)">ATmux VIBE 코딩 — 원격 실습 서버</text>
 
           <rect x="532" y="64" width="350" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
@@ -443,7 +443,7 @@
           <text x="548" y="902" font-size="12" fill="var(--ink-2)">주간 AI Report 보고서 통합 및 분석</text>
 
           <path d="M560,920 L560,1000" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="574" y="974" font-size="12" fill="var(--ink-2)">검토 큐 등록 — 매니저에게 검토 알림</text>
+          <text x="574" y="974" font-size="12" fill="var(--ink-2)">검토 큐 등록 — 강사 · 매니저에게 검토 알림</text>
 
           <!-- 5 · 검토 · 승인 -->
           <rect x="532" y="1006" width="350" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
@@ -599,7 +599,7 @@
       <p class="call__title">붙일 때 확인해야 할 두 가지</p>
       <p>
         <strong>① refresh token 이 HttpOnly 쿠키입니다.</strong>
-        브라우저를 전제로 만든 방식이라, VSCode 확장이나 터미널 앱처럼 브라우저가 아닌 클라이언트에서는
+        브라우저를 전제로 만든 방식이라, VS Code 확장이나 터미널 앱처럼 브라우저가 아닌 클라이언트에서는
         쿠키를 직접 보관·재전송하는 처리가 필요합니다.
         그것이 어려우면 <strong>비브라우저 클라이언트용 토큰 발급 방식을 우리 쪽에서 추가</strong>하는 것으로 협의합니다.
       </p>
@@ -802,7 +802,7 @@
           <tr>
             <td class="t-tight"><span class="pill pill--done">포함</span></td>
             <td><strong>리포트 S3 적재</strong> 1경로</td>
-            <td><code>GOV-AI-REPORT/수강생 고유 번호/YYYY-MM-DD/report</code> 규약으로 일자별 적재. 연동이 실제로 붙었음을 증명하는 최소 단위</td>
+            <td><code>GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</code> 규약으로 일자별 적재. 연동이 실제로 붙었음을 증명하는 최소 단위</td>
           </tr>
           <tr>
             <td class="t-tight"><span class="pill pill--done">포함</span></td>
