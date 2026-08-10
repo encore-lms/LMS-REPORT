@@ -134,8 +134,9 @@
       <span class="flow__who flow__who--gov">GOV-AI</span> ×
       <span class="flow__who flow__who--lms">LMS</span></h3>
     <p>
-      실습 활동을 일자별로 모아 <strong>개인별 리포트로 생성</strong>하고,
-      <strong>매니저 승인을 거쳐 수강생에게 알림으로 전달</strong>합니다.
+      실습 활동 원천을 <strong>일자별로 적재</strong>해 <strong>개인별 리포트를 하루 한 번 생성</strong>하고,
+      LMS 가 <strong>주 단위로 통합</strong>한 뒤
+      <strong>강사 · 매니저 승인을 거쳐 수강생에게 알림으로 전달</strong>합니다.
     </p>
 
     <div class="steps">
@@ -143,7 +144,7 @@
         <span class="step__no">1</span>
         <div class="step__body">
           <span class="step__t">로그인</span>
-          <span class="step__d">ATmux · VS Code 확장에서 LMS 계정 인증</span>
+          <span class="step__d">ATmux · VS Code 확장에서 LMS 계정 인증 — 수강생 고유 번호 확보</span>
           <span class="flow__who flow__who--link">계약 ①</span>
         </div>
       </div>
@@ -158,16 +159,16 @@
       <div class="step">
         <span class="step__no">3</span>
         <div class="step__body">
-          <span class="step__t">수집 · 분류</span>
-          <span class="step__d">일자별로 모아 수강생 고유번호 기준으로 분류</span>
-          <span class="flow__who flow__who--gov">GOV-AI</span>
+          <span class="step__t">수집 · 저장</span>
+          <span class="step__d">실습 환경에서 나온 원천을 그대로 <code>GOV-AI-DATARAKE/{YYYY-MM-DD}/json</code> 에 적재</span>
+          <span class="flow__who flow__who--link">계약 ②</span>
         </div>
       </div>
       <div class="step">
         <span class="step__no">4</span>
         <div class="step__body">
-          <span class="step__t">분석</span>
-          <span class="step__d">지표 산출 · 수준 판정 · 취약 패턴</span>
+          <span class="step__t">LLM 분석</span>
+          <span class="step__d">적재된 원천을 읽어 지표 산출 · 수준 판정 · 취약 패턴 · 이탈 경보</span>
           <span class="flow__who flow__who--gov">GOV-AI</span>
         </div>
       </div>
@@ -175,39 +176,47 @@
         <span class="step__no">5</span>
         <div class="step__body">
           <span class="step__t">리포트 생성</span>
-          <span class="step__d"><code>GOV-AI-REPORT/수강생UUID/YYYY-MM-DD/report</code> 로 적재</span>
+          <span class="step__d">일 1회 <code>GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</code> 로 적재</span>
           <span class="flow__who flow__who--link">계약 ③</span>
         </div>
       </div>
       <div class="step">
         <span class="step__no">6</span>
         <div class="step__body">
-          <span class="step__t">매니저 알림</span>
-          <span class="step__d">주 1회 통합 후 “수강생별 OO과정 OO기 AI 리포트 검토 필요”</span>
+          <span class="step__t">리포트 파이프라인</span>
+          <span class="step__d">주마다 적재된 해당 주간 데이터를 조회해 주간 AI Report 보고서로 통합 · 분석</span>
           <span class="flow__who flow__who--lms">LMS</span>
         </div>
       </div>
       <div class="step">
         <span class="step__no">7</span>
         <div class="step__body">
-          <span class="step__t">매니저 승인</span>
-          <span class="step__d">수강생별 리포트 확인 후 승인</span>
-          <span class="flow__who flow__who--lms">LMS</span>
-        </div>
-      </div>
-      <div class="step step--sub">
-        <span class="step__no">7-1</span>
-        <div class="step__body">
-          <span class="step__t">재생성 · 직접 수정</span>
-          <span class="step__d">승인하지 않을 경우 리포트를 다시 생성하거나 매니저가 직접 고친다</span>
+          <span class="step__t">검토 알림</span>
+          <span class="step__d">검토 큐에 등록하고 “수강생별 OO과정 OO기 AI 리포트 검토 필요” 발송</span>
           <span class="flow__who flow__who--lms">LMS</span>
         </div>
       </div>
       <div class="step">
         <span class="step__no">8</span>
         <div class="step__body">
-          <span class="step__t">수강생 알림 발송</span>
-          <span class="step__d">승인된 수강생에게 “주간 리포트가 도착하였습니다”</span>
+          <span class="step__t">검토 · 승인</span>
+          <span class="step__d">강사 · 매니저가 수강생별 리포트 확인 후 승인 · 반려</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+      <div class="step step--sub">
+        <span class="step__no">8-1</span>
+        <div class="step__body">
+          <span class="step__t">재생성 · 직접 수정</span>
+          <span class="step__d">승인하지 않으면 수강생을 지정해 재생성 요청 또는 직접 수정</span>
+          <span class="flow__who flow__who--link">계약 ④</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">9</span>
+        <div class="step__body">
+          <span class="step__t">공개 · 알림 발송</span>
+          <span class="step__d">승인된 리포트만 공개하고 수강생에게 “주간 리포트가 도착하였습니다”</span>
           <span class="flow__who flow__who--lms">LMS</span>
         </div>
       </div>
