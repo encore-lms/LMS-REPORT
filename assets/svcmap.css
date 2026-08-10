@@ -193,21 +193,6 @@
   .fl { margin-left: 0.5rem; }
 }
 
-/* ── 요약의 번호 목록 (1장) ────────────────────
-   lede 문단과 같은 크기·간격으로 맞춘다. */
-.lede-list {
-  margin: 0.5rem 0 1.1rem;
-  padding-left: 1.4rem;
-  max-width: var(--measure);
-}
-.lede-list li {
-  margin-bottom: 0.3rem;
-  font-size: 1.06rem;
-  line-height: 1.7;
-  color: var(--ink);
-}
-.lede-list li::marker { color: var(--brand); font-weight: 600; }
-
 /* ── 분기 단계 (7-1 처럼 번호가 두 자리 넘는 경우) ── */
 /* 부모 .step 의 첫 칸이 1.9rem 고정이라 두 자리 번호가 잘린다 — 이 행만 넓힌다. */
 .step--sub { margin-left: 1.3rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
