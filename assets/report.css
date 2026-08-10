@@ -13,6 +13,8 @@
   padding-bottom: 2rem;
   border-bottom: 2px solid var(--ink);
 }
+/* 밑줄 없는 변형 — 바로 아래 섹션 h2 의 윗줄과 겹쳐 이중선으로 보일 때 쓴다. */
+.masthead--plain { border-bottom: 0; }
 .masthead__eyebrow {
   font-family: var(--font-mono);
   font-size: 0.7rem;
