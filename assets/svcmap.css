@@ -1,203 +1,6 @@
-/* ── 통합 서비스 아키텍처 지도 ─────────────────
-   단계(rail) × 영역(lane) × 카드 3층 구조.
-   색은 tokens.css 변수만 참조한다. 영역 구분은 두 톤으로만 한다 —
-   외부(GOV-AI)는 중립 회색, 우리(LMS)는 teal. 계약 지점만 주황으로 끊어 읽힌다. */
-
-.svcmap {
-  margin: 1.75rem 0 2rem;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: var(--surface);
-  overflow: hidden;
-}
-/* 상단 얇은 띠 — 외부에서 우리로 넘어오는 방향을 색으로 암시한다. */
-.svcmap__top { height: 3px; background: linear-gradient(90deg, var(--ink-3), var(--brand) 55%, var(--warn)); }
-
-.svcmap__head {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 1.15rem 1.25rem 1.1rem;
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
-}
-.svcmap__eyebrow {
-  margin: 0 0 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  color: var(--ink-3);
-  text-transform: uppercase;
-}
-.svcmap__title { margin: 0; font-size: 1.35rem; font-weight: 750; color: var(--ink); letter-spacing: -0.01em; }
-.svcmap__sub { margin: 0.3rem 0 0; font-size: 0.82rem; color: var(--ink-2); max-width: none; }
-.svcmap__meta { text-align: right; }
-.svcmap__meta p { margin: 0; font-size: 0.72rem; color: var(--ink-3); max-width: none; }
-.svcmap__meta p + p { margin-top: 0.2rem; }
-
-/* ── 단계 ── */
-.stage { display: grid; grid-template-columns: 5.6rem minmax(0, 1fr); border-top: 1px solid var(--line-soft); }
-.stage:first-of-type { border-top: 0; }
-
-.stage__rail {
-  padding: 1.05rem 0.7rem 1.1rem;
-  border-right: 1px solid var(--line-soft);
-  background: var(--paper);
-}
-.stage__no {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.45rem;
-  height: 1.45rem;
-  border-radius: 50%;
-  background: var(--brand);
-  color: var(--surface);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  margin-bottom: 0.45rem;
-}
-.stage__name { display: block; font-size: 0.8rem; font-weight: 700; color: var(--ink); line-height: 1.35; word-break: keep-all; }
-.stage__en {
-  display: block;
-  margin-top: 0.2rem;
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  color: var(--ink-3);
-}
-
-.stage__main { padding: 0.95rem 1.1rem 1.05rem; display: grid; gap: 0.7rem; }
-
-/* ── 영역 그룹 ── */
-.grp { position: relative; border-radius: 4px; padding: 1.35rem 0.85rem 0.85rem; }
-.grp--gov { background: var(--surface-2); }
-.grp--lms { background: var(--brand-wash); box-shadow: inset 3px 0 0 var(--brand); }
-.grp__tag {
-  position: absolute;
-  top: -0.05rem;
-  left: 0.7rem;
-  transform: translateY(-45%);
-  padding: 0.16rem 0.6rem;
-  border-radius: 3px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-.grp--gov .grp__tag { background: var(--ink-2); color: var(--paper); }
-.grp--lms .grp__tag { background: var(--brand-ink); color: var(--paper); }
-/* 그룹 부연은 태그와 같은 줄 오른쪽 끝에 붙인다 (원본 도판의 배치).
-   좁은 화면에서는 태그와 겹치므로 아래 미디어쿼리에서 흐름 안으로 되돌린다. */
-.grp__note {
-  position: absolute;
-  top: 0.3rem;
-  right: 0.85rem;
-  margin: 0;
-  font-size: 0.71rem;
-  color: var(--ink-2);
-  max-width: none;
-  text-align: right;
-}
-
-/* ── 카드 ── */
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 0.55rem; }
-.c {
-  background: var(--surface);
-  border: 1px solid var(--line-soft);
-  border-radius: 3px;
-  padding: 0.6rem 0.7rem 0.65rem;
-}
-/* 아이콘은 첫 칸에 고정하고 제목만 접히게 한다 — flex 로 하면 제목이 두 줄일 때 아이콘이 가운데로 밀린다. */
-.c__t {
-  display: grid;
-  grid-template-columns: 1rem minmax(0, 1fr);
-  gap: 0.42rem;
-  align-items: start;
-  margin: 0 0 0.3rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--ink);
-  word-break: keep-all;
-}
-.svcmap__defs { display: none; }
-.ic {
-  width: 1rem;
-  height: 1rem;
-  margin-top: 0.08rem;
-  fill: none;
-  stroke: var(--brand);
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.grp--gov .ic { stroke: var(--ink-3); }
-.c__d { margin: 0; font-size: 0.72rem; line-height: 1.5; color: var(--ink-2); word-break: keep-all; max-width: none; }
-.c__d + .c__d { margin-top: 0.1rem; }
-.c code { font-size: 0.72em; }
-
-/* ── 계약 지점 (두 시스템이 만나는 곳) ── */
-.link {
-  display: grid;
-  grid-template-columns: 1.5rem minmax(0, 1fr) auto;
-  gap: 0.1rem 0.6rem;
-  align-items: baseline;
-  padding: 0.5rem 0.75rem 0.55rem;
-  border-left: 3px solid var(--warn);
-  border-radius: 0 3px 3px 0;
-  background: var(--warn-wash);
-}
-.link__no { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--warn); }
-.link__t { font-size: 0.79rem; font-weight: 700; color: var(--ink); word-break: keep-all; }
-.link__dir { font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-3); white-space: nowrap; }
-.link__d { grid-column: 2 / -1; margin: 0.1rem 0 0; font-size: 0.72rem; color: var(--ink-2); max-width: none; word-break: keep-all; }
-
-/* ── 설계 원칙 ── */
-.svcmap__rules { padding: 0.95rem 1.1rem 1.05rem; border-top: 1px solid var(--line); background: var(--paper); }
-.svcmap__rules h4 { margin: 0 0 0.6rem; font-size: 0.76rem; font-weight: 700; color: var(--ink-2); letter-spacing: 0.02em; }
-.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.4rem 1rem; margin: 0; padding: 0; list-style: none; }
-.rules li {
-  margin: 0;
-  padding-left: 0.9rem;
-  position: relative;
-  font-size: 0.75rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-  word-break: keep-all;
-}
-.rules li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 4px; height: 4px; border-radius: 50%; background: var(--brand); }
-
-/* ── 범례 ── */
-.svcmap__legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.4rem;
-  padding: 0.7rem 1.1rem 0.75rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.72rem;
-  color: var(--ink-3);
-}
-.svcmap__legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
-.swatch { width: 0.85rem; height: 0.85rem; border-radius: 2px; flex: none; border: 1px solid var(--line); }
-.swatch--gov { background: var(--surface-2); }
-.swatch--lms { background: var(--brand-wash); box-shadow: inset 2px 0 0 var(--brand); }
-.swatch--link { background: var(--warn-wash); box-shadow: inset 2px 0 0 var(--warn); }
-
-@media (max-width: 52rem) {
-  .grp__note { position: static; margin: 0 0 0.55rem; text-align: left; }
-}
-
-@media (max-width: 40rem) {
-  .stage { grid-template-columns: minmax(0, 1fr); }
-  .stage__rail { display: flex; align-items: baseline; gap: 0.5rem; border-right: 0; border-bottom: 1px solid var(--line-soft); padding: 0.6rem 1.1rem; }
-  .stage__no { margin-bottom: 0; }
-  .stage__name { display: inline; }
-  .stage__en { display: inline; margin-left: 0.4rem; }
-  .svcmap__meta { text-align: left; }
-}
+/* ── 통합 기획안 전용 스타일 ───────────────────
+   report.css 뒤에 링크한다. 색은 tokens.css 변수만 참조한다.
+   flow · wire 는 2장(기능 플로우 · 화면 배치), jny 는 3장(서비스 아키텍처)이 쓴다. */
 
 /* ── 기능 플로우 (단계 → 단계) ─────────────────
    4단계가 한 줄에 들어가되, 좁아지면 접혀 세로로 읽히게 둔다. */
@@ -239,8 +42,6 @@
 .flow__who--lms { background: var(--brand-wash); color: var(--brand-ink); }
 .flow__who--gov { background: var(--surface-2); color: var(--ink-2); }
 .flow__who--link { background: var(--warn-wash); color: var(--warn); }
-/* 담당 주체가 아직 정해지지 않은 단계 — 회의에서 정할 자리임을 색으로 드러낸다. */
-.flow__who--tbd { background: var(--crit-wash); color: var(--crit); }
 .flow__arrow {
   flex: 0 0 1.7rem;
   display: flex;
@@ -267,3 +68,156 @@
   .flow__arrow { flex-basis: 100%; height: 1.1rem; transform: rotate(90deg); }
   .wire { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ── 세로 단계 목록 (2장 리포트 발행 플로우) ────
+   단계 수가 많아 가로 카드로는 좁을 때 쓴다. */
+.steps { display: grid; gap: 0.55rem; margin: 0.9rem 0 1.5rem; }
+.step { position: relative; display: grid; grid-template-columns: 1.9rem minmax(0, 1fr); gap: 0.6rem; }
+.step::before { content: ''; position: absolute; left: 0.68rem; top: 0; bottom: -0.55rem; width: 2px; background: var(--line); }
+.step:last-child::before { display: none; }
+.step__no {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  align-self: center;
+}
+.step__body {
+  border: 1px solid var(--line-soft);
+  border-radius: 3px;
+  background: var(--surface);
+  padding: 0.5rem 0.7rem 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+}
+.step__t { font-size: 0.84rem; font-weight: 700; color: var(--ink); word-break: keep-all; }
+.step__d { font-size: 0.73rem; color: var(--ink-2); word-break: keep-all; }
+.step__body .flow__who { margin-left: auto; }
+/* 수강생 배지 — 시스템이 아닌 행위자라 중립 톤 */
+.flow__who--stu { background: var(--paper); color: var(--ink-2); border: 1px solid var(--line); }
+
+/* 분기 단계 (7-1 처럼 번호가 두 자리 넘는 경우).
+   부모 .step 의 첫 칸이 1.9rem 고정이라 잘린다 — 이 행만 넓힌다. */
+.step--sub { margin-left: 1.3rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
+.step--sub .step__no {
+  width: auto;
+  min-width: 1.45rem;
+  padding: 0 0.38rem;
+  border-radius: 999px;
+  background: var(--warn);
+  font-size: 0.64rem;
+}
+.step--sub .step__body { border-style: dashed; }
+.step--sub::before { display: none; }
+
+/* ── 경로 규약 표기 (4장 요청 2) ──────────────── */
+.pathspec {
+  margin: 1.1rem 0 1.25rem;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--brand);
+  border-radius: 3px;
+  background: var(--surface-2);
+  overflow-x: auto;
+}
+.pathspec code {
+  background: none;
+  padding: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+  white-space: nowrap;
+}
+
+/* ── 서비스 아키텍처 (3장) ─────────────────────
+   좌측 단계 레일 × 계층 박스 × 화살표.
+   흐름은 전부 화살표로 표현한다 — 실선 = 데이터, 주황 = 되돌아가는 경로. */
+.arch {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  margin: 1.6rem 0 2rem;
+  overflow: hidden;
+}
+.arch__top { height: 3px; background: linear-gradient(90deg, var(--ink-3), var(--brand) 55%, var(--warn)); }
+.arch__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+  padding: 0.9rem 1.15rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.arch__t { margin: 0; font-size: 1.05rem; font-weight: 750; color: var(--ink); }
+.arch__sub { margin: 0.2rem 0 0; font-size: 0.76rem; color: var(--ink-2); max-width: none; }
+.arch__meta { margin: 0; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-3); }
+
+/* ── 다이어그램 본체 (인라인 SVG) ──────────────
+   스윔레인 2열 + 좌측 단계 레일. 색·서체는 전부 토큰 변수라 테마를 따라간다. */
+.arch__body { padding: 0.9rem 1.15rem 0.5rem; overflow-x: auto; }
+.arch__body svg { display: block; width: 100%; height: auto; min-width: 640px; }
+.arch__body svg text { font-family: var(--font-sans); }
+.arch__body svg text.mono { font-family: var(--font-mono); }
+
+.arch__legend {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; align-items: center;
+  padding: 0.6rem 1.15rem 0.7rem;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 0.7rem; color: var(--ink-3);
+}
+.lg { display: inline-flex; align-items: center; gap: 0.35rem; }
+.lg i { width: 0.8rem; height: 0.8rem; border-radius: 2px; border: 1px solid var(--line); flex: none; }
+.lg .i--gov { background: var(--surface-2); }
+.lg .i--lms { background: var(--brand-wash); box-shadow: inset 2px 0 0 var(--brand); }
+.lg .i--pipe { background: var(--warn-wash); box-shadow: inset 2px 0 0 var(--warn); }
+
+@media (max-width: 44rem) {
+  .lane { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
+  .lane__rail { display: flex; align-items: baseline; gap: 0.45rem; padding-top: 0; }
+  .lane__no { margin-bottom: 0; }
+  .lane__ko, .lane__en { display: inline; }
+  .fl { margin-left: 0.5rem; }
+}
+
+/* ── 요약의 번호 목록 (1장) ────────────────────
+   lede 문단과 같은 크기·간격으로 맞춘다. */
+.lede-list {
+  margin: 0.5rem 0 1.1rem;
+  padding-left: 1.4rem;
+  max-width: var(--measure);
+}
+.lede-list li {
+  margin-bottom: 0.3rem;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.lede-list li::marker { color: var(--brand); font-weight: 600; }
+
+/* ── 분기 단계 (7-1 처럼 번호가 두 자리 넘는 경우) ── */
+/* 부모 .step 의 첫 칸이 1.9rem 고정이라 두 자리 번호가 잘린다 — 이 행만 넓힌다. */
+.step--sub { margin-left: 1.3rem; grid-template-columns: 2.5rem minmax(0, 1fr); }
+.step--sub .step__no {
+  width: auto;
+  min-width: 1.45rem;
+  padding: 0 0.38rem;
+  border-radius: 999px;
+  background: var(--warn);
+  font-size: 0.64rem;
+}
+.step--sub .step__body { border-style: dashed; }
+.step--sub::before { display: none; }
