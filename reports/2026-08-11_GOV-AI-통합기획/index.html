@@ -349,8 +349,8 @@
           <text x="118" y="272" font-size="14.5" font-weight="700" fill="var(--ink)">수집 · 저장</text>
           <text x="118" y="294" font-size="12" fill="var(--ink-2)">Collector API — FastAPI · 실시간 push</text>
           <text x="118" y="312" font-size="12" fill="var(--ink-2)">외부 커넥터 — 노션 · 깃허브 · 디스코드</text>
-          <text x="118" y="330" font-size="12" fill="var(--ink-2)">가명화 · 정제 → 데이터 레이크</text>
-          <text x="118" y="348" font-size="12" fill="var(--ink-2)">원천 저장소 · 분석 마트</text>
+          <text x="118" y="330" font-size="12" fill="var(--ink-2)">가명화 · 정제 → 데이터 레이크 · 분석 마트</text>
+          <text x="118" y="348" font-size="12" fill="var(--ink-2)">원천 데이터 S3 적재 — 일자별</text>
 
           <path d="M180,364 L180,386" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
 
@@ -363,12 +363,15 @@
           <text x="194" y="518" font-size="12" fill="var(--ink-2)">일 1회 리포트 생성 — 지표 · 판정 · 취약 패턴</text>
 
           <!-- 3 · 계약 ② S3 리포트 (두 레인에 걸침) -->
-          <rect x="102" y="560" width="780" height="76" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
-          <text x="120" y="586" font-size="13.5" font-weight="700" fill="var(--ink)"><tspan fill="var(--warn)">계약 ②</tspan> S3 리포트 적재 — 두 시스템이 만나는 곳</text>
-          <text x="120" y="614" font-size="12.5" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</text>
+          <rect x="102" y="552" width="780" height="102" rx="6" fill="var(--warn-wash)" stroke="var(--warn)" stroke-width="1.5"/>
+          <text x="120" y="578" font-size="13.5" font-weight="700" fill="var(--ink)"><tspan fill="var(--warn)">계약 ②</tspan> S3 적재 — 원천 데이터와 리포트가 넘어오는 곳</text>
+          <text x="120" y="604" font-size="12" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-DATARAKE/{YYYY-MM-DD}/json</text>
+          <text x="392" y="604" font-size="11" fill="var(--ink-3)">원천 데이터</text>
+          <text x="120" y="628" font-size="12" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</text>
+          <text x="500" y="628" font-size="11" fill="var(--ink-3)">일자별 리포트</text>
 
-          <path d="M560,636 L560,702" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="574" y="674" font-size="12" fill="var(--ink-2)">수강생 UUID 경로 조회 — 일 1회 배치</text>
+          <path d="M560,654 L560,702" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
+          <text x="574" y="684" font-size="12" fill="var(--ink-2)">수강생 UUID 경로 조회 — 일 1회 배치</text>
 
           <!-- 4 · 리포트 파이프라인 -->
           <rect x="532" y="708" width="350" height="100" rx="6" fill="var(--surface)" stroke="var(--line)"/>
@@ -538,14 +541,15 @@
       </p>
     </div>
 
-    <h3>요청 2 — 리포트 적재 : S3 경로 규약</h3>
+    <h3>요청 2 — S3 적재 : 원천 데이터와 리포트</h3>
     <p>
-      일자별 분석 리포트를 아래 경로 규약으로 <strong>S3에 저장</strong>해 주세요.
-      수강생 고유 번호가 경로 첫 단이라 LMS가 학생 단위로 바로 조회할 수 있고,
-      날짜 파티션이 역량 히스토리의 일자별 카드에 그대로 대응합니다.
+      <strong>수집한 원천 데이터</strong>와 <strong>일자별 분석 리포트</strong>를 아래 두 경로 규약으로 S3에 저장해 주세요.
+      리포트는 수강생 고유 번호가 경로 첫 단이라 LMS가 학생 단위로 바로 조회할 수 있고,
+      원천 데이터는 나중에 <strong>같은 값이 다시 나오는지 검증</strong>하거나 재분석할 때 근거가 됩니다.
     </p>
 
-    <pre class="pathspec"><code>GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</code></pre>
+    <pre class="pathspec"><code>GOV-AI-DATARAKE/{YYYY-MM-DD}/json                      원천 데이터
+GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report    일자별 리포트</code></pre>
 
     <div class="tw">
       <table>
@@ -558,8 +562,13 @@
         </thead>
         <tbody>
           <tr>
+            <td class="t-tight"><code>GOV-AI-DATARAKE</code></td>
+            <td>원천 데이터 프리픽스</td>
+            <td>날짜 단위 묶음 — <strong>수강생 구분이 경로에 없어</strong> 개별 조회는 파일 안을 열어야 합니다</td>
+          </tr>
+          <tr>
             <td class="t-tight"><code>GOV-AI-REPORT</code></td>
-            <td>고정 프리픽스</td>
+            <td>리포트 프리픽스</td>
             <td>다른 산출물과 섞이지 않게 최상위에서 구분</td>
           </tr>
           <tr>
@@ -594,6 +603,13 @@
           <tr>
             <td class="t-tight">버킷 소유 · 권한</td>
             <td>어느 쪽 계정의 버킷인지, 상대에게 줄 쓰기 권한(IAM)의 범위</td>
+          </tr>
+          <tr>
+            <td class="t-tight">원천 데이터 범위</td>
+            <td>
+              <code>DATARAKE</code> 에 담기는 것 — 실습 이벤트 원본인지 정제 후인지,
+              <strong>가명화 전인지 후인지</strong>. 개인정보 동의 범위와 직결됩니다
+            </td>
           </tr>
           <tr>
             <td class="t-tight">리포트 스키마</td>
