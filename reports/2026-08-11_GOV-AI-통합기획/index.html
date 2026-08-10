@@ -64,12 +64,13 @@
     </p>
 
     <p class="lede">
-      그래서 통합의 실체는 시스템 합병이 아니라 <strong>데이터 계약 두 건</strong>입니다.
+      그래서 통합의 실체는 시스템 합병이 아니라 <strong>데이터 계약 세 건</strong>입니다.
     </p>
 
     <ol class="lede-list">
       <li>로그인 연동</li>
       <li>리포트 S3 적재</li>
+      <li>리포트 재생성 API</li>
     </ol>
 
     <p class="lede">
@@ -254,7 +255,7 @@
 
     <p>
       두 시스템을 나란히 놓고 <strong>데이터가 어디서 어디로 흐르는지</strong>를 화살표로 그렸습니다.
-      회색 화살표가 데이터 흐름, <strong>주황이 두 시스템이 만나는 계약</strong>, 점선이 재생성 루프입니다.
+      회색 화살표가 데이터 흐름이고, <strong>주황이 두 시스템이 만나는 계약 세 건</strong>입니다.
     </p>
 
     <div class="arch">
@@ -270,7 +271,7 @@
 
       <div class="arch__body">
         <svg viewBox="0 0 900 1290" role="img"
-             aria-label="통합 서비스 아키텍처 — 왼쪽 GOV-AI 레인에서 실습 데이터가 수집·분석되어 S3 리포트로 발행되고, 오른쪽 LMS 레인이 그것을 읽어 파이프라인·검토 승인을 거쳐 역량 히스토리와 증명서로 공개한다. 계약 두 건(로그인 연동, S3 리포트)이 두 레인을 잇는다">
+             aria-label="통합 서비스 아키텍처 — 왼쪽 GOV-AI 레인에서 실습 데이터가 수집·분석되어 S3 리포트로 발행되고, 오른쪽 LMS 레인이 그것을 읽어 파이프라인·검토 승인을 거쳐 역량 히스토리와 증명서로 공개한다. 계약 세 건(로그인 연동, S3 리포트, 재생성 요청)이 두 레인을 잇는다">
           <defs>
             <marker id="ar-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-2)"/>
@@ -385,10 +386,12 @@
           <text x="548" y="922" font-size="12" fill="var(--ink-2)">수강생별 리포트 확인 → 승인 · 반려</text>
           <text x="548" y="940" font-size="12" fill="var(--ink-2)">재생성 요청 또는 직접 수정</text>
 
-          <!-- 재생성 루프 (승인 반려 → 리포트 발행으로) -->
-          <path d="M532,912 L300,912 L300,642" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ar-w)"/>
-          <text x="312" y="768" font-size="12.5" font-weight="700" fill="var(--warn)">재생성 요청</text>
-          <text x="312" y="786" font-size="11.5" fill="var(--ink-2)">승인 전까지 수강생에게 비공개</text>
+          <!-- 계약 ③ 재생성 루프 (승인 반려 → LLM 분석으로 되돌아가 다시 생성)
+               S3 박스가 거의 전폭이라 레인 왼쪽 밖(x=84)으로 우회해 관통을 피한다. -->
+          <path d="M532,912 L84,912 L84,482" fill="none" stroke="var(--warn)" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ar-w)"/>
+          <text x="98" y="682" font-size="12.5" font-weight="700" fill="var(--warn)">계약 ③ 재생성 요청</text>
+          <text x="98" y="700" font-size="11.5" fill="var(--ink-2)">수강생 지정 재생성 API</text>
+          <text x="98" y="717" font-size="11.5" fill="var(--ink-2)">승인 전까지 수강생에게 비공개</text>
 
           <path d="M560,958 L560,1020" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
           <text x="574" y="994" font-size="12" fill="var(--ink-2)">승인된 리포트만 공개 — 수강생 알림 발송</text>
@@ -427,9 +430,10 @@
     <h2>요구사항 명세서</h2>
 
     <p>
-      외부 개발 주체에 요청하는 것은 <strong>두 건</strong>입니다.
-      ①이 서면 모든 데이터가 수강생 단위로 묶이고, ②가 서면 그 데이터가 우리 쪽으로 흘러옵니다.
-      회의에서는 이 두 건의 가부와 세부 형식만 확인하면 됩니다.
+      외부 개발 주체에 요청하는 것은 <strong>세 건</strong>입니다.
+      ①이 서면 모든 데이터가 수강생 단위로 묶이고, ②가 서면 그 데이터가 우리 쪽으로 흘러오며,
+      ③이 있어야 승인하지 않은 리포트를 다시 만들 수 있습니다.
+      회의에서는 이 세 건의 가부와 세부 형식만 확인하면 됩니다.
     </p>
 
     <h3>요청 1 — 수강생 식별 : 실습 환경에 LMS 로그인 연동</h3>
@@ -612,6 +616,57 @@
       </table>
     </div>
 
+    <h3>요청 3 — 리포트 재생성 : 수강생 지정 API</h3>
+    <p>
+      강사 · 매니저가 검토 단계에서 <strong>승인하지 않은 리포트를 다시 생성</strong>할 수 있도록
+      API를 열어 주세요. LMS 검토 화면에서 바로 호출합니다.
+      이것이 없으면 잘못 생성된 리포트를 되돌릴 방법이 없어, 매니저가 직접 수정하는 수밖에 없습니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">항목</th>
+            <th scope="col">요청 내용</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">호출 단위</td>
+            <td>
+              <strong>수강생 개별</strong>과 <strong>여러 수강생 지정</strong>을 모두 지원해 주세요 —
+              한 명만 다시 만드는 경우와, 특정 기수 · 특정 날짜를 묶어 다시 만드는 경우가 모두 생깁니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">요청 파라미터</td>
+            <td>
+              <strong>수강생 고유 번호</strong>(요청 1의 <code>user.id</code>) 목록과 <strong>대상 날짜</strong>.
+              사유를 함께 보낼 수 있으면 재생성 이력 추적에 씁니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">결과 반영</td>
+            <td>
+              재생성된 리포트를 <strong>요청 2와 같은 S3 경로</strong>에 올려 주세요.
+              덮어쓸지 버전을 남길지는 협의 — <strong>증명서 증적과 직결</strong>됩니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">완료 통지</td>
+            <td>
+              동기 응답인지, 접수만 받고 나중에 올리는 비동기인지 확인이 필요합니다.
+              비동기라면 <strong>완료 시점을 우리가 아는 방법</strong>(콜백 · 상태 조회)이 함께 있어야 합니다
+            </td>
+          </tr>
+          <tr>
+            <td class="t-tight">인증</td>
+            <td>API 키 방식과 호출 주체 식별 방법 — LMS 서버에서만 호출합니다</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- ══ 5 ══ -->
