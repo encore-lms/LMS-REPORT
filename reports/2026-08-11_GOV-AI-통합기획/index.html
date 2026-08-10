@@ -233,7 +233,7 @@
       <div class="flow__step">
         <span class="flow__no">1</span>
         <p class="flow__t">주간 데이터 조회</p>
-        <p class="flow__d">수강생 UUID 경로에서 주 1회, 해당 주간 리포트 수신</p>
+        <p class="flow__d">수강생 고유 번호 경로에서 주 1회, 해당 주간 리포트 수신</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
@@ -384,7 +384,7 @@
 
           <!-- 계약 ① 로그인 연동 (LMS → GOV-AI) -->
           <path d="M707,146 L707,178 L430,178 L430,152" fill="none" stroke="var(--warn)" stroke-width="2.5" marker-end="url(#ar-w)"/>
-          <text x="478" y="204" font-size="12.5" fill="var(--ink)"><tspan font-weight="700" fill="var(--warn)">계약 ① 로그인 연동</tspan> — LMS 계정 인증 · 수강생 UUID 확정</text>
+          <text x="478" y="204" font-size="12.5" fill="var(--ink)"><tspan font-weight="700" fill="var(--warn)">계약 ① 로그인 연동</tspan> — LMS 계정 인증 · 수강생 고유 번호 확정</text>
 
           <!-- 실습 활동 → 수집 -->
           <path d="M180,146 L180,206" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
@@ -421,7 +421,7 @@
           <text x="120" y="736" font-size="12.5" class="mono" font-weight="600" fill="var(--brand-ink)">GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</text>
 
           <path d="M560,758 L560,832" fill="none" stroke="var(--ink-2)" stroke-width="2.5" marker-end="url(#ar-g)"/>
-          <text x="574" y="800" font-size="12" fill="var(--ink-2)">수강생 UUID 경로 조회 — 주 1회, 해당 주간 데이터</text>
+          <text x="574" y="800" font-size="12" fill="var(--ink-2)">수강생 고유 번호 경로 조회 — 주 1회, 해당 주간 데이터</text>
 
           <!-- 4 · 리포트 파이프라인 -->
           <rect x="532" y="838" width="350" height="82" rx="6" fill="var(--surface)" stroke="var(--line)"/>
@@ -497,7 +497,8 @@
     <h3>계약 1 — 수강생 식별 : 실습 환경에 LMS 로그인 연동</h3>
     <p>
       <strong>ATmux · VS Code 확장(PlayLang) 이용 시 LMS 로그인 API로 인증</strong>하도록 개선해 주세요.
-      로그인 응답의 <code>user.id</code>(UUID)가 이후 모든 데이터의 기준 식별자가 됩니다.
+      로그인 응답의 <code>user.id</code>(UUID)가 이후 모든 데이터의 기준 식별자,
+      곧 경로 규약의 <code>{수강생 고유 번호}</code> 가 됩니다.
       현재 수강생을 특정할 방법이 없는 상태라, 이것이 없으면 계약 3의 경로 규약이 성립하지 않습니다.
     </p>
     <p>
@@ -555,7 +556,7 @@
           <tr>
             <td class="t-tight"><code>user.id</code></td>
             <td>사용자 고유번호(UUID)</td>
-            <td><strong><code>lms_student_uuid</code> 로 사용</strong> — 계약의 기준 식별자</td>
+            <td><strong><code>lms_student_uuid</code> 로 사용</strong> — 계약의 기준 식별자이자 경로의 <code>{수강생 고유 번호}</code></td>
           </tr>
           <tr>
             <td class="t-tight"><code>user.studentUuid</code></td>
