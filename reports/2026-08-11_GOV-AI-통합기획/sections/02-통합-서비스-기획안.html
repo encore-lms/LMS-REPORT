@@ -56,7 +56,7 @@
         <span class="step__no">6</span>
         <div class="step__body">
           <span class="step__t">매니저 알림</span>
-          <span class="step__d">“수강생별 OO과정 OO기 AI 리포트 검토 필요”</span>
+          <span class="step__d">주 1회 통합 후 “수강생별 OO과정 OO기 AI 리포트 검토 필요”</span>
           <span class="flow__who flow__who--lms">LMS</span>
         </div>
       </div>
@@ -80,7 +80,7 @@
         <span class="step__no">8</span>
         <div class="step__body">
           <span class="step__t">수강생 알림 발송</span>
-          <span class="step__d">승인된 수강생에게 “일간 또는 주간 리포트가 도착하였습니다”</span>
+          <span class="step__d">승인된 수강생에게 “주간 리포트가 도착하였습니다”</span>
           <span class="flow__who flow__who--lms">LMS</span>
         </div>
       </div>
@@ -88,7 +88,7 @@
 
     <h3>나의 역량 히스토리 <span class="flow__who flow__who--lms">LMS</span></h3>
     <p>
-      넘어온 리포트를 LMS 데이터와 합쳐 <strong>일자별 · 기술 카테고리별로 정리</strong>하고,
+      적재된 리포트를 <strong>주 단위로 모아 통합 · 분석</strong>하고,
       강사 · 매니저 승인을 거쳐 수강생에게 공개합니다.
       지금의 증명서가 “수료 시점의 한 장”이라면, 이것은 “거기까지 온 경로”입니다.
     </p>
@@ -96,34 +96,27 @@
     <div class="flow">
       <div class="flow__step">
         <span class="flow__no">1</span>
-        <p class="flow__t">리포트 조회</p>
-        <p class="flow__d">수강생 UUID 경로로 일자별 리포트 수신</p>
+        <p class="flow__t">주간 데이터 조회</p>
+        <p class="flow__d">수강생 UUID 경로에서 주 1회, 해당 주간 리포트 수신</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">2</span>
-        <p class="flow__t">전처리</p>
-        <p class="flow__d">카드가 쓸 형태로 가공 — 일자별 집계 · 카테고리 롤업</p>
+        <p class="flow__t">통합 · 분석</p>
+        <p class="flow__d">주간 AI Report 보고서로 통합하고 카드가 쓸 형태로 분석</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
         <span class="flow__no">3</span>
-        <p class="flow__t">LMS 데이터 결합</p>
-        <p class="flow__d">과제 · 퀴즈 · 프로젝트 · 출결 이력과 같은 시간축에 병합</p>
-        <span class="flow__who flow__who--lms">LMS</span>
-      </div>
-      <div class="flow__arrow" aria-hidden="true">→</div>
-      <div class="flow__step">
-        <span class="flow__no">4</span>
         <p class="flow__t">검토 · 승인</p>
         <p class="flow__d">강사 · 매니저가 수강생별 리포트 확인 후 승인 · 반려</p>
         <span class="flow__who flow__who--lms">LMS</span>
       </div>
       <div class="flow__arrow" aria-hidden="true">→</div>
       <div class="flow__step">
-        <span class="flow__no">5</span>
+        <span class="flow__no">4</span>
         <p class="flow__t">공개</p>
         <p class="flow__d">승인된 리포트만 교육과정 탭 카드로 노출</p>
         <span class="flow__who flow__who--lms">LMS</span>
