@@ -388,3 +388,9 @@
   .lb__nav { width: 2rem; }
   .lb__nav svg { width: 1.3rem; height: 1.3rem; }
 }
+
+/* 표 안 문장이 970px 를 한 줄로 가로지르면 눈이 줄머리로 되돌아오지 못한다.
+   본문 문단은 --measure 로 접히는데 표만 제한이 없어 생기는 차이다.
+   td 의 max-width 는 table-layout:auto 에서 무시되므로 표 자체의 폭을 잡는다.
+   (이 리포트 전용 — 공용 report.css 의 표는 그대로 둔다.) */
+.tw { max-width: 52rem; }
