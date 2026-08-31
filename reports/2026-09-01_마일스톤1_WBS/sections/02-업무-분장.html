@@ -2,6 +2,8 @@
     <div class="sec-num"><!--NUM--></div>
     <h2>업무 분장</h2>
 
+    <p>1번 진행 흐름의 각 단계를 누가 맡는지입니다. 오른쪽 끝이 그 흐름의 몇 번째 단계인지입니다.</p>
+
     <h3>LMS 측 업무</h3>
     <div class="tw">
       <table>
@@ -11,6 +13,7 @@
             <th scope="col">업무</th>
             <th scope="col">주요 작업</th>
             <th scope="col">산출물</th>
+            <th scope="col" class="t-tight">흐름</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +29,7 @@
             </td>
             <td>데이터 모델 정의서 — 필드 · 타입 · 식별자 규약
               <span class="sub">코칭 연동 API 명세 · OpenAPI 스키마로 전달</span></td>
+            <td class="t-tight">1</td>
           </tr>
           <tr>
             <td class="t-tight">2</td>
@@ -41,45 +45,48 @@
             </td>
             <td>호출 가능한 엔드포인트 + API 명세
               <span class="sub">엔드포인트 3종 · Swagger UI 공개 중</span></td>
+            <td class="t-tight">1</td>
           </tr>
           <tr>
             <td class="t-tight">3</td>
-            <td>GOV-AI 측에서 받는 수강생별 주간 리포트 분석 및 DB 적재</td>
+            <td>주간 리포트 조회 · 렌더링 화면 신설</td>
             <td>
               <ul class="cell-list">
                 <li>GOV-AI DataLake 주간 리포트 API 호출로 수신 —
                   <code>GET /api/v1/reports/weekly/{studentUuid}</code></li>
-                <li>받은 주간 리포트를 <strong>LMS 학습 활동(과제 · 퀴즈 · 출결 · 프로젝트)과 결합</strong></li>
-                <li>통합 리포트 스키마 설계 및 DB 적재 — 조회 API 포함</li>
-              </ul>
-            </td>
-            <td>수강생별 주간 통합 리포트 레코드</td>
-          </tr>
-          <tr>
-            <td class="t-tight">4</td>
-            <td>수강생별 주간 리포트 렌더링 화면 신설</td>
-            <td>
-              <ul class="cell-list">
+                <li><strong>받은 응답을 그대로 렌더링 — LMS 쪽 결합 · 가공은 하지 않습니다</strong>
+                  <span class="sub">리포트에 LMS 데이터를 합치는 것은 GOV-AI 측에서 이뤄집니다 · 08-31 회의 합의</span></li>
                 <li>수강생이 본인 주간 리포트를 여는 화면</li>
                 <li>주차 이동 · 리포트 없음 · 로딩 등 상태 처리</li>
-                <li>적재된 통합 리포트와 화면 배선</li>
-                <li><strong>1차는 DataLake 응답을 그대로 렌더링</strong> — 별도 가공 없음
-                  <span class="sub">08-31 회의 합의</span></li>
               </ul>
             </td>
             <td>수강생 계정에서 열리는 주간 리포트 화면</td>
+            <td class="t-tight">3</td>
+          </tr>
+          <tr>
+            <td class="t-tight">4</td>
+            <td>전달 API 갱신에 맞춘 화면 재구성</td>
+            <td>
+              <ul class="cell-list">
+                <li>GOV-AI 측 전달 API가 갱신되면 바뀐 응답 구조를 반영</li>
+                <li>늘어난 항목에 맞춰 주간 리포트 화면을 다시 구성</li>
+              </ul>
+            </td>
+            <td>갱신된 API 기준으로 다시 그려진 주간 리포트 화면</td>
+            <td class="t-tight">7</td>
           </tr>
           <tr>
             <td class="t-tight">5</td>
             <td>통합 검증 · 시연</td>
             <td>
               <ul class="cell-list">
-                <li>실습 로그인 → 리포트 적재 → 통합 → 화면 노출까지 전 구간 점검</li>
+                <li>리포트 생성 → LMS 조회 → 화면 노출까지 전 구간 점검</li>
                 <li>실 수강생 데이터로 재현 확인</li>
                 <li>시연 시나리오 리허설</li>
               </ul>
             </td>
             <td>전 구간이 끊기지 않고 흐르는 시연</td>
+            <td class="t-tight">1~7</td>
           </tr>
         </tbody>
       </table>
@@ -94,6 +101,7 @@
             <th scope="col">업무</th>
             <th scope="col">주요 작업</th>
             <th scope="col">산출물</th>
+            <th scope="col" class="t-tight">흐름</th>
           </tr>
         </thead>
         <tbody>
@@ -107,6 +115,7 @@
               </ul>
             </td>
             <td>동작 중인 DataLake 서버 <span class="sub">datalake.isitsoft.kr</span></td>
+            <td class="t-tight sub">기반</td>
           </tr>
           <tr>
             <td class="t-tight">2</td>
@@ -118,36 +127,62 @@
               </ul>
             </td>
             <td>주기 동기화가 도는 LMS 연동</td>
+            <td class="t-tight">1</td>
           </tr>
           <tr>
             <td class="t-tight">3</td>
-            <td>ATmux · PlayLang 실습 데이터 수집 <span class="pill pill--wip">진행 중</span></td>
-            <td>
-              <ul class="cell-list">
-                <li>ATmux — 사용량 메트릭 수신</li>
-                <li>PlayLang — 코스 · 단계 · 사용 언어 · 에러 · 실행 이벤트 수신</li>
-                <li>현재는 <strong>학생별 시뮬레이터로 대체</strong> — 출결 · 퀴즈 · 과제 성취도가 높을수록
-                  진도가 잘 나가도록 맞춰 생성</li>
-                <li><strong>남은 것 — 학생별 실 메트릭 수집 테스트</strong></li>
-              </ul>
-            </td>
-            <td>실습 환경에서 오는 실 메트릭 수집 경로</td>
-          </tr>
-          <tr>
-            <td class="t-tight">4</td>
             <td>주간 AI 리포트 생성 · 제공 <span class="pill pill--done">완료</span></td>
             <td>
               <ul class="cell-list">
                 <li>주차 스냅샷이 있으면 즉시 반환, 없으면 LLM 호출 — 약 10초</li>
-                <li>주간에 쌓인 스냅샷과 실습 데이터를 근거로 등급 · 이탈 위험도 판정</li>
+                <li>주간에 쌓인 스냅샷을 근거로 등급 · 이탈 위험도 판정</li>
                 <li>마크다운 · JSON 두 형식으로 출력</li>
                 <li>정기 배치 생성은 후속 — 현재는 조회 시 생성</li>
               </ul>
             </td>
             <td>주간 리포트 조회 API</td>
+            <td class="t-tight">2</td>
+          </tr>
+          <tr>
+            <td class="t-tight">4</td>
+            <td>ATmux · PlayLang 구현 <span class="pill pill--done">완료</span></td>
+            <td>
+              <ul class="cell-list">
+                <li>ATmux — 사용량 메트릭 발생</li>
+                <li>PlayLang — 코스 · 단계 · 사용 언어 · 에러 · 실행 이벤트 발생</li>
+              </ul>
+            </td>
+            <td>실습 환경에서 학습 데이터가 나오는 상태</td>
+            <td class="t-tight">4</td>
           </tr>
           <tr>
             <td class="t-tight">5</td>
+            <td>ATmux · PlayLang 시뮬레이터 검증 <span class="pill pill--wip">진행 중</span></td>
+            <td>
+              <ul class="cell-list">
+                <li>학생별 시뮬레이터로 실습 데이터를 생성해 전 구간 검증</li>
+                <li>출결 · 퀴즈 · 과제 성취도가 높을수록 진도가 잘 나가도록 맞춰 생성</li>
+                <li><strong>남은 것 — 학생별 실 메트릭 수집 테스트</strong></li>
+              </ul>
+            </td>
+            <td>시뮬레이션 데이터로 한 바퀴 도는 것이 확인된 상태</td>
+            <td class="t-tight">5</td>
+          </tr>
+          <tr>
+            <td class="t-tight">6</td>
+            <td>실습 데이터 · LMS 데이터를 합친 주간 리포트 생성</td>
+            <td>
+              <ul class="cell-list">
+                <li>ATmux · PlayLang 실연동이 끝나면 <strong>실 실습 데이터와 LMS 전달 데이터를 합쳐</strong>
+                  주간 리포트를 생성</li>
+                <li>시뮬레이터 데이터를 실 데이터로 교체</li>
+              </ul>
+            </td>
+            <td>실 데이터 기반 주간 리포트</td>
+            <td class="t-tight">6</td>
+          </tr>
+          <tr>
+            <td class="t-tight">7</td>
             <td>정량 리포트 · 이탈 부진 분석 <span class="pill pill--done">완료</span></td>
             <td>
               <ul class="cell-list">
@@ -156,9 +191,10 @@
               </ul>
             </td>
             <td>분석 결과 조회 API</td>
+            <td class="t-tight sub">부가</td>
           </tr>
           <tr>
-            <td class="t-tight">6</td>
+            <td class="t-tight">8</td>
             <td>강사 피드백 초안 · 검토 발송 <span class="pill pill--done">완료</span></td>
             <td>
               <ul class="cell-list">
@@ -167,6 +203,7 @@
               </ul>
             </td>
             <td>피드백 승인 API</td>
+            <td class="t-tight sub">부가</td>
           </tr>
         </tbody>
       </table>
