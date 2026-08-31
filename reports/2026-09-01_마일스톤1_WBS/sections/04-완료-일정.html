@@ -1,11 +1,11 @@
   <section>
     <div class="sec-num"><!--NUM--></div>
-    <h2>주차별 WBS</h2>
+    <h2>② 완료 일정</h2>
 
     <p>
-      9월 11일까지 남은 <strong>9영업일</strong>을 2주로 나눴습니다.
+      9월 11일까지 남은 9일을 2주로 나눴습니다.
       진한 칸이 우리 측 업무, 연한 칸이 최문창 강사 측 업무이며,
-      주황 칸은 <strong>데이터 전달 시점</strong>입니다.
+      주황 칸은 <strong>데이터 전달 시점</strong>입니다. 9월 5일 · 6일은 주말이라 비워 두었습니다.
     </p>
 
     <div class="sched">
@@ -93,127 +93,101 @@
       </div>
     </div>
 
-    <h3>1주차 — 09-01(화) ~ 09-04(금)</h3>
+    <h3>날짜별 마감</h3>
     <p>
-      이 주의 목표는 <strong>“상대 측 리포트가 어떤 모양인지 확정”</strong>하고,
-      LMS가 그것을 <strong>받아 둘 자리를 만드는 것</strong>입니다.
+      위 일정을 날짜순으로 편 것입니다.
+      주간회의에서는 <strong>지난 회의 이후 지나간 날짜부터</strong> 순서대로 확인합니다.
     </p>
     <div class="tw">
       <table>
         <thead>
           <tr>
+            <th scope="col" class="t-tight">날짜</th>
             <th scope="col" class="t-tight">주체</th>
-            <th scope="col">업무</th>
-            <th scope="col" class="t-tight">완료일</th>
-            <th scope="col">확인 가능한 산출물</th>
+            <th scope="col">무엇이 끝나야 하는가</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>계약 ①~④ 수락 여부와 각 완료일 회신</td>
-            <td class="t-tight">09-01</td>
-            <td>회의록에 기재된 항목별 담당 · 완료일</td>
+            <td class="t-tight">09-01 <span class="sub">화</span></td>
+            <td class="t-tight">공동</td>
+            <td>상호 계약 ①~④ 수락 여부와 각 완료일 확정</td>
           </tr>
           <tr>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td><strong>리포트 스키마 확정 + 샘플 리포트 1건 적재</strong></td>
-            <td class="t-tight">09-03</td>
-            <td>약속한 S3 경로에 올라온 샘플 파일 1개 — LMS가 직접 열어 확인</td>
+            <td class="t-tight">09-02 <span class="sub">수</span></td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td>로그인 API와 비브라우저 클라이언트용 토큰 발급 방식 전달</td>
           </tr>
           <tr>
+            <td class="t-tight">09-03 <span class="sub">목</span></td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td><strong>리포트 스키마 확정 + 샘플 리포트 1건 적재</strong> — 이후 LMS 업무 전체의 선행 조건</td>
+          </tr>
+          <tr>
+            <td class="t-tight">09-03 <span class="sub">목</span></td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>S3 버킷 소유 주체 · 접근 권한 확정</td>
-            <td class="t-tight">09-03</td>
-            <td>버킷 주소와 LMS 읽기 권한 — LMS 서버에서 목록 조회 성공</td>
           </tr>
           <tr>
+            <td class="t-tight">09-03 <span class="sub">목</span></td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td>통합 리포트 데이터 모델 확정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">09-04 <span class="sub">금</span></td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>실습 환경 LMS 로그인 연동 (계약 ①)</td>
-            <td class="t-tight">09-04</td>
-            <td>로그인 후 발생한 데이터에 <code>user.id</code>가 실린 샘플 1건</td>
           </tr>
           <tr>
+            <td class="t-tight">09-04 <span class="sub">금</span></td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>통합 리포트 데이터 모델 확정 — 상대 리포트 + LMS 학습 활동 결합 규칙</td>
-            <td class="t-tight">09-03</td>
-            <td>필드 정의서 (어느 값이 어느 화면 항목이 되는지)</td>
+            <td>리포트 수신 경로 · 진단 리포트 서버 도메인</td>
           </tr>
           <tr>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>진단 리포트 서버 도메인 신설 — 저장 · 조회 (현재 서버 기능 없음)</td>
-            <td class="t-tight">09-04</td>
-            <td>화면이 임시 데이터가 아니라 서버에서 리포트를 받아오는 상태</td>
+            <td class="t-tight">09-08 <span class="sub">화</span></td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td>원천 데이터 S3 적재 가동 (계약 ②)</td>
           </tr>
           <tr>
+            <td class="t-tight">09-08 <span class="sub">화</span></td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td><strong>실 수강생 대상 일자별 리포트 적재 시작</strong> (계약 ③)</td>
+          </tr>
+          <tr>
+            <td class="t-tight">09-09 <span class="sub">수</span></td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>리포트 수신 경로 구현 — 약속된 S3 경로에서 읽어오기</td>
-            <td class="t-tight">09-04</td>
-            <td>샘플 리포트 1건을 읽어 화면 항목으로 변환한 결과</td>
+            <td>주간 통합 파이프라인 — 리포트와 LMS 학습 활동 결합</td>
+          </tr>
+          <tr>
+            <td class="t-tight">09-09 <span class="sub">수</span></td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td>검토 · 승인 화면</td>
+          </tr>
+          <tr>
+            <td class="t-tight">09-10 <span class="sub">목</span></td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td>리포트 재생성 API (계약 ④)</td>
+          </tr>
+          <tr>
+            <td class="t-tight">09-10 <span class="sub">목</span></td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td>진단 리포트 실데이터 전환</td>
+          </tr>
+          <tr>
+            <td class="t-tight">09-11 <span class="sub">금</span></td>
+            <td class="t-tight">공동</td>
+            <td><strong>통합 검증 · 시연 — 마일스톤 1 완료 판정</strong></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h3>2주차 — 09-07(월) ~ 09-11(금)</h3>
-    <p>
-      이 주의 목표는 <strong>실제 수강생 데이터를 흘려 6개 관문을 끝까지 통과</strong>시키는 것입니다.
-    </p>
-    <div class="tw">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col" class="t-tight">주체</th>
-            <th scope="col">업무</th>
-            <th scope="col" class="t-tight">완료일</th>
-            <th scope="col">확인 가능한 산출물</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>원천 데이터 S3 적재 가동 (계약 ②)</td>
-            <td class="t-tight">09-08</td>
-            <td>날짜 경로에 쌓인 원천 데이터</td>
-          </tr>
-          <tr>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td><strong>실 수강생 대상 일자별 리포트 적재 시작</strong> (계약 ③)</td>
-            <td class="t-tight">09-08</td>
-            <td>최소 1개 기수 · 3일 이상 분량의 리포트가 경로에 존재</td>
-          </tr>
-          <tr>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>리포트 재생성 API 제공 (계약 ④)</td>
-            <td class="t-tight">09-10</td>
-            <td>엔드포인트 · 인증 방식 전달, LMS 검토 화면에서 호출 성공</td>
-          </tr>
-          <tr>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>주간 통합 파이프라인 — 일자별 리포트를 주 단위로 모으고 <strong>LMS 학습 활동과 결합</strong></td>
-            <td class="t-tight">09-09</td>
-            <td>실제 리포트로 만들어진 주간 통합 리포트 1건</td>
-          </tr>
-          <tr>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>검토 · 승인 화면 — 강사 · 매니저용</td>
-            <td class="t-tight">09-09</td>
-            <td>수강생별 리포트를 승인 · 반려하는 화면 동작</td>
-          </tr>
-          <tr>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>진단 리포트 실데이터 전환 — 임시 데이터 제거</td>
-            <td class="t-tight">09-10</td>
-            <td>승인된 통합 리포트가 수강생 화면에 표시</td>
-          </tr>
-          <tr>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>통합 검증 · 시연 리허설</td>
-            <td class="t-tight">09-11</td>
-            <td>6개 관문 전부 통과 — 실습 로그인부터 수강생 화면까지 한 번에 시연</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="call call--warn">
+      <p class="call__title">상대 측 날짜는 우리 측 요청 기한입니다</p>
+      <p>
+        위 표에서 <span class="prov">GOV-AI</span> 로 표시된 6건은 아직 합의된 값이 아닙니다.
+        09-01 회의에서 수락 · 조정한 결과로 이 표를 갱신하고, 다음 주부터 같은 표로 점검합니다.
+      </p>
     </div>
 
   </section>
