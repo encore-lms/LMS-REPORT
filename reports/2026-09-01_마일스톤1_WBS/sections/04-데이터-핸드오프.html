@@ -1,0 +1,90 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>주고받을 데이터 · API</h2>
+
+    <p>
+      양 측이 서로에게 넘겨야 할 것과 그 시점입니다.
+      <strong>전달 시점을 못 지키면 상대 측 업무가 그날부터 멈춥니다</strong> —
+      마지막 열이 그 영향입니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">방향</th>
+            <th scope="col">무엇을</th>
+            <th scope="col">형식 · 경로</th>
+            <th scope="col" class="t-tight">전달 시점</th>
+            <th scope="col">없으면 막히는 것</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">LMS → GOV-AI</td>
+            <td>기수 · 수강생 · 학습 활동 조회 API</td>
+            <td><code>GET /ingest/v1/courses</code> + 전용 API 키</td>
+            <td class="t-tight"><span class="pill pill--done">08-18 완료</span></td>
+            <td>리포트를 어느 수강생 · 어느 기수로 묶을지 판단</td>
+          </tr>
+          <tr>
+            <td class="t-tight">LMS → GOV-AI</td>
+            <td>로그인 API와 비브라우저 클라이언트용 토큰 발급 방식</td>
+            <td><code>POST /auth/login</code> — 응답의 <code>user.id</code>가 기준 식별자</td>
+            <td class="t-tight">09-02</td>
+            <td>계약 ① 실습 환경 로그인 연동</td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI → LMS</td>
+            <td><strong>리포트 스키마 정의 + 샘플 리포트 1건</strong></td>
+            <td>JSON — 아래 경로 규약</td>
+            <td class="t-tight">09-03</td>
+            <td><strong>LMS 통합 파이프라인 · 검토 화면 · 수강생 화면 전부</strong></td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI → LMS</td>
+            <td>S3 버킷 주소와 LMS 읽기 권한</td>
+            <td>버킷명 + 접근 권한 설정</td>
+            <td class="t-tight">09-03</td>
+            <td>리포트 수신 경로 구현</td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI → LMS</td>
+            <td>실 수강생 대상 일자별 리포트</td>
+            <td>같은 경로에 매일 1회</td>
+            <td class="t-tight">09-08</td>
+            <td>통합 리포트의 실데이터, 09-11 시연</td>
+          </tr>
+          <tr>
+            <td class="t-tight">GOV-AI → LMS</td>
+            <td>리포트 재생성 API</td>
+            <td>엔드포인트 · 인증 방식 · 호출 단위</td>
+            <td class="t-tight">09-10</td>
+            <td>검토에서 반려한 리포트의 재생성 (없으면 매니저가 직접 수정)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>경로 규약</h3>
+    <p>08-11 킥오프에서 제시한 규약입니다. 09-01 회의에서 확정합니다.</p>
+    <div class="pathspec"><code>GOV-AI-DATARAKE/{YYYY-MM-DD}/json</code></div>
+    <p class="sub">원천 데이터 — 계약 ②</p>
+    <div class="pathspec"><code>GOV-AI-REPORT/{수강생 고유 번호}/{YYYY-MM-DD}/report</code></div>
+    <p class="sub">일자별 분석 리포트 — 계약 ③. <code>수강생 고유 번호</code>는 로그인 응답의 <code>user.id</code>(UUID)</p>
+
+    <div class="call call--crit">
+      <p class="call__title">가장 이른 병목은 09-03 리포트 샘플입니다</p>
+      <p>
+        LMS 측 업무 4건(통합 파이프라인 · 검토 화면 · 화면 전환 · 시연)은 전부
+        <strong>리포트에 어떤 항목이 담겨 오는지</strong>를 알아야 시작할 수 있습니다.
+        샘플 1건이면 충분하며, 완성된 분석 품질은 필요하지 않습니다.
+      </p>
+      <p>
+        <strong>09-02까지 회신이 없으면</strong> LMS가 스키마 초안을 먼저 만들어 보내고
+        상대 측이 그 형식에 맞추는 방향으로 전환할 것을 제안합니다 —
+        남은 기간상 스키마 확정을 더 미룰 여유가 없습니다.
+      </p>
+    </div>
+
+  </section>
