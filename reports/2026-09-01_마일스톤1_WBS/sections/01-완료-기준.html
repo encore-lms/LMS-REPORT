@@ -1,0 +1,111 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>마일스톤 1 완료 기준</h2>
+
+    <p class="lede">
+      마일스톤 1은 <strong>“우리 LMS 데이터를 외부로 보내 가공한 뒤 되받는 것”이 아닙니다.</strong>
+      <strong>코칭 에이전트에서 실제 발생한 학습 데이터</strong>(코딩 · 실행 · 에러 · 힌트 요청)까지
+      LMS 데이터와 <strong>합쳐진 통합 리포트가 LMS 화면에 노출</strong>되는 것이 완료 기준입니다.
+    </p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">수준</th>
+            <th scope="col">내용</th>
+            <th scope="col" class="t-tight">판정</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">현재</td>
+            <td>LMS가 기수 · 수강생 · 학습 활동을 외부에 <strong>제공</strong>하는 단방향.
+              되돌아오는 데이터는 없음</td>
+            <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">중간</td>
+            <td>LMS가 보낸 데이터를 외부에서 가공해 되받아 화면에 표시.
+              <strong>실습에서 발생한 새 데이터가 없음</strong></td>
+            <td class="t-tight"><span class="pill pill--none">완료 아님</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">완료</td>
+            <td>실습 환경에서 실제 발생한 학습 데이터 + LMS 학습 활동이 결합된
+              <strong>통합 리포트</strong>가 검토 · 승인을 거쳐 수강생 화면에 노출</td>
+            <td class="t-tight"><span class="pill pill--done">마일스톤 1</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>완료 판정 — 6개 관문</h3>
+    <p>
+      아래 6개가 모두 성립해야 마일스톤 1 완료입니다. 하나라도 끊기면 그 지점이 병목이며,
+      주간회의에서는 이 6개를 순서대로 확인합니다.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step__no">1</span>
+        <div class="step__body">
+          <span class="step__t">수강생 식별</span>
+          <span class="step__d">실습 환경에서 LMS 계정으로 로그인해, 발생하는 모든 데이터에
+            <code>user.id</code>(UUID)가 붙는다</span>
+          <span class="flow__who flow__who--gov">GOV-AI</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">2</span>
+        <div class="step__body">
+          <span class="step__t">원천 적재</span>
+          <span class="step__d">실습에서 나온 원천 데이터가 S3에 날짜별로 쌓인다</span>
+          <span class="flow__who flow__who--gov">GOV-AI</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">3</span>
+        <div class="step__body">
+          <span class="step__t">일자별 리포트 적재</span>
+          <span class="step__d">분석 결과가 수강생 · 날짜 경로에 하루 한 번 쌓인다</span>
+          <span class="flow__who flow__who--gov">GOV-AI</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">4</span>
+        <div class="step__body">
+          <span class="step__t">주간 통합 · 결합</span>
+          <span class="step__d">LMS가 해당 주간 리포트를 모아 <strong>LMS 자체 학습 활동</strong>(과제 · 퀴즈 · 출결 · 프로젝트)과
+            합쳐 하나의 통합 리포트를 만든다</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">5</span>
+        <div class="step__body">
+          <span class="step__t">검토 · 승인</span>
+          <span class="step__d">강사 · 매니저가 수강생별로 확인해 승인 또는 반려한다</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step__no">6</span>
+        <div class="step__body">
+          <span class="step__t">수강생 노출</span>
+          <span class="step__d">승인된 통합 리포트가 진단 리포트 탭에 <strong>실제 데이터로</strong> 표시된다
+            (현재는 임시 데이터로 화면만 동작)</span>
+          <span class="flow__who flow__who--lms">LMS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="call call--crit">
+      <p class="call__title">1 ~ 3번이 상대 측 업무이고, 그중 1번이 전체의 시작점입니다</p>
+      <p>
+        실습 환경에 LMS 로그인이 붙지 않으면 데이터에 수강생 식별자가 없어
+        <strong>2 ~ 6번이 모두 성립하지 않습니다.</strong> 어느 학생의 데이터인지 특정할 수 없기 때문입니다.
+      </p>
+    </div>
+
+  </section>
