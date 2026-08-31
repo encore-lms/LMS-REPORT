@@ -32,7 +32,7 @@
             <td><strong>주간 AI 진단 리포트 · 역량 증명서 조회 API</strong></td>
             <td>DataLake API 5종 — 아래 규약</td>
             <td class="t-tight"><span class="pill pill--done">08-31 완료</span></td>
-            <td>LMS 측 업무 3 · 4 · 5 — 리포트 적재 · 화면 · 시연</td>
+            <td>LMS 측 업무 3 · 5 — 리포트 조회 · 화면 · 시연</td>
           </tr>
           <tr>
             <td class="t-tight">LMS → GOV-AI</td>
@@ -91,7 +91,7 @@
             <td><code>GET /api/v1/reports/weekly/{studentUuid}</code>
               <span class="sub">쿼리 <code>week</code> · <code>format</code>(markdown | json) · <code>refresh</code></span></td>
             <td><strong>주간 AI 학습 진단 리포트 조회</strong> — 지표 · 등급 판정 · 취약 패턴 · 피드백 초안</td>
-            <td class="t-tight"><strong>업무 3 · 4</strong></td>
+            <td class="t-tight"><strong>업무 3</strong></td>
           </tr>
           <tr>
             <td><code>GET /api/v1/certificate/{studentUuid}</code></td>
@@ -102,7 +102,7 @@
             <td><code>GET /api/v1/reports/history/{studentUuid}</code>
               <span class="sub">쿼리 <code>limit</code></span></td>
             <td>주차별 리포트 이력 목록 (RDB 영구 보존분, 최신순)</td>
-            <td class="t-tight">업무 4 — 주차 이동</td>
+            <td class="t-tight">업무 3 — 주차 이동</td>
           </tr>
           <tr>
             <td><code>POST /api/v1/analysis/diagnose/{studentUuid}</code></td>
@@ -120,7 +120,7 @@
 
     <h3>주간 리포트 응답 구조</h3>
     <p>
-      <code>format=json</code> 응답은 네 블록입니다. 수강생 화면(업무 4)이 무엇을 그릴 수 있는지가 여기서 정해집니다.
+      <code>format=json</code> 응답은 네 블록입니다. 수강생 화면(업무 3)이 무엇을 그릴 수 있는지가 여기서 정해집니다.
     </p>
     <div class="tw">
       <table>
