@@ -47,8 +47,9 @@
             <td>GOV-AI 측에서 받는 수강생별 주간 리포트 분석 및 DB 적재</td>
             <td>
               <ul class="cell-list">
-                <li>약속된 S3 경로에서 일자별 리포트 수신</li>
-                <li>주 단위로 통합하고 <strong>LMS 학습 활동(과제 · 퀴즈 · 출결 · 프로젝트)과 결합</strong></li>
+                <li>GOV-AI DataLake 주간 리포트 API 호출로 수신 —
+                  <code>GET /api/v1/reports/weekly/{studentUuid}</code></li>
+                <li>받은 주간 리포트를 <strong>LMS 학습 활동(과제 · 퀴즈 · 출결 · 프로젝트)과 결합</strong></li>
                 <li>통합 리포트 스키마 설계 및 DB 적재 — 조회 API 포함</li>
               </ul>
             </td>
