@@ -1,0 +1,187 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>④ 주차별 산출물</h2>
+
+    <p>
+      각 주차가 끝난 시점에 <strong>실제로 존재해야 하는 것</strong>과 그것을 확인하는 방법입니다.
+      주간회의에서는 설명을 듣는 대신 <strong>이 표의 확인란을 채웁니다</strong> —
+      확인 방법에 적힌 대로 그 자리에서 열어 보고 O · X 를 정합니다.
+    </p>
+
+    <h3>1주차 — 09-01(화) ~ 09-04(금)</h3>
+    <p>이 주가 끝나면 <strong>상대 측 리포트의 모양이 확정</strong>되고, LMS에 그것을 받아 둘 자리가 생깁니다.</p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">산출물</th>
+            <th scope="col" class="t-tight">주체</th>
+            <th scope="col" class="t-tight">기한</th>
+            <th scope="col">확인 방법</th>
+            <th scope="col" class="t-tight">확인</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>샘플 리포트 파일 1건</strong></td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight">09-03</td>
+            <td>약속된 S3 경로를 LMS가 그 자리에서 열어 내용을 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>S3 버킷 접근 권한</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight">09-03</td>
+            <td>LMS 서버에서 목록 조회가 되는지 실행해 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td><code>user.id</code>가 실린 실습 데이터 샘플</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight">09-04</td>
+            <td>샘플 1건에 식별자 필드가 들어 있는지 확인합니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>통합 리포트 필드 정의서</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight">09-03</td>
+            <td>어느 값이 화면 어느 항목이 되는지 문서로 확인합니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>서버에서 내려오는 진단 리포트</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight">09-04</td>
+            <td>화면이 임시 데이터가 아닌 <strong>서버 응답</strong>으로 뜨는지 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>샘플 리포트 변환 결과</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight">09-04</td>
+            <td>샘플 1건이 화면 항목으로 변환된 모습을 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2주차 — 09-07(월) ~ 09-11(금)</h3>
+    <p>이 주가 끝나면 <strong>실제 수강생 데이터가 6개 관문을 끝까지 통과</strong>합니다.</p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">산출물</th>
+            <th scope="col" class="t-tight">주체</th>
+            <th scope="col" class="t-tight">기한</th>
+            <th scope="col">확인 방법</th>
+            <th scope="col" class="t-tight">확인</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>원천 데이터 적재분</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight">09-08</td>
+            <td>날짜 경로에 파일이 쌓이고 있는지 확인합니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td><strong>실 수강생 일자별 리포트</strong></td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight">09-08</td>
+            <td>1개 기수 · 3일 이상 분량이 경로에 있는지 셉니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>리포트 재생성 API</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight">09-10</td>
+            <td>LMS 검토 화면에서 호출해 결과가 다시 올라오는지 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>주간 통합 리포트 1건</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight">09-09</td>
+            <td>실제 리포트와 LMS 학습 활동이 합쳐진 결과물을 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>검토 · 승인 화면</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight">09-09</td>
+            <td>수강생별로 승인 · 반려가 되는지 눌러 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td><strong>수강생 화면의 통합 리포트</strong></td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight">09-10</td>
+            <td>승인된 리포트가 수강생 계정에서 보이는지 확인합니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td>전 구간 시연</td>
+            <td class="t-tight">공동</td>
+            <td class="t-tight">09-11</td>
+            <td>실습 로그인부터 수강생 화면까지 끊기지 않고 흐르는지 봅니다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>09-11 마일스톤 1 완료 판정</h3>
+    <p>
+      아래 6개가 모두 O 여야 완료입니다. 하나라도 X 이면
+      <strong>그 관문의 담당과 새 완료일을 그 자리에서 정합니다.</strong>
+    </p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">관문</th>
+            <th scope="col">판정 기준</th>
+            <th scope="col" class="t-tight">O / X</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">1 수강생 식별</td>
+            <td>실습 환경 로그인으로 데이터에 <code>user.id</code>가 붙는다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td class="t-tight">2 원천 적재</td>
+            <td>실습 원천이 S3에 날짜별로 쌓인다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td class="t-tight">3 일자별 리포트</td>
+            <td>분석 리포트가 수강생 · 날짜 경로에 하루 한 번 쌓인다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td class="t-tight">4 주간 통합 · 결합</td>
+            <td>주간 리포트가 <strong>LMS 학습 활동과 합쳐져</strong> 하나로 만들어진다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td class="t-tight">5 검토 · 승인</td>
+            <td>강사 · 매니저가 수강생별로 승인 · 반려한다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+          <tr>
+            <td class="t-tight">6 수강생 노출</td>
+            <td>승인된 통합 리포트가 수강생 화면에 <strong>실제 데이터로</strong> 표시된다</td>
+            <td class="t-tight">☐</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
