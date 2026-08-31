@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 생성 파일 — 원본은 sections/ 조각이며 build.py 가 조립한다. 직접 수정 금지. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="마일스톤 1 주차별 WBS — 완료 기준, 현재 지점, 주차별 업무 분장, 데이터·API 핸드오프, 주간회의 운영 방식.">
+
+<title>마일스톤 1 WBS</title>
+
+<script>
+  /* 저장된 테마를 첫 페인트 전에 적용한다. 본문 뒤에서 적용하면 색이 한 번 번쩍인다. */
+  try {
+    var saved = localStorage.getItem('lms-report-theme');
+    if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>
+
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/base.css">
+<link rel="stylesheet" href="../../assets/theme-toggle.css">
+<link rel="stylesheet" href="../../assets/report.css">
+<link rel="stylesheet" href="../../assets/svcmap.css">
+</head>
+<body>
+
+<div class="doc">
+
+  <a class="home-link" href="../../">← 보고서 목록</a>
+
+  <header class="masthead masthead--plain">
+    <p class="masthead__eyebrow">09.01 주간회의 자료</p>
+    <h1>마일스톤 1<br>주차별 WBS</h1>
+    <div class="masthead__sub">
+      <p>
+        <strong>9월 11일</strong>까지 코칭 에이전트에서 실제 발생한 학습 데이터와 LMS 데이터가 합쳐진
+        <strong>통합 리포트를 LMS에 노출</strong>하기 위한, 양 측 업무 · 일정 · 주고받을 데이터 계획입니다.
+      </p>
+      <p>
+        이번 주부터 주간회의는 개발 진행 상황 설명이 아니라
+        <strong>이 문서의 항목을 기준으로 완료 여부를 확인하는 방식</strong>으로 진행합니다.
+      </p>
+    </div>
+    <div class="masthead__meta">
+      <span>기준일 <b>2026-08-31</b></span>
+      <span>대상 회의 <b>2026-09-01</b></span>
+      <span>완료 기한 <b>2026-09-11 (금)</b></span>
+      <span>남은 기간 <b>9영업일</b></span>
+      <span>참조 <b>08-11 GOV-AI × LMS 통합 기획안</b></span>
+    </div>
+  </header>
+
+<!--SECTIONS-->
+
+  <footer>
+    <p>
+      상대 측(최문창 강사) 업무의 완료일은 <strong>현재 합의된 값이 아니라 우리 측 요청 기한</strong>입니다.
+      09-01 회의에서 수락 · 조정한 결과를 이 문서에 반영해 다음 주부터 같은 표로 점검합니다.
+    </p>
+  </footer>
+
+</div>
+
+<button class="theme-toggle" type="button" id="themeToggle" data-next="dark">
+  <svg class="icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+  <svg class="icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+  <span class="theme-toggle__label">다크</span>
+</button>
+
+<script src="../../assets/theme-toggle.js"></script>
+
+</body>
+</html>
