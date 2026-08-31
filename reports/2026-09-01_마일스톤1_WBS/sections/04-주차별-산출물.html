@@ -2,13 +2,6 @@
     <div class="sec-num"><!--NUM--></div>
     <h2>주차별 산출물</h2>
 
-    <p>
-      각 주차가 끝난 시점에 <strong>실제로 존재해야 하는 것</strong>과 그것을 확인하는 방법입니다.
-      주간회의에서는 설명을 듣는 대신 <strong>이 표의 확인란을 채웁니다</strong> —
-      확인 방법에 적힌 대로 그 자리에서 열어 보고 O · X 를 정합니다.
-      LMS 측 기한은 09-01 회의에서 정하므로, 주차 배치는 선후 관계를 따랐습니다.
-    </p>
-
     <h3>1주차 — 09-01(화) ~ 09-04(금)</h3>
     <p>
       GOV-AI 측 리포트의 모양은 <strong>08-31 API 명세로 확정</strong>됐고,
@@ -23,8 +16,7 @@
             <th scope="col" class="t-tight">주체</th>
             <th scope="col" class="t-tight">기한</th>
             <th scope="col">확인 방법</th>
-            <th scope="col" class="t-tight">확인</th>
-          </tr>
+                </tr>
         </thead>
         <tbody>
           <tr>
@@ -32,42 +24,36 @@
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td class="t-tight">09-03</td>
             <td>LMS가 그 자리에서 주간 리포트 API를 호출해 응답 내용을 봅니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td>DataLake API 접근 권한</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td class="t-tight">09-03</td>
             <td>LMS 서버에서 전용 키로 호출이 되는지 실행해 봅니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td><code>user.id</code>가 실린 실습 데이터 샘플</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td class="t-tight">09-04</td>
             <td>샘플 1건에 식별자 필드가 들어 있는지 확인합니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td>데이터 모델 정의서 <span class="sub">업무 1</span></td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td class="t-tight"><span class="pill pill--done">08-18 완료</span></td>
             <td>제공 필드 · 타입 · 식별자 규약을 문서로 확인합니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td>전달 API + 명세 <span class="sub">업무 2</span></td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td class="t-tight"><span class="pill pill--done">08-18 완료</span></td>
             <td>GOV-AI 측이 실제로 호출해 응답을 받아 봅니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td><strong>실습 환경용 토큰 발급 방식</strong> <span class="sub">업무 2 잔여</span></td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td class="t-tight sub">확정 전</td>
             <td>쿠키 없이 발급받은 토큰으로 실습 환경에서 LMS 인증이 되는지 확인합니다</td>
-            <td class="t-tight">☐</td>
           </tr>
         </tbody>
       </table>
@@ -83,8 +69,7 @@
             <th scope="col" class="t-tight">주체</th>
             <th scope="col" class="t-tight">기한</th>
             <th scope="col">확인 방법</th>
-            <th scope="col" class="t-tight">확인</th>
-          </tr>
+                </tr>
         </thead>
         <tbody>
           <tr>
@@ -92,35 +77,30 @@
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td class="t-tight">09-08</td>
             <td>GOV-AI 측에 원천 데이터가 날짜별로 쌓이고 있는지 확인합니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td><strong>실 수강생 주간 리포트</strong></td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td class="t-tight">09-08</td>
             <td>1개 기수 분량이 API로 조회되는지 셉니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td>주간 통합 리포트 1건 <span class="sub">업무 3</span></td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td class="t-tight sub">확정 전</td>
             <td>실제 리포트와 LMS 학습 활동이 합쳐져 적재된 결과를 봅니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td><strong>수강생 화면의 주간 리포트</strong> <span class="sub">업무 4</span></td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td class="t-tight sub">확정 전</td>
             <td>수강생 계정으로 들어가 본인 주간 리포트가 뜨는지 확인합니다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td>전 구간 시연 <span class="sub">업무 5</span></td>
             <td class="t-tight">공동</td>
             <td class="t-tight">09-11</td>
             <td>실습 로그인부터 수강생 화면까지 끊기지 않고 흐르는지 봅니다</td>
-            <td class="t-tight">☐</td>
           </tr>
         </tbody>
       </table>
@@ -128,7 +108,7 @@
 
     <h3>09-11 마일스톤 1 완료 판정</h3>
     <p>
-      아래 5개가 모두 O 여야 완료입니다. 하나라도 X 이면
+      아래 5개가 모두 충족돼야 완료입니다. 하나라도 아니면
       <strong>그 단계의 담당과 새 완료일을 그 자리에서 정합니다.</strong>
     </p>
     <div class="tw">
@@ -137,34 +117,28 @@
           <tr>
             <th scope="col" class="t-tight">단계</th>
             <th scope="col">판정 기준</th>
-            <th scope="col" class="t-tight">O / X</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="t-tight">수강생 식별</td>
             <td>실습 환경 로그인으로 데이터에 <code>user.id</code>가 붙는다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td class="t-tight">원천 적재</td>
             <td>실습 원천이 날짜별로 쌓인다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td class="t-tight">주차별 리포트</td>
             <td>분석 리포트가 수강생 · 주차 단위로 API에서 조회된다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td class="t-tight">주간 통합 · 결합</td>
             <td>주간 리포트가 <strong>LMS 학습 활동과 합쳐져</strong> 하나로 만들어진다</td>
-            <td class="t-tight">☐</td>
           </tr>
           <tr>
             <td class="t-tight">수강생 노출</td>
             <td>통합 리포트가 수강생 화면에 <strong>실제 데이터로</strong> 표시된다</td>
-            <td class="t-tight">☐</td>
           </tr>
         </tbody>
       </table>
