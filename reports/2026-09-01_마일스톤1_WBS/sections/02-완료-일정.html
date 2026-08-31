@@ -4,8 +4,9 @@
 
     <p>
       9월 11일까지 남은 9일을 2주로 나눴습니다.
-      진한 칸이 우리 측 업무, 연한 칸이 최문창 강사 측 업무이며,
+      진한 칸이 LMS 측 업무, 연한 칸이 GOV-AI 측 업무이며,
       주황 칸은 <strong>데이터 전달 시점</strong>입니다. 9월 5일 · 6일은 주말이라 비워 두었습니다.
+      <strong>LMS 측 업무의 날짜는 09-01 회의에서 확정</strong>하므로 아직 칸을 비워 두었습니다.
     </p>
 
     <div class="sched">
@@ -19,7 +20,7 @@
           <div>9/10~9/11</div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">상호 계약 ①~④ 확정</div>
+          <div class="sched__task">상호 계약 ①~③ 확정</div>
           <div class="sched__cell on">회의</div>
           <div class="sched__cell on">확정</div>
           <div class="sched__cell"></div>
@@ -51,39 +52,39 @@
           <div class="sched__cell on qa">가동</div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">리포트 수신 · 서버 도메인 <span class="flow__who flow__who--lms">LMS</span></div>
+          <div class="sched__task">1 GOV-AI 측 데이터 모델링 <span class="flow__who flow__who--lms">LMS</span></div>
           <div class="sched__cell"></div>
-          <div class="sched__cell on">구현</div>
-          <div class="sched__cell on">완료</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+        </div>
+        <div class="sched__row">
+          <div class="sched__task">2 전달 API 신설 <span class="flow__who flow__who--lms">LMS</span></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">주간 통합 파이프라인 <span class="flow__who flow__who--lms">LMS</span></div>
+          <div class="sched__task">3 주간 리포트 분석 · DB 적재 <span class="flow__who flow__who--lms">LMS</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
-          <div class="sched__cell on">설계</div>
-          <div class="sched__cell on">구현</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">검토 · 승인 화면 <span class="flow__who flow__who--lms">LMS</span></div>
+          <div class="sched__task">4 렌더링 화면 신설 <span class="flow__who flow__who--lms">LMS</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
-          <div class="sched__cell on">구현</div>
-          <div class="sched__cell on">연결</div>
+          <div class="sched__cell"></div>
+          <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">진단 리포트 실데이터 전환 <span class="flow__who flow__who--lms">LMS</span></div>
-          <div class="sched__cell"></div>
-          <div class="sched__cell"></div>
-          <div class="sched__cell"></div>
-          <div class="sched__cell"></div>
-          <div class="sched__cell on">연결</div>
-        </div>
-        <div class="sched__row">
-          <div class="sched__task">통합 검증 · 시연</div>
+          <div class="sched__task">5 통합 검증 · 시연 <span class="flow__who flow__who--lms">LMS</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
@@ -95,7 +96,7 @@
 
     <h3>날짜별 마감</h3>
     <p>
-      위 일정을 날짜순으로 편 것입니다.
+      날짜가 정해진 항목입니다.
       주간회의에서는 <strong>지난 회의 이후 지나간 날짜부터</strong> 순서대로 확인합니다.
     </p>
     <div class="tw">
@@ -111,12 +112,7 @@
           <tr>
             <td class="t-tight">09-01 <span class="sub">화</span></td>
             <td class="t-tight">공동</td>
-            <td>상호 계약 ①~④ 수락 여부와 각 완료일 확정</td>
-          </tr>
-          <tr>
-            <td class="t-tight">09-02 <span class="sub">수</span></td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>로그인 API와 비브라우저 클라이언트용 토큰 발급 방식 전달</td>
+            <td>상호 계약 ①~③ 수락 여부와 각 완료일 확정, LMS 측 업무 일정 확정</td>
           </tr>
           <tr>
             <td class="t-tight">09-03 <span class="sub">목</span></td>
@@ -129,19 +125,9 @@
             <td>S3 버킷 소유 주체 · 접근 권한 확정</td>
           </tr>
           <tr>
-            <td class="t-tight">09-03 <span class="sub">목</span></td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>통합 리포트 데이터 모델 확정</td>
-          </tr>
-          <tr>
             <td class="t-tight">09-04 <span class="sub">금</span></td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>실습 환경 LMS 로그인 연동 (계약 ①)</td>
-          </tr>
-          <tr>
-            <td class="t-tight">09-04 <span class="sub">금</span></td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>리포트 수신 경로 · 진단 리포트 서버 도메인</td>
           </tr>
           <tr>
             <td class="t-tight">09-08 <span class="sub">화</span></td>
@@ -154,26 +140,6 @@
             <td><strong>실 수강생 대상 일자별 리포트 적재 시작</strong> (계약 ③)</td>
           </tr>
           <tr>
-            <td class="t-tight">09-09 <span class="sub">수</span></td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>주간 통합 파이프라인 — 리포트와 LMS 학습 활동 결합</td>
-          </tr>
-          <tr>
-            <td class="t-tight">09-09 <span class="sub">수</span></td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>검토 · 승인 화면</td>
-          </tr>
-          <tr>
-            <td class="t-tight">09-10 <span class="sub">목</span></td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>리포트 재생성 API (계약 ④)</td>
-          </tr>
-          <tr>
-            <td class="t-tight">09-10 <span class="sub">목</span></td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>진단 리포트 실데이터 전환</td>
-          </tr>
-          <tr>
             <td class="t-tight">09-11 <span class="sub">금</span></td>
             <td class="t-tight">공동</td>
             <td><strong>통합 검증 · 시연 — 마일스톤 1 완료 판정</strong></td>
@@ -182,10 +148,51 @@
       </table>
     </div>
 
+    <h3>LMS 측 업무 일정</h3>
+    <p>아래 4건은 09-01 회의에서 완료일을 정합니다.</p>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">#</th>
+            <th scope="col">업무</th>
+            <th scope="col" class="t-tight">완료일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">1</td>
+            <td>GOV-AI 측 데이터 모델링</td>
+            <td class="t-tight sub">회의에서 확정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">2</td>
+            <td>모델링된 데이터를 GOV-AI 측에 전달하기 위한 API 신설</td>
+            <td class="t-tight sub">회의에서 확정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">3</td>
+            <td>GOV-AI 측에서 받는 수강생별 주간 리포트 분석 및 DB 적재</td>
+            <td class="t-tight sub">회의에서 확정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">4</td>
+            <td>수강생별 주간 리포트 렌더링 화면 신설</td>
+            <td class="t-tight sub">회의에서 확정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">5</td>
+            <td>통합 검증 · 시연</td>
+            <td class="t-tight">09-11</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="call call--warn">
-      <p class="call__title">상대 측 날짜는 우리 측 요청 기한입니다</p>
+      <p class="call__title">GOV-AI 측 날짜는 LMS 측 요청 기한입니다</p>
       <p>
-        위 표에서 <span class="prov">GOV-AI</span> 로 표시된 6건은 아직 합의된 값이 아닙니다.
+        위 표에서 <span class="prov">GOV-AI</span> 로 표시된 5건은 아직 합의된 값이 아닙니다.
         09-01 회의에서 수락 · 조정한 결과로 이 표를 갱신하고, 다음 주부터 같은 표로 점검합니다.
       </p>
     </div>
