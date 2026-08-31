@@ -1,0 +1,65 @@
+  <section>
+    <div class="sec-num"><!--NUM--></div>
+    <h2>진행 흐름</h2>
+
+    <p>전체 작업 흐름과 현재 지점입니다.</p>
+
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="t-tight">#</th>
+            <th scope="col">단계</th>
+            <th scope="col" class="t-tight">주체</th>
+            <th scope="col" class="t-tight">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="t-tight">1</td>
+            <td>LMS에서 GOV-AI 측으로 API를 통해 데이터 전달</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight"><span class="pill pill--done">완료</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">2</td>
+            <td>GOV-AI 측에서 API로 받은 데이터로 주간 리포트를 생성</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight"><span class="pill pill--done">완료</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">3</td>
+            <td>생성된 주간 리포트를 LMS로 받아 데이터 렌더링</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight sub">진행 예정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">4</td>
+            <td>ATmux · PlayLang 구현</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight"><span class="pill pill--done">완료</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">5</td>
+            <td>ATmux · PlayLang 시뮬레이터로 검증</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">6</td>
+            <td>ATmux · PlayLang 완료 시 <strong>LMS에서 전달되는 데이터와 합쳐</strong> 주간 리포트 생성</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td class="t-tight sub">진행 예정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">7</td>
+            <td>GOV-AI 측에서 전달되는 API가 업데이트되면 그에 맞춰
+              <strong>주간 리포트 화면 재구성</strong></td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td class="t-tight sub">진행 예정</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
