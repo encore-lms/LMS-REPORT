@@ -49,7 +49,7 @@
           </tr>
           <tr>
             <td class="t-tight">3</td>
-            <td>주간 리포트 조회 · 렌더링 화면 신설</td>
+            <td>주간 리포트 조회 · 렌더링 화면 신설 <span class="sub">진행 예정</span></td>
             <td>
               <ul class="cell-list">
                 <li>GOV-AI DataLake 주간 리포트 API 호출로 수신 —
@@ -65,7 +65,7 @@
           </tr>
           <tr>
             <td class="t-tight">4</td>
-            <td>전달 API 갱신에 맞춘 화면 재구성</td>
+            <td>전달 API 갱신에 맞춘 화면 재구성 <span class="sub">진행 예정</span></td>
             <td>
               <ul class="cell-list">
                 <li>GOV-AI 측 전달 API가 갱신되면 바뀐 응답 구조를 반영</li>
@@ -77,11 +77,12 @@
           </tr>
           <tr>
             <td class="t-tight">5</td>
-            <td>통합 검증 · 시연</td>
+            <td>통합 검증 · 시연 <span class="sub">진행 예정</span></td>
             <td>
               <ul class="cell-list">
                 <li>리포트 생성 → LMS 조회 → 화면 노출까지 전 구간 점검</li>
-                <li>실 수강생 데이터로 재현 확인</li>
+                <li>시뮬레이터 데이터로 전 구간 재현 확인
+                  <span class="sub">마일스톤 1 기준 — 실 수강생 실습 데이터는 후속</span></li>
                 <li>시연 시나리오 리허설</li>
               </ul>
             </td>
@@ -135,7 +136,8 @@
             <td>
               <ul class="cell-list">
                 <li>주차 스냅샷이 있으면 즉시 반환, 없으면 LLM 호출 — 약 10초</li>
-                <li>주간에 쌓인 스냅샷을 근거로 등급 · 이탈 위험도 판정</li>
+                <li>주간에 쌓인 스냅샷과 <strong>ATmux · PlayLang 실습 데이터</strong>를 근거로
+                  등급 · 이탈 위험도 판정 <span class="sub">실습 데이터는 현재 시뮬레이터 생성분</span></li>
                 <li>마크다운 · JSON 두 형식으로 출력</li>
                 <li>정기 배치 생성은 후속 — 현재는 조회 시 생성</li>
               </ul>
@@ -152,7 +154,8 @@
                 <li>PlayLang — 코스 · 단계 · 사용 언어 · 에러 · 실행 이벤트 발생</li>
               </ul>
             </td>
-            <td>실습 환경에서 학습 데이터가 나오는 상태</td>
+            <td>실습 환경 자체가 동작하는 상태
+              <span class="sub">수집 연동 테스트는 업무 5</span></td>
             <td class="t-tight">4</td>
           </tr>
           <tr>
@@ -170,7 +173,7 @@
           </tr>
           <tr>
             <td class="t-tight">6</td>
-            <td>실습 데이터 · LMS 데이터를 합친 주간 리포트 생성</td>
+            <td>실습 데이터 · LMS 데이터를 합친 주간 리포트 생성 <span class="sub">진행 예정</span></td>
             <td>
               <ul class="cell-list">
                 <li>ATmux · PlayLang 실연동이 끝나면 <strong>실 실습 데이터와 LMS 전달 데이터를 합쳐</strong>
