@@ -7,43 +7,30 @@
       <table>
         <thead>
           <tr>
+            <th scope="col" class="t-tight">#</th>
             <th scope="col">업무</th>
-            <th scope="col" class="t-tight">관문</th>
-            <th scope="col">내용</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>통합 리포트 데이터 모델 확정</td>
-            <td class="t-tight">4 준비</td>
-            <td>상대 리포트의 어떤 값이 화면 어느 항목이 되는지 정의합니다. 나머지 구현의 기준이 됩니다</td>
+            <td class="t-tight">1</td>
+            <td>GOV-AI 측 데이터 모델링</td>
           </tr>
           <tr>
-            <td>리포트 수신 · 서버 도메인 신설</td>
+            <td class="t-tight">2</td>
+            <td>모델링된 데이터를 GOV-AI 측에 전달하기 위한 API 신설</td>
+          </tr>
+          <tr>
+            <td class="t-tight">3</td>
+            <td>GOV-AI 측에서 받는 수강생별 주간 리포트 분석 및 DB 적재</td>
+          </tr>
+          <tr>
             <td class="t-tight">4</td>
-            <td>약속된 S3 경로에서 읽어 저장 · 조회합니다.
-              현재 진단 리포트에는 <strong>서버 기능이 하나도 없어</strong> 새로 만들어야 합니다</td>
+            <td>수강생별 주간 리포트 렌더링 화면 신설</td>
           </tr>
           <tr>
-            <td>주간 통합 파이프라인</td>
-            <td class="t-tight">4</td>
-            <td>일자별 리포트를 주 단위로 모으고,
-              <strong>LMS 학습 활동(과제 · 퀴즈 · 출결 · 프로젝트)과 결합</strong>해 하나의 리포트로 만듭니다</td>
-          </tr>
-          <tr>
-            <td>검토 · 승인 화면</td>
             <td class="t-tight">5</td>
-            <td>강사 · 매니저가 수강생별로 승인 · 반려합니다. 승인된 것만 수강생에게 공개됩니다</td>
-          </tr>
-          <tr>
-            <td>진단 리포트 실데이터 전환</td>
-            <td class="t-tight">6</td>
-            <td>이미 만들어져 있는 화면의 임시 데이터를 걷어내고 승인된 통합 리포트를 노출합니다</td>
-          </tr>
-          <tr>
             <td>통합 검증 · 시연</td>
-            <td class="t-tight">전체</td>
-            <td>실습 로그인부터 수강생 화면까지 한 번에 흐르는지 확인합니다</td>
           </tr>
         </tbody>
       </table>
@@ -54,38 +41,14 @@
       <table>
         <thead>
           <tr>
+            <th scope="col" class="t-tight">#</th>
             <th scope="col">업무</th>
-            <th scope="col" class="t-tight">계약</th>
-            <th scope="col" class="t-tight">관문</th>
-            <th scope="col">내용</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>실습 환경 LMS 로그인 연동</td>
-            <td class="t-tight">①</td>
-            <td class="t-tight">1</td>
-            <td>ATmux · VS Code 확장에서 LMS 계정으로 인증해
-              <code>user.id</code>(UUID)를 확보합니다. <strong>전체 연동의 시작점</strong>입니다</td>
-          </tr>
-          <tr>
-            <td>원천 데이터 S3 적재</td>
-            <td class="t-tight">②</td>
-            <td class="t-tight">2</td>
-            <td>실습에서 나온 원천을 날짜 경로에 그대로 쌓습니다. 나중에 재분석 · 검증의 근거가 됩니다</td>
-          </tr>
-          <tr>
-            <td>일자별 리포트 생성 · 적재</td>
-            <td class="t-tight">③</td>
-            <td class="t-tight">3</td>
-            <td>분석 결과를 수강생 · 날짜 경로에 하루 한 번 올립니다.
-              <strong>리포트 스키마 확정이 여기에 포함</strong>됩니다</td>
-          </tr>
-          <tr>
-            <td>리포트 재생성 API</td>
-            <td class="t-tight">④</td>
-            <td class="t-tight">5 보조</td>
-            <td>검토에서 반려한 리포트를 다시 생성합니다. LMS 검토 화면에서 호출합니다</td>
+            <td class="t-tight"></td>
+            <td class="sub">09-01 회의에서 확인 후 채웁니다</td>
           </tr>
         </tbody>
       </table>
