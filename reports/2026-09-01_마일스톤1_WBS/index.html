@@ -433,7 +433,8 @@
     <h3>날짜별 일정</h3>
     <p>
       주간회의에서는 <strong>지난 회의 이후 지나간 날짜부터</strong> 순서대로 확인합니다.
-    </p>
+      <strong>흐름</strong> 열은 1번 진행 흐름의 몇 번째 단계인지이며,
+      날짜가 아직 없는 항목은 표 아래쪽에 모아 두었습니다.</p>
     <div class="tw">
       <table>
         <thead>
@@ -442,6 +443,7 @@
             <th scope="col" class="t-tight">날짜</th>
             <th scope="col" class="t-tight">주체</th>
             <th scope="col">업무</th>
+            <th scope="col" class="t-tight">흐름</th>
             <th scope="col" class="t-tight">상태</th>
           </tr>
         </thead>
@@ -451,6 +453,7 @@
             <td class="t-tight">08-12 ~ 17</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>GOV-AI 측 전달 데이터 모델링 <span class="sub">업무 1</span></td>
+            <td class="t-tight sub">1</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
           <tr>
@@ -458,6 +461,7 @@
             <td class="t-tight">08-18</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>모델링된 데이터를 GOV-AI 측에 전달하기 위한 API 신설 <span class="sub">업무 2</span></td>
+            <td class="t-tight sub">1</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
           <tr>
@@ -465,6 +469,7 @@
             <td class="t-tight">08-31</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>GOV-AI DataLake AI 리포트 API 전달</td>
+            <td class="t-tight sub">2</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
           <tr>
@@ -472,6 +477,7 @@
             <td class="t-tight">08-31 ~ 09-01</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>GOV-AI 측 전달 데이터 모델링 고도화 <span class="sub">업무 1 후속</span></td>
+            <td class="t-tight sub">7 선행</td>
             <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
           </tr>
           <tr>
@@ -479,6 +485,7 @@
             <td class="t-tight">09-01 ~ 09-03</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>GOV-AI DataLake AI 리포트 기반으로 수강생별 주간 리포트 화면 구상 및 구현 <span class="sub">업무 3</span></td>
+            <td class="t-tight sub">3</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
           <tr>
@@ -487,6 +494,7 @@
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>고도화된 GOV-AI 측으로 V2 API 전달 <span class="sub">업무 2 후속</span><br>
               <span class="sub">채문창 강사와 업무 논의</span></td>
+            <td class="t-tight sub">7 선행</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
           <tr>
@@ -494,6 +502,39 @@
             <td class="t-tight">09-11</td>
             <td class="t-tight">공동</td>
             <td><strong>통합 검증 시연 — 마일스톤 1 완료 판정</strong> <span class="sub">업무 5</span></td>
+            <td class="t-tight sub">1~7</td>
+            <td class="t-tight sub">진행 예정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">8</td>
+            <td class="t-tight sub">미정</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td>ATmux · PlayLang 구현</td>
+            <td class="t-tight sub">4</td>
+            <td class="t-tight"><span class="pill pill--done">완료</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">9</td>
+            <td class="t-tight sub">미정</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td>ATmux · PlayLang 시뮬레이터로 검증</td>
+            <td class="t-tight sub">5</td>
+            <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
+          </tr>
+          <tr>
+            <td class="t-tight">10</td>
+            <td class="t-tight sub">미정</td>
+            <td class="t-tight"><span class="prov">GOV-AI</span></td>
+            <td>실습 데이터 · LMS 데이터를 합친 주간 리포트 생성</td>
+            <td class="t-tight sub">6</td>
+            <td class="t-tight sub">진행 예정</td>
+          </tr>
+          <tr>
+            <td class="t-tight">11</td>
+            <td class="t-tight sub">미정</td>
+            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
+            <td>전달 API 갱신에 맞춘 주간 리포트 화면 재구성 <span class="sub">업무 4</span></td>
+            <td class="t-tight sub">7</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
         </tbody>
