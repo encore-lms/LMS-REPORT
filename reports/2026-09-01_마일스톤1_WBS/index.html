@@ -54,140 +54,11 @@
   <!-- ══ 1 ══ -->
   <section>
     <div class="sec-num">01</div>
-    <h2>현재 지점</h2>
+    <h2>① 업무 분장</h2>
 
     <p class="lede">
       마일스톤 1은 실습 환경 로그인부터 수강생 화면 노출까지 <strong>6개 관문</strong>을 거칩니다.
-      <strong>1 ~ 3번이 최문창 강사 측, 4 ~ 6번이 우리 측</strong>이며,
-      하나라도 끊기면 그 지점이 병목입니다.
-    </p>
-
-    <div class="kpis">
-      <div class="kpi">
-        <p class="kpi__label">남은 기간</p>
-        <p class="kpi__val">9<small>영업일</small></p>
-        <p class="kpi__delta">09-01 화 ~ 09-11 금</p>
-      </div>
-      <div class="kpi">
-        <p class="kpi__label">확정된 상호 계약</p>
-        <p class="kpi__val">0<small>/ 4</small></p>
-        <p class="kpi__delta flat">08-11 킥오프에서 제시, 이후 확정 없음</p>
-      </div>
-      <div class="kpi">
-        <p class="kpi__label">LMS 신규 구현</p>
-        <p class="kpi__val">4<small>건</small></p>
-        <p class="kpi__delta">수신 · 통합 · 검토 · 노출</p>
-      </div>
-    </div>
-
-    <h3>6개 관문의 현재 상태</h3>
-    <div class="tw">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col" class="t-tight">관문</th>
-            <th scope="col" class="t-tight">주체</th>
-            <th scope="col" class="t-tight">상태</th>
-            <th scope="col">근거 · 비고</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="t-tight">1 수강생 식별</td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td class="t-tight"><span class="pill pill--hold">확인 필요</span></td>
-            <td>계약 ①을 08-11에 제시했고, 이후 수락 여부 · 착수 시점을 전달받지 못했습니다</td>
-          </tr>
-          <tr>
-            <td class="t-tight">2 원천 적재</td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td class="t-tight"><span class="pill pill--hold">확인 필요</span></td>
-            <td>계약 ② — 적재 버킷 · 시각 · 범위 미확정</td>
-          </tr>
-          <tr>
-            <td class="t-tight">3 일자별 리포트</td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td class="t-tight"><span class="pill pill--hold">확인 필요</span></td>
-            <td>계약 ③ — 경로 규약은 제안했으나 <strong>리포트 스키마와 샘플이 아직 없습니다</strong></td>
-          </tr>
-          <tr>
-            <td class="t-tight">4 주간 통합 · 결합</td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td class="t-tight"><span class="pill pill--none">미착수</span></td>
-            <td>리포트 수신 · 통합 코드가 없습니다. 상대 측 리포트 스키마가 정해져야 착수합니다</td>
-          </tr>
-          <tr>
-            <td class="t-tight">5 검토 · 승인</td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td class="t-tight"><span class="pill pill--none">미착수</span></td>
-            <td>강사 · 매니저 검토 화면이 없습니다</td>
-          </tr>
-          <tr>
-            <td class="t-tight">6 수강생 노출</td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td class="t-tight"><span class="pill pill--hold">화면만 완료</span></td>
-            <td>진단 리포트 화면은 08-10 구현 완료(수강생 개인 · 매니저 그룹).
-              <strong>서버 연동이 없어 임시 데이터로 동작</strong>합니다</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h3>LMS가 이미 넘긴 것</h3>
-    <p>
-      상대 측이 지금 바로 쓸 수 있도록 배포까지 끝난 항목입니다.
-      회의에서 <strong>수신 · 사용 여부를 확인</strong>해야 하는 부분입니다.
-    </p>
-    <div class="tw">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col" class="t-tight">항목</th>
-            <th scope="col" class="t-tight">상태</th>
-            <th scope="col">내용</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="t-tight">기수 · 수강생 조회 API</td>
-            <td class="t-tight"><span class="pill pill--done">08-18 배포</span></td>
-            <td>실습 환경 계정을 LMS 기수 · 수강생에 매핑할 수 있는 조회 API.
-              전용 API 키로만 접근하며 LMS 내부는 열지 않습니다
-              <div class="pathspec"><code>GET /ingest/v1/courses?include=students</code></div></td>
-          </tr>
-          <tr>
-            <td class="t-tight">수강생 학습 활동 조회</td>
-            <td class="t-tight"><span class="pill pill--done">08-18 배포</span></td>
-            <td>수강생별 과제 · 퀴즈 · QnA · 출결 · 프로젝트 · 트러블슈팅 집계.
-              통합 리포트에서 <strong>LMS 측이 담당할 데이터</strong>가 이미 조회 가능한 상태입니다
-              <div class="pathspec"><code>GET /ingest/v1/courses?include=activities</code></div></td>
-          </tr>
-          <tr>
-            <td class="t-tight">LMS 로그인 API</td>
-            <td class="t-tight"><span class="pill pill--done">운영 중</span></td>
-            <td>계약 ①이 사용할 인증 경로. 응답의 <code>user.id</code>(UUID)가 전체 연동의 기준 식별자입니다.
-              비브라우저 클라이언트용 발급 방식은 LMS가 추가 제공합니다</td>
-          </tr>
-          <tr>
-            <td class="t-tight">진단 리포트 화면</td>
-            <td class="t-tight"><span class="pill pill--done">08-10 구현</span></td>
-            <td>통합 리포트를 담을 그릇. 수강생 개인 화면과 매니저 그룹 화면이 이미 있어,
-              <strong>데이터만 실제 값으로 바꾸면 됩니다</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </section>
-
-  <!-- ══ 2 ══ -->
-  <section>
-    <div class="sec-num">02</div>
-    <h2>① 업무 분장</h2>
-
-    <p>
-      앞 장의 6개 관문을 누가 맡는지 나눈 것입니다.
-      <strong>1 ~ 3번 관문이 최문창 강사 측, 4 ~ 6번 관문이 우리 측</strong>이며,
+      그중 <strong>1 ~ 3번이 최문창 강사 측, 4 ~ 6번이 우리 측</strong>이며,
       그 사이를 잇는 것이 S3에 올라오는 리포트입니다.
     </p>
 
@@ -292,9 +163,9 @@
 
   </section>
 
-  <!-- ══ 3 ══ -->
+  <!-- ══ 2 ══ -->
   <section>
-    <div class="sec-num">03</div>
+    <div class="sec-num">02</div>
     <h2>② 완료 일정</h2>
 
     <p>
@@ -487,9 +358,9 @@
 
   </section>
 
-  <!-- ══ 4 ══ -->
+  <!-- ══ 3 ══ -->
   <section>
-    <div class="sec-num">04</div>
+    <div class="sec-num">03</div>
     <h2>③ 주고받을 데이터 · API</h2>
 
     <p>
@@ -579,9 +450,9 @@
 
   </section>
 
-  <!-- ══ 5 ══ -->
+  <!-- ══ 4 ══ -->
   <section>
-    <div class="sec-num">05</div>
+    <div class="sec-num">04</div>
     <h2>④ 주차별 산출물</h2>
 
     <p>
@@ -768,9 +639,9 @@
 
   </section>
 
-  <!-- ══ 6 ══ -->
+  <!-- ══ 5 ══ -->
   <section>
-    <div class="sec-num">06</div>
+    <div class="sec-num">05</div>
     <h2>주간회의 운영 방식</h2>
 
     <p>
