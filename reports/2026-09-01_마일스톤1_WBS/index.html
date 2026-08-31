@@ -63,28 +63,70 @@
           <tr>
             <th scope="col" class="t-tight">#</th>
             <th scope="col">업무</th>
+            <th scope="col">주요 작업</th>
+            <th scope="col">산출물</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="t-tight">1</td>
             <td>GOV-AI 측 데이터 모델링</td>
+            <td>
+              <ul class="cell-list">
+                <li>코칭 에이전트가 필요로 하는 LMS 데이터 범위 확정 — 기수 · 수강생 식별 · 학습 활동</li>
+                <li>기준 식별자를 <code>user.id</code>(UUID) 하나로 고정</li>
+                <li>개인정보 최소 노출 원칙에 따른 제공 필드 선별</li>
+              </ul>
+            </td>
+            <td>데이터 모델 정의서 — 필드 · 타입 · 식별자 규약</td>
           </tr>
           <tr>
             <td class="t-tight">2</td>
             <td>모델링된 데이터를 GOV-AI 측에 전달하기 위한 API 신설</td>
+            <td>
+              <ul class="cell-list">
+                <li>모델링 결과를 내려주는 조회 엔드포인트 설계 · 구현</li>
+                <li>전용 키 인증 — LMS 내부 API는 외부에 열지 않음</li>
+                <li>상대 측이 바로 붙을 수 있도록 명세 · 예시 응답 전달</li>
+              </ul>
+            </td>
+            <td>호출 가능한 엔드포인트 + API 명세</td>
           </tr>
           <tr>
             <td class="t-tight">3</td>
             <td>GOV-AI 측에서 받는 수강생별 주간 리포트 분석 및 DB 적재</td>
+            <td>
+              <ul class="cell-list">
+                <li>약속된 S3 경로에서 일자별 리포트 수신</li>
+                <li>주 단위로 통합하고 <strong>LMS 학습 활동(과제 · 퀴즈 · 출결 · 프로젝트)과 결합</strong></li>
+                <li>통합 리포트 스키마 설계 및 DB 적재 — 조회 API 포함</li>
+              </ul>
+            </td>
+            <td>수강생별 주간 통합 리포트 레코드</td>
           </tr>
           <tr>
             <td class="t-tight">4</td>
             <td>수강생별 주간 리포트 렌더링 화면 신설</td>
+            <td>
+              <ul class="cell-list">
+                <li>수강생이 본인 주간 리포트를 여는 화면</li>
+                <li>주차 이동 · 리포트 없음 · 로딩 등 상태 처리</li>
+                <li>적재된 통합 리포트와 화면 배선</li>
+              </ul>
+            </td>
+            <td>수강생 계정에서 열리는 주간 리포트 화면</td>
           </tr>
           <tr>
             <td class="t-tight">5</td>
             <td>통합 검증 · 시연</td>
+            <td>
+              <ul class="cell-list">
+                <li>실습 로그인 → 리포트 적재 → 통합 → 화면 노출까지 전 구간 점검</li>
+                <li>실 수강생 데이터로 재현 확인</li>
+                <li>시연 시나리오 리허설</li>
+              </ul>
+            </td>
+            <td>전 구간이 끊기지 않고 흐르는 시연</td>
           </tr>
         </tbody>
       </table>
@@ -97,12 +139,14 @@
           <tr>
             <th scope="col" class="t-tight">#</th>
             <th scope="col">업무</th>
+            <th scope="col">주요 작업</th>
+            <th scope="col">산출물</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="t-tight"></td>
-            <td class="sub">09-01 회의에서 확인 후 채웁니다</td>
+            <td class="sub" colspan="3">09-01 회의에서 확인 후 채웁니다</td>
           </tr>
         </tbody>
       </table>
