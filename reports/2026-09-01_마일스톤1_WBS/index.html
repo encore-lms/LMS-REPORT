@@ -352,6 +352,19 @@
             <td>피드백 승인 API</td>
             <td class="t-tight sub">부가</td>
           </tr>
+          <tr>
+            <td class="t-tight">9</td>
+            <td>통합 검증 · 시연 <span class="sub">진행 예정</span></td>
+            <td>
+              <ul class="cell-list">
+                <li>LMS와 함께 리포트 생성 → LMS 조회 → 화면 노출까지 전 구간 점검</li>
+                <li><strong>09-11 시연에서 주간 리포트까지 확인</strong> — 실습 환경 실연동은 범위 밖
+                  <span class="sub">08-31 회의 합의</span></li>
+              </ul>
+            </td>
+            <td>양 측이 함께 도는 것이 확인된 시연</td>
+            <td class="t-tight">1~7</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -371,8 +384,10 @@
     </p>
     <p>
       앞의 <strong>1~11 은 이 표의 순번</strong>이고, 뒤에 붙은
-      <span class="sub">업무 N</span> 은 <strong>2번 업무 분장의 LMS 업무 번호</strong>입니다 —
+      <span class="sub">업무 N</span> 은 <strong>2번 업무 분장의 업무 번호</strong>입니다 —
       두 번호는 서로 다르므로 회의에서는 <strong>업무 번호로 부릅니다</strong>.
+      업무 분장에서 <span class="sub">기반</span> · <span class="sub">부가</span> 로 표시된
+      GOV-AI 업무 1 · 2 · 7 · 8 은 이미 끝났고 날짜가 없어 이 표에 넣지 않았습니다.
     </p>
 
     <div class="sched">
@@ -387,7 +402,7 @@
         </div>
         <div class="sched__row">
           <div class="sched__task">1 GOV-AI 측 전달 데이터 모델링 <span class="flow__who flow__who--lms">LMS</span>
-            <span class="sub">업무 1</span></div>
+            <span class="sub">LMS 1</span></div>
           <div class="sched__cell on">완료</div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
@@ -396,7 +411,7 @@
         </div>
         <div class="sched__row">
           <div class="sched__task">2 전달 API 신설 <span class="flow__who flow__who--lms">LMS</span>
-            <span class="sub">업무 2</span></div>
+            <span class="sub">LMS 2</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell on">완료</div>
           <div class="sched__cell"></div>
@@ -404,7 +419,8 @@
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">3 DataLake AI 리포트 API 전달 <span class="flow__who flow__who--gov">GOV-AI</span></div>
+          <div class="sched__task">3 DataLake AI 리포트 API 전달 <span class="flow__who flow__who--gov">GOV-AI</span>
+            <span class="sub">GOV-AI 3</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell on">완료</div>
@@ -412,7 +428,8 @@
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">4 ATmux · PlayLang 구현 <span class="flow__who flow__who--gov">GOV-AI</span></div>
+          <div class="sched__task">4 ATmux · PlayLang 구현 <span class="flow__who flow__who--gov">GOV-AI</span>
+            <span class="sub">GOV-AI 4</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell on">완료</div>
@@ -420,7 +437,8 @@
           <div class="sched__cell"></div>
         </div>
         <div class="sched__row">
-          <div class="sched__task">5 ATmux · PlayLang 시뮬레이터 검증 <span class="flow__who flow__who--gov">GOV-AI</span></div>
+          <div class="sched__task">5 ATmux · PlayLang 시뮬레이터 검증 <span class="flow__who flow__who--gov">GOV-AI</span>
+            <span class="sub">GOV-AI 5</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell on qa">진행 중</div>
@@ -429,7 +447,7 @@
         </div>
         <div class="sched__row">
           <div class="sched__task">6 전달 데이터 모델링 고도화 <span class="flow__who flow__who--lms">LMS</span>
-            <span class="sub">업무 3</span></div>
+            <span class="sub">LMS 3</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell on qa">진행 중</div>
@@ -438,7 +456,7 @@
         </div>
         <div class="sched__row">
           <div class="sched__task">7 주간 리포트 화면 구상 · 구현 <span class="flow__who flow__who--lms">LMS</span>
-            <span class="sub">업무 4</span></div>
+            <span class="sub">LMS 4</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
@@ -447,7 +465,7 @@
         </div>
         <div class="sched__row">
           <div class="sched__task">8 고도화된 V2 API 전달 <span class="flow__who flow__who--lms">LMS</span>
-            <span class="sub">업무 3</span></div>
+            <span class="sub">LMS 3</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
@@ -456,7 +474,7 @@
         </div>
         <div class="sched__row">
           <div class="sched__task">9 통합 검증 시연 <span class="flow__who flow__who--lms">LMS</span> <span class="flow__who flow__who--gov">GOV-AI</span>
-            <span class="sub">업무 6</span></div>
+            <span class="sub">LMS 6 · GOV-AI 9</span></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
           <div class="sched__cell"></div>
@@ -488,7 +506,7 @@
             <td class="t-tight">1</td>
             <td class="t-tight">08-12 ~ 17</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>GOV-AI 측 전달 데이터 모델링 <span class="sub">업무 1</span></td>
+            <td>GOV-AI 측 전달 데이터 모델링 <span class="sub">LMS 1</span></td>
             <td class="t-tight sub">1</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
@@ -496,7 +514,7 @@
             <td class="t-tight">2</td>
             <td class="t-tight">08-18</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>모델링된 데이터를 GOV-AI 측에 전달하기 위한 API 신설 <span class="sub">업무 2</span></td>
+            <td>모델링된 데이터를 GOV-AI 측에 전달하기 위한 API 신설 <span class="sub">LMS 2</span></td>
             <td class="t-tight sub">1</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
@@ -504,7 +522,7 @@
             <td class="t-tight">3</td>
             <td class="t-tight">08-31</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>GOV-AI DataLake AI 리포트 API 전달</td>
+            <td>GOV-AI DataLake AI 리포트 API 전달 <span class="sub">GOV-AI 3</span></td>
             <td class="t-tight sub">2</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
@@ -512,7 +530,7 @@
             <td class="t-tight">4</td>
             <td class="t-tight">08-31</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>ATmux · PlayLang 구현</td>
+            <td>ATmux · PlayLang 구현 <span class="sub">GOV-AI 4</span></td>
             <td class="t-tight sub">4</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
@@ -520,7 +538,7 @@
             <td class="t-tight">5</td>
             <td class="t-tight">08-31 ~ <span class="sub">미정</span></td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>ATmux · PlayLang 시뮬레이터로 검증</td>
+            <td>ATmux · PlayLang 시뮬레이터로 검증 <span class="sub">GOV-AI 5</span></td>
             <td class="t-tight sub">5</td>
             <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
           </tr>
@@ -528,7 +546,7 @@
             <td class="t-tight">6</td>
             <td class="t-tight">08-31 ~ 09-01</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>GOV-AI 측 전달 데이터 모델링 고도화 <span class="sub">업무 3</span></td>
+            <td>GOV-AI 측 전달 데이터 모델링 고도화 <span class="sub">LMS 3</span></td>
             <td class="t-tight sub">7 선행</td>
             <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
           </tr>
@@ -536,7 +554,7 @@
             <td class="t-tight">7</td>
             <td class="t-tight">09-01 ~ 09-03</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>GOV-AI DataLake AI 리포트 기반으로 수강생별 주간 리포트 화면 구상 및 구현 <span class="sub">업무 4</span></td>
+            <td>GOV-AI DataLake AI 리포트 기반으로 수강생별 주간 리포트 화면 구상 및 구현 <span class="sub">LMS 4</span></td>
             <td class="t-tight sub">3</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
@@ -544,7 +562,7 @@
             <td class="t-tight">8</td>
             <td class="t-tight">09-01</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>고도화된 GOV-AI 측으로 V2 API 전달 <span class="sub">업무 3</span><br>
+            <td>고도화된 GOV-AI 측으로 V2 API 전달 <span class="sub">LMS 3</span><br>
               <span class="sub">채문창 강사와 업무 논의</span></td>
             <td class="t-tight sub">7 선행</td>
             <td class="t-tight sub">진행 예정</td>
@@ -553,7 +571,7 @@
             <td class="t-tight">9</td>
             <td class="t-tight">09-11</td>
             <td class="t-tight">공동</td>
-            <td><strong>통합 검증 시연 — 마일스톤 1 완료 판정</strong> <span class="sub">업무 6</span></td>
+            <td><strong>통합 검증 시연 — 마일스톤 1 완료 판정</strong> <span class="sub">LMS 6 · GOV-AI 9</span></td>
             <td class="t-tight sub">1~7</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
@@ -561,7 +579,7 @@
             <td class="t-tight">10</td>
             <td class="t-tight sub">미정</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td>실습 데이터 · LMS 데이터를 합친 주간 리포트 생성</td>
+            <td>실습 데이터 · LMS 데이터를 합친 주간 리포트 생성 <span class="sub">GOV-AI 6</span></td>
             <td class="t-tight sub">6</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
@@ -569,7 +587,7 @@
             <td class="t-tight">11</td>
             <td class="t-tight sub">미정</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td>전달 API 갱신에 맞춘 주간 리포트 화면 재구성 <span class="sub">업무 5</span></td>
+            <td>전달 API 갱신에 맞춘 주간 리포트 화면 재구성 <span class="sub">LMS 5</span></td>
             <td class="t-tight sub">7</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
