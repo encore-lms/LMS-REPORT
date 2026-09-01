@@ -347,10 +347,10 @@ td .cell-list li { margin: 0; }
 
 /* ── schedule ─────────────────────────────────── */
 .sched { margin: 1.5rem 0; overflow-x: auto; }
-.sched__inner { min-width: 40rem; }
+.sched__inner { min-width: 46rem; }
 .sched__head, .sched__row {
   display: grid;
-  grid-template-columns: 12rem repeat(var(--sched-cols, 5), 1fr);
+  grid-template-columns: var(--sched-task, 12rem) repeat(var(--sched-cols, 5), 1fr);
   gap: 0.35rem;
   align-items: center;
 }
@@ -366,8 +366,10 @@ td .cell-list li { margin: 0; }
 .sched--6 { --sched-cols: 6; }
 .sched--7 { --sched-cols: 7; }
 .sched__head div + div { text-align: center; }
-.sched__row { padding: 0.28rem 0; }
-.sched__task { font-size: 0.83rem; font-weight: 600; color: var(--ink); padding-right: 0.5rem; line-height: 1.4; }
+.sched__row { padding: 0.4rem 0; }
+.sched__task { font-size: 0.83rem; font-weight: 600; color: var(--ink); padding-right: 0.9rem; line-height: 1.45; }
+.sched__meta { display: block; margin-top: 0.2rem; font-weight: 400; }
+.sched__meta > span { white-space: nowrap; }
 .sched__cell { height: 1.55rem; background: var(--surface-2); border-radius: 2px; }
 .sched__cell.on {
   background: var(--brand);
