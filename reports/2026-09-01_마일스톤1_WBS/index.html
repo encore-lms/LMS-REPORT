@@ -407,6 +407,55 @@
       두 방향 모두 <strong>API 호출</strong>로 주고받습니다.
     </p>
 
+
+    <div class="seq">
+      <svg viewBox="0 0 760 500" role="img"
+           aria-label="LMS와 GOV-AI가 주고받는 데이터 순서도">
+
+        <!-- 구간 배경 -->
+        <rect class="seq-band" x="20" y="62" width="720" height="176" rx="4"/>
+        <rect class="seq-band seq-band--todo" x="20" y="256" width="720" height="222" rx="4"/>
+        <text class="seq-tag" x="34" y="80">이미 주고받은 것</text>
+        <text class="seq-tag" x="34" y="274">앞으로 받아야 하는 것</text>
+
+        <!-- 생명선 -->
+        <line class="seq-life" x1="140" y1="46" x2="140" y2="478"/>
+        <line class="seq-life" x1="620" y1="46" x2="620" y2="478"/>
+
+        <!-- 주체 -->
+        <rect class="seq-head" x="60" y="8" width="160" height="38" rx="4"/>
+        <text class="seq-head-t" x="140" y="33" text-anchor="middle">LMS</text>
+        <rect class="seq-head" x="540" y="8" width="160" height="38" rx="4"/>
+        <text class="seq-head-t" x="620" y="33" text-anchor="middle">GOV-AI</text>
+
+        <!-- ① LMS → GOV-AI -->
+        <text class="seq-label" x="380" y="128" text-anchor="middle">① 기수 · 수강생 · 출결 · 퀴즈 · 과제</text>
+        <line class="seq-line" x1="140" y1="145" x2="611" y2="145"/>
+        <polygon class="seq-tip" points="620,145 610,140.5 610,149.5"/>
+        <text class="seq-note" x="380" y="163" text-anchor="middle">08-18 완료 — GOV-AI가 매일 05시에 호출해 수집</text>
+
+        <!-- ② GOV-AI → LMS -->
+        <text class="seq-label" x="380" y="196" text-anchor="middle">② LMS 활동 내역 기반 주간 리포트</text>
+        <line class="seq-line" x1="620" y1="213" x2="149" y2="213"/>
+        <polygon class="seq-tip" points="140,213 150,208.5 150,217.5"/>
+        <text class="seq-note" x="380" y="231" text-anchor="middle">08-31 완료 — LMS가 조회해 수강생 화면에 렌더링</text>
+
+        <!-- ③ LMS → GOV-AI -->
+        <text class="seq-label" x="380" y="322" text-anchor="middle">③ 확장된 LMS 데이터 V2</text>
+        <line class="seq-line seq-line--todo" x1="140" y1="339" x2="611" y2="339"/>
+        <polygon class="seq-tip seq-tip--todo" points="620,339 610,334.5 610,343.5"/>
+        <text class="seq-note--todo" x="380" y="357" text-anchor="middle">09-01까지 전달해야 GOV-AI 6 결합 리포트로 넘어갑니다</text>
+
+        <!-- ④ GOV-AI → LMS -->
+        <text class="seq-label" x="380" y="404" text-anchor="middle">④ 실습 데이터 + LMS 데이터를 합친 주간 리포트</text>
+        <line class="seq-line seq-line--todo" x1="620" y1="421" x2="149" y2="421"/>
+        <polygon class="seq-tip seq-tip--todo" points="140,421 150,416.5 150,425.5"/>
+        <text class="seq-note--todo" x="380" y="439" text-anchor="middle">전달 시점 미정 — 받아야 LMS 5 화면 재구성으로 넘어갑니다</text>
+        <text class="seq-note" x="380" y="457" text-anchor="middle">09-01 회의에서 이 날짜를 정합니다</text>
+
+      </svg>
+    </div>
+
     <h3>공유 완료된 API</h3>
     <div class="tw">
       <table>
