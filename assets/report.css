@@ -346,7 +346,7 @@ td .cell-list li { margin: 0; }
   border-bottom: 1px solid var(--line);
   margin-bottom: 0.5rem;
 }
-.sched--6 { --sched-cols: 6; }
+.sched--7 { --sched-cols: 7; }
 .sched__head div + div { text-align: center; }
 .sched__row { padding: 0.28rem 0; }
 .sched__task { font-size: 0.83rem; font-weight: 600; color: var(--ink); padding-right: 0.5rem; line-height: 1.4; }
