@@ -328,6 +328,23 @@ td .cell-list li { margin: 0; }
 .bar__pct { color: var(--ink-3); font-weight: 400; margin-left: 0.25em; }
 
 
+/* ── sequence diagram ─────────────────────────── */
+.seq { margin: 1.5rem 0 0.5rem; overflow-x: auto; }
+.seq > svg { display: block; width: 100%; min-width: 34rem; height: auto; font-family: var(--font-sans); }
+.seq-head { fill: var(--surface); stroke: var(--line); }
+.seq-head-t { fill: var(--ink); font-size: 14px; font-weight: 700; }
+.seq-life { stroke: var(--line); stroke-dasharray: 3 4; }
+.seq-band { fill: var(--brand-wash); }
+.seq-band--todo { fill: var(--warn-wash); }
+.seq-tag { fill: var(--ink-3); font-size: 11px; letter-spacing: 0.04em; font-family: var(--font-mono); }
+.seq-line { stroke: var(--brand); stroke-width: 1.6; }
+.seq-line--todo { stroke: var(--warn); stroke-width: 1.6; stroke-dasharray: 6 4; }
+.seq-tip { fill: var(--brand); }
+.seq-tip--todo { fill: var(--warn); }
+.seq-label { fill: var(--ink); font-size: 13px; font-weight: 650; }
+.seq-note { fill: var(--ink-3); font-size: 11px; }
+.seq-note--todo { fill: var(--warn); font-size: 11px; font-weight: 650; }
+
 /* ── schedule ─────────────────────────────────── */
 .sched { margin: 1.5rem 0; overflow-x: auto; }
 .sched__inner { min-width: 40rem; }
