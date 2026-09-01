@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="GOV-AI × LMS 진행 사항 — 진행 흐름, 업무 분장, 완료 일정, 주고받을 API, 주차별 산출물.">
+<meta name="description" content="GOV-AI × LMS 진행 사항 — 업무 분장, 완료 일정, 주고받을 API, 주차별 산출물.">
 
 <title>GOV-AI × LMS 진행 사항</title>
 
@@ -58,84 +58,7 @@
   <!-- ══ 1 ══ -->
   <section>
     <div class="sec-num">01</div>
-    <h2>진행 흐름</h2>
-
-    <p>전체 작업 흐름과 현재 지점입니다.</p>
-
-    <div class="tw">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col" class="t-tight">#</th>
-            <th scope="col">단계</th>
-            <th scope="col" class="t-tight">주체</th>
-            <th scope="col" class="t-tight">대응 업무</th>
-            <th scope="col" class="t-tight">상태</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="t-tight">1</td>
-            <td>LMS에서 GOV-AI 측으로 API를 통해 데이터 전달</td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td class="t-tight sub">LMS 1 · 2<br>GOV-AI 2</td>
-            <td class="t-tight"><span class="pill pill--done">완료</span></td>
-          </tr>
-          <tr>
-            <td class="t-tight">2</td>
-            <td>GOV-AI 측에서 API로 받은 데이터로 주간 리포트를 생성</td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td class="t-tight sub">GOV-AI 3</td>
-            <td class="t-tight"><span class="pill pill--done">완료</span></td>
-          </tr>
-          <tr>
-            <td class="t-tight">3</td>
-            <td>생성된 주간 리포트를 LMS로 받아 데이터 렌더링</td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td class="t-tight sub">LMS 4</td>
-            <td class="t-tight sub">진행 예정</td>
-          </tr>
-          <tr>
-            <td class="t-tight">4</td>
-            <td>ATmux · PlayLang 구현</td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td class="t-tight sub">GOV-AI 4</td>
-            <td class="t-tight"><span class="pill pill--done">완료</span></td>
-          </tr>
-          <tr>
-            <td class="t-tight">5</td>
-            <td>ATmux · PlayLang 시뮬레이터로 검증</td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td class="t-tight sub">GOV-AI 5</td>
-            <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
-          </tr>
-          <tr>
-            <td class="t-tight">6</td>
-            <td>ATmux · PlayLang 완료 시 <strong>LMS에서 전달되는 데이터와 합쳐</strong> 주간 리포트 생성</td>
-            <td class="t-tight"><span class="prov">GOV-AI</span></td>
-            <td class="t-tight sub">GOV-AI 6</td>
-            <td class="t-tight sub">진행 예정</td>
-          </tr>
-          <tr>
-            <td class="t-tight">7</td>
-            <td>GOV-AI 측에서 전달되는 API가 업데이트되면 그에 맞춰
-              <strong>주간 리포트 화면 재구성</strong></td>
-            <td class="t-tight"><span class="prov prov--live">LMS</span></td>
-            <td class="t-tight sub">LMS 3 · 5</td>
-            <td class="t-tight sub">진행 예정</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </section>
-
-  <!-- ══ 2 ══ -->
-  <section>
-    <div class="sec-num">02</div>
     <h2>업무 분장</h2>
-
-    <p>1번 진행 흐름의 각 단계를 누가 맡는지입니다. 오른쪽 끝이 그 흐름의 몇 번째 단계인지입니다.</p>
 
     <h3>LMS 측 업무</h3>
     <div class="tw">
@@ -146,7 +69,6 @@
             <th scope="col">업무</th>
             <th scope="col">주요 작업</th>
             <th scope="col">산출물</th>
-            <th scope="col" class="t-tight">흐름</th>
           </tr>
         </thead>
         <tbody>
@@ -162,7 +84,6 @@
             </td>
             <td>데이터 모델 정의서 — 필드 · 타입 · 식별자 규약
               <span class="sub">코칭 연동 API 명세 · OpenAPI 스키마로 전달</span></td>
-            <td class="t-tight">1</td>
           </tr>
           <tr>
             <td class="t-tight">2</td>
@@ -176,7 +97,6 @@
             </td>
             <td>호출 가능한 엔드포인트 + API 명세
               <span class="sub">엔드포인트 3종 · Swagger UI 공개 중</span></td>
-            <td class="t-tight">1</td>
           </tr>
           <tr>
             <td class="t-tight">3</td>
@@ -189,7 +109,6 @@
               </ul>
             </td>
             <td>확장된 전달 데이터 V2 API</td>
-            <td class="t-tight sub">7 선행</td>
           </tr>
           <tr>
             <td class="t-tight">4</td>
@@ -205,7 +124,6 @@
               </ul>
             </td>
             <td>수강생 계정에서 열리는 주간 리포트 화면</td>
-            <td class="t-tight">3</td>
           </tr>
           <tr>
             <td class="t-tight">5</td>
@@ -217,7 +135,6 @@
               </ul>
             </td>
             <td>갱신된 API 기준으로 다시 그려진 주간 리포트 화면</td>
-            <td class="t-tight">7</td>
           </tr>
           <tr>
             <td class="t-tight">6</td>
@@ -231,7 +148,6 @@
               </ul>
             </td>
             <td>전 구간이 끊기지 않고 흐르는 시연</td>
-            <td class="t-tight">1~7</td>
           </tr>
         </tbody>
       </table>
@@ -246,7 +162,6 @@
             <th scope="col">업무</th>
             <th scope="col">주요 작업</th>
             <th scope="col">산출물</th>
-            <th scope="col" class="t-tight">흐름</th>
           </tr>
         </thead>
         <tbody>
@@ -260,7 +175,6 @@
               </ul>
             </td>
             <td>동작 중인 DataLake 서버 <span class="sub">datalake.isitsoft.kr</span></td>
-            <td class="t-tight sub">기반</td>
           </tr>
           <tr>
             <td class="t-tight">2</td>
@@ -272,7 +186,6 @@
               </ul>
             </td>
             <td>주기 동기화가 도는 LMS 연동</td>
-            <td class="t-tight">1</td>
           </tr>
           <tr>
             <td class="t-tight">3</td>
@@ -287,7 +200,6 @@
               </ul>
             </td>
             <td>주간 리포트 조회 API</td>
-            <td class="t-tight">2</td>
           </tr>
           <tr>
             <td class="t-tight">4</td>
@@ -300,7 +212,6 @@
             </td>
             <td>실습 환경 자체가 동작하는 상태
               <span class="sub">수집 연동 테스트는 업무 5</span></td>
-            <td class="t-tight">4</td>
           </tr>
           <tr>
             <td class="t-tight">5</td>
@@ -313,7 +224,6 @@
               </ul>
             </td>
             <td>시뮬레이션 데이터로 한 바퀴 도는 것이 확인된 상태</td>
-            <td class="t-tight">5</td>
           </tr>
           <tr>
             <td class="t-tight">6</td>
@@ -326,7 +236,6 @@
               </ul>
             </td>
             <td>실 데이터 기반 주간 리포트</td>
-            <td class="t-tight">6</td>
           </tr>
           <tr>
             <td class="t-tight">7</td>
@@ -338,7 +247,6 @@
               </ul>
             </td>
             <td>분석 결과 조회 API</td>
-            <td class="t-tight sub">부가</td>
           </tr>
           <tr>
             <td class="t-tight">8</td>
@@ -350,7 +258,6 @@
               </ul>
             </td>
             <td>피드백 승인 API</td>
-            <td class="t-tight sub">부가</td>
           </tr>
           <tr>
             <td class="t-tight">9</td>
@@ -363,7 +270,6 @@
               </ul>
             </td>
             <td>양 측이 함께 도는 것이 확인된 시연</td>
-            <td class="t-tight">1~7</td>
           </tr>
         </tbody>
       </table>
@@ -371,9 +277,9 @@
 
   </section>
 
-  <!-- ══ 3 ══ -->
+  <!-- ══ 2 ══ -->
   <section>
-    <div class="sec-num">03</div>
+    <div class="sec-num">02</div>
     <h2>완료 일정</h2>
 
     <p>
@@ -487,7 +393,6 @@
     <h3>날짜별 일정</h3>
     <p>
       주간회의에서는 <strong>지난 회의 이후 지나간 날짜부터</strong> 순서대로 확인합니다.
-      <strong>흐름</strong> 열은 1번 진행 흐름의 몇 번째 단계인지이며,
       날짜가 아직 없는 항목은 표 아래쪽에 모아 두었습니다.</p>
     <div class="tw">
       <table>
@@ -497,7 +402,6 @@
             <th scope="col" class="t-tight">날짜</th>
             <th scope="col" class="t-tight">주체</th>
             <th scope="col">업무</th>
-            <th scope="col" class="t-tight">흐름</th>
             <th scope="col" class="t-tight">상태</th>
           </tr>
         </thead>
@@ -507,7 +411,6 @@
             <td class="t-tight">08-12 ~ 17</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>GOV-AI 측 전달 데이터 모델링 <span class="sub">LMS 1</span></td>
-            <td class="t-tight sub">1</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
           <tr>
@@ -515,7 +418,6 @@
             <td class="t-tight">08-18</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>모델링된 데이터를 GOV-AI 측에 전달하기 위한 API 신설 <span class="sub">LMS 2</span></td>
-            <td class="t-tight sub">1</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
           <tr>
@@ -523,7 +425,6 @@
             <td class="t-tight">08-31</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>GOV-AI DataLake AI 리포트 API 전달 <span class="sub">GOV-AI 3</span></td>
-            <td class="t-tight sub">2</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
           <tr>
@@ -531,7 +432,6 @@
             <td class="t-tight">08-31</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>ATmux · PlayLang 구현 <span class="sub">GOV-AI 4</span></td>
-            <td class="t-tight sub">4</td>
             <td class="t-tight"><span class="pill pill--done">완료</span></td>
           </tr>
           <tr>
@@ -539,7 +439,6 @@
             <td class="t-tight">08-31 ~ <span class="sub">미정</span></td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>ATmux · PlayLang 시뮬레이터로 검증 <span class="sub">GOV-AI 5</span></td>
-            <td class="t-tight sub">5</td>
             <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
           </tr>
           <tr>
@@ -547,7 +446,6 @@
             <td class="t-tight">08-31 ~ 09-01</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>GOV-AI 측 전달 데이터 모델링 고도화 <span class="sub">LMS 3</span></td>
-            <td class="t-tight sub">7 선행</td>
             <td class="t-tight"><span class="pill pill--wip">진행 중</span></td>
           </tr>
           <tr>
@@ -555,7 +453,6 @@
             <td class="t-tight">09-01 ~ 09-03</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>GOV-AI DataLake AI 리포트 기반으로 수강생별 주간 리포트 화면 구상 및 구현 <span class="sub">LMS 4</span></td>
-            <td class="t-tight sub">3</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
           <tr>
@@ -564,7 +461,6 @@
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>고도화된 GOV-AI 측으로 V2 API 전달 <span class="sub">LMS 3</span><br>
               <span class="sub">채문창 강사와 업무 논의</span></td>
-            <td class="t-tight sub">7 선행</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
           <tr>
@@ -572,7 +468,6 @@
             <td class="t-tight">09-11</td>
             <td class="t-tight">공동</td>
             <td><strong>통합 검증 시연 — 마일스톤 1 완료 판정</strong> <span class="sub">LMS 6 · GOV-AI 9</span></td>
-            <td class="t-tight sub">1~7</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
           <tr>
@@ -580,7 +475,6 @@
             <td class="t-tight sub">미정</td>
             <td class="t-tight"><span class="prov">GOV-AI</span></td>
             <td>실습 데이터 · LMS 데이터를 합친 주간 리포트 생성 <span class="sub">GOV-AI 6</span></td>
-            <td class="t-tight sub">6</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
           <tr>
@@ -588,7 +482,6 @@
             <td class="t-tight sub">미정</td>
             <td class="t-tight"><span class="prov prov--live">LMS</span></td>
             <td>전달 API 갱신에 맞춘 주간 리포트 화면 재구성 <span class="sub">LMS 5</span></td>
-            <td class="t-tight sub">7</td>
             <td class="t-tight sub">진행 예정</td>
           </tr>
         </tbody>
@@ -597,9 +490,9 @@
 
   </section>
 
-  <!-- ══ 4 ══ -->
+  <!-- ══ 3 ══ -->
   <section>
-    <div class="sec-num">04</div>
+    <div class="sec-num">03</div>
     <h2>주고받을 데이터 · API</h2>
 
     <p>
@@ -628,7 +521,7 @@
               <span class="sub">기수 · 수강생 · 출결 · 퀴즈 · 과제 등 학습 활동</span></td>
             <td><code>GET /ingest/v1/courses</code> + 전용 API 키</td>
             <td class="t-tight"><span class="pill pill--done">08-18 완료</span></td>
-            <td>GOV-AI 측 주간 리포트 생성의 입력 <span class="sub">흐름 1</span></td>
+            <td>GOV-AI 측 주간 리포트 생성의 입력</td>
           </tr>
           <tr>
             <td class="t-tight">GOV-AI → LMS</td>
@@ -636,7 +529,7 @@
               <span class="sub">지표 · 등급 판정 · 취약 패턴 · 피드백 초안</span></td>
             <td>DataLake API 5종 — 아래 규약</td>
             <td class="t-tight"><span class="pill pill--done">08-31 완료</span></td>
-            <td>LMS 업무 4 — 주간 리포트 조회 · 화면 <span class="sub">흐름 2 → 3</span></td>
+            <td>LMS 업무 4 — 주간 리포트 조회 · 화면</td>
           </tr>
         </tbody>
       </table>
@@ -668,7 +561,7 @@
               LMS에서 발생하는 데이터와 합쳐 주간 리포트를 만든 데이터</td>
             <td>주간 리포트 API 갱신</td>
             <td class="t-tight sub">미정</td>
-            <td>LMS 업무 5 — 갱신된 응답에 맞춘 화면 재구성 <span class="sub">흐름 6 → 7</span></td>
+            <td>LMS 업무 5 — 갱신된 응답에 맞춘 화면 재구성</td>
           </tr>
         </tbody>
       </table>
@@ -676,9 +569,9 @@
 
   </section>
 
-  <!-- ══ 5 ══ -->
+  <!-- ══ 4 ══ -->
   <section>
-    <div class="sec-num">05</div>
+    <div class="sec-num">04</div>
     <h2>주차별 산출물</h2>
 
     <h3>1주차 — 09-01(화) ~ 09-04(금)</h3>
